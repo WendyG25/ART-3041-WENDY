@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.I. FOR DESIGNERS — Wendy Gao</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#f4efe6;--kraft:#ccb79d;--linen:#e9dfd0;--sage:#97a08f;--blue:#aab6c3;--brown:#6a5748;--sepia:#8b6f59;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:'Cormorant Garamond',serif;color:var(--brown);overflow-x:hidden}
+body:before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.55),transparent 30%);pointer-events:none}
+.main{max-width:1100px;margin:auto;padding:40px 20px 100px;position:relative}
+.header{background:#f7f2eb;padding:28px;border-radius:4px;box-shadow:0 8px 30px rgba(0,0,0,.08);position:relative}
+.header:before{content:'';position:absolute;top:-10px;left:40px;width:120px;height:28px;background:rgba(194,163,122,.6);transform:rotate(-4deg)}
+h1{margin:0;color:var(--sepia);font-size:clamp(2.8rem,6vw,5rem)}
+.meta,.meta a{color:var(--sage);text-decoration:none;font-size:1.2rem}
+.worktitle{font-size:3rem;margin:40px 0 20px;color:var(--sepia)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
+.card{position:relative;text-decoration:none;color:inherit;display:block;min-height:180px;padding:22px;background:#f7f1e7;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+.card:nth-child(odd){transform:rotate(-1.5deg)}
+.card:nth-child(even){transform:rotate(1.2deg)}
+.card:before{content:'';position:absolute;top:-8px;left:25px;width:70px;height:20px;background:rgba(212,188,145,.7)}
+.card:after{content:'';position:absolute;right:14px;bottom:14px;width:55px;height:55px;background:linear-gradient(135deg,transparent 50%,#e9ddcd 50%)}
+.num{font-family:Caveat,cursive;font-size:2rem;color:var(--sage)}
+.name{font-size:1.7rem;color:var(--brown);margin-top:8px}
+.scrap,.gridpaper,.flower{position:absolute;opacity:.7}
+.gridpaper{width:70px;height:70px;background-image:linear-gradient(#cfc6b7 1px,transparent 1px),linear-gradient(90deg,#cfc6b7 1px,transparent 1px);background-size:10px 10px;top:50px;right:20px}
+.scrap{width:80px;height:40px;background:var(--linen);left:18px;bottom:20px;transform:rotate(-8deg)}
+.flower{font-size:34px;right:24px;top:18px}
+.dec1,.dec2{position:fixed;pointer-events:none;font-size:80px;opacity:.15}
+.dec1{left:10px;top:120px}.dec2{right:10px;bottom:100px}
+</style>
+</head>
+<body>
+<div class="dec1">✿</div><div class="dec2">❀</div>
+<div class="main">
+<div class="header">
+<h1>A.I. FOR DESIGNERS — Wendy Gao</h1>
+<div class="meta">ART 3041 · Fall 2026</div>
+<div class="meta"><a href="mailto:WENDY.GAO30@login.cuny.edu">WENDY.GAO30@login.cuny.edu</a></div>
+</div>
+<div class="worktitle">Work</div>
+<div class="grid">
+<a class="card" href="#"><div class="flower">☘</div><div class="gridpaper"></div><div class="num">01</div><div class="name">Custom Instructions</div><div class="scrap"></div></a>
+<a class="card" href="#"><div class="flower">✿</div><div class="num">02</div><div class="name">A Style Guide for Your AI</div><div class="scrap"></div></a>
+<a class="card" href="#"><div class="flower">❁</div><div class="num">03</div><div class="name">Design a ___</div><div class="gridpaper"></div></a>
+<a class="card" href="#"><div class="flower">❀</div><div class="num">04</div><div class="name">Commute Story</div><div class="scrap"></div></a>
+<a class="card" href="#"><div class="flower">☙</div><div class="num">05</div><div class="name">Become a Crea(i)tive Director</div><div class="gridpaper"></div></a>
+<a class="card" href="#"><div class="flower">✾</div><div class="num">06</div><div class="name">Experimental AI Interface</div><div class="scrap"></div></a>
+<a class="card" href="#"><div class="flower">✿</div><div class="num">07</div><div class="name">Open</div><div class="gridpaper"></div></a>
+</div>
+</div>
+</body></html>

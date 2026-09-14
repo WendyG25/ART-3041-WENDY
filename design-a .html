@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Dream Dispensary</title>
+  <style>
+    /* The color variables keep the scrapbook palette consistent throughout the page. */
+    :root {
+      --pink: #f2b8cf;
+      --light-pink: #f9dbe7;
+      --blue: #bcdff5;
+      --purple: #cbbbea;
+      --cream: #fff8e9;
+      --paper: #fdf6e8;
+      --ink: #544a59;
+      --muted: #867989;
+      --shadow: rgba(84, 74, 89, 0.18);
+      --gold: #d5ad68;
+      --sage: #c8ddce;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background:
+        repeating-linear-gradient(0deg, rgba(126, 150, 180, 0.08) 0 1px, transparent 1px 28px),
+        linear-gradient(135deg, #fffaf0, #f8edf5 48%, #eef7fb);
+      overflow-x: hidden;
+    }
+
+    /* These faint fibers make the background feel more like physical paper. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image: radial-gradient(#8d7c8e 0.55px, transparent 0.55px);
+      background-size: 8px 8px;
+      mix-blend-mode: multiply;
+    }
+
+    button { font: inherit; }
+
+    .page {
+      position: relative;
+      width: min(1180px, calc(100% - 28px));
+      margin: 24px auto 50px;
+      padding: 24px;
+      border: 1px solid rgba(110, 93, 113, 0.16);
+      border-radius: 12px;
+      background: rgba(255, 250, 240, 0.82);
+      box-shadow: 0 18px 50px rgba(91, 75, 96, 0.13);
+    }
+
+    .tape {
+      position: absolute;
+      width: 120px;
+      height: 34px;
+      background: rgba(188, 223, 245, 0.68);
+      border: 1px dashed rgba(84, 74, 89, 0.16);
+      box-shadow: 0 2px 5px rgba(84, 74, 89, 0.08);
+      transform: rotate(-7deg);
+      z-index: 3;
+    }
+
+    .tape.one { top: -10px; left: 8%; }
+    .tape.two { top: -8px; right: 10%; transform: rotate(6deg); background: rgba(242, 184, 207, 0.62); }
+
+    header {
+      text-align: center;
+      padding: 10px 20px 22px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--light-pink);
+      color: #7d596d;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      font-weight: 800;
+      transform: rotate(-1deg);
+    }
+
+    h1 {
+      margin: 12px 0 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 5vw, 4.2rem);
+      line-height: 0.95;
+      color: #68566e;
+      text-shadow: 2px 2px 0 white;
+    }
+
+    header p {
+      margin: 10px auto 0;
+      max-width: 650px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(430px, 1.15fr) minmax(270px, 0.7fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* This is the main vending machine body. */
+    .machine-wrap { position: relative; padding: 16px 13px 28px; }
+
+    .doodle {
+      position: absolute;
+      font-size: 2rem;
+      filter: drop-shadow(0 2px 0 white);
+      animation: float 4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    .doodle.star { top: 0; left: 0; color: #c6975e; transform: rotate(-12deg); }
+    .doodle.cloud { top: 22%; right: -8px; animation-delay: -1.6s; }
+    .doodle.flower { bottom: 10px; left: -4px; animation-delay: -2.4s; }
+
+    @keyframes float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -7px; }
+    }
+
+    .machine {
+      position: relative;
+      padding: 24px;
+      border: 5px solid #695d70;
+      border-radius: 48px 48px 28px 28px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.34), transparent 17%, transparent 84%, rgba(117,90,112,0.12)),
+        linear-gradient(155deg, var(--pink), #ecd2ef 50%, var(--blue));
+      box-shadow: 9px 12px 0 rgba(84, 74, 89, 0.15), inset 0 0 0 6px rgba(255,255,255,0.28);
+    }
+
+    .machine::after {
+      content: "";
+      position: absolute;
+      bottom: -22px;
+      left: 54px;
+      right: 54px;
+      height: 25px;
+      border: 4px solid #695d70;
+      border-top: 0;
+      border-radius: 0 0 12px 12px;
+      background: #a99bc8;
+      z-index: -1;
+    }
+
+    .machine-name {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding: 11px 16px;
+      border: 2px solid rgba(84, 74, 89, 0.55);
+      border-radius: 13px;
+      background: var(--cream);
+      box-shadow: 3px 4px 0 rgba(84, 74, 89, 0.12);
+      transform: rotate(-0.5deg);
+    }
+
+    .machine-name strong {
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+    }
+
+    .moon-button {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .moon-button:hover { transform: rotate(18deg) scale(1.15); }
+
+    .window {
+      position: relative;
+      min-height: 490px;
+      padding: 20px;
+      border: 5px solid #665b6c;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.75), transparent 42%),
+        linear-gradient(180deg, rgba(231,243,251,0.95), rgba(213,198,233,0.87));
+      box-shadow: inset 0 0 32px rgba(78, 67, 91, 0.18);
+      overflow: hidden;
+    }
+
+    .window::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.33) 35%, transparent 48%);
+    }
+
+
+
+
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 13px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+
+
+    .dispense-button:active {
+      translate: 0 6px;
+      box-shadow: 0 1px 0 #66576a;
+    }
+
+    .slot {
+      position: relative;
+      width: 62%;
+      height: 65px;
+      margin: 20px auto 0;
+      border: 5px solid #5f5363;
+      border-radius: 8px 8px 18px 18px;
+      background: #3e3743;
+      box-shadow: inset 0 10px 15px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+
+    .slot::before {
+      content: "COLLECT DREAM HERE";
+      position: absolute;
+      inset: 15px 0 auto;
+      color: rgba(255,255,255,0.48);
+      text-align: center;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+    }
+
+
+
+    /* The right panel is styled like a separate journal page. */
+    .journal {
+      position: sticky;
+      top: 18px;
+      padding: 25px 22px 24px 34px;
+      border-radius: 5px 14px 14px 5px;
+      background:
+        linear-gradient(90deg, transparent 25px, rgba(216, 117, 135, 0.25) 26px 28px, transparent 29px),
+        repeating-linear-gradient(0deg, var(--paper) 0 27px, #cbddec 28px 29px);
+      box-shadow: 7px 9px 0 rgba(84, 74, 89, 0.13);
+      transform: rotate(0.5deg);
+    }
+
+    .journal::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 8px;
+      width: 12px;
+      height: 100%;
+      background: radial-gradient(circle, #6f6473 0 3px, transparent 4px) center 13px / 12px 32px repeat-y;
+    }
+
+    .journal h2 { margin: 0 0 5px; font-family: Georgia, serif; font-size: 1.65rem; }
+    .journal-intro { margin: 0 0 17px; color: var(--muted); font-size: 0.9rem; }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 15px;
+      padding: 10px 12px;
+      border: 1px dashed #95869a;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.56);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .collection {
+      display: grid;
+      gap: 11px;
+      min-height: 245px;
+    }
+
+    .empty-note {
+      padding: 26px 18px;
+      border: 1px dashed #aa9baa;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.42);
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+      transform: rotate(-1deg);
+    }
+
+    .memory-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 11px;
+      border: 1px solid rgba(84,74,89,0.2);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.78);
+      box-shadow: 2px 3px 0 rgba(84,74,89,0.1);
+      animation: stickIn 0.45s ease both;
+    }
+
+    .memory-card:nth-child(even) { transform: rotate(-0.7deg); }
+    .memory-card::after {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 24px;
+      width: 45px;
+      height: 14px;
+      background: rgba(203,187,234,0.67);
+      transform: rotate(3deg);
+    }
+
+    @keyframes stickIn {
+      from { opacity: 0; transform: translateY(14px) rotate(3deg); }
+      to { opacity: 1; }
+    }
+
+    .memory-icon { font-size: 2rem; text-align: center; }
+    .memory-card strong { display: block; font-family: Georgia, serif; }
+    .memory-card small { color: var(--muted); }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .paper-button {
+      border: 1px solid #8c7b8f;
+      border-radius: 7px;
+      padding: 8px 11px;
+      color: var(--ink);
+      background: rgba(255,255,255,0.72);
+      box-shadow: 2px 3px 0 rgba(84,74,89,0.12);
+      cursor: pointer;
+    }
+    .paper-button:hover { background: var(--light-pink); }
+
+    .footer-note {
+      margin: 28px auto 0;
+      padding: 14px 18px;
+      max-width: 760px;
+      text-align: center;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    /* The modal turns each collected dream into a developing Polaroid. */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(65, 54, 72, 0.48);
+      backdrop-filter: blur(5px);
+      z-index: 20;
+    }
+    .modal.open { display: grid; }
+
+    .polaroid {
+      position: relative;
+      width: min(390px, 92vw);
+      padding: 18px 18px 28px;
+      border: 1px solid #d7cfc4;
+      background: #fffdf6;
+      box-shadow: 0 25px 70px rgba(51,42,56,0.35);
+      text-align: center;
+      transform: rotate(-2deg);
+      animation: develop 0.75s ease both;
+    }
+
+    @keyframes develop {
+      from { opacity: 0; filter: brightness(2) blur(5px); transform: translateY(28px) rotate(3deg) scale(0.92); }
+      to { opacity: 1; filter: none; transform: rotate(-2deg) scale(1); }
+    }
+
+    .polaroid-image {
+      display: grid;
+      place-items: center;
+      height: 230px;
+      margin-bottom: 18px;
+      border: 1px solid #d2c7d5;
+      background: linear-gradient(145deg, var(--blue), var(--light-pink), #fff0c9);
+      font-size: 6rem;
+      overflow: hidden;
+    }
+
+    .polaroid h2 { margin: 3px 0 8px; font-family: Georgia, serif; }
+    .polaroid p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .rarity { display: inline-block; margin-top: 13px; padding: 5px 9px; border-radius: 99px; background: var(--cream); font-size: 0.74rem; font-weight: 900; }
+
+    .close-modal {
+      position: absolute;
+      top: -13px;
+      right: -13px;
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--cream);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .spark {
+      position: fixed;
+      pointer-events: none;
+      z-index: 50;
+      animation: sparkle 900ms ease-out forwards;
+    }
+    @keyframes sparkle {
+      from { opacity: 1; transform: translate(0,0) scale(0.5) rotate(0deg); }
+      to { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.4) rotate(180deg); }
+    }
+
+    @media (max-width: 870px) {
+      .layout { grid-template-columns: 1fr; }
+      .journal { position: relative; top: auto; }
+    }
+
+    @media (max-width: 540px) {
+      .page { width: min(100% - 12px, 1180px); padding: 10px; margin-top: 8px; }
+      .machine { padding: 14px; border-radius: 32px 32px 22px 22px; }
+      .window { min-height: auto; padding: 12px; }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .product { min-height: 150px; }
+      .controls { grid-template-columns: 1fr; }
+      .dispense-button { width: 100%; height: 58px; border-radius: 13px; }
+      .slot { width: 82%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  
+    /* These overrides deepen the machine, create a four-by-three display, and compact the journal collection. */
+    .page { perspective: 1500px; }
+    header { padding-bottom: 16px; }
+    header h1 { margin-top: 2px; }
+    .layout { align-items: stretch; grid-template-columns: minmax(500px, 1fr) minmax(500px, 1fr); }
+    .machine-wrap { height: 100%; padding-right: 28px; }
+    .machine-wrap::after {
+      content: "";
+      position: absolute;
+      top: 48px;
+      right: 3px;
+      bottom: 54px;
+      width: 34px;
+      border: 4px solid #5f5363;
+      border-left: 0;
+      border-radius: 0 24px 24px 0;
+      background: linear-gradient(90deg, #a98eb7, #756779);
+      box-shadow: 12px 12px 18px rgba(65, 51, 70, 0.22);
+      transform: skewY(5deg);
+      z-index: -1;
+    }
+    .machine {
+      height: 100%;
+      transform: rotateY(-2deg);
+      transform-origin: right center;
+      box-shadow: 10px 14px 0 rgba(84,74,89,0.18), 22px 25px 34px rgba(64,50,69,0.2), inset 7px 0 7px rgba(255,255,255,0.4), inset -10px 0 15px rgba(81,62,85,0.14);
+    }
+    .machine::before {
+      content: "";
+      position: absolute;
+      top: 35px;
+      left: 13px;
+      bottom: 34px;
+      width: 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.42);
+      filter: blur(1px);
+    }
+    .decorative-moon { font-size: 1.6rem; filter: drop-shadow(0 3px 2px rgba(84,74,89,0.2)); }
+    .window { min-height: 680px; box-shadow: inset 0 0 36px rgba(64,48,70,0.28), inset 9px 7px 0 rgba(255,255,255,0.34), 0 7px 0 rgba(84,74,89,0.15); }
+    .slot.active::after { animation: flap 0.75s ease; }
+    @keyframes flap { 0%,100% { transform: rotateX(0deg); } 45% { transform: rotateX(68deg); } }
+    .journal { position: relative; top: auto; height: 100%; min-height: 100%; transform: rotate(0.35deg); display: flex; flex-direction: column; }
+    .status-row { justify-content: flex-start; }
+    .collection { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-content: start; flex: 1; min-height: 0; }
+    .empty-note { grid-column: 1 / -1; }
+    .memory-card { grid-template-columns: 34px 1fr; gap: 7px; min-height: 66px; padding: 8px 7px; }
+    .memory-icon { font-size: 1.45rem; }
+    .memory-card strong { font-size: 0.76rem; line-height: 1.1; }
+    .memory-card small { font-size: 0.58rem; line-height: 1.05; display: block; margin-top: 4px; }
+    .toolbar { justify-content: flex-end; }
+    @media (max-width: 1040px) {
+      .layout { grid-template-columns: 1fr; }
+      .machine-wrap { padding-right: 25px; }
+      .journal { min-height: 720px; }
+    }
+    @media (max-width: 540px) {
+      .window { min-height: 620px; }
+      .products { grid-template-columns: repeat(3, 1fr); gap: 8px 5px; }
+      .product { min-height: 132px; padding-inline: 3px; }
+      .product-art { width: 50px; height: 50px; font-size: 1.75rem; }
+      .product h3 { font-size: 0.68rem; }
+      .collection { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+  
+    /* One possible dream is previewed in the center while dispensing remains random. */
+    .window { min-height: 520px; display: grid; place-items: center; padding: 34px; }
+    .rotating-display { display:grid; place-items:center; width:min(330px,88%); min-height:390px; border:3px solid rgba(84,74,89,.4); border-radius:28px; background:rgba(255,250,237,.78); box-shadow:8px 12px 0 rgba(84,74,89,.13), inset 0 0 28px rgba(203,187,234,.25); }
+    .rotating-item { width:100%; padding:30px 20px; text-align:center; }
+    .rotating-item.changing { animation:dreamChange .65s ease both; }
+    @keyframes dreamChange { from {opacity:0; transform:translateY(12px) scale(.95); filter:blur(4px)} to {opacity:1; transform:none; filter:none} }
+    .rotating-art { display:grid; place-items:center; width:180px; height:180px; margin:0 auto 24px; border-radius:44% 56% 54% 46%; background:linear-gradient(145deg,white,var(--light-pink),var(--blue)); box-shadow:inset 8px 8px 15px rgba(255,255,255,.8),0 14px 18px rgba(84,74,89,.18); font-size:6rem; }
+    .rotating-item h3 { margin:0; font-family:Georgia,serif; font-size:1.45rem; }
+    .rotating-item p { margin:11px 0 0; color:#765f7b; font-size:.78rem; font-weight:800; letter-spacing:.16em; }
+    .journal { height:650px; min-height:650px; align-self:start; }
+    .collection { overflow-y:auto; padding-right:4px; }
+    @media(max-width:540px){.window{min-height:430px;padding:18px}.rotating-display{min-height:330px}.rotating-art{width:145px;height:145px;font-size:4.7rem}.journal{height:590px;min-height:590px}}
+
+  
+    /* Final sizing keeps the machine and notebook visually equal. */
+    .layout { align-items: start; }
+    .machine-wrap { height: 760px; padding-bottom: 0; }
+    .machine { height: 760px; display: flex; flex-direction: column; }
+    .window { flex: 1; min-height: 0; }
+    .journal { height: 760px; min-height: 760px; }
+
+    /* The new heart button looks like a soft scrapbook sticker. */
+    .dispense-button {
+      position: relative;
+      width: 132px;
+      height: 76px;
+      border: 3px solid #765d79;
+      border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
+      color: #6d526b;
+      background: linear-gradient(145deg, #fff9ef 2%, #ffd6e6 50%, #cfc5f3 100%);
+      box-shadow: inset 5px 6px 0 rgba(255,255,255,.58), inset -5px -7px 0 rgba(124,91,130,.1), 0 7px 0 #78647d, 0 12px 16px rgba(84,74,89,.22);
+      text-transform: lowercase;
+      letter-spacing: .08em;
+      font-family: Georgia, serif;
+      font-size: .82rem;
+      line-height: 1;
+    }
+    .dispense-button::before, .dispense-button::after {
+      content: "✦";
+      position: absolute;
+      top: 13px;
+      color: #fff;
+      font-size: .7rem;
+    }
+    .dispense-button::before { left: 18px; }
+    .dispense-button::after { right: 18px; }
+    .button-heart { display: block; margin-bottom: 3px; color: #e884ad; font-size: 1.7rem; filter: drop-shadow(0 2px 0 white); }
+    .dispense-button:hover { transform: translateY(-2px) rotate(-1deg); filter: saturate(1.08); }
+    .dispense-button:active { transform: translateY(6px); }
+
+    /* Every item uses the same tiny canvas but receives its own CSS-painted scene. */
+    .css-painting { position: relative; display: block; width: 150px; height: 150px; overflow: hidden; border: 5px solid #fffaf0; border-radius: 24px; background: #f7dce8; box-shadow: 0 9px 17px rgba(83,66,88,.22), inset 0 0 0 1px rgba(84,74,89,.12); isolation: isolate; }
+    .css-painting.large { width: 205px; height: 205px; }
+    .css-painting.small { width: 42px; height: 42px; border-width: 2px; border-radius: 9px; box-shadow: 0 3px 5px rgba(83,66,88,.17); }
+    .paint-layer { position: absolute; display: block; }
+    .rotating-art { width: 190px; height: 190px; background: transparent; box-shadow: none; }
+    .rotating-art .css-painting { margin: auto; }
+    .polaroid-image { background: linear-gradient(145deg,#e5f1f8,#fae0eb,#fff0c9); }
+    .polaroid-image .css-painting { margin: auto; }
+    .memory-icon { display: grid; place-items: center; }
+
+    /* Childhood Plushie: a soft teddy silhouette. */
+    .art-plushie { background: radial-gradient(circle at 30% 20%,#fff4d8,transparent 28%), linear-gradient(#ead9ef,#f7cadb); }
+    .art-plushie .one { width: 58%; height: 55%; left: 21%; top: 30%; border-radius: 48% 48% 42% 42%; background:#b9876d; box-shadow: inset -10px -8px 0 #9e705d; }
+    .art-plushie .two { width: 42%; height: 40%; left:29%; top:16%; border-radius:50%; background:#c79678; box-shadow:-24px -4px 0 -7px #a97864,24px -4px 0 -7px #a97864; }
+    .art-plushie .three { width:11%; height:11%; left:36%; top:29%; border-radius:50%; background:#51424a; box-shadow:25px 0 #51424a,13px 15px 0 -2px #f1c1b4; }
+    .art-plushie .four { width:68%; height:14%; left:16%; bottom:12%; border-radius:50%; background:rgba(110,72,91,.16); filter:blur(3px); }
+
+    /* Summer Afternoon: sun, meadow, and tiny flowers. */
+    .art-summer { background:linear-gradient(#bfe2f5 0 58%,#d8e6bd 58%); }
+    .art-summer .one { width:42%; height:42%; right:10%; top:8%; border-radius:50%; background:#ffd787; box-shadow:0 0 0 12px rgba(255,232,168,.45); }
+    .art-summer .two { width:130%; height:48%; left:-15%; bottom:-18%; border-radius:50% 50% 0 0; background:#aad09f; transform:rotate(-4deg); }
+    .art-summer .three { width:7%; height:7%; left:22%; bottom:24%; border-radius:50%; background:#fff6ca; box-shadow:18px -9px #f4a9c2,44px 5px #fff6ca,71px -13px #cbbbea; }
+    .art-summer .four { width:55%; height:8%; left:8%; top:36%; border-radius:50%; background:rgba(255,255,255,.65); filter:blur(3px); }
+
+    /* Rainy Window: blue panes, rain streaks, and a warm sill. */
+    .art-rain { background:linear-gradient(135deg,#8ab5cf,#c4c4df); }
+    .art-rain .one { inset:12%; border:7px solid #f7e9d2; background:linear-gradient(90deg,transparent 47%,#f7e9d2 47% 53%,transparent 53%),linear-gradient(transparent 47%,#f7e9d2 47% 53%,transparent 53%); }
+    .art-rain .two { width:3px; height:30%; left:25%; top:15%; border-radius:50%; background:#edf8ff; box-shadow:28px 18px #edf8ff,58px -5px #edf8ff,82px 31px #edf8ff; transform:rotate(12deg); }
+    .art-rain .three { left:0; right:0; bottom:0; height:20%; background:#c39072; box-shadow:inset 0 8px #a87663; }
+    .art-rain .four { width:34%; height:14%; right:8%; bottom:12%; border-radius:50%; background:#f4d7a0; transform:rotate(-8deg); }
+
+    /* Melody Fragment: flowing staff and floating notes. */
+    .art-melody { background:radial-gradient(circle at 30% 25%,#fff7dd,transparent 25%),linear-gradient(145deg,#d4c5ec,#acd8ed); }
+    .art-melody .one { width:120%; height:32%; left:-10%; top:42%; border-top:3px solid #fff; border-bottom:3px solid #fff; transform:rotate(-8deg); box-shadow:0 10px 0 -7px #fff,0 -10px 0 -7px #fff; }
+    .art-melody .two { width:18%; height:18%; left:24%; top:35%; border-radius:50%; background:#725d80; box-shadow:49px 19px #9b6f91; }
+    .art-melody .three { width:4%; height:37%; left:39%; top:15%; background:#725d80; box-shadow:49px 19px #9b6f91; }
+    .art-melody .four { width:45%; height:45%; right:-10%; top:-12%; border:3px dashed rgba(255,255,255,.6); border-radius:50%; }
+
+    /* Half-finished Painting: canvas, brush, and incomplete color blocks. */
+    .art-painting { background:linear-gradient(135deg,#ddb7c7,#efd9bd); }
+    .art-painting .one { inset:16% 20%; border:7px solid #9a7468; background:linear-gradient(140deg,#f8efd9 0 45%,transparent 45%),linear-gradient(35deg,#9fcad1 0 40%,#efa9b8 40% 68%,#f8efd9 68%); transform:rotate(-4deg); }
+    .art-painting .two { width:8%; height:62%; right:16%; top:18%; border-radius:7px; background:#725145; transform:rotate(28deg); }
+    .art-painting .three { width:15%; height:24%; right:5%; top:10%; border-radius:60% 60% 20% 20%; background:#d8b071; transform:rotate(28deg); }
+    .art-painting .four { width:25%; height:9%; left:28%; bottom:22%; border-radius:50%; background:#d298ad; }
+
+    /* Unnamed Flower Sketch: pencil lines on cream paper. */
+    .art-flower { background:repeating-linear-gradient(0deg,#fff7e7 0 17px,#d9e6ec 18px); }
+    .art-flower .one { width:4%; height:58%; left:49%; top:35%; background:#6f836d; transform:rotate(5deg); }
+    .art-flower .two { width:28%; height:28%; left:36%; top:17%; border:3px solid #806d7f; border-radius:50%; box-shadow:-20px 10px 0 -3px #f2b8cf,20px 10px 0 -3px #cbbbea,0 -18px 0 -3px #fff1b8,0 22px 0 -3px #bcdff5; }
+    .art-flower .three { width:13%; height:19%; left:35%; top:59%; border:3px solid #6f836d; border-radius:100% 0 100% 0; transform:rotate(20deg); }
+    .art-flower .four { width:35%; height:5%; left:12%; top:12%; background:#b999a9; transform:rotate(-8deg); opacity:.55; }
+
+    /* Peaceful Sleep: crescent moon tucked into layered clouds. */
+    .art-sleep { background:linear-gradient(#8d81b5,#c5b8dc 68%,#efdde8); }
+    .art-sleep .one { width:48%; height:48%; left:27%; top:13%; border-radius:50%; background:#ffe9a8; }
+    .art-sleep .two { width:48%; height:48%; left:39%; top:6%; border-radius:50%; background:#9689bc; }
+    .art-sleep .three { width:70%; height:24%; left:14%; bottom:13%; border-radius:50px; background:#fbf7f3; box-shadow:24px -15px 0 -2px #fbf7f3,-19px -8px 0 -4px #fbf7f3; }
+    .art-sleep .four { width:4%; height:4%; left:18%; top:22%; border-radius:50%; background:#fff; box-shadow:80px 2px #fff,58px 35px #fff; }
+
+    /* Cloud in a Jar: glass outline with a cloud trapped inside. */
+    .art-cloudjar { background:linear-gradient(#badff2,#e7d8ee); }
+    .art-cloudjar .one { width:54%; height:65%; left:23%; top:23%; border:5px solid rgba(255,255,255,.9); border-radius:16px 16px 28px 28px; background:rgba(255,255,255,.18); box-shadow:inset 7px 0 rgba(255,255,255,.25); }
+    .art-cloudjar .two { width:41%; height:15%; left:29%; top:16%; border-radius:6px; background:#b68f72; box-shadow:inset 0 4px #d8b79e; }
+    .art-cloudjar .three { width:48%; height:20%; left:27%; top:47%; border-radius:50px; background:#fff; box-shadow:15px -12px 0 -3px #fff,-12px -7px 0 -4px #fff; }
+    .art-cloudjar .four { width:3%; height:38%; left:34%; top:32%; border-radius:4px; background:rgba(255,255,255,.7); }
+
+    /* Folded Star: dimensional paper star on a taped note. */
+    .art-star { background:linear-gradient(125deg,#c9dded,#ead6ee); }
+    .art-star .one { inset:13%; background:#fff9df; transform:rotate(-5deg); box-shadow:5px 6px rgba(85,72,91,.12); }
+    .art-star .two { width:58%; height:58%; left:21%; top:21%; background:#ffd998; clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 94%,50% 72%,21% 94%,32% 57%,2% 35%,39% 35%); filter:drop-shadow(4px 5px 0 #d4a966); }
+    .art-star .three { width:36%; height:10%; left:32%; top:10%; background:rgba(242,184,207,.75); transform:rotate(4deg); }
+    .art-star .four { width:20%; height:20%; right:7%; bottom:8%; border:2px dashed #9f86a6; border-radius:50%; }
+
+    /* Bottle of Northern Lights: aurora ribbons inside dark glass. */
+    .art-aurora { background:radial-gradient(circle at 70% 20%,#6b5f9b,#24294f 75%); }
+    .art-aurora .one { width:48%; height:70%; left:26%; top:21%; border:5px solid rgba(230,244,255,.75); border-radius:15px 15px 28px 28px; background:rgba(38,42,83,.23); }
+    .art-aurora .two { width:31%; height:12%; left:34.5%; top:14%; border-radius:6px; background:#b38672; }
+    .art-aurora .three { width:62%; height:18%; left:19%; top:48%; border-radius:50%; border-top:10px solid #80e1c0; border-bottom:9px solid #b992e2; transform:rotate(-16deg); filter:blur(1px); }
+    .art-aurora .four { width:3%; height:3%; left:18%; top:19%; border-radius:50%; background:#fff; box-shadow:84px 10px #fff,21px 67px #fff,94px 76px #fff; }
+
+    /* Pocket Sunset: stitched pocket holding a glowing horizon. */
+    .art-sunset { background:linear-gradient(#b8d9ef 0 25%,#f4b5bf 48%,#ffd39c 70%,#8874a0 71%); }
+    .art-sunset .one { width:44%; height:44%; left:28%; top:28%; border-radius:50%; background:#ffe49c; box-shadow:0 0 16px #fff4bf; }
+    .art-sunset .two { left:0; right:0; bottom:0; height:38%; background:#94789d; clip-path:polygon(0 30%,18% 14%,37% 31%,58% 8%,78% 27%,100% 11%,100% 100%,0 100%); }
+    .art-sunset .three { width:78%; height:47%; left:11%; bottom:2%; border:4px dashed #fff0db; border-radius:7px 7px 28px 28px; background:rgba(206,146,167,.28); }
+    .art-sunset .four { width:42%; height:8%; left:29%; top:12%; background:rgba(255,255,255,.45); border-radius:50%; filter:blur(4px); }
+
+    /* Sleeping Butterfly: layered wings resting on a leaf. */
+    .art-butterfly { background:linear-gradient(145deg,#c6e1d2,#d8c6eb); }
+    .art-butterfly .one { width:70%; height:20%; left:16%; bottom:20%; border-radius:100% 0 100% 0; background:#759a7f; transform:rotate(-10deg); }
+    .art-butterfly .two { width:31%; height:43%; left:20%; top:24%; border-radius:70% 30% 58% 42%; background:linear-gradient(135deg,#f3acc6,#c7b4ed); transform:rotate(-17deg); box-shadow:44px 2px 0 #a9cceb; }
+    .art-butterfly .three { width:8%; height:43%; left:46%; top:31%; border-radius:50%; background:#66556d; transform:rotate(3deg); }
+    .art-butterfly .four { width:28%; height:18%; left:36%; top:23%; border-top:2px solid #66556d; border-radius:50%; }
+
+    @media (max-width:1040px) {
+      .machine-wrap, .machine, .journal { height:720px; min-height:720px; }
+    }
+    @media (max-width:540px) {
+      .machine-wrap, .machine { height:680px; min-height:680px; }
+      .journal { height:590px; min-height:590px; }
+      .css-painting { width:125px; height:125px; }
+      .rotating-art { width:155px; height:155px; }
+    }
+
+  
+    /* The scrapbook backdrop now has layered paper, ink, tape, stamps, and pressed-flower details. */
+    body {
+      background:
+        radial-gradient(circle at 9% 13%, rgba(242,184,207,.42) 0 3px, transparent 4px),
+        radial-gradient(circle at 88% 24%, rgba(203,187,234,.38) 0 4px, transparent 5px),
+        repeating-linear-gradient(0deg, rgba(115,145,174,.09) 0 1px, transparent 1px 28px),
+        linear-gradient(135deg,#fff9ea,#f6eaf3 48%,#eaf5f9);
+      background-size: 62px 62px, 83px 83px, auto, auto;
+    }
+    body::after {
+      content:"✿   ✦   postcard   ☾   memories   ✧";
+      position:fixed; inset:0; pointer-events:none; padding:6vh 4vw;
+      color:rgba(119,91,122,.12); font:700 1.1rem Georgia,serif; letter-spacing:.5rem;
+      word-spacing:5rem; line-height:11rem; transform:rotate(-4deg); z-index:-1;
+    }
+    .page {
+      background:
+        linear-gradient(90deg,rgba(255,255,255,.38),transparent 16%,rgba(238,212,225,.18) 72%,transparent),
+        repeating-linear-gradient(94deg,rgba(92,70,91,.025) 0 1px,transparent 1px 5px),
+        rgba(255,250,240,.9);
+      border:1px solid rgba(96,73,99,.22);
+      box-shadow:0 18px 50px rgba(91,75,96,.16), inset 0 0 50px rgba(180,145,160,.09);
+    }
+    .page::before {
+      content:""; position:absolute; left:-22px; top:28%; width:94px; height:120px;
+      border:3px double rgba(163,110,129,.25); border-radius:50%; transform:rotate(-16deg);
+      box-shadow:720px -170px 0 -15px rgba(189,157,205,.16),1050px 360px 0 -22px rgba(126,164,145,.16);
+      pointer-events:none;
+    }
+    .journal {
+      background:
+        linear-gradient(90deg,transparent 25px,rgba(216,117,135,.28) 26px 28px,transparent 29px),
+        repeating-linear-gradient(0deg,rgba(253,246,232,.96) 0 27px,#cbddec 28px 29px),
+        radial-gradient(#b695a4 .55px,transparent .7px);
+      background-size:auto,auto,7px 7px;
+      border:1px solid rgba(100,77,102,.2);
+    }
+
+    /* The item showcase sits exactly in the center of the machine window. */
+    .window { display:grid; place-items:center; }
+    .rotating-display { margin:auto; align-self:center; justify-self:center; transform:none; }
+    .rotating-item { display:flex; min-height:390px; flex-direction:column; justify-content:center; align-items:center; }
+
+    /* The centered rectangular button resembles a layered scrapbook label. */
+    .controls { display:flex; justify-content:center; align-items:center; width:100%; }
+    .dispense-button {
+      display:flex; align-items:center; justify-content:center; gap:9px;
+      width:230px; height:62px; margin:0 auto; border-radius:15px;
+      border:3px solid #715b77; background:linear-gradient(145deg,#fff9ee,#ffd4e5 52%,#c9c2ef);
+      color:#66506b; font:700 .92rem Georgia,serif; letter-spacing:.06em;
+      box-shadow:inset 5px 5px rgba(255,255,255,.58),inset -5px -6px rgba(103,76,109,.08),0 6px 0 #78657d,0 11px 15px rgba(84,74,89,.2);
+      transform:none;
+    }
+    .dispense-button::before,.dispense-button::after { content:"✦"; position:static; color:#d281a8; }
+    .button-heart { margin:0; font-size:1.2rem; color:#d281a8; }
+    .dispense-button:hover { transform:translateY(-2px) rotate(-.5deg); }
+    .dispense-button:active { transform:translateY(5px); box-shadow:0 1px 0 #78657d; }
+
+    /* Extra highlights and texture make every CSS painting feel more layered and handmade. */
+    .css-painting::before {
+      content:""; position:absolute; inset:0; z-index:8; pointer-events:none;
+      background:linear-gradient(115deg,rgba(255,255,255,.35),transparent 32%),radial-gradient(circle at 22% 18%,rgba(255,255,255,.38),transparent 17%),repeating-linear-gradient(102deg,rgba(73,51,75,.035) 0 1px,transparent 1px 5px);
+      mix-blend-mode:soft-light;
+    }
+    .css-painting::after {
+      content:""; position:absolute; inset:5px; z-index:9; pointer-events:none;
+      border:1px dashed rgba(90,65,94,.22); border-radius:18px;
+      box-shadow:inset 0 0 18px rgba(77,53,81,.1);
+    }
+    .paint-layer { filter:saturate(1.06) drop-shadow(1px 2px 1px rgba(70,48,73,.12)); }
+
+    /* A new angled paper ticket slides out and remains until another item is dispensed. */
+    .slot { overflow:visible; z-index:4; }
+    .dream-ticket {
+      position:absolute; left:50%; top:20px; width:205px; min-height:88px; padding:18px 13px 12px;
+      border:1px solid #bca9aa; border-radius:3px; background:
+        repeating-linear-gradient(0deg,#fff8e8 0 19px,#dce8ee 20px),#fff8e8;
+      color:#67576d; text-align:center; box-shadow:6px 9px 15px rgba(51,40,55,.28);
+      transform:translate(-50%,-25px) rotate(5deg) scale(.82); transform-origin:top center;
+      opacity:0; pointer-events:none; z-index:-1; transition:transform .7s cubic-bezier(.2,.9,.2,1.15),opacity .25s;
+    }
+    .dream-ticket::before { content:""; position:absolute; top:-7px; left:65px; width:70px; height:17px; background:rgba(242,184,207,.72); transform:rotate(-3deg); }
+    .dream-ticket span { display:block; font:700 1rem Georgia,serif; }
+    .dream-ticket small { display:block; margin-top:8px; font-size:.58rem; letter-spacing:.08em; }
+    .dream-ticket.visible { opacity:1; transform:translate(-50%,12px) rotate(5deg) scale(1); }
+    .slot.active::after { z-index:3; }
+
+    @media(max-width:540px) {
+      .dispense-button { width:210px; height:58px; border-radius:14px; }
+      .dream-ticket { width:180px; }
+    }
+
+  
+    /* Final alignment centers the rotating display from every side of the machine window. */
+    .window {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .rotating-display {
+      position: relative;
+      inset: auto;
+      margin: auto;
+      align-self: center;
+      justify-self: center;
+    }
+
+    /* Larger scrapbook marks make the background decoration more visible. */
+    body::after {
+      font-size: 2rem;
+      letter-spacing: .8rem;
+      word-spacing: 8rem;
+      line-height: 14rem;
+      opacity: .9;
+    }
+    .page::before {
+      width: 155px;
+      height: 185px;
+      left: -48px;
+      border-width: 5px;
+      box-shadow: 760px -180px 0 -3px rgba(189,157,205,.2), 1080px 360px 0 -8px rgba(126,164,145,.2);
+    }
+    .doodle { font-size: 3rem; }
+    .tape { width: 155px; height: 42px; }
+
+    /* Notebook paintings use the exact same artwork and proportions as the machine, only scaled down as one unit. */
+    .memory-icon {
+      width: 48px;
+      height: 48px;
+      overflow: visible;
+    }
+    .memory-icon .css-painting.medium {
+      width: 150px;
+      height: 150px;
+      transform: scale(.28);
+      transform-origin: center;
+      flex: 0 0 auto;
+    }
+
+  
+
+    /* Detailed painting pass: richer light, depth, material texture, and scene-specific brushwork. */
+    .css-painting {
+      border-color: #fffaf1;
+      background-color: #ead7df;
+      box-shadow:
+        0 12px 22px rgba(67, 48, 71, .24),
+        0 2px 3px rgba(67, 48, 71, .18),
+        inset 0 0 0 1px rgba(72, 48, 71, .16),
+        inset 0 0 22px rgba(75, 47, 70, .12);
+    }
+    .css-painting::before {
+      background:
+        linear-gradient(118deg, rgba(255,255,255,.48), transparent 24%, transparent 72%, rgba(55,34,55,.13)),
+        radial-gradient(circle at 24% 18%, rgba(255,255,255,.44), transparent 14%),
+        repeating-linear-gradient(101deg, rgba(73,51,75,.045) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(7deg, rgba(255,255,255,.03) 0 1px, transparent 1px 6px);
+      mix-blend-mode: soft-light;
+    }
+    .css-painting::after {
+      inset: 4px;
+      border: 1px solid rgba(255,255,255,.48);
+      border-radius: 18px;
+      box-shadow: inset 0 0 22px rgba(52,34,55,.14), inset 0 0 0 1px rgba(73,49,75,.08);
+    }
+    .paint-layer {
+      filter: saturate(1.08) drop-shadow(1px 3px 2px rgba(56,37,59,.18));
+      transform-style: preserve-3d;
+    }
+
+    /* Childhood Plushie: modeled fur, muzzle, paws, stitched face, and floor shadow. */
+    .art-plushie { background: radial-gradient(circle at 27% 17%,#fff8df 0 8%,transparent 28%), linear-gradient(155deg,#e7dbef 0 47%,#f4c9d8 100%); }
+    .art-plushie .one { width:60%; height:55%; left:20%; top:34%; border-radius:47% 47% 39% 39%; background:radial-gradient(circle at 34% 24%,#d8ad8d 0 7%,transparent 8%),radial-gradient(circle at 66% 27%,#c58f72 0 6%,transparent 7%),linear-gradient(120deg,#c99b7c,#a8735d 67%,#8d5f52); box-shadow:inset 11px 9px 13px rgba(255,231,201,.3),inset -13px -11px 16px rgba(88,48,45,.25),-20px 17px 0 -13px #a97460,20px 17px 0 -13px #9c6758; }
+    .art-plushie .two { width:44%; height:42%; left:28%; top:15%; border-radius:48% 48% 45% 45%; background:radial-gradient(circle at 34% 24%,#dfb496 0 5%,transparent 6%),linear-gradient(140deg,#cea080,#aa745e 72%); box-shadow:-25px -3px 0 -7px #a16c59,25px -3px 0 -7px #966252,inset 8px 7px 10px rgba(255,229,201,.3),inset -8px -9px 12px rgba(82,43,42,.22); }
+    .art-plushie .three { width:7%; height:7%; left:37%; top:29%; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff 0 9%,transparent 11%),#45363d; box-shadow:26px 0 0 #45363d,13px 14px 0 4px #e7b39e,13px 14px 0 8px #b97c6d; }
+    .art-plushie .four { width:72%; height:13%; left:14%; bottom:7%; border-radius:50%; background:rgba(73,45,65,.2); filter:blur(5px); box-shadow:0 -34px 0 -30px #6d4850; }
+
+    /* Summer Afternoon: atmospheric sky, distant hills, layered grass, and flower meadow. */
+    .art-summer { background:linear-gradient(#88c9ed 0 52%,#d7e8c0 53% 64%,#8fbd7e 65%); }
+    .art-summer .one { width:40%; height:40%; right:8%; top:7%; border-radius:50%; background:radial-gradient(circle at 36% 34%,#fff4bd 0 15%,#ffda77 55%,#efb95f 100%); box-shadow:0 0 0 9px rgba(255,232,164,.35),0 0 25px 11px rgba(255,224,138,.45); }
+    .art-summer .two { width:145%; height:54%; left:-22%; bottom:-19%; border-radius:50% 54% 0 0; background:radial-gradient(ellipse at 30% 36%,#d7e5ae 0 2%,transparent 3%),repeating-linear-gradient(78deg,transparent 0 8px,rgba(62,123,66,.2) 9px 10px),linear-gradient(170deg,#afd39b,#6ea76e 70%); transform:rotate(-3deg); box-shadow:0 -16px 0 -7px #9fc78e,0 -28px 0 -17px #759d79; }
+    .art-summer .three { width:7%; height:7%; left:17%; bottom:25%; border-radius:50%; background:#fff4bd; box-shadow:8px 4px 0 -2px #fff,21px -11px #ed91b4,30px -8px 0 -2px #fff,47px 4px #fff4bd,55px 7px 0 -2px #fff,76px -14px #b9a2e1,84px -11px 0 -2px #fff,98px 8px #f0a1b4; }
+    .art-summer .four { width:58%; height:10%; left:5%; top:24%; border-radius:50%; background:rgba(255,255,255,.75); filter:blur(3px); box-shadow:44px 18px 0 -3px rgba(255,255,255,.55),-18px 40px 0 -4px rgba(255,255,255,.42); }
+
+    /* Rainy Window: reflected glass, varied water trails, panes, sill, and steaming cup. */
+    .art-rain { background:linear-gradient(145deg,#6f9dbb,#a9b7d1 55%,#777f9d); }
+    .art-rain .one { inset:10%; border:7px solid #efe0ca; background:linear-gradient(90deg,transparent 47%,#e8d4bd 48% 53%,transparent 54%),linear-gradient(transparent 47%,#e8d4bd 48% 53%,transparent 54%),linear-gradient(125deg,rgba(255,255,255,.32),transparent 34%); box-shadow:inset 0 0 18px rgba(36,62,82,.32),0 4px 8px rgba(58,42,52,.18); }
+    .art-rain .two { width:3px; height:27%; left:23%; top:13%; border-radius:50%; background:linear-gradient(#f7fdff,rgba(210,239,255,.25)); box-shadow:18px 39px 0 -1px #eaf8ff,35px 11px #eaf8ff,57px 36px 0 -1px #eaf8ff,75px -3px #effaff,89px 28px 0 -1px #eaf8ff; transform:rotate(10deg); }
+    .art-rain .three { left:0; right:0; bottom:0; height:21%; background:linear-gradient(#a8735e 0 20%,#c39575 21% 64%,#8c604f); box-shadow:inset 0 7px 8px rgba(78,43,40,.28),0 -3px rgba(255,232,207,.28); }
+    .art-rain .four { width:34%; height:18%; right:7%; bottom:10%; border-radius:9px 9px 50% 50%; background:radial-gradient(ellipse at 50% 7%,#79544b 0 20%,#eed3a5 22% 30%,transparent 31%),linear-gradient(#f5dfb6,#d9a878); transform:rotate(-5deg); box-shadow:13px 2px 0 -8px transparent,15px 0 0 -8px #d09d74,0 -16px 0 -14px rgba(255,255,255,.65),7px -25px 0 -15px rgba(255,255,255,.45); }
+
+    /* Melody Fragment: parchment glow, five-line staff, dimensional notes, and drifting rhythm. */
+    .art-melody { background:radial-gradient(circle at 28% 20%,#fff9df 0 8%,transparent 27%),linear-gradient(145deg,#bca9dd,#83c4df); }
+    .art-melody .one { width:120%; height:34%; left:-10%; top:41%; border-top:2px solid rgba(255,255,255,.92); border-bottom:2px solid rgba(255,255,255,.92); transform:rotate(-8deg); box-shadow:0 8px 0 -6px #fff,0 16px 0 -14px #fff,0 -8px 0 -6px #fff; }
+    .art-melody .two { width:18%; height:14%; left:23%; top:42%; border-radius:50%; background:radial-gradient(circle at 35% 30%,#9d89a9 0 12%,#604c70 70%); box-shadow:50px 18px 0 #886180,83px -17px 0 -2px #ad7a98; transform:rotate(-12deg); }
+    .art-melody .three { width:4%; height:39%; left:39%; top:18%; border-radius:3px; background:linear-gradient(90deg,#8d7599,#544161); box-shadow:50px 18px #765570,83px -17px #966783; transform:rotate(-3deg); }
+    .art-melody .four { width:52%; height:52%; right:-13%; top:-15%; border:2px dashed rgba(255,255,255,.65); border-radius:50%; box-shadow:-75px 92px 0 -23px rgba(255,255,255,.28); }
+
+    /* Half-finished Painting: wooden frame, impasto canvas, palette marks, and bristled brush. */
+    .art-painting { background:linear-gradient(135deg,#c89bb1,#ecd2ad); }
+    .art-painting .one { inset:14% 19%; border:8px ridge #9a6c54; background:radial-gradient(circle at 32% 62%,#f8cbc3 0 7%,transparent 8%),repeating-linear-gradient(25deg,rgba(255,255,255,.12) 0 2px,transparent 2px 7px),linear-gradient(140deg,#f8efd9 0 38%,#91bdc6 39% 57%,#dd91a7 58% 73%,#eed39b 74%); transform:rotate(-4deg); box-shadow:inset 0 0 10px rgba(82,55,48,.2),4px 6px 8px rgba(63,43,52,.22); }
+    .art-painting .two { width:8%; height:61%; right:15%; top:20%; border-radius:4px; background:linear-gradient(90deg,#4d302d,#8a5c48 48%,#4d302d); transform:rotate(29deg); box-shadow:2px 2px 3px rgba(50,32,36,.25); }
+    .art-painting .three { width:16%; height:25%; right:4%; top:9%; border-radius:70% 70% 18% 18%; background:repeating-linear-gradient(90deg,#dfbe7f 0 2px,#9f744f 3px 4px); transform:rotate(29deg); box-shadow:inset 0 -5px #744c3e; }
+    .art-painting .four { width:31%; height:13%; left:25%; bottom:18%; border-radius:55% 45% 60% 40%; background:radial-gradient(circle at 25% 50%,#e9a8b8 0 14%,transparent 15%),radial-gradient(circle at 53% 42%,#8fc0c8 0 13%,transparent 14%),radial-gradient(circle at 78% 58%,#e4c378 0 12%,transparent 13%),#d7b5a0; box-shadow:inset 0 0 0 2px rgba(121,79,72,.25); }
+
+    /* Unnamed Flower Sketch: graphite construction lines, shaded petals, stem veins, and eraser mark. */
+    .art-flower { background:repeating-linear-gradient(0deg,#fff7e5 0 16px,#d4e3e9 17px 18px); }
+    .art-flower .one { width:3%; height:58%; left:49%; top:35%; border-radius:50%; background:linear-gradient(90deg,#4d654f,#8da07b,#536b50); transform:rotate(5deg); box-shadow:5px 1px 0 -2px rgba(87,104,76,.45); }
+    .art-flower .two { width:25%; height:25%; left:37.5%; top:18%; border:3px double #756475; border-radius:50%; background:radial-gradient(circle,#bc8c80 0 16%,#f3cfb5 17% 30%,transparent 31%); box-shadow:-22px 9px 0 -3px #e8a9bd,22px 9px 0 -3px #bbaade,0 -21px 0 -3px #f3dda5,0 23px 0 -3px #a9d1df,-16px -14px 0 -5px #e5bfd0,17px -14px 0 -5px #c9c0e8; }
+    .art-flower .three { width:15%; height:21%; left:34%; top:58%; border:3px solid #61775f; border-radius:100% 0 100% 0; transform:rotate(18deg); box-shadow:26px 9px 0 -3px transparent,28px 9px 0 -1px rgba(91,116,84,.82); }
+    .art-flower .four { width:38%; height:4%; left:10%; top:12%; background:repeating-linear-gradient(90deg,#9f7f91 0 4px,transparent 4px 7px); transform:rotate(-8deg); opacity:.58; box-shadow:65px 105px 0 1px rgba(199,163,151,.22); }
+
+    /* Peaceful Sleep: luminous moon, velvet sky, layered clouds, stars, and soft haze. */
+    .art-sleep { background:radial-gradient(circle at 75% 20%,rgba(255,255,255,.2),transparent 20%),linear-gradient(#554a86,#9386b6 63%,#dfc9df); }
+    .art-sleep .one { width:49%; height:49%; left:25%; top:11%; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff7c8,#ffe394 67%,#d9b862); box-shadow:0 0 22px 7px rgba(255,230,151,.45),inset -6px -7px 8px rgba(180,130,65,.18); }
+    .art-sleep .two { width:49%; height:49%; left:39%; top:4%; border-radius:50%; background:linear-gradient(145deg,#665a91,#8e80ae); box-shadow:-8px 7px 14px rgba(255,229,148,.14); }
+    .art-sleep .three { width:72%; height:23%; left:13%; bottom:13%; border-radius:50px; background:linear-gradient(#fff,#e8e8f2); box-shadow:23px -15px 0 -2px #f8f6fb,-20px -8px 0 -4px #f9f7fb,0 8px 12px rgba(71,56,92,.18),inset 0 -7px 9px rgba(167,157,188,.28); }
+    .art-sleep .four { width:4%; height:4%; left:16%; top:19%; border-radius:50%; background:#fff; box-shadow:80px 2px #fff,58px 35px #fff,18px 28px 0 -1px #fff,93px 55px 0 -1px #fff,41px -4px 0 -1px #fff; filter:drop-shadow(0 0 4px #fff); }
+
+    /* Cloud in a Jar: refractive glass, cork grain, suspended cloud, condensation, and table shadow. */
+    .art-cloudjar { background:linear-gradient(#8dc9e8,#d4c4e7 70%,#c7b2cc); }
+    .art-cloudjar .one { width:55%; height:66%; left:22.5%; top:22%; border:5px solid rgba(244,252,255,.83); border-radius:14px 14px 29px 29px; background:linear-gradient(110deg,rgba(255,255,255,.32),transparent 28%,rgba(106,151,184,.12) 66%,rgba(255,255,255,.25)); box-shadow:inset 8px 0 7px rgba(255,255,255,.28),inset -7px -4px 10px rgba(75,100,134,.2),0 8px 12px rgba(61,50,82,.2); }
+    .art-cloudjar .two { width:42%; height:15%; left:29%; top:14%; border-radius:6px 6px 4px 4px; background:repeating-linear-gradient(78deg,#9d7259 0 3px,#c99e7a 4px 7px); box-shadow:inset 0 4px rgba(255,223,190,.35),0 3px 4px rgba(66,43,49,.2); }
+    .art-cloudjar .three { width:48%; height:19%; left:26%; top:48%; border-radius:50px; background:linear-gradient(#fff,#e8edf5); box-shadow:15px -12px 0 -3px #fff,-12px -7px 0 -4px #fbfdff,0 8px 9px rgba(91,106,143,.19); }
+    .art-cloudjar .four { width:3%; height:39%; left:33%; top:31%; border-radius:4px; background:rgba(255,255,255,.8); box-shadow:28px 18px 0 -1px rgba(255,255,255,.65),13px 39px 0 -1px rgba(255,255,255,.55),-22px 73px 12px 9px rgba(57,43,69,.16); }
+
+    /* Folded Star: visible folds, paper grain, tape translucency, note shadow, and seal detail. */
+    .art-star { background:linear-gradient(125deg,#b9d8e9,#dfc7e8); }
+    .art-star .one { inset:12%; background:repeating-linear-gradient(96deg,rgba(105,81,88,.035) 0 1px,transparent 1px 6px),#fff8dc; transform:rotate(-5deg); box-shadow:7px 8px 10px rgba(61,46,68,.2); }
+    .art-star .two { width:59%; height:59%; left:20.5%; top:21%; background:conic-gradient(from 0deg,#fff0b5,#d9a94e,#ffe79c,#c6923f,#fff0b5); clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 94%,50% 72%,21% 94%,32% 57%,2% 35%,39% 35%); filter:drop-shadow(5px 6px 1px rgba(123,86,43,.45)); }
+    .art-star .three { width:39%; height:11%; left:30%; top:8%; background:linear-gradient(90deg,rgba(238,159,190,.45),rgba(248,194,213,.82),rgba(216,132,169,.53)); transform:rotate(4deg); box-shadow:0 2px 3px rgba(90,59,78,.12); }
+    .art-star .four { width:22%; height:22%; right:6%; bottom:7%; border:2px dashed #8d7197; border-radius:50%; background:radial-gradient(circle,#c58ea7 0 14%,transparent 16%); box-shadow:inset 0 0 0 4px rgba(255,255,255,.18); }
+
+    /* Northern Lights: deep glass, multiple aurora ribbons, cork, stars, and bottle reflections. */
+    .art-aurora { background:radial-gradient(circle at 72% 18%,#7569aa 0 5%,#343866 38%,#151a3c 100%); }
+    .art-aurora .one { width:49%; height:70%; left:25.5%; top:21%; border:5px solid rgba(223,242,255,.72); border-radius:14px 14px 29px 29px; background:linear-gradient(100deg,rgba(255,255,255,.12),transparent 30%,rgba(16,20,55,.25)); box-shadow:inset 6px 0 8px rgba(255,255,255,.18),inset -5px -7px 9px rgba(5,8,28,.46),0 8px 13px rgba(8,8,30,.4); }
+    .art-aurora .two { width:32%; height:12%; left:34%; top:14%; border-radius:6px; background:repeating-linear-gradient(78deg,#8f6654 0 3px,#bd8e72 4px 7px); box-shadow:inset 0 3px rgba(255,211,175,.32); }
+    .art-aurora .three { width:63%; height:28%; left:18%; top:43%; border-radius:50%; border-top:9px solid #63e3c2; border-bottom:8px solid #bd83e5; transform:rotate(-16deg); filter:blur(1px) drop-shadow(0 0 7px rgba(103,237,203,.68)); box-shadow:0 -6px 0 -3px #84bfff,0 8px 0 -4px #e4a4d8; }
+    .art-aurora .four { width:3%; height:3%; left:17%; top:17%; border-radius:50%; background:#fff; box-shadow:84px 10px #fff,21px 67px #fff,94px 76px #fff,54px -3px 0 -1px #fff,14px 38px 0 -1px #fff,68px 52px 0 -1px #fff; filter:drop-shadow(0 0 4px #bdefff); }
+
+    /* Pocket Sunset: glowing atmosphere, layered mountains, stitched fabric, seams, and cloth texture. */
+    .art-sunset { background:linear-gradient(#8ebedc 0 22%,#e594b0 47%,#ffca87 69%,#706487 70%); }
+    .art-sunset .one { width:45%; height:45%; left:27.5%; top:27%; border-radius:50%; background:radial-gradient(circle,#fff4bd 0 20%,#ffd67d 65%,#eca85f); box-shadow:0 0 22px 9px rgba(255,224,150,.54); }
+    .art-sunset .two { left:-3%; right:-3%; bottom:0; height:42%; background:linear-gradient(#76678b,#4f496c); clip-path:polygon(0 34%,18% 15%,37% 33%,58% 7%,78% 29%,100% 10%,100% 100%,0 100%); box-shadow:inset 0 12px rgba(255,196,152,.09); }
+    .art-sunset .three { width:80%; height:49%; left:10%; bottom:1%; border:4px dashed #f8dec8; border-radius:8px 8px 29px 29px; background:repeating-linear-gradient(96deg,rgba(255,255,255,.04) 0 1px,transparent 1px 4px),rgba(190,116,151,.32); box-shadow:inset 0 -10px 13px rgba(73,47,79,.28),0 -2px rgba(255,236,218,.32); }
+    .art-sunset .four { width:46%; height:8%; left:27%; top:13%; background:rgba(255,255,255,.5); border-radius:50%; filter:blur(4px); box-shadow:-32px 25px 0 -3px rgba(255,255,255,.28),44px 19px 0 -4px rgba(255,255,255,.3); }
+
+    /* Sleeping Butterfly: veined gradient wings, segmented body, antennae, leaf veins, and dew. */
+    .art-butterfly { background:linear-gradient(145deg,#a8d3ba,#c9b0dd); }
+    .art-butterfly .one { width:73%; height:22%; left:14%; bottom:18%; border-radius:100% 0 100% 0; background:linear-gradient(12deg,#4f7e61,#8fc18e); transform:rotate(-10deg); box-shadow:inset 0 3px rgba(223,245,203,.35),0 7px 8px rgba(58,56,72,.18); }
+    .art-butterfly .two { width:32%; height:44%; left:19%; top:23%; border-radius:72% 28% 60% 40%; background:radial-gradient(circle at 45% 35%,#fff1c8 0 5%,transparent 6%),repeating-radial-gradient(ellipse at 80% 50%,transparent 0 8px,rgba(102,76,132,.18) 9px 10px),linear-gradient(135deg,#f2a3c0,#b7a1df 72%); transform:rotate(-17deg); box-shadow:45px 2px 0 #91c4df,48px 4px 8px rgba(72,57,84,.2),inset -7px -5px 8px rgba(94,68,122,.2); }
+    .art-butterfly .three { width:8%; height:43%; left:46%; top:31%; border-radius:50%; background:repeating-linear-gradient(0deg,#55445e 0 5px,#816b83 6px 9px); transform:rotate(3deg); box-shadow:inset 2px 0 rgba(255,255,255,.18); }
+    .art-butterfly .four { width:30%; height:20%; left:35%; top:21%; border-top:2px solid #58475f; border-radius:50%; box-shadow:-30px 75px 0 -13px rgba(255,255,255,.8),31px 65px 0 -13px rgba(255,255,255,.7); }
+
+    /* Preserve readability when the detailed paintings are reduced inside the notebook cards. */
+    .memory-icon .css-painting.medium { filter: contrast(1.04) saturate(1.04); }
+
+  
+
+    /* Medium-detail emoji elements layered into the existing CSS paintings. */
+    .css-painting { container-type: size; }
+    .painting-emoji {
+      position:absolute;left:50%;top:50%;z-index:6;display:grid;place-items:center;
+      width:44%;height:44%;font-size:clamp(2rem,28cqw,3.2rem);line-height:1;
+      transform:translate(-50%,-50%) rotate(-4deg);
+      filter:drop-shadow(2px 4px 3px rgba(61,42,64,.28));pointer-events:none;
+    }
+    .art-plushie .painting-emoji{top:50%;font-size:clamp(2.2rem,33cqw,3.6rem)}
+    .art-summer .painting-emoji{left:66%;top:31%;width:34%;height:34%}
+    .art-rain .painting-emoji{left:35%;top:37%;width:34%;height:34%}
+    .art-melody .painting-emoji{left:61%;top:43%;width:35%;height:35%;transform:translate(-50%,-50%) rotate(9deg)}
+    .art-painting .painting-emoji{left:42%;top:48%;width:38%;height:38%}
+    .art-flower .painting-emoji{top:35%;width:36%;height:36%}
+    .art-sleep .painting-emoji{left:58%;top:58%;width:34%;height:34%}
+    .art-cloudjar .painting-emoji{top:55%;width:31%;height:31%}
+    .art-star .painting-emoji{top:55%;width:34%;height:34%}
+    .art-aurora .painting-emoji{top:56%;width:35%;height:35%;opacity:.88;mix-blend-mode:screen}
+    .art-sunset .painting-emoji{top:47%;width:34%;height:34%}
+    .art-butterfly .painting-emoji{left:53%;top:45%;width:38%;height:38%;transform:translate(-50%,-50%) rotate(-12deg)}
+
+    /* After dispensing, the medium painting stays on the left and its text stays on the right. */
+    .dream-ticket{width:270px;min-height:112px;padding:15px;text-align:left}
+    .dream-ticket-content{display:grid;grid-template-columns:74px minmax(0,1fr);gap:13px;align-items:center;width:100%}
+    .dream-ticket-art{display:grid;width:74px;height:74px;place-items:center;overflow:hidden;border-radius:13px}
+    .dream-ticket-art .css-painting.medium{width:150px;height:150px;margin:0;transform:scale(.46);transform-origin:center}
+    .dream-ticket-copy{min-width:0;text-align:left}
+    .dream-ticket-title{display:block;margin:0;font:700 .96rem/1.18 Georgia,serif;overflow-wrap:anywhere}
+    .dream-ticket-rarity{display:block;margin-top:7px;font-size:.58rem;line-height:1.25;letter-spacing:.08em}
+
+    /* Collected journal entries use the same side-by-side relationship. */
+    .memory-card{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;gap:9px}
+    .memory-copy{min-width:0;text-align:left}
+
+    @media(max-width:540px){
+      .dream-ticket{width:238px;min-height:102px;padding:13px}
+      .dream-ticket-content{grid-template-columns:62px minmax(0,1fr);gap:10px}
+      .dream-ticket-art{width:62px;height:62px}
+      .dream-ticket-art .css-painting.medium{transform:scale(.38)}
+      .dream-ticket-title{font-size:.84rem}
+    }
+
+  
+
+    /* Emoji-first painting rebuild: simple, medium-detail, and lightweight. */
+    .css-painting .paint-layer { display: none; }
+    .css-painting {
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #f7dce8, #c9dded);
+      box-shadow: 0 9px 17px rgba(83,66,88,.22), inset 0 0 22px rgba(255,255,255,.42);
+    }
+    .css-painting::before {
+      content: "✦  ·  ✧";
+      position: absolute;
+      inset: 11% auto auto 10%;
+      z-index: 2;
+      color: rgba(255,255,255,.82);
+      font: 700 1rem Georgia, serif;
+      letter-spacing: .35rem;
+      background: none;
+      mix-blend-mode: normal;
+    }
+    .css-painting::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      z-index: 1;
+      border: 1px solid rgba(255,255,255,.58);
+      border-radius: 17px;
+      box-shadow: inset 0 0 16px rgba(78,55,82,.1);
+      pointer-events: none;
+    }
+    .painting-emoji {
+      position: relative;
+      left: auto;
+      top: auto;
+      z-index: 5;
+      width: auto;
+      height: auto;
+      font-size: clamp(3.2rem, 43cqw, 5.4rem);
+      line-height: 1;
+      transform: rotate(-3deg);
+      filter: drop-shadow(0 7px 5px rgba(59,42,63,.28));
+    }
+
+    /* Each dream receives its own simplified emoji-based painted setting. */
+    .art-plushie { background: radial-gradient(ellipse at 50% 84%,rgba(105,72,84,.2) 0 20%,transparent 21%),linear-gradient(150deg,#e7d9ef,#f3bfd2 65%,#efd9b1); }
+    .art-plushie::before { content:"♡  ✦"; color:#fff2c9; }
+
+    .art-summer { background: radial-gradient(circle at 78% 20%,#ffe49a 0 12%,transparent 13%),linear-gradient(#9fd4ef 0 58%,#9cc786 59% 100%); }
+    .art-summer::before { content:"☁︎  ·"; left:12%; }
+
+    .art-rain { background: repeating-linear-gradient(102deg,transparent 0 17px,rgba(238,249,255,.42) 18px 20px),linear-gradient(145deg,#729db8,#b4b5d0); }
+    .art-rain::before { content:"·  ·  ·"; top:14%; }
+
+    .art-melody { background: repeating-linear-gradient(0deg,transparent 0 18px,rgba(255,255,255,.43) 19px 20px),linear-gradient(145deg,#c6b6e4,#8ec7df); }
+    .art-melody::before { content:"♪  ✦  ♫"; color:#fff7d2; }
+
+    .art-painting { background: linear-gradient(35deg,#97c5ca 0 30%,#ef9fb5 31% 58%,#f1d199 59% 76%,#f8efda 77%); }
+    .art-painting::before { content:"●  ◒  ✦"; color:rgba(255,255,255,.8); }
+
+    .art-flower { background: repeating-linear-gradient(0deg,#fff8e8 0 17px,#d6e5e9 18px 19px); }
+    .art-flower::before { content:"⌁  ✎"; color:#a78394; }
+
+    .art-sleep { background: radial-gradient(circle at 24% 22%,#fff0ad 0 5%,transparent 6%),radial-gradient(circle at 77% 31%,#fff 0 2%,transparent 3%),linear-gradient(#544b83,#9b8db8 67%,#dfcbe0); }
+    .art-sleep::before { content:"☾  ✦"; color:#fff3be; }
+
+    .art-cloudjar { background: radial-gradient(ellipse at 50% 80%,rgba(85,67,97,.16) 0 28%,transparent 29%),linear-gradient(#9ed3ec,#d9c8e7); }
+    .art-cloudjar::before { content:"☁︎  ·"; }
+
+    .art-star { background: linear-gradient(130deg,#b9d8e9,#dec7e8); }
+    .art-star::before { content:"✧  ⋆  ✦"; color:#fff2ad; }
+
+    .art-aurora { background: linear-gradient(165deg,transparent 35%,rgba(78,227,190,.68) 36% 43%,rgba(115,178,255,.62) 44% 51%,rgba(201,125,225,.68) 52% 59%,transparent 60%),radial-gradient(circle at 72% 18%,#6c63a0,#171d43 72%); }
+    .art-aurora::before { content:"✦  ·  ✧"; color:#dffaff; }
+
+    .art-sunset { background: radial-gradient(circle at 50% 50%,#ffe7a1 0 17%,transparent 18%),linear-gradient(#90bedb 0 24%,#e89db3 47%,#ffc988 70%,#6f6486 71%); }
+    .art-sunset::before { content:"☁︎  ✦"; }
+
+    .art-butterfly { background: linear-gradient(160deg,transparent 58%,#6f9b77 59% 67%,transparent 68%),linear-gradient(145deg,#a8d1bd,#c6b2dd); }
+    .art-butterfly::before { content:"·  ✿  ·"; color:#fff1c1; }
+
+    /* Keep the emoji paintings medium-sized and directly beside dispensed text. */
+    .dream-ticket-content {
+      display: grid;
+      grid-template-columns: 74px minmax(0,1fr);
+      gap: 13px;
+      align-items: center;
+    }
+    .dream-ticket-art { width:74px;height:74px;overflow:hidden;border-radius:13px; }
+    .dream-ticket-art .css-painting.medium { width:150px;height:150px;transform:scale(.46);transform-origin:center; }
+    .dream-ticket-copy { min-width:0;text-align:left; }
+    .memory-card { display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;gap:9px; }
+
+    @media(max-width:540px){
+      .dream-ticket-content{grid-template-columns:62px minmax(0,1fr);gap:10px}
+      .dream-ticket-art{width:62px;height:62px}
+      .dream-ticket-art .css-painting.medium{transform:scale(.38)}
+    }
+
+  
+
+    /* Final fix for this version: visible emoji paintings and left-aligned notebook art. */
+    .css-painting {
+      overflow: hidden !important;
+      container-type: size;
+      background: linear-gradient(155deg,#303672,#7663a1 48%,#d38faf 76%,#7fc4cc) !important;
+    }
+    .css-painting .paint-layer { display:none !important; }
+    .painting-emoji {
+      position:absolute !important;
+      left:50% !important;
+      top:50% !important;
+      z-index:10 !important;
+      display:block !important;
+      width:auto !important;
+      height:auto !important;
+      max-width:none !important;
+      font-size:clamp(3rem,40cqw,5rem) !important;
+      line-height:1.15 !important;
+      white-space:nowrap !important;
+      transform:translate(-50%,-50%) !important;
+      filter:drop-shadow(0 0 7px rgba(255,255,255,.55)) drop-shadow(0 7px 4px rgba(20,17,54,.35)) !important;
+      opacity:1 !important;
+      mix-blend-mode:normal !important;
+    }
+    .css-painting.large .painting-emoji { font-size:6.6rem !important; }
+    .css-painting.small .painting-emoji { font-size:1.7rem !important; }
+    .art-plushie{background:radial-gradient(circle at 50% 70%,rgba(255,213,232,.5),transparent 37%),linear-gradient(150deg,#343871,#9a6aa1 58%,#e5a9c0)!important}
+    .art-summer{background:radial-gradient(circle at 78% 20%,#ffe49a 0 10%,transparent 11%),linear-gradient(#5681c1 0 53%,#ca82ad 54% 72%,#659486 73%)!important}
+    .art-rain{background:repeating-linear-gradient(105deg,transparent 0 16px,rgba(225,248,255,.32) 17px 19px),linear-gradient(145deg,#273762,#68719e 58%,#b67e9f)!important}
+    .art-melody{background:radial-gradient(circle at 22% 22%,rgba(255,241,174,.5),transparent 22%),linear-gradient(145deg,#393578,#7a6ab3 55%,#59afb9)!important}
+    .art-painting{background:conic-gradient(from 215deg at 50% 52%,#665a9e,#c879a4,#e6ad6d,#61afb2,#665a9e)!important}
+    .art-flower{background:radial-gradient(circle at 50% 72%,rgba(106,235,194,.3),transparent 36%),linear-gradient(155deg,#30336c,#82639c 56%,#d488a8)!important}
+    .art-sleep{background:radial-gradient(circle at 22% 20%,#ffeda2 0 7%,transparent 8%),linear-gradient(#1d2451,#50457f 58%,#b97da6)!important}
+    .art-cloudjar{background:radial-gradient(ellipse at 50% 76%,rgba(220,247,255,.44),transparent 38%),linear-gradient(#325083,#7968a5 62%,#ca90b2)!important}
+    .art-star{background:radial-gradient(circle at 50% 52%,rgba(255,221,110,.38),transparent 34%),linear-gradient(145deg,#252e61,#6e5c98 58%,#c481a8)!important}
+    .art-aurora{background:linear-gradient(165deg,transparent 30%,rgba(72,235,194,.7) 31% 39%,rgba(96,167,255,.6) 40% 48%,rgba(216,110,230,.67) 49% 57%,transparent 58%),linear-gradient(#0f1638,#353871 62%,#70558d)!important}
+    .art-sunset{background:radial-gradient(circle at 50% 46%,#ffdf94 0 13%,transparent 14%),linear-gradient(#405995 0 28%,#b76a98 52%,#ee9d69 70%,#514b78 71%)!important}
+    .art-butterfly{background:radial-gradient(circle at 50% 50%,rgba(240,210,255,.36),transparent 34%),linear-gradient(145deg,#235964,#64689b 55%,#b571a5)!important}
+
+    .memory-card {
+      display:grid !important;
+      grid-template-columns:58px minmax(0,1fr) !important;
+      align-items:center !important;
+      gap:10px !important;
+      min-width:0 !important;
+    }
+    .memory-icon {
+      grid-column:1 !important;
+      width:54px !important;
+      height:54px !important;
+      overflow:hidden !important;
+      display:grid !important;
+      place-items:center !important;
+      border-radius:11px !important;
+    }
+    .memory-icon .css-painting.medium {
+      width:150px !important;
+      height:150px !important;
+      margin:0 !important;
+      transform:scale(.34) !important;
+      transform-origin:center !important;
+    }
+    .memory-copy { grid-column:2 !important; min-width:0 !important; text-align:left !important; }
+    .dream-ticket { width:270px !important; text-align:left !important; }
+    .dream-ticket-content { display:grid !important; grid-template-columns:74px minmax(0,1fr) !important; gap:13px !important; align-items:center !important; }
+    .dream-ticket-art { width:74px !important; height:74px !important; overflow:hidden !important; display:grid !important; place-items:center !important; border-radius:13px !important; }
+    .dream-ticket-art .css-painting.medium { width:150px !important; height:150px !important; margin:0 !important; transform:scale(.46) !important; transform-origin:center !important; }
+    .dream-ticket-copy { min-width:0 !important; text-align:left !important; }
+    .rotating-art .css-painting,.polaroid-image .css-painting { overflow:hidden !important; }
+    @media(max-width:540px){
+      .memory-card{grid-template-columns:52px minmax(0,1fr)!important}
+      .memory-icon{width:48px!important;height:48px!important}
+      .memory-icon .css-painting.medium{transform:scale(.30)!important}
+      .dream-ticket{width:238px!important}
+      .dream-ticket-content{grid-template-columns:62px minmax(0,1fr)!important;gap:10px!important}
+      .dream-ticket-art{width:62px!important;height:62px!important}
+      .dream-ticket-art .css-painting.medium{transform:scale(.38)!important}
+    }
+
+  
+
+    /* Notebook thumbnail fix: render a true small painting instead of clipping a transformed large one. */
+    .memory-icon {
+      width:48px !important;
+      height:48px !important;
+      overflow:visible !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+    .memory-icon .css-painting.small {
+      display:grid !important;
+      width:44px !important;
+      height:44px !important;
+      min-width:44px !important;
+      min-height:44px !important;
+      margin:0 !important;
+      transform:none !important;
+      opacity:1 !important;
+      visibility:visible !important;
+      border-width:2px !important;
+      border-radius:10px !important;
+    }
+    .memory-icon .css-painting.small .painting-emoji {
+      display:block !important;
+      left:50% !important;
+      top:50% !important;
+      font-size:1.65rem !important;
+      transform:translate(-50%,-50%) !important;
+      opacity:1 !important;
+      visibility:visible !important;
+    }
+
+  
+
+    /* Matched card artwork fix: the slot ticket and notebook use the same uncropped painting. */
+    .css-painting.card {
+      position:relative !important;
+      display:grid !important;
+      place-items:center !important;
+      width:64px !important;
+      height:64px !important;
+      min-width:64px !important;
+      min-height:64px !important;
+      margin:0 !important;
+      padding:0 !important;
+      border:3px solid #fffaf1 !important;
+      border-radius:13px !important;
+      overflow:hidden !important;
+      transform:none !important;
+      transform-origin:center !important;
+      opacity:1 !important;
+      visibility:visible !important;
+      box-shadow:0 4px 8px rgba(67,48,71,.2), inset 0 0 12px rgba(255,255,255,.32) !important;
+    }
+    .css-painting.card::before {
+      top:7px !important;
+      left:7px !important;
+      right:auto !important;
+      bottom:auto !important;
+      max-width:48px !important;
+      overflow:hidden !important;
+      font-size:.52rem !important;
+      letter-spacing:.08rem !important;
+      white-space:nowrap !important;
+    }
+    .css-painting.card::after {
+      inset:4px !important;
+      border-radius:9px !important;
+    }
+    .css-painting.card .painting-emoji {
+      position:absolute !important;
+      display:block !important;
+      left:50% !important;
+      top:50% !important;
+      width:auto !important;
+      height:auto !important;
+      max-width:none !important;
+      font-size:2.35rem !important;
+      line-height:1 !important;
+      white-space:nowrap !important;
+      transform:translate(-50%,-50%) !important;
+      transform-origin:center !important;
+      opacity:1 !important;
+      visibility:visible !important;
+      filter:drop-shadow(0 3px 2px rgba(42,30,50,.28)) !important;
+    }
+    .dream-ticket-content,
+    .memory-card {
+      grid-template-columns:64px minmax(0,1fr) !important;
+      gap:12px !important;
+      align-items:center !important;
+    }
+    .dream-ticket-art,
+    .memory-icon {
+      display:grid !important;
+      place-items:center !important;
+      width:64px !important;
+      height:64px !important;
+      min-width:64px !important;
+      min-height:64px !important;
+      padding:0 !important;
+      margin:0 !important;
+      overflow:visible !important;
+      border-radius:13px !important;
+    }
+    /* Disable older scaling rules so both copies remain pixel-for-pixel consistent. */
+    .dream-ticket-art .css-painting.card,
+    .memory-icon .css-painting.card {
+      width:64px !important;
+      height:64px !important;
+      min-width:64px !important;
+      min-height:64px !important;
+      transform:none !important;
+      margin:0 !important;
+    }
+    @media(max-width:540px) {
+      .dream-ticket-content,
+      .memory-card { grid-template-columns:56px minmax(0,1fr) !important; gap:9px !important; }
+      .dream-ticket-art,
+      .memory-icon { width:56px !important; height:56px !important; min-width:56px !important; min-height:56px !important; }
+      .dream-ticket-art .css-painting.card,
+      .memory-icon .css-painting.card,
+      .css-painting.card { width:56px !important; height:56px !important; min-width:56px !important; min-height:56px !important; }
+      .css-painting.card .painting-emoji { font-size:2.05rem !important; }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <span class="tape one" aria-hidden="true"></span>
+    <span class="tape two" aria-hidden="true"></span>
+
+    <header>
+      <h1>The Dream Dispensary</h1>
+    </header>
+
+    <section class="layout">
+      <div class="machine-wrap">
+        <span class="doodle star" aria-hidden="true">✦</span>
+        <span class="doodle cloud" aria-hidden="true">☁️</span>
+        <span class="doodle flower" aria-hidden="true">❀</span>
+
+        <div class="machine">
+          <div class="machine-name">
+            <strong>A Little Shop of Dreams</strong>
+            <span class="decorative-moon" aria-hidden="true">🌙</span>
+          </div>
+
+          <div class="window">
+            <div class="rotating-display" aria-live="polite"><div class="rotating-item" id="rotatingItem"><span class="rotating-art" id="rotatingIcon" aria-hidden="true"></span><h3 id="rotatingTitle"></h3></div></div>
+          </div>
+
+          <div class="controls">
+            <button class="dispense-button" id="dispenseButton"><span class="button-heart">✦</span><span>dispense a dream</span></button>
+          </div>
+
+          <div class="slot" id="slot" aria-label="Dispensing slot"><div class="dream-ticket" id="dreamTicket" aria-hidden="true"></div></div>
+        </div>
+      </div>
+
+      <aside class="journal">
+        <h2>My Dream Clippings</h2>
+
+        <div class="status-row">
+          <span>Collected: <span id="count">0</span>/12</span>
+          
+        </div>
+
+        <div class="collection" id="collection">
+          <div class="empty-note" id="emptyNote">Your page is waiting.<br>Press dispense and see which dream finds you.</div>
+        </div>
+
+        <div class="toolbar">
+          <button class="paper-button" id="soundButton" aria-pressed="false">Sound: off</button>
+          <button class="paper-button" id="resetButton">Clear journal</button>
+        </div>
+      </aside>
+    </section>
+
+    <p class="footer-note">“Some dreams are not meant to be understood. They are only meant to be kept.”</p>
+  </main>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <article class="polaroid">
+      <button class="close-modal" id="closeModal" aria-label="Close dream card">×</button>
+      <div class="polaroid-image" id="modalIcon"></div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <span class="rarity" id="modalRarity"></span>
+    </article>
+  </div>
+
+  <script>
+    // This list contains every dream that can be selected or discovered.
+    const dreams = [
+      { id: "A1", art: "plushie", title: "Childhood Plushie", icon: "🧸", rarity: "COMFORT MEMORY", description: "The familiar softness of a favorite companion you once carried everywhere." },
+      { id: "A2", art: "summer", title: "Summer Afternoon", icon: "☀️", rarity: "WARM MEMORY", description: "Golden sunlight, slow hours, and the feeling that the day might last forever." },
+      { id: "A3", art: "rain", title: "Rainy Window", icon: "🌧️", rarity: "FAMILIAR MEMORY", description: "Rain against glass, a quiet room, and nowhere else you need to be." },
+      { id: "B1", art: "melody", title: "Melody Fragment", icon: "🎵", rarity: "CREATIVE SPARK", description: "A few wandering notes waiting for someone to turn them into a song." },
+      { id: "B2", art: "painting", title: "Half-finished Painting", icon: "🎨", rarity: "CREATIVE SPARK", description: "An unfinished idea that still has room to become something unexpected." },
+      { id: "B3", art: "flower", title: "Unnamed Flower Sketch", icon: "🌼", rarity: "QUIET DISCOVERY", description: "A flower that exists only in the margin of a dreamer's notebook." },
+      { id: "C1", art: "sleep", title: "Peaceful Sleep", icon: "😴", rarity: "GENTLE WISH", description: "A quiet night with soft thoughts, deep rest, and an unhurried morning." },
+      { id: "C2", art: "cloudjar", title: "Cloud in a Jar", icon: "☁️", rarity: "SOFT & UNCOMMON", description: "Open only when you need somewhere gentle to rest your thoughts." },
+      { id: "C3", art: "star", title: "Folded Star", icon: "⭐", rarity: "TINY WISH", description: "A small wish folded carefully enough to survive the journey home." },
+      { id: "D1", art: "aurora", title: "Bottle of Northern Lights", icon: "🌌", rarity: "RARE WONDER", description: "A glass bottle holding colors borrowed from a distant winter sky." },
+      { id: "D2", art: "sunset", title: "Pocket Sunset", icon: "🌅", rarity: "COMMON KEEPSAKE", description: "A warm ending for a day that did not go as planned." },
+      { id: "D3", art: "butterfly", title: "Sleeping Butterfly", icon: "🦋", rarity: "RARE DREAM", description: "A reminder that becoming something new can also require stillness." }
+    ];
+
+    const visibleDreams = dreams;
+    const collected = new Set();
+    let previewIndex = 0;
+    let soundOn = false;
+    let audioContext = null;
+
+        const slot = document.getElementById("slot");
+    const dreamTicket = document.getElementById("dreamTicket");
+    const collection = document.getElementById("collection");
+    const count = document.getElementById("count");
+    const modal = document.getElementById("modal");
+
+
+
+    // This creates a reusable miniature canvas whose shapes and colors are painted entirely with CSS.
+    function paintingMarkup(dream, size = "medium") {
+      return `<span class="css-painting ${size} art-${dream.art}" role="img" aria-label="${dream.title}">
+        <span class="paint-layer one"></span>
+        <span class="paint-layer two"></span>
+        <span class="paint-layer three"></span>
+        <span class="paint-layer four"></span>
+        <span class="painting-emoji" aria-hidden="true">${dream.icon}</span>
+      </span>`;
+    }
+
+    // This chooses and dispenses a random dream every time the button is pressed.
+    function dispense() {
+      const dream = dreams[Math.floor(Math.random() * dreams.length)];
+      dreamTicket.classList.remove("visible");
+      dreamTicket.innerHTML = "";
+      slot.classList.remove("active");
+      dreamTicket.classList.remove("visible");
+      void slot.offsetWidth;
+      slot.classList.add("active");
+      playSequence();
+      setTimeout(() => {
+        collectDream(dream);
+        dreamTicket.innerHTML = `
+          <div class="dream-ticket-content">
+            <div class="dream-ticket-art" aria-hidden="true">${paintingMarkup(dream, "card")}</div>
+            <div class="dream-ticket-copy">
+              <span class="dream-ticket-title">${dream.title}</span>
+              <small class="dream-ticket-rarity">${dream.rarity}</small>
+            </div>
+          </div>`;
+        dreamTicket.classList.add("visible");
+        showDream(dream);
+        createSparkles(window.innerWidth / 2, window.innerHeight / 2);
+      }, 760);
+    }
+
+
+    // This shows one possible item at a time and changes the preview every three seconds.
+    function updateRotatingPreview() {
+      const dream = dreams[previewIndex];
+      const item = document.getElementById("rotatingItem");
+      item.classList.remove("changing");
+      void item.offsetWidth;
+      document.getElementById("rotatingIcon").innerHTML = paintingMarkup(dream);
+      document.getElementById("rotatingTitle").textContent = dream.title;
+      item.classList.add("changing");
+      previewIndex = (previewIndex + 1) % dreams.length;
+    }
+    updateRotatingPreview();
+    window.setInterval(updateRotatingPreview, 3000);
+
+    // This adds a newly discovered dream to the visible collection without making duplicates.
+    function collectDream(dream) {
+      if (collected.has(dream.id)) return;
+      collected.add(dream.id);
+      document.getElementById("emptyNote")?.remove();
+
+      const card = document.createElement("div");
+      card.className = "memory-card";
+      card.innerHTML = `
+        <div class="memory-icon" aria-hidden="true">${paintingMarkup(dream, "card")}</div>
+        <div class="memory-copy"><strong>${dream.title}</strong><small>${dream.rarity}</small></div>
+      `;
+      card.title = "Click to view this dream again";
+      card.tabIndex = 0;
+      card.addEventListener("click", () => showDream(dream));
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") showDream(dream);
+      });
+      collection.appendChild(card);
+      count.textContent = collected.size;
+    }
+
+    // This opens the Polaroid-style reveal for the selected dream.
+    function showDream(dream) {
+      document.getElementById("modalIcon").innerHTML = paintingMarkup(dream, "large");
+      document.getElementById("modalTitle").textContent = dream.title;
+      document.getElementById("modalDescription").textContent = dream.description;
+      document.getElementById("modalRarity").textContent = dream.rarity;
+      modal.classList.add("open");
+      document.getElementById("closeModal").focus();
+    }
+
+    // This closes the reveal and returns the user to the scrapbook page.
+    function closeDream() {
+      modal.classList.remove("open");
+    }
+
+
+    // This draws small temporary sparkles at the point of a successful reveal.
+    function createSparkles(x, y) {
+      const symbols = ["✦", "✧", "⭐", "·"];
+      for (let index = 0; index < 14; index += 1) {
+        const spark = document.createElement("span");
+        spark.className = "spark";
+        spark.textContent = symbols[index % symbols.length];
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        spark.style.color = index % 2 ? "#fff0a8" : "#f3b6d1";
+        spark.style.setProperty("--x", `${(Math.random() - 0.5) * 260}px`);
+        spark.style.setProperty("--y", `${(Math.random() - 0.5) * 220}px`);
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 950);
+      }
+    }
+
+    // This creates a simple optional sound without loading any external audio files.
+    function playTone(frequency, duration) {
+      if (!soundOn) return;
+      audioContext ??= new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0.06, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+      oscillator.connect(gain).connect(audioContext.destination);
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + duration);
+    }
+
+    // This plays a short rising chime while the machine dispenses a dream.
+    function playSequence() {
+      playTone(340, 0.14);
+      setTimeout(() => playTone(470, 0.14), 150);
+      setTimeout(() => playTone(650, 0.2), 300);
+    }
+
+    document.getElementById("dispenseButton").addEventListener("click", dispense);
+
+
+
+    document.getElementById("soundButton").addEventListener("click", event => {
+      soundOn = !soundOn;
+      event.currentTarget.textContent = `Sound: ${soundOn ? "on" : "off"}`;
+      event.currentTarget.setAttribute("aria-pressed", String(soundOn));
+      playTone(600, 0.12);
+    });
+
+    document.getElementById("resetButton").addEventListener("click", () => {
+      collected.clear();
+      collection.innerHTML = `<div class="empty-note" id="emptyNote">Your page is waiting.<br>Press dispense and see which dream finds you.</div>`;
+      count.textContent = "0";
+      slot.classList.remove("active");
+      playTone(260, 0.16);
+    });
+
+    document.getElementById("closeModal").addEventListener("click", closeDream);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeDream();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeDream();
+    });
+  </script>
+</body>
+</html>

@@ -1,210 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Wendy Gao's ART 3041 course portfolio for Fall 2026.">
-<title>A.I. FOR DESIGNERS — Wendy Gao</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root{--blush:#f5dfe7;--rose:#c888a0;--deep:#8a526a;--pearl:#fffaf7;--cream:#f9efe8;--lav:#e9e1f2;--blue:#dce9ef;--mint:#dce9e1;--gold:#c5a158;--gold2:#ead49d;--ink:#604b58;--leaf:#788b6a;--shadow:rgba(105,67,84,.18)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;color:var(--ink);font-family:"Libre Baskerville",Georgia,serif;background:radial-gradient(circle at 7% 8%,#fff,transparent 24%),radial-gradient(circle at 93% 12%,rgba(233,225,242,.85),transparent 27%),radial-gradient(circle at 78% 92%,rgba(245,223,231,.9),transparent 30%),linear-gradient(145deg,#fffaf7,#f6e5ec 48%,#eee6f5)}
-.shell{width:min(1180px,calc(100% - 32px));margin:28px auto;padding:clamp(18px,4vw,48px);position:relative;overflow:hidden;border:1px solid var(--gold);border-radius:34px;background:rgba(255,250,247,.94);box-shadow:0 25px 70px var(--shadow),inset 0 0 0 7px rgba(255,255,255,.58),inset 0 0 0 9px rgba(197,161,88,.3)}
-/* The four layered borders create Rococo-inspired corner flourishes. */
-.corner{position:absolute;width:145px;height:145px;pointer-events:none;opacity:.82}.corner:before,.corner:after{content:"";position:absolute;border:3px double var(--gold);border-radius:70% 16% 70% 16%;transform:rotate(28deg)}.corner:before{inset:15px 36px 46px 12px}.corner:after{inset:48px 12px 12px 46px;transform:rotate(62deg)}.tl{top:-13px;left:-13px}.tr{top:-13px;right:-13px;transform:scaleX(-1)}.bl{bottom:-13px;left:-13px;transform:scaleY(-1)}.br{right:-13px;bottom:-13px;transform:scale(-1)}
-.hero{position:relative;padding:clamp(34px,6vw,72px) clamp(20px,5vw,60px);border:1px solid var(--gold2);border-radius:28px 28px 52px 28px;background:linear-gradient(120deg,rgba(255,255,255,.95),rgba(245,223,231,.52));box-shadow:inset 0 0 0 5px rgba(255,255,255,.64),0 14px 30px rgba(138,82,106,.12)}
-h1{max-width:calc(100% - 110px);margin:0;white-space:nowrap;color:var(--deep);font-family:"Bodoni Moda",Didot,serif;font-size:clamp(1.08rem,3.85vw,3.55rem);font-weight:600;letter-spacing:.015em;line-height:1.18}.course{margin-top:17px;color:var(--rose);font-size:clamp(.8rem,1.3vw,1rem);font-weight:700;letter-spacing:.08em;text-transform:uppercase}.email{margin-top:10px}.email a{color:var(--ink);font-size:clamp(.76rem,1.4vw,.94rem);line-height:1.7;text-decoration-color:var(--gold);text-underline-offset:5px}.email a:hover,.email a:focus-visible{color:var(--deep)}
-/* These bows use thin translucent loops and long ribbon tails inspired by watercolor ribbon. */
-.bow{position:absolute;width:76px;height:66px;z-index:5;pointer-events:none;filter:drop-shadow(0 4px 4px rgba(203,96,133,.12))}.bow .loop{position:absolute;top:5px;width:46px;height:28px;border:5px solid rgba(242,126,164,.68);background:rgba(255,221,232,.18);box-shadow:inset 0 0 5px rgba(255,255,255,.85);backdrop-filter:blur(.5px)}.bow .left{left:-29px;border-radius:72% 42% 68% 45%;transform:rotate(-10deg)}.bow .right{right:-29px;border-radius:42% 72% 45% 68%;transform:rotate(10deg)}.bow .knot{position:absolute;left:28px;top:17px;width:21px;height:17px;z-index:3;border-radius:48% 52% 55% 45%;background:linear-gradient(135deg,rgba(255,211,226,.96),rgba(231,100,143,.86));box-shadow:inset 2px 2px 4px rgba(255,255,255,.75)}.bow .tail{position:absolute;top:29px;width:13px;height:49px;border-radius:60% 35% 70% 45%;background:linear-gradient(90deg,rgba(255,205,222,.86),rgba(234,105,147,.68),rgba(255,221,231,.82));clip-path:polygon(12% 0,95% 0,75% 100%,45% 86%,8% 100%)}.bow .t1{left:25px;transform:rotate(13deg)}.bow .t2{right:24px;transform:rotate(-12deg)}.bow-header{top:-17px;right:clamp(55px,10vw,140px);transform:scale(.9)}.bow-divider{position:relative;flex:0 0 76px;transform:scale(.62);margin-top:-15px}.bow-card{right:35px;top:-18px;transform:scale(.48)}
-/* The blossom uses five translucent petals, fine vein lines, and a detailed stamen center. */
-.botanical{position:absolute;width:190px;height:140px;pointer-events:none}.botanical.hero-floral{right:14px;bottom:-2px}.branch,.leaf{display:none}.flower-art{position:absolute;width:96px;height:96px;filter:drop-shadow(0 5px 7px rgba(218,91,134,.13))}.flower-art .petal{position:absolute;left:35px;top:2px;width:32px;height:47px;border-radius:54% 54% 48% 48%;transform-origin:50% 47px;background:linear-gradient(90deg,rgba(255,184,208,.48),rgba(244,111,157,.7),rgba(255,199,216,.42));border:1px solid rgba(237,111,153,.24);box-shadow:inset 0 -8px 12px rgba(232,92,140,.14),inset 5px 0 8px rgba(255,255,255,.38)}.flower-art .petal:after{content:"";position:absolute;left:14px;top:8px;width:1px;height:34px;background:linear-gradient(rgba(225,86,135,.08),rgba(222,76,128,.42));box-shadow:-6px 4px 0 rgba(225,86,135,.12),6px 4px 0 rgba(225,86,135,.12)}.flower-art .p1{transform:rotate(0deg)}.flower-art .p2{transform:rotate(72deg)}.flower-art .p3{transform:rotate(144deg)}.flower-art .p4{transform:rotate(216deg)}.flower-art .p5{transform:rotate(288deg)}.flower-art .center{position:absolute;left:35px;top:36px;width:31px;height:31px;z-index:4;border-radius:50%;background:radial-gradient(circle,#dd5688 0 9%,transparent 10%),repeating-conic-gradient(from 0deg,rgba(211,67,119,.8) 0 3deg,transparent 4deg 15deg);box-shadow:inset 0 0 0 9px rgba(238,106,151,.25)}.flower-art .center:after{content:"";position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#f6a8c1 0 9%,transparent 10%),radial-gradient(circle at 70% 24%,#cc4679 0 8%,transparent 9%),radial-gradient(circle at 50% 72%,#d94e82 0 9%,transparent 10%),#e878a0}.hero-flower{right:20px;top:29px;transform:rotate(8deg)}.hero-flower.second{right:95px;top:78px;transform:scale(.55) rotate(-16deg);opacity:.7}.mini-flower{position:absolute;right:77px;bottom:9px;width:42px;height:42px;z-index:2;transform:scale(.42);transform-origin:center;opacity:.72}.mini-flower .flower-art{left:-27px;top:-27px}
-.divider{display:flex;align-items:center;gap:13px;margin:45px 0 25px}.divider:before,.divider:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}.divider:after{background:linear-gradient(90deg,var(--gold),transparent)}.diamond{width:25px;height:25px;border:1px solid var(--gold);transform:rotate(45deg);background:var(--pearl);box-shadow:inset 0 0 0 4px var(--blush)}h2{margin:0 0 24px;color:var(--deep);font-family:"Bodoni Moda",Didot,serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600}.list{display:grid;gap:20px}
-.card{display:grid;grid-template-columns:68px 1fr 48px;align-items:center;min-height:98px;padding:14px 20px;position:relative;overflow:visible;color:var(--ink);text-decoration:none;border:1px solid var(--gold);border-radius:17px;background:var(--card);box-shadow:inset 0 0 0 4px rgba(255,255,255,.62),0 9px 21px rgba(105,67,84,.1);transition:transform .24s,box-shadow .24s}.card:before{content:"";position:absolute;inset:9px;border:1px solid rgba(197,161,88,.42);border-radius:11px}.card:hover,.card:focus-visible{transform:translateY(-3px);outline:none;box-shadow:inset 0 0 0 4px rgba(255,255,255,.72),0 15px 28px rgba(105,67,84,.18)}.card:nth-child(1){--card:linear-gradient(115deg,#fffaf6,#f2dbe4)}.card:nth-child(2){--card:linear-gradient(115deg,#fffaf6,#e5ddf0)}.card:nth-child(3){--card:linear-gradient(115deg,#fffaf6,#dce8ee)}.card:nth-child(4){--card:linear-gradient(115deg,#fffaf6,#f3e1cc)}.card:nth-child(5){--card:linear-gradient(115deg,#fffaf6,#dce8df)}.card:nth-child(6){--card:linear-gradient(115deg,#fffaf6,#eed9dc)}.card:nth-child(7){--card:linear-gradient(115deg,#fffaf6,#eee1c7)}.num{position:relative;z-index:1;color:var(--gold);font-family:"Bodoni Moda",Didot,serif;font-size:1.35rem;font-weight:600}.title{position:relative;z-index:1;padding-right:45px;font-size:clamp(.92rem,1.7vw,1.12rem);font-weight:700;line-height:1.55}.seal{position:relative;z-index:1;width:32px;height:39px;border:1px solid var(--gold);border-radius:50%;background:radial-gradient(circle,#fff 0 25%,var(--blush) 27% 56%,var(--gold) 58% 62%,#fff 64%)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wendy Gao's ART 3041 course portfolio for Fall 2026.">
+  <title>A.I. FOR DESIGNERS — Wendy Gao</title>
+  <style>
+    :root {
+      --bg: #FFF8FB;
+      --surface: #FFFDFD;
+      --soft: #FBEAF2;
+      --lavender: #8D78C6;
+      --lavender-2: #B09AF0;
+      --pink: #D98EAB;
+      --rose: #B96D91;
+      --blue: #79A8C7;
+      --blue-soft: #A9CCE3;
+      --purple: #9A79B7;
+      --cream: #D9BE7A;
+      --gold: #E8D6A7;
+      --border: #D9C7F1;
+      --glitter: #F8E9FF;
+      --ink: #694E7E;
+    }
 
-/* Emoji decorations provide a recognizable pink blossom and ribbon shape. */
-.emoji-decoration,
-.emoji-floral,
-.card-flower {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  user-select: none;
-  pointer-events: none;
-}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-.header-bow {
-  position: absolute;
-  top: -27px;
-  right: clamp(42px, 9vw, 120px);
-  z-index: 6;
-  font-size: clamp(3rem, 6vw, 5rem);
-  filter: drop-shadow(0 7px 7px rgba(156, 77, 108, .17));
-  transform: rotate(-5deg);
-}
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(251,234,242,.80), transparent 28%),
+        radial-gradient(circle at 88% 68%, rgba(169,204,227,.25), transparent 30%),
+        radial-gradient(circle at 78% 8%, rgba(199,184,244,.18), transparent 24%),
+        var(--bg);
+      font-family: "DM Sans Light", "DM Sans", Arial, sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-.divider-bow {
-  display: inline-block;
-  flex: 0 0 auto;
-  margin: -18px 4px -13px;
-  font-size: 3.4rem;
-  filter: drop-shadow(0 5px 5px rgba(156, 77, 108, .15));
-}
+    #glitter {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .72;
+    }
 
-.card-bow {
-  position: absolute;
-  top: -25px;
-  right: 27px;
-  z-index: 5;
-  font-size: 3rem;
-  transform: rotate(5deg);
-  filter: drop-shadow(0 5px 5px rgba(156, 77, 108, .15));
-}
+    .page { position: relative; z-index: 1; }
 
-.emoji-floral {
-  position: absolute;
-  right: 22px;
-  bottom: 6px;
-  width: 158px;
-  height: 120px;
-}
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: clamp(360px, 50vh, 650px);
+      min-height: 360px;
+      max-height: 650px;
+      overflow: hidden;
+      background: var(--soft);
+    }
 
-.hero-blossom {
-  position: absolute;
-  display: block;
-  filter: drop-shadow(0 7px 8px rgba(213, 92, 137, .16));
-}
+    .hero img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
 
-.hero-blossom.large {
-  right: 0;
-  top: 0;
-  font-size: 6.3rem;
-  transform: rotate(8deg);
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(255,248,251,.01), rgba(255,248,251,.06)),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,248,251,.10));
+    }
 
-.hero-blossom.small {
-  left: 4px;
-  bottom: 0;
-  font-size: 3.4rem;
-  transform: rotate(-13deg);
-  opacity: .82;
-}
+    /* The hero copy sits over the existing upper-right ornamental border in the image. */
+    .hero-copy {
+      position: absolute;
+      top: clamp(78px, 11vh, 118px);
+      right: clamp(58px, 7vw, 118px);
+      z-index: 3;
+      width: min(560px, 44vw);
+      text-align: right;
+      color: var(--ink);
+    }
 
-.card-flower {
-  position: absolute;
-  right: 72px;
-  bottom: 8px;
-  z-index: 3;
-  font-size: 2.35rem;
-  opacity: .78;
-  transform: rotate(-8deg);
-  filter: drop-shadow(0 4px 4px rgba(213, 92, 137, .12));
-}
+    .hero-title {
+      margin: 0;
+      color: var(--purple);
+      font-family: "Daith Big Medium Italic", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 4.5vw, 3.7rem);
+      line-height: 1.05;
+      white-space: nowrap;
+      letter-spacing: .01em;
+      text-shadow: 0 1px 10px rgba(255,255,255,.34);
+    }
 
+    .course {
+      margin-top: 9px;
+      color: var(--rose);
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 7px rgba(255,255,255,.32);
+    }
 
-/* Extra flower and bubble emoji accents add softness without covering the text. */
+    .email {
+      margin-top: 4px;
+    }
 
-/* These intentionally uneven positions and sizes create a scattered, organic composition. */
-.random { position: absolute; z-index: 4; }
-.random.r1 { left: 3.5%; top: 17%; font-size: 1.25rem; transform: rotate(-17deg); opacity: .62; }
-.random.r2 { right: 18%; top: 9%; font-size: 2.7rem; transform: rotate(11deg); opacity: .52; }
-.random.r3 { right: 6%; bottom: 15%; font-size: 2.15rem; transform: rotate(23deg); opacity: .74; }
-.random.r4 { left: 37%; bottom: 7%; font-size: 1.55rem; transform: rotate(-9deg); opacity: .46; }
-.random.r5 { left: 18%; top: 54%; font-size: .95rem; transform: rotate(31deg); opacity: .55; }
+    .email a {
+      color: var(--blue);
+      font-size: 14px;
+      text-decoration-color: var(--lavender-2);
+      text-underline-offset: 4px;
+    }
 
-.card-sprinkle.flower-symbol:nth-of-type(odd) { color: #ad7fc4; }
-.card-sprinkle.flower-symbol:nth-of-type(even) { color: #cf7fa5; }
+    .email a:hover,
+    .email a:focus-visible {
+      color: var(--purple);
+    }
 
-.emoji-sprinkle {
-  position: absolute;
-  z-index: 4;
-  user-select: none;
-  pointer-events: none;
-  filter: drop-shadow(0 4px 5px rgba(156, 77, 108, .12));
-}
+    .section-lines {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 22px;
+    }
 
-/* The text-style flower symbol can be recolored, unlike full-color emoji artwork. */
-.flower-symbol {
-  color: #b488c7;
-  font-family: Georgia, "Times New Roman", serif;
-  text-shadow: 0 2px 5px rgba(116, 79, 140, .16);
-}
+    .section-lines span {
+      height: 1.5px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, var(--blue-soft), var(--pink));
+    }
 
-/* Bubble emoji retain their native translucent appearance. */
-.bubble-symbol {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-}
+    .section-lines span:last-child {
+      background: linear-gradient(90deg, var(--lavender-2), var(--gold), transparent);
+    }
 
-.sprinkle-one {
-  top: 22px;
-  right: 205px;
-  font-size: 2.25rem;
-  transform: rotate(-12deg);
-  opacity: .82;
-}
+    .section-lines em {
+      color: var(--pink);
+      font-style: normal;
+      font-size: 15px;
+      letter-spacing: 5px;
+      white-space: nowrap;
+    }
 
-.sprinkle-two {
-  left: 30px;
-  bottom: 22px;
-  font-size: 2rem;
-  transform: rotate(8deg);
-  opacity: .7;
-}
+    /* CONTENT */
+    .content {
+      width: min(1200px, calc(100% - 96px));
+      margin: 0 auto;
+      padding: 58px 0 80px;
+    }
 
-.card-sprinkle {
-  position: absolute;
-  right: 116px;
-  top: 10px;
-  z-index: 3;
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  font-size: 1.35rem;
-  opacity: .55;
-  pointer-events: none;
-  user-select: none;
-}
+    .intro {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
 
+    .intro-line {
+      height: 1.5px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, var(--blue-soft), var(--accent));
+    }
 
-.card:nth-child(1) .card-sprinkle { right: 18%; top: 12px; font-size: 1.05rem; transform: rotate(-18deg); }
-.card:nth-child(2) .card-sprinkle { right: 29%; top: auto; bottom: 5px; font-size: 1.9rem; transform: rotate(14deg); opacity: .42; }
-.card:nth-child(3) .card-sprinkle { right: 13%; top: 8px; font-size: 1.45rem; transform: rotate(27deg); }
-.card:nth-child(4) .card-sprinkle { right: 22%; top: auto; bottom: 7px; font-size: 1.15rem; transform: rotate(-12deg); }
-.card:nth-child(5) .card-sprinkle { right: 34%; top: 9px; font-size: .9rem; transform: rotate(19deg); opacity: .68; }
-.card:nth-child(6) .card-sprinkle { right: 16%; top: 18px; font-size: 1.7rem; transform: rotate(-24deg); opacity: .44; }
-.card:nth-child(7) .card-sprinkle { right: 27%; top: auto; bottom: 5px; font-size: 1.28rem; transform: rotate(8deg); }
+    .intro-line:last-child {
+      background: linear-gradient(90deg, var(--accent), var(--pink), transparent);
+    }
 
+    .ornament {
+      color: var(--cream);
+      font-size: 18px;
+      letter-spacing: 8px;
+      white-space: nowrap;
+      text-shadow: 0 1px 7px rgba(232,214,167,.25);
+    }
 
-@media(max-width:680px){
-.random.r2{right:4%;top:42%;font-size:1.6rem}.random.r4{left:45%;bottom:2%;font-size:1rem}.sprinkle-one{right:16px;top:40px;font-size:1.45rem}.sprinkle-two{left:15px;bottom:10px;font-size:1.35rem}.card-sprinkle{right:70px;top:9px;font-size:.95rem}
-.header-bow{right:38px;top:-20px;font-size:3.1rem}
-.emoji-floral{right:-4px;bottom:2px;transform:scale(.78);transform-origin:bottom right}
-.card-bow{right:17px;top:-19px;font-size:2.35rem}
-.card-flower{right:43px;font-size:1.8rem}
-.shell{width:calc(100% - 16px);margin:8px auto;border-radius:22px}.hero{padding:30px 18px 88px}h1{max-width:100%;font-size:clamp(.84rem,4.55vw,1.55rem);letter-spacing:-.015em}.hero-floral{right:-28px;transform:scale(.72);transform-origin:bottom right}.corner{width:100px;height:100px;opacity:.55}.bow-header{right:50px}.card{grid-template-columns:48px 1fr 31px;min-height:90px;padding-inline:13px}.num{font-size:1.08rem}.title{padding-right:25px;font-size:.82rem}.seal{width:26px;height:32px}.bow-card{right:20px;transform:scale(.42)}.mini-flower{right:48px;transform:scale(.55)}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+    h1, h2, h3 {
+      font-family: "Daith Big Medium Italic", Georgia, serif;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .work-heading {
+      margin: 0 0 22px;
+      color: var(--rose);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-style: italic;
+      font-weight: 700;
+      text-align: center;
+      text-shadow: 0 2px 10px rgba(217,142,171,.12);
+    }
+
+    .work-subtitle {
+      max-width: 650px;
+      margin: -10px auto 38px;
+      color: var(--blue);
+      text-align: center;
+      font-size: 16px;
+      letter-spacing: .04em;
+    }
+
+    .list-ornament {
+      margin: 0 auto 22px;
+      text-align: center;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 3px;
+      opacity: .8;
+    }
+
+    .work-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 28px;
+    }
+
+    .assignment {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 68px;
+      padding: 12px 18px;
+      color: var(--lavender);
+      text-decoration: none;
+      border: 1.5px solid var(--lavender-2);
+      border-radius: 14px;
+      background: rgba(255,253,253,.46);
+      overflow: hidden;
+      transition: color 300ms ease, border-color 300ms ease, background 300ms ease,
+                  opacity 300ms ease, transform 300ms ease;
+    }
+
+    /* Refined editorial border detail: an inset line with tiny corner marks. */
+    .assignment::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid currentColor;
+      border-radius: 10px;
+      opacity: .24;
+      pointer-events: none;
+      transition: opacity 300ms ease, inset 300ms ease;
+    }
+
+    .assignment::marker { content: none; }
+
+    .assignment::before {
+      content: "✦";
+      position: absolute;
+      top: 2px;
+      right: 10px;
+      z-index: 1;
+      color: currentColor;
+      font-size: 9px;
+      line-height: 1;
+      opacity: .48;
+      transition: opacity 300ms ease, transform 300ms ease;
+      pointer-events: none;
+    }
+
+    .work-list:hover .assignment:not(:hover) { opacity: .62; }
+
+    .assignment:hover,
+    .assignment:focus-visible {
+      color: var(--purple);
+      border-color: var(--purple);
+      background: rgba(255,253,253,.76);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .assignment:hover::before,
+    .assignment:focus-visible::before { opacity: .82; transform: rotate(12deg); }
+
+    .assignment:hover::after,
+    .assignment:focus-visible::after { opacity: .42; inset: 4px; }
+
+    .assignment:focus-visible {
+      box-shadow: 0 0 0 3px rgba(176,154,240,.24);
+    }
+
+    /* Different pastel link tones for a collectible/editorial feel. */
+    .assignment:nth-child(1) { color: #9A79B7; border-color: #C7B8F4; }
+    .assignment:nth-child(2) { color: #78A7C4; border-color: #A9CCE3; }
+    .assignment:nth-child(3) { color: #B86F94; border-color: #E2B3C7; }
+    .assignment:nth-child(4) { color: #A487C6; border-color: #CDBBE8; }
+    .assignment:nth-child(5) { color: #B18C57; border-color: #E8D6A7; }
+    .assignment:nth-child(6) { color: #7D8FB4; border-color: #B8C9E4; }
+    .assignment:nth-child(7) { color: #B56D87; border-color: #E6B5C4; }
+
+    .number {
+      position: relative;
+      z-index: 1;
+      flex: 0 0 46px;
+      font-family: "Daith Big Medium Italic", Georgia, serif;
+      font-size: 21px;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--pink);
+    }
+
+    .title {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      padding-right: 10px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .assignment:hover .title,
+    .assignment:focus-visible .title {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 5px;
+    }
+
+    .sparkle {
+      position: relative;
+      z-index: 1;
+      flex: 0 0 auto;
+      color: var(--cream);
+      font-size: 17px;
+      opacity: .82;
+    }
+
+    @media (max-width: 1023px) {
+      .content { width: min(100% - 64px, 1200px); }
+      .hero-copy { right: 48px; width: min(520px, 50vw); }
+    }
+
+    @media (max-width: 767px) {
+      body { font-size: 16px; }
+
+      .hero-copy {
+        top: 74px;
+        right: 22px;
+        width: min(310px, 74vw);
+      }
+
+      .hero-title { font-size: clamp(1.9rem, 8.2vw, 2.7rem); white-space: nowrap; }
+      .course { font-size: 11px; letter-spacing: .06em; }
+      .email a { font-size: 11px; }
+
+      .content {
+        width: calc(100% - 32px);
+        padding: 48px 0 64px;
+      }
+
+      .list-ornament {
+      margin: 0 auto 22px;
+      text-align: center;
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 3px;
+      opacity: .8;
+    }
+
+    .work-list {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        gap: 12px 14px;
+      }
+
+      .assignment {
+        min-height: 68px;
+        padding: 11px 12px;
+      }
+
+      .number { flex-basis: 29px; font-size: 17px; }
+      .title { padding-right: 2px; font-size: 13px; }
+      .sparkle { display: none; }
+
+      .work-subtitle {
+        font-size: 13px;
+        margin-bottom: 30px;
+      }
+
+      .ornament {
+        font-size: 14px;
+        letter-spacing: 4px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .work-list { gap: 10px; }
+      .assignment { padding: 10px; }
+      .number { flex-basis: 25px; font-size: 16px; }
+      .title { font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+      #glitter { display: none; }
+    }
+  </style>
 </head>
 <body>
-<main class="shell">
-<div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div><div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
-<header class="hero">
-<span class="emoji-decoration emoji-bow header-bow" aria-hidden="true">🎀</span>
-<h1>A.I. FOR DESIGNERS — Wendy Gao</h1>
-<div class="course">ART 3041 · Fall 2026</div>
-<div class="email"><a href="mailto:WENDY.GAO30@login.cuny.edu">WENDY.GAO30@login.cuny.edu</a></div>
-<span class="emoji-sprinkle bubble-symbol random r2" aria-hidden="true">🫧</span>
-<span class="emoji-sprinkle bubble-symbol random r4" aria-hidden="true">🫧</span>
-<div class="emoji-floral" aria-hidden="true"><span class="hero-blossom large">🌸</span><span class="hero-blossom small">🌸</span></div>
-</header>
-<div class="divider" aria-hidden="true"><span class="diamond"></span><span class="emoji-decoration emoji-bow divider-bow" aria-hidden="true">🎀</span><span class="diamond"></span></div>
-<h2>Work</h2>
-<nav class="list" aria-label="Coursework">
-<a class="card" href="#"><span class="num">01</span><span class="title">Custom Instructions</span><span class="seal" aria-hidden="true"></span><span class="card-flower" aria-hidden="true">🌸</span></a>
-<a class="card" href="#"><span class="num">02</span><span class="title">A Style Guide for Your AI</span><span class="seal" aria-hidden="true"></span><span class="emoji-decoration emoji-bow card-bow" aria-hidden="true">🎀</span><span class="card-sprinkle bubble-symbol" aria-hidden="true">🫧</span></a>
-<a class="card" href="design-a.html"><span class="num">03</span><span class="title">Design a ___</span><span class="seal" aria-hidden="true"></span><span class="card-flower" aria-hidden="true">🌸</span></a>
-<a class="card" href="#"><span class="num">04</span><span class="title">Commute Story</span><span class="seal" aria-hidden="true"></span><span class="emoji-decoration emoji-bow card-bow" aria-hidden="true">🎀</span><span class="card-sprinkle bubble-symbol" aria-hidden="true">🫧</span></a>
-<a class="card" href="#"><span class="num">05</span><span class="title">Become a Crea(i)tive Director</span><span class="seal" aria-hidden="true"></span><span class="card-flower" aria-hidden="true">🌸</span></a>
-<a class="card" href="#"><span class="num">06</span><span class="title">Experimental AI Interface</span><span class="seal" aria-hidden="true"></span><span class="emoji-decoration emoji-bow card-bow" aria-hidden="true">🎀</span><span class="card-sprinkle bubble-symbol" aria-hidden="true">🫧</span></a>
-<a class="card" href="#"><span class="num">07</span><span class="title">Open</span><span class="seal" aria-hidden="true"></span><span class="card-flower" aria-hidden="true">🌸</span></a>
-</nav>
-</main>
+  <canvas id="glitter" aria-hidden="true"></canvas>
+
+  <div class="page">
+    <header class="hero">
+      <img src="hero.png" alt="Soft pink and lavender watercolor art supplies and floral ornamentation">
+
+
+      <div class="hero-copy">
+        <h1 class="hero-title">A.I. FOR DESIGNERS —<br><span>Wendy Gao</span></h1>
+        <div class="course">ART 3041 · Fall 2026</div>
+        <div class="email">
+          <a href="mailto:WENDY.GAO30@login.cuny.edu">WENDY.GAO30@login.cuny.edu</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="section-lines" aria-hidden="true">
+        <span></span>
+        <em>✿ · ✧ · ✦ · ❀ · ✦ · ✧ · ✿</em>
+        <span></span>
+      </div>
+
+      <h2 class="work-heading">Work</h2>
+      <p class="work-subtitle">A creative studio exploration of artificial intelligence, design, and new ways of making.</p>
+      <div class="list-ornament" aria-hidden="true">────── ✦ ✿ ✦ ──────</div>
+
+      <nav class="work-list" aria-label="Coursework">
+        <a class="assignment" href="#">
+          <span class="number">01</span>
+          <span class="title">Custom Instructions</span>
+          <span class="sparkle" aria-hidden="true">✦</span>
+        </a>
+
+        <a class="assignment" href="#">
+          <span class="number">02</span>
+          <span class="title">A Style Guide for Your AI</span>
+          <span class="sparkle" aria-hidden="true">✧</span>
+        </a>
+
+        <a class="assignment" href="#">
+          <span class="number">03</span>
+          <span class="title">Design a ___</span>
+          <span class="sparkle" aria-hidden="true">✦</span>
+        </a>
+
+        <a class="assignment" href="#">
+          <span class="number">04</span>
+          <span class="title">Commute Story</span>
+          <span class="sparkle" aria-hidden="true">✧</span>
+        </a>
+
+        <a class="assignment" href="#">
+          <span class="number">05</span>
+          <span class="title">Become a Crea(i)tive Director</span>
+          <span class="sparkle" aria-hidden="true">✦</span>
+        </a>
+
+        <a class="assignment" href="#">
+          <span class="number">06</span>
+          <span class="title">Experimental AI Interface</span>
+          <span class="sparkle" aria-hidden="true">✧</span>
+        </a>
+
+        <a class="assignment" href="#">
+          <span class="number">07</span>
+          <span class="title">Open</span>
+          <span class="sparkle" aria-hidden="true">✦</span>
+        </a>
+      </nav>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("glitter");
+      const ctx = canvas.getContext("2d");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (!ctx || reduceMotion.matches) return;
+
+      let particles = [];
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let animationFrame;
+
+      const particleCount = () =>
+        Math.min(100, Math.max(45, Math.floor((width * height) / 17500)));
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        particles = Array.from({ length: particleCount() }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 1.7 + 0.5,
+          alpha: Math.random() * 0.15 + 0.05,
+          twinkle: Math.random() * Math.PI * 2,
+          speed: Math.random() * 0.00034 + 0.00011,
+          drift: (Math.random() - 0.5) * 0.017,
+          tone: Math.random()
+        }));
+      }
+
+      function draw(time) {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          p.y -= p.speed * 16;
+          p.x += p.drift;
+          if (p.y < -8) p.y = height + 8;
+          if (p.x < -8) p.x = width + 8;
+          if (p.x > width + 8) p.x = -8;
+
+          const pulse = (Math.sin(time * 0.0011 + p.twinkle) + 1) / 2;
+          const alpha = Math.min(0.25, p.alpha * (0.72 + pulse * 0.64));
+          const rgb =
+            p.tone < 0.28 ? "199,184,244" :
+            p.tone < 0.52 ? "169,204,227" :
+            p.tone < 0.78 ? "255,255,255" :
+            "248,233,255";
+
+          ctx.save();
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = `rgb(${rgb})`;
+          ctx.shadowBlur = p.size * 5;
+          ctx.shadowColor = `rgba(${rgb}, .44)`;
+
+          if (p.size > 1.5 && pulse > 0.72) {
+            ctx.fillRect(p.x - 0.45, p.y - 3.5, 0.9, 7);
+            ctx.fillRect(p.x - 3.5, p.y - 0.45, 7, 0.9);
+          } else {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        });
+
+        animationFrame = requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+      animationFrame = requestAnimationFrame(draw);
+
+      reduceMotion.addEventListener?.("change", event => {
+        if (event.matches) {
+          cancelAnimationFrame(animationFrame);
+          ctx.clearRect(0, 0, width, height);
+        } else {
+          resize();
+          animationFrame = requestAnimationFrame(draw);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

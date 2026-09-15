@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Wendy Gao's ART 3041 course portfolio for Fall 2026.">
-  <title>A.I. FOR DESIGNERS — Wendy Gao</title>
+  <title>A.I. FOR DESIGNERS Wendy Gao</title>
   <style>
     :root {
       --bg: #FFF8FB;
@@ -12,16 +12,19 @@
       --soft: #FBEAF2;
       --lavender: #8D78C6;
       --lavender-2: #B09AF0;
-      --pink: #D98EAB;
-      --rose: #B96D91;
-      --blue: #79A8C7;
-      --blue-soft: #A9CCE3;
-      --purple: #9A79B7;
+      --pink: #EBC1D2;
+      --rose: #C98CAA;
+      --blue: #B7D7EA;
+      --blue-soft: #CFE6F3;
+      --purple: #B89BCB;
       --cream: #D9BE7A;
       --gold: #E8D6A7;
       --border: #D9C7F1;
       --glitter: #F8E9FF;
-      --ink: #694E7E;
+      --ink: #7B668D;
+      --pink-stop: 44;
+      --blue-stop: 76;
+      --drift: 0;
     }
 
     * { box-sizing: border-box; }
@@ -31,16 +34,31 @@
       margin: 0;
       min-width: 320px;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 10% 15%, rgba(251,234,242,.80), transparent 28%),
-        radial-gradient(circle at 88% 68%, rgba(169,204,227,.25), transparent 30%),
-        radial-gradient(circle at 78% 8%, rgba(199,184,244,.18), transparent 24%),
-        var(--bg);
+      background: var(--bg);
       font-family: "DM Sans Light", "DM Sans", Arial, sans-serif;
       font-weight: 300;
       font-size: 17px;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    /* Scroll-responsive two-color pastel gradient: pink gradually gives way to blue. */
+    #scroll-gradient {
+      position: fixed;
+      inset: -12vh -8vw;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% calc(18% + var(--drift) * 1%), rgba(251,232,240,.52), transparent 25%),
+        radial-gradient(circle at 86% calc(78% - var(--drift) * .7%), rgba(233,245,250,.55), transparent 32%),
+        linear-gradient(180deg,
+          #FBE8F0 0%,
+          #FBE8F0 calc(var(--pink-stop) * 1%),
+          #E9F5FA calc(var(--blue-stop) * 1%),
+          #E9F5FA 100%
+        );
+      transform: translate3d(0, calc(var(--drift) * -1px), 0) scale(1.03);
+      transition: background 120ms linear;
     }
 
     #glitter {
@@ -417,6 +435,7 @@
   </style>
 </head>
 <body>
+  <div id="scroll-gradient" aria-hidden="true"></div>
   <canvas id="glitter" aria-hidden="true"></canvas>
 
   <div class="page">
@@ -425,7 +444,7 @@
 
 
       <div class="hero-copy">
-        <h1 class="hero-title">A.I. FOR DESIGNERS <br><span>Wendy Gao</span></h1>
+        <h1 class="hero-title">A.I. FOR DESIGNERS<br><span>Wendy Gao</span></h1>
         <div class="course">ART 3041 · Fall 2026</div>
         <div class="email">
           <a href="mailto:WENDY.GAO30@login.cuny.edu">WENDY.GAO30@login.cuny.edu</a>
@@ -492,6 +511,39 @@
 
   <script>
     (() => {
+      const root = document.documentElement;
+      let ticking = false;
+
+      function updateScrollGradient() {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+
+        // As the user scrolls, the pastel pink region contracts while pastel blue expands.
+        const pinkStop = 48 - (progress * 24);
+        const blueStop = 70 + (progress * 18);
+        const drift = progress * 58;
+
+        root.style.setProperty("--pink-stop", pinkStop.toFixed(2));
+        root.style.setProperty("--blue-stop", blueStop.toFixed(2));
+        root.style.setProperty("--drift", drift.toFixed(2));
+        ticking = false;
+      }
+
+      function requestScrollUpdate() {
+        if (!ticking) {
+          window.requestAnimationFrame(updateScrollGradient);
+          ticking = true;
+        }
+      }
+
+      updateScrollGradient();
+      window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+      window.addEventListener("resize", requestScrollUpdate, { passive: true });
+    })();
+  </script>
+
+  <script>
+    (() => {
       const canvas = document.getElementById("glitter");
       const ctx = canvas.getContext("2d");
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -540,11 +592,7 @@
 
           const pulse = (Math.sin(time * 0.0011 + p.twinkle) + 1) / 2;
           const alpha = Math.min(0.25, p.alpha * (0.72 + pulse * 0.64));
-          const rgb =
-            p.tone < 0.28 ? "199,184,244" :
-            p.tone < 0.52 ? "169,204,227" :
-            p.tone < 0.78 ? "255,255,255" :
-            "248,233,255";
+          const rgb = p.tone < 0.5 ? "247,220,232" : "220,235,244";
 
           ctx.save();
           ctx.globalAlpha = alpha;

@@ -1,1 +1,450 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chair Sequence</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"><style>:root{--bg:#FFFBF2;--card:#FFFDFD;--soft:#FBEAF2;--text:#6D4A7D;--muted:#B07F90;--accent:#B88AE6;--border:#E6D8F3;--gold:#E8D6A7}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--text)}.sparkles,.sparkles:before,.sparkles:after{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1}.sparkles{background-image:radial-gradient(#B88AE6 1.5px,transparent 1.5px),radial-gradient(#fff 1px,transparent 1px);background-size:160px 160px,220px 220px;opacity:.25;animation:f1 120s linear infinite}.sparkles:before{background-image:radial-gradient(#E8D6A7 1px,transparent 1px);background-size:260px 260px;opacity:.2;animation:f2 180s linear infinite}.sparkles:after{background-image:radial-gradient(#F8E9FF 1px,transparent 1px);background-size:120px 120px;opacity:.18;animation:f3 140s linear infinite}@keyframes f1{to{transform:translateY(-250px)}}@keyframes f2{to{transform:translate(-40px,-200px)}}@keyframes f3{to{transform:translateY(-180px)}}body::before{z-index:-2;content:"";position:fixed;top:-180px;left:-180px;width:650px;height:650px;background:radial-gradient(circle,rgba(248,233,255,.8),transparent 70%);pointer-events:none}body::after{z-index:-2;content:"";position:fixed;bottom:-220px;right:-220px;width:700px;height:700px;background:radial-gradient(circle,rgba(199,184,244,.35),transparent 70%);pointer-events:none}.bg-ornament{position:fixed;pointer-events:none;opacity:.28;color:#B88AE6;z-index:0}.o1{top:8%;left:2%;font-size:30px}.o2{top:18%;right:3%;font-size:42px}.o3{top:45%;left:3%;font-size:34px}.o4{bottom:20%;right:4%;font-size:38px}.o5{bottom:10%;left:5%;font-size:28px}.o6{top:70%;right:2%;font-size:36px}.hero-ornament{text-align:center;color:#E8D6A7;font-size:24px;letter-spacing:10px;margin:12px 0 24px;white-space:nowrap}main{max-width:1200px;margin:auto;padding:48px}h1{font-family:'Times New Roman',serif;font-style:italic;text-align:center;color:#7B6A8F;font-size:56px}.intro{text-align:center;color:var(--muted)}.orn{text-align:center;color:var(--gold);font-size:22px;margin:24px 0 44px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.card{position:relative;background:#FFFBF2;border:2px solid var(--border);border-radius:18px;padding:20px;display:flex;flex-direction:column;height:100%}.corner{position:absolute;color:var(--accent)}.tl{top:10px;left:12px}.tr{top:10px;right:12px}.bl{bottom:10px;left:12px}.br{bottom:10px;right:12px}.num,.title,h1{font-family:"Daith Big Medium Italic",serif;font-style:italic;font-weight:500}.num{color:#BCA7F2;font-size:24px}.title{color:#6D4A7D;font-size:28px}.image{aspect-ratio:1200/628;border:1.5px solid var(--border);border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:16px}.label,p{color:#93879E;font-weight:300}.label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#6D4A7D;font-weight:700} .head{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}.num{width:56px!important;flex:0 0 56px!important;display:block}.title{flex:1!important;display:block!important}.num{flex:0 0 auto;width:48px;line-height:1.15}.title{flex:1;line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.title{line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.image{margin-bottom:16px}@media(max-width:767px){main{padding:16px}.grid{gap:16px}}</style></head><body><div class="sparkles"></div><div class="bg-ornament o1">✦ ✧ ✦</div><div class="bg-ornament o2">❀</div><div class="bg-ornament o3">✿ ✧</div><div class="bg-ornament o4">❀ ✦</div><div class="bg-ornament o5">✧</div><div class="bg-ornament o6">✿</div><main><h1>Chair Sequence</h1><p class="intro">A visual record of iterative prompt refinement and image generation.</p><div class="orn">✦ ❀ ✧ ❀ ✦</div><section class="grid"><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">01</div><div class="title">The Bare Prompt</div></div><div class="image">&lt;img src="Chair1.jpg" alt="The Bare Prompt"&gt;</div><div class="label">Prompt</div><p>a chair in the middle of a room.</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">02</div><div class="title">Adjectives</div></div><div class="image">&lt;img src="Chair2.jpg" alt="Adjectives"&gt;</div><div class="label">Prompt</div><p>a lazy sofa chair in the middle of a lightly dimmed fairytale-like room.</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">03</div><div class="title">The Setting</div></div><div class="image">&lt;img src="Chair3.jpg" alt="The Setting"&gt;</div><div class="label">Prompt</div><p>a sofa chair sitting in the corner of a lightly dimmed fairtytale-like room, at dawn, surrounded by fairytale inspired decorations, with led wire lights on the walls.</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">04</div><div class="title">The Style</div></div><div class="image">&lt;img src="Chair4.jpg" alt="The Style"&gt;</div><div class="label">Prompt</div><p>Oil painting in the style of Claude Monet</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">05</div><div class="title">The Camera</div></div><div class="image">&lt;img src="Chair5.jpg" alt="The Camera"&gt;</div><div class="label">Prompt</div><p>Shot from the left corner of the room with a zoom on the side of the window in 16:9 format.</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">06</div><div class="title">Give It a Reference</div></div><div class="image">&lt;img src="Chair6.jpg" alt="Give It a Reference"&gt;</div><div class="label">Prompt</div><p>Add the bird by the window side. the butterflies should be scattered across the image with two close up shots.</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">07</div><div class="title">Another Pass</div></div><div class="image">&lt;img src="Chair7.png" alt="Another Pass"&gt;</div><div class="label">Prompt</div><p>The chair ended up to be a sofa but not a lazy sofa</p></article><article class="card"><div class="corner tl">✦</div><div class="corner tr">✿</div><div class="corner bl">✧</div><div class="corner br">✦</div><div class="head"><div class="num">08</div><div class="title">A Different Generator</div></div><div class="image">&lt;img src="GeminiGenerated.jpg" alt="A Different Generator"&gt;</div><div class="label">Prompt</div><p>now can you give me a prompt for a different image generator based on this image?</p></article></section></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Chair Sequence</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFBF2;
+            --card: #FFFDFD;
+            --soft: #FBEAF2;
+            --text: #6D4A7D;
+            --muted: #B07F90;
+            --accent: #B88AE6;
+            --border: #E6D8F3;
+            --gold: #E8D6A7
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text)
+        }
+
+        .sparkles,
+        .sparkles:before,
+        .sparkles:after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1
+        }
+
+        .sparkles {
+            background-image: radial-gradient(#B88AE6 1.5px, transparent 1.5px), radial-gradient(#fff 1px, transparent 1px);
+            background-size: 160px 160px, 220px 220px;
+            opacity: .25;
+            animation: f1 120s linear infinite
+        }
+
+        .sparkles:before {
+            background-image: radial-gradient(#E8D6A7 1px, transparent 1px);
+            background-size: 260px 260px;
+            opacity: .2;
+            animation: f2 180s linear infinite
+        }
+
+        .sparkles:after {
+            background-image: radial-gradient(#F8E9FF 1px, transparent 1px);
+            background-size: 120px 120px;
+            opacity: .18;
+            animation: f3 140s linear infinite
+        }
+
+        @keyframes f1 {
+            to {
+                transform: translateY(-250px)
+            }
+        }
+
+        @keyframes f2 {
+            to {
+                transform: translate(-40px, -200px)
+            }
+        }
+
+        @keyframes f3 {
+            to {
+                transform: translateY(-180px)
+            }
+        }
+
+        body::before {
+            z-index: -2;
+            content: "";
+            position: fixed;
+            top: -180px;
+            left: -180px;
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, rgba(248, 233, 255, .8), transparent 70%);
+            pointer-events: none
+        }
+
+        body::after {
+            z-index: -2;
+            content: "";
+            position: fixed;
+            bottom: -220px;
+            right: -220px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(199, 184, 244, .35), transparent 70%);
+            pointer-events: none
+        }
+
+        .bg-ornament {
+            position: fixed;
+            pointer-events: none;
+            opacity: .28;
+            color: #B88AE6;
+            z-index: 0
+        }
+
+        .o1 {
+            top: 8%;
+            left: 2%;
+            font-size: 30px
+        }
+
+        .o2 {
+            top: 18%;
+            right: 3%;
+            font-size: 42px
+        }
+
+        .o3 {
+            top: 45%;
+            left: 3%;
+            font-size: 34px
+        }
+
+        .o4 {
+            bottom: 20%;
+            right: 4%;
+            font-size: 38px
+        }
+
+        .o5 {
+            bottom: 10%;
+            left: 5%;
+            font-size: 28px
+        }
+
+        .o6 {
+            top: 70%;
+            right: 2%;
+            font-size: 36px
+        }
+
+        .hero-ornament {
+            text-align: center;
+            color: #E8D6A7;
+            font-size: 24px;
+            letter-spacing: 10px;
+            margin: 12px 0 24px;
+            white-space: nowrap
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 48px
+        }
+
+        h1 {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            text-align: center;
+            color: #7B6A8F;
+            font-size: 56px
+        }
+
+        .intro {
+            text-align: center;
+            color: var(--muted)
+        }
+
+        .orn {
+            text-align: center;
+            color: var(--gold);
+            font-size: 22px;
+            margin: 24px 0 44px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px
+        }
+
+        .card {
+            position: relative;
+            background: #FFFBF2;
+            border: 2px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%
+        }
+
+        .corner {
+            position: absolute;
+            color: var(--accent)
+        }
+
+        .tl {
+            top: 10px;
+            left: 12px
+        }
+
+        .tr {
+            top: 10px;
+            right: 12px
+        }
+
+        .bl {
+            bottom: 10px;
+            left: 12px
+        }
+
+        .br {
+            bottom: 10px;
+            right: 12px
+        }
+
+        .num,
+        .title,
+        h1 {
+            font-family: "Daith Big Medium Italic", serif;
+            font-style: italic;
+            font-weight: 500
+        }
+
+        .num {
+            color: #BCA7F2;
+            font-size: 24px
+        }
+
+        .title {
+            color: #6D4A7D;
+            font-size: 28px
+        }
+
+        .image {
+            aspect-ratio: 1200/628;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 16px
+        }
+
+        .label,
+        p {
+            color: #93879E;
+            font-weight: 300
+        }
+
+        .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: #6D4A7D;
+            font-weight: 700
+        }
+
+        .head {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px
+        }
+
+        .num {
+            width: 56px !important;
+            flex: 0 0 56px !important;
+            display: block
+        }
+
+        .title {
+            flex: 1 !important;
+            display: block !important
+        }
+
+        .num {
+            flex: 0 0 auto;
+            width: 48px;
+            line-height: 1.15
+        }
+
+        .title {
+            flex: 1;
+            line-height: 1.15;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .title {
+            line-height: 1.15;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .image {
+            margin-bottom: 16px
+        }
+
+        @media(max-width:767px) {
+            main {
+                padding: 16px
+            }
+
+            .grid {
+                gap: 16px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sparkles"></div>
+    <div class="bg-ornament o1">✦ ✧ ✦</div>
+    <div class="bg-ornament o2">❀</div>
+    <div class="bg-ornament o3">✿ ✧</div>
+    <div class="bg-ornament o4">❀ ✦</div>
+    <div class="bg-ornament o5">✧</div>
+    <div class="bg-ornament o6">✿</div>
+    <main>
+        <h1>Chair Sequence</h1>
+        <p class="intro">A visual record of iterative prompt refinement and image generation.</p>
+        <div class="orn">✦ ❀ ✧ ❀ ✦</div>
+        <section class="grid">
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">01</div>
+                    <div class="title">The Bare Prompt</div>
+                </div>
+                <div class="image">&lt;img src="Chair1.jpg" alt="The Bare Prompt"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>a chair in the middle of a room.</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">02</div>
+                    <div class="title">Adjectives</div>
+                </div>
+                <div class="image">&lt;img src="Chair2.jpg" alt="Adjectives"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>a lazy sofa chair in the middle of a lightly dimmed fairytale-like room.</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">03</div>
+                    <div class="title">The Setting</div>
+                </div>
+                <div class="image">&lt;img src="Chair3.jpg" alt="The Setting"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>a sofa chair sitting in the corner of a lightly dimmed fairtytale-like room, at dawn, surrounded by
+                    fairytale inspired decorations, with led wire lights on the walls.</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">04</div>
+                    <div class="title">The Style</div>
+                </div>
+                <div class="image">&lt;img src="Chair4.jpg" alt="The Style"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>Oil painting in the style of Claude Monet</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">05</div>
+                    <div class="title">The Camera</div>
+                </div>
+                <div class="image">&lt;img src="Chair5.jpg" alt="The Camera"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>Shot from the left corner of the room with a zoom on the side of the window in 16:9 format.</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">06</div>
+                    <div class="title">Give It a Reference</div>
+                </div>
+                <div class="image">&lt;img src="Chair6.jpg" alt="Give It a Reference"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>Add the bird by the window side. the butterflies should be scattered across the image with two close
+                    up shots.</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">07</div>
+                    <div class="title">Another Pass</div>
+                </div>
+                <div class="image">&lt;img src="Chair7.png" alt="Another Pass"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>The chair ended up to be a sofa but not a lazy sofa</p>
+            </article>
+            <article class="card">
+                <div class="corner tl">✦</div>
+                <div class="corner tr">✿</div>
+                <div class="corner bl">✧</div>
+                <div class="corner br">✦</div>
+                <div class="head">
+                    <div class="num">08</div>
+                    <div class="title">A Different Generator</div>
+                </div>
+                <div class="image">&lt;img src="GeminiGenerated.jpg" alt="A Different Generator"&gt;</div>
+                <div class="label">Prompt</div>
+                <p>now can you give me a prompt for a different image generator based on this image?</p>
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>

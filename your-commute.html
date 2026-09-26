@@ -1,30 +1,633 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Your Commute, Evolved.</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#e8f5ff;--paper:#f9fcff;--paper2:#f1f9ff;--ink:#65748f;--muted:#8798ae;--lav:#9b8bc4;--blue:#8ebbd8;--blue2:#b9daee;--pink:#d8b9d5;--gold:#dbc68f;--border:#c8dded}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-width:320px;color:var(--ink);font:300 16px/1.6 'DM Sans Light','DM Sans',Arial,sans-serif;background:linear-gradient(180deg,#dff1fc 0%,#edf8ff 44%,#e4f3fc 100%);overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;z-index:-2;border-radius:50%;filter:blur(2px);pointer-events:none}body:before{width:620px;height:620px;left:-230px;top:-210px;background:radial-gradient(circle,rgba(255,255,255,.8),rgba(205,229,247,.18) 55%,transparent 72%)}body:after{width:700px;height:700px;right:-260px;bottom:-260px;background:radial-gradient(circle,rgba(206,193,232,.26),transparent 68%)}
-.sparkles,.sparkles:before,.sparkles:after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none}.sparkles{opacity:.28;background-image:radial-gradient(#9b8bc4 1.2px,transparent 1.3px),radial-gradient(#fff 1.2px,transparent 1.3px);background-size:170px 170px,230px 230px;animation:drift 100s linear infinite}.sparkles:before{opacity:.25;background-image:radial-gradient(#dbc68f 1px,transparent 1px);background-size:280px 280px;animation:drift2 150s linear infinite}.sparkles:after{opacity:.25;background-image:radial-gradient(#8ebbd8 1px,transparent 1px);background-size:125px 125px;animation:drift 130s linear infinite}@keyframes drift{to{transform:translateY(-240px)}}@keyframes drift2{to{transform:translate(-45px,-190px)}}
-main{width:min(1200px,calc(100% - 64px));margin:auto;padding:64px 0 88px;position:relative}.hero{text-align:center;margin:0 auto 66px;position:relative}.kicker{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#7caac8;margin-bottom:8px}.hero h1{margin:0;color:#7183a3;font-family:"Daith Big Medium Italic",Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(3rem,6vw,5.3rem);line-height:1.04;text-shadow:0 2px 14px rgba(255,255,255,.75)}.intro{max-width:650px;margin:14px auto 0;color:#8195aa}.hero-orn{display:flex;align-items:center;gap:18px;margin:26px auto 0;max-width:780px;color:var(--gold);font-size:18px;letter-spacing:7px}.hero-orn:before,.hero-orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--blue2),var(--pink))}.hero-orn:after{transform:scaleX(-1)}
-.bg-ornament{position:fixed;z-index:0;pointer-events:none;color:#8faecc;opacity:.18;font-family:"Daith Big Medium Italic",Georgia,serif}.o1{top:8%;left:3%;font-size:34px}.o2{top:17%;right:4%;font-size:38px}.o3{top:49%;left:2%;font-size:27px}.o4{bottom:18%;right:3%;font-size:35px}.o5{bottom:7%;left:5%;font-size:25px}
-.journey-trail{position:absolute;left:-30px;top:245px;bottom:70px;width:28px;pointer-events:none;opacity:.34}.journey-trail:before{content:"";position:absolute;left:13px;top:20px;bottom:20px;border-left:1.5px dashed rgba(126,170,200,.7)}.journey-trail span{position:absolute;left:0;width:28px;text-align:center;color:#9b8bc4;font-family:"Daith Big Medium Italic",Georgia,serif;font-size:15px;background:#e6f4fd}.journey-trail .j1{top:2%}.journey-trail .j2{top:34%;color:#d0b06e}.journey-trail .j3{top:67%;color:#9cbcd2}.journey-trail .j4{bottom:1%;color:#b99ab9}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}.card{position:relative;display:flex;flex-direction:column;min-width:0;padding:22px;border:1.5px solid var(--border);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(241,249,255,.72));box-shadow:0 10px 28px rgba(103,137,165,.08),inset 0 0 0 5px rgba(255,255,255,.25);transition:.3s ease}.card:nth-child(4n+2),.card:nth-child(4n+3){background:linear-gradient(145deg,rgba(252,250,255,.84),rgba(239,247,255,.72))}.card:hover{transform:translateY(-4px);border-color:#b9cbe6;box-shadow:0 16px 34px rgba(103,137,165,.13),inset 0 0 0 5px rgba(255,255,255,.3)}.card:after{content:"";position:absolute;inset:7px;border:1px solid rgba(155,139,196,.18);border-radius:16px;pointer-events:none}.corner{position:absolute;z-index:2;color:#a797cd;font-size:13px;opacity:.7}.tl{top:10px;left:12px}.tr{top:10px;right:12px}.bl{bottom:10px;left:12px}.br{bottom:10px;right:12px}.head{display:flex;gap:14px;align-items:flex-start;margin:3px 0 17px;position:relative;z-index:1}.num{flex:0 0 58px;color:#a99bd0;font:italic 500 28px/1.05 "Daith Big Medium Italic",Georgia,serif}.title{min-width:0;white-space:nowrap;color:#6f7898;font:italic 500 clamp(20px,2.15vw,27px)/1.15 "Daith Big Medium Italic",Georgia,serif}.image{position:relative;z-index:1;width:100%;display:flex;align-items:center;justify-content:center;margin-bottom:17px;overflow:hidden;border:5px solid rgba(255,255,255,.9);outline:1.5px solid #c7dceb;border-radius:14px;background:linear-gradient(145deg,#fff,#eaf6fd);color:#91b6ce;box-shadow:0 5px 14px rgba(103,137,165,.08)}.image img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain}.image:empty:before{content:"commute image";font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}.label{position:relative;z-index:1;color:#7183a3;font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase}.card p{position:relative;z-index:1;margin:5px 0 3px;color:#8795aa}
-@media(max-width:767px){.journey-trail{display:none}main{width:calc(100% - 28px);padding:36px 0 55px}.grid{gap:14px}.card{padding:15px;border-radius:16px}.title{font-size:clamp(15px,3.2vw,20px);white-space:nowrap}.num{flex-basis:34px;font-size:18px}.route{display:none}.hero{margin-bottom:34px}.hero h1{font-size:clamp(2.5rem,11vw,4rem)}}@media(max-width:520px){.grid{grid-template-columns:1fr}.bg-ornament{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
-<div class="sparkles" aria-hidden="true"></div><div class="bg-ornament o1">✦ · ✧</div><div class="bg-ornament o2">❀</div><div class="bg-ornament o3">✧ ◌</div><div class="bg-ornament o4">✦ ❀</div><div class="bg-ornament o5">✿</div>
-<main>
-<div class="journey-trail" aria-hidden="true"><span class="j1">✦</span><span class="j2">✿</span><span class="j3">✧</span><span class="j4">❀</span></div>
-<header class="hero"><div class="kicker">A visual commute story</div><h1>Your Commute, Evolved.</h1><p class="intro">A visual record of a familiar journey, reimagined through observation, iteration, and design.</p><div class="hero-orn" aria-hidden="true">✦ · ✿ · ✧ · ✦</div></header>
-<section class="grid">
-<article class="card"><i class="corner tl">✦</i><i class="corner tr">✧</i><i class="corner bl">❀</i><i class="corner br">✦</i><div class="head"><div class="num">01</div><div class="title">A Dreamier Street</div></div><div class="image"><img src="commute4.jpeg" alt="A city street transformed with bubbles, rainbows, clouds, and a giant cat"></div><div class="label">Moment</div><p>On an ordinary walk through the city, the sky suddenly filled with bubbles and twin rainbows. I looked up to find a giant cat peering down from the rooftops, as if it had been following me all morning.</p></article>
-<article class="card"><i class="corner tl">✿</i><i class="corner tr">✦</i><i class="corner bl">✧</i><i class="corner br">❀</i><div class="head"><div class="num">02</div><div class="title">The Floral Subway</div></div><div class="image"><img src="commute3.jpeg" alt="A subway arrival screen surrounded by pastel flowers and vines"></div><div class="label">Moment</div><p>I stepped underground and found that the subway station had quietly bloomed overnight. Flowers climbed across the tiled walls, turning the arrival board into a window hidden inside a secret garden.</p></article>
-<article class="card"><i class="corner tl">✧</i><i class="corner tr">❀</i><i class="corner bl">✦</i><i class="corner br">✿</i><div class="head"><div class="num">03</div><div class="title">A Garden in Transit</div></div><div class="image"><img src="commute2.jpg" alt="A subway platform transformed with flowers, greenery, doves, and bubbles"></div><div class="label">Moment</div><p>When I reached the platform, vines had wrapped themselves around the columns and flowers were growing beside the tracks. Doves flew between floating bubbles as I waited for a train that suddenly felt very far away.</p></article>
-<article class="card"><i class="corner tl">❀</i><i class="corner tr">✧</i><i class="corner bl">✿</i><i class="corner br">✦</i><div class="head"><div class="num">04</div><div class="title">City Wrapped in Wonder</div></div><div class="image"><img src="commute1.jpeg" alt="City buildings surrounded by sweeping ribbons, stars, and iridescent bubbles"></div><div class="label">Moment</div><p>Emerging from the subway, I discovered the city dressed for a celebration no one had announced. Giant ribbons curled between the buildings while stars and bubbles drifted overhead, transforming the last part of my commute into something magical.</p></article>
-</section></main>
-</body></html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Your Commute, Evolved.
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+    --bg:#e8f5ff;
+    --paper:#f9fcff;
+    --paper2:#f1f9ff;
+    --ink:#65748f;
+    --muted:#8798ae;
+    --lav:#9b8bc4;
+    --blue:#8ebbd8;
+    --blue2:#b9daee;
+    --pink:#d8b9d5;
+    --gold:#dbc68f;
+    --border:#c8dded
+}
+
+* {
+    box-sizing:border-box
+}
+
+html {
+    scroll-behavior:smooth
+}
+
+body {
+    margin:0;
+    min-width:320px;
+    color:var(--ink);
+    font:300 16px/1.6 'DM Sans Light','DM Sans',Arial,sans-serif;
+    background:linear-gradient(180deg,#dff1fc 0%,#edf8ff 44%,#e4f3fc 100%);
+    overflow-x:hidden
+}
+
+body:before,body:after {
+    content:"";
+    position:fixed;
+    z-index:-2;
+    border-radius:50%;
+    filter:blur(2px);
+    pointer-events:none
+}
+
+body:before {
+    width:620px;
+    height:620px;
+    left:-230px;
+    top:-210px;
+    background:radial-gradient(circle,rgba(255,255,255,.8),rgba(205,229,247,.18) 55%,transparent 72%)
+}
+
+body:after {
+    width:700px;
+    height:700px;
+    right:-260px;
+    bottom:-260px;
+    background:radial-gradient(circle,rgba(206,193,232,.26),transparent 68%)
+}
+
+.sparkles,.sparkles:before,.sparkles:after {
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none
+}
+
+.sparkles {
+    opacity:.28;
+    background-image:radial-gradient(#9b8bc4 1.2px,transparent 1.3px),radial-gradient(#fff 1.2px,transparent 1.3px);
+    background-size:170px 170px,230px 230px;
+    animation:drift 100s linear infinite
+}
+
+.sparkles:before {
+    opacity:.25;
+    background-image:radial-gradient(#dbc68f 1px,transparent 1px);
+    background-size:280px 280px;
+    animation:drift2 150s linear infinite
+}
+
+.sparkles:after {
+    opacity:.25;
+    background-image:radial-gradient(#8ebbd8 1px,transparent 1px);
+    background-size:125px 125px;
+    animation:drift 130s linear infinite
+}
+
+@keyframes drift {
+    to {
+        transform:translateY(-240px)
+    }
+
+}
+
+@keyframes drift2 {
+    to {
+        transform:translate(-45px,-190px)
+    }
+
+}
+
+main {
+    width:min(1200px,calc(100% - 64px));
+    margin:auto;
+    padding:64px 0 88px;
+    position:relative
+}
+
+.hero {
+    text-align:center;
+    margin:0 auto 66px;
+    position:relative
+}
+
+.kicker {
+    font-size:.72rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:#7caac8;
+    margin-bottom:8px
+}
+
+.hero h1 {
+    margin:0;
+    color:#7183a3;
+    font-family:"Daith Big Medium Italic",Georgia,serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(3rem,6vw,5.3rem);
+    line-height:1.04;
+    text-shadow:0 2px 14px rgba(255,255,255,.75)
+}
+
+.intro {
+    max-width:650px;
+    margin:14px auto 0;
+    color:#8195aa
+}
+
+.hero-orn {
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin:26px auto 0;
+    max-width:780px;
+    color:var(--gold);
+    font-size:18px;
+    letter-spacing:7px
+}
+
+.hero-orn:before,.hero-orn:after {
+    content:"";
+    height:1px;
+    flex:1;
+    background:linear-gradient(90deg,transparent,var(--blue2),var(--pink))
+}
+
+.hero-orn:after {
+    transform:scaleX(-1)
+}
+
+.bg-ornament {
+    position:fixed;
+    z-index:0;
+    pointer-events:none;
+    color:#8faecc;
+    opacity:.18;
+    font-family:"Daith Big Medium Italic",Georgia,serif
+}
+
+.o1 {
+    top:8%;
+    left:3%;
+    font-size:34px
+}
+
+.o2 {
+    top:17%;
+    right:4%;
+    font-size:38px
+}
+
+.o3 {
+    top:49%;
+    left:2%;
+    font-size:27px
+}
+
+.o4 {
+    bottom:18%;
+    right:3%;
+    font-size:35px
+}
+
+.o5 {
+    bottom:7%;
+    left:5%;
+    font-size:25px
+}
+
+.journey-trail {
+    position:absolute;
+    left:-30px;
+    top:245px;
+    bottom:70px;
+    width:28px;
+    pointer-events:none;
+    opacity:.34
+}
+
+.journey-trail:before {
+    content:"";
+    position:absolute;
+    left:13px;
+    top:20px;
+    bottom:20px;
+    border-left:1.5px dashed rgba(126,170,200,.7)
+}
+
+.journey-trail span {
+    position:absolute;
+    left:0;
+    width:28px;
+    text-align:center;
+    color:#9b8bc4;
+    font-family:"Daith Big Medium Italic",Georgia,serif;
+    font-size:15px;
+    background:#e6f4fd
+}
+
+.journey-trail .j1 {
+    top:2%
+}
+
+.journey-trail .j2 {
+    top:34%;
+    color:#d0b06e
+}
+
+.journey-trail .j3 {
+    top:67%;
+    color:#9cbcd2
+}
+
+.journey-trail .j4 {
+    bottom:1%;
+    color:#b99ab9
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:46px 42px
+}
+
+.card {
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    padding:28px;
+    border:1.5px solid var(--border);
+    border-radius:22px;
+    background:linear-gradient(145deg,rgba(255,255,255,.82),rgba(241,249,255,.72));
+    box-shadow:0 10px 28px rgba(103,137,165,.08),inset 0 0 0 5px rgba(255,255,255,.25);
+    transition:.3s ease
+}
+
+.card:nth-child(4n+2),.card:nth-child(4n+3) {
+    background:linear-gradient(145deg,rgba(252,250,255,.84),rgba(239,247,255,.72))
+}
+
+.card:hover {
+    transform:translateY(-4px);
+    border-color:#b9cbe6;
+    box-shadow:0 16px 34px rgba(103,137,165,.13),inset 0 0 0 5px rgba(255,255,255,.3)
+}
+
+.card:after {
+    content:"";
+    position:absolute;
+    inset:7px;
+    border:1px solid rgba(155,139,196,.18);
+    border-radius:16px;
+    pointer-events:none
+}
+
+.corner {
+    position:absolute;
+    z-index:2;
+    color:#a797cd;
+    font-size:13px;
+    opacity:.7
+}
+
+.tl {
+    top:10px;
+    left:12px
+}
+
+.tr {
+    top:10px;
+    right:12px
+}
+
+.bl {
+    bottom:10px;
+    left:12px
+}
+
+.br {
+    bottom:10px;
+    right:12px
+}
+
+.head {
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin:6px 0 22px;
+    position:relative;
+    z-index:1
+}
+
+.num {
+    flex:0 0 58px;
+    color:#a99bd0;
+    font:italic 500 28px/1.05 "Daith Big Medium Italic",Georgia,serif
+}
+
+.title {
+    min-width:0;
+    white-space:nowrap;
+    color:#6f7898;
+    font:italic 500 clamp(20px,2.15vw,27px)/1.15 "Daith Big Medium Italic",Georgia,serif
+}
+
+.image {
+    position:relative;
+    z-index:1;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:22px;
+    overflow:hidden;
+    border:5px solid rgba(255,255,255,.9);
+    outline:1.5px solid #c7dceb;
+    border-radius:14px;
+    background:linear-gradient(145deg,#fff,#eaf6fd);
+    color:#91b6ce;
+    box-shadow:0 5px 14px rgba(103,137,165,.08)
+}
+
+.image img {
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:620px;
+    object-fit:contain
+}
+
+.image:empty:before {
+    content:"commute image";
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase
+}
+
+.label {
+    position:relative;
+    z-index:1;
+    color:#7183a3;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.15em;
+    text-transform:uppercase
+}
+
+.card p {
+    position:relative;
+    z-index:1;
+    margin:10px 0 6px;
+    color:#8795aa
+}
+
+@media(max-width:767px) {
+    .journey-trail {
+        display:none
+    }
+
+    main {
+        width:calc(100% - 28px);
+        padding:36px 0 55px
+    }
+
+    .grid {
+        gap:24px
+    }
+
+    .card {
+        padding:20px;
+        border-radius:16px
+    }
+
+    .title {
+        font-size:clamp(15px,3.2vw,20px);
+        white-space:nowrap
+    }
+
+    .num {
+        flex-basis:34px;
+        font-size:18px
+    }
+
+    .route {
+        display:none
+    }
+
+    .hero {
+        margin-bottom:34px
+    }
+
+    .hero h1 {
+        font-size:clamp(2.5rem,11vw,4rem)
+    }
+
+}
+
+@media(max-width:520px) {
+    .grid {
+        grid-template-columns:1fr
+    }
+
+    .bg-ornament {
+        display:none
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+    * {
+        animation:none!important;
+        transition:none!important
+    }
+
+}
+  </style>
+ </head>
+ <body>
+  <div aria-hidden="true" class="sparkles">
+  </div>
+  <div class="bg-ornament o1">
+   ✦ · ✧
+  </div>
+  <div class="bg-ornament o2">
+   ❀
+  </div>
+  <div class="bg-ornament o3">
+   ✧ ◌
+  </div>
+  <div class="bg-ornament o4">
+   ✦ ❀
+  </div>
+  <div class="bg-ornament o5">
+   ✿
+  </div>
+  <main>
+   <div aria-hidden="true" class="journey-trail">
+    <span class="j1">
+     ✦
+    </span>
+    <span class="j2">
+     ✿
+    </span>
+    <span class="j3">
+     ✧
+    </span>
+    <span class="j4">
+     ❀
+    </span>
+   </div>
+   <header class="hero">
+    <div class="kicker">
+     A visual commute story
+    </div>
+    <h1>
+     Your Commute, Evolved.
+    </h1>
+    <p class="intro">
+     A visual record of a familiar journey, reimagined through observation, iteration, and design.
+    </p>
+    <div aria-hidden="true" class="hero-orn">
+     ✦ · ✿ · ✧ · ✦
+    </div>
+   </header>
+   <section class="grid">
+    <article class="card">
+     <i class="corner tl">
+      ✦
+     </i>
+     <i class="corner tr">
+      ✧
+     </i>
+     <i class="corner bl">
+      ❀
+     </i>
+     <i class="corner br">
+      ✦
+     </i>
+     <div class="head">
+      <div class="num">
+       01
+      </div>
+      <div class="title">
+       A Dreamier Street
+      </div>
+     </div>
+     <div class="image">
+      <img alt="A city street transformed with bubbles, rainbows, clouds, and a giant cat" src="commute4.jpeg"/>
+     </div>
+     <div class="label">
+      Moment
+     </div>
+     <p>
+      On an ordinary walk through the city, the sky suddenly filled with bubbles and twin rainbows. I looked up to find a giant cat peering down from the rooftops, as if it had been following me all morning.
+     </p>
+    </article>
+    <article class="card">
+     <i class="corner tl">
+      ✿
+     </i>
+     <i class="corner tr">
+      ✦
+     </i>
+     <i class="corner bl">
+      ✧
+     </i>
+     <i class="corner br">
+      ❀
+     </i>
+     <div class="head">
+      <div class="num">
+       02
+      </div>
+      <div class="title">
+       The Floral Subway
+      </div>
+     </div>
+     <div class="image">
+      <img alt="A subway arrival screen surrounded by pastel flowers and vines" src="commute3.jpeg"/>
+     </div>
+     <div class="label">
+      Moment
+     </div>
+     <p>
+      I stepped underground and found that the subway station had quietly bloomed overnight. Flowers climbed across the tiled walls, turning the arrival board into a window hidden inside a secret garden.
+     </p>
+    </article>
+    <article class="card">
+     <i class="corner tl">
+      ✧
+     </i>
+     <i class="corner tr">
+      ❀
+     </i>
+     <i class="corner bl">
+      ✦
+     </i>
+     <i class="corner br">
+      ✿
+     </i>
+     <div class="head">
+      <div class="num">
+       03
+      </div>
+      <div class="title">
+       A Garden in Transit
+      </div>
+     </div>
+     <div class="image">
+      <img alt="A subway platform transformed with flowers, greenery, doves, and bubbles" src="commute2.jpg"/>
+     </div>
+     <div class="label">
+      Moment
+     </div>
+     <p>
+      When I reached the platform, vines had wrapped themselves around the columns and flowers were growing beside the tracks. Doves flew between floating bubbles as I waited for a train that suddenly felt very far away.
+     </p>
+    </article>
+    <article class="card">
+     <i class="corner tl">
+      ❀
+     </i>
+     <i class="corner tr">
+      ✧
+     </i>
+     <i class="corner bl">
+      ✿
+     </i>
+     <i class="corner br">
+      ✦
+     </i>
+     <div class="head">
+      <div class="num">
+       04
+      </div>
+      <div class="title">
+       City Wrapped in Wonder
+      </div>
+     </div>
+     <div class="image">
+      <img alt="City buildings surrounded by sweeping ribbons, stars, and iridescent bubbles" src="commute1.jpeg"/>
+     </div>
+     <div class="label">
+      Moment
+     </div>
+     <p>
+      Emerging from the subway, I discovered the city dressed for a celebration no one had announced. Giant ribbons curled between the buildings while stars and bubbles drifted overhead, transforming the last part of my commute into something magical.
+     </p>
+    </article>
+   </section>
+  </main>
+ </body>
+</html>

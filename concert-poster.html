@@ -1,81 +1,752 @@
 <!doctype html>
+
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Age of Romance — Visual Process</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#e9ddf6;--paper:#f8f2fc;--ink:#62546f;--muted:#8c7d9a;--lav:#a58ac3;--pink:#d8b6cf;--silver:#aeb3c2;--border:#cbb9dc}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;color:var(--ink);font:300 16px/1.6 'DM Sans',Arial,sans-serif;background:linear-gradient(180deg,#e5d5f3 0%,#f1e9f8 48%,#e7daf3 100%);overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;border-radius:50%;z-index:-2;pointer-events:none}body:before{width:650px;height:650px;left:-260px;top:-220px;background:radial-gradient(circle,rgba(255,255,255,.72),transparent 68%)}body:after{width:700px;height:700px;right:-280px;bottom:-260px;background:radial-gradient(circle,rgba(205,181,225,.45),transparent 68%)}
-.stars{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.22;background-image:radial-gradient(#fff 1.2px,transparent 1.3px),radial-gradient(#9f8ab8 1px,transparent 1.2px);background-size:190px 190px,270px 270px}
-.orbit{position:fixed;border:1px solid rgba(158,153,170,.25);border-radius:50%;pointer-events:none;z-index:-1;box-shadow:0 0 12px rgba(255,255,255,.24)}.orbit.a{width:720px;height:210px;top:90px;right:-225px;transform:rotate(-14deg)}.orbit.b{width:610px;height:180px;bottom:100px;left:-205px;transform:rotate(20deg)}.orbit.c{width:830px;height:235px;top:46%;left:50%;transform:translate(-50%,-50%) rotate(-9deg);opacity:.5}
-.bg{position:fixed;z-index:-1;pointer-events:none;color:#8f7aa7;opacity:.16;font-family:Georgia,serif}.b1{top:8%;left:4%;font-size:52px}.b2{top:22%;right:4%;font-size:62px}.b3{top:57%;left:3%;font-size:48px}.b4{bottom:10%;right:5%;font-size:58px}.column{position:fixed;z-index:-2;pointer-events:none;bottom:-40px;width:115px;height:68vh;opacity:.07;border-left:7px double #725f84;border-right:7px double #725f84;background:repeating-linear-gradient(90deg,transparent 0 13px,rgba(114,95,132,.8) 14px 16px,transparent 17px 28px)}.column:before{content:"";position:absolute;left:-27px;right:-27px;top:-24px;height:30px;border:5px double #725f84;border-radius:45% 45% 10% 10%}.column:after{content:"";position:absolute;left:-24px;right:-24px;bottom:0;height:24px;border:5px double #725f84}.column.left{left:1.5%;transform:rotate(-2deg)}.column.right{right:1.5%;height:76vh;transform:rotate(2deg)}.roman{position:absolute;z-index:0;pointer-events:none;font:italic 500 clamp(7rem,15vw,13rem)/1 Georgia,serif;color:rgba(104,81,126,.045)}.r1{top:18%;left:-5%}.r2{top:42%;right:-4%}.r3{top:65%;left:-4%}.r4{bottom:1%;right:-3%}.metal-swoop{position:fixed;z-index:-1;pointer-events:none;width:360px;height:105px;border-top:3px solid rgba(255,255,255,.65);border-bottom:1px solid rgba(125,126,142,.28);border-radius:50%;filter:drop-shadow(0 2px 4px rgba(100,91,115,.16));opacity:.55}.metal-swoop.s1{top:34%;left:-110px;transform:rotate(29deg)}.metal-swoop.s2{bottom:24%;right:-105px;transform:rotate(-31deg)}
-main{width:min(1200px,calc(100% - 64px));margin:auto;padding:64px 0 90px;position:relative}.hero{text-align:center;margin-bottom:58px}.kicker{text-transform:uppercase;letter-spacing:.23em;font-size:.72rem;color:#967eac}.hero h1{margin:6px 0 0;font-family:"Daith Big Medium Italic",Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(3.2rem,7vw,6rem);line-height:1;color:#725f84;text-shadow:0 2px 16px rgba(255,255,255,.65)}.intro{max-width:660px;margin:16px auto 0;color:#8a7998}.hero-orn{display:flex;align-items:center;gap:17px;max-width:760px;margin:26px auto 0;color:#a8a5b2;letter-spacing:8px}.hero-orn:before,.hero-orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#b99fca,#c7c6cf)}.hero-orn:after{transform:scaleX(-1)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:52px 44px;position:relative;z-index:1}.card{position:relative;padding:27px;border:1px solid rgba(213,204,223,.88);border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.56),rgba(242,232,249,.48));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 16px 38px rgba(99,74,120,.09),inset 0 1px 0 rgba(255,255,255,.7);transition:.35s ease}.card:hover{transform:translateY(-6px);border-color:rgba(177,172,190,.9);box-shadow:0 22px 44px rgba(99,74,120,.14),0 0 24px rgba(255,255,255,.28)}.card:after{content:"";position:absolute;inset:6px;border:1px solid rgba(255,255,255,.5);border-radius:10px;pointer-events:none}.corner{position:absolute;z-index:2;color:#a691ba;opacity:.75;font-size:15px}.tl{top:10px;left:13px}.tr{top:10px;right:13px}.bl{bottom:10px;left:13px}.br{bottom:10px;right:13px}.head{position:relative;z-index:1;display:flex;align-items:flex-start;gap:13px;margin:7px 0 20px}.num{flex:0 0 55px;color:#b29bc7;font:italic 500 27px/1 Georgia,serif}.title{font:italic 500 clamp(20px,2.1vw,27px)/1.15 Georgia,serif;color:#6f5d7d;white-space:nowrap}.image{position:relative;z-index:1;width:100%;overflow:hidden;border:5px solid rgba(255,255,255,.86);outline:1.5px solid #cbbadd;border-radius:15px;background:#f6effa;margin-bottom:20px;box-shadow:0 5px 15px rgba(93,70,110,.08)}.image img{display:block;width:100%;height:auto;max-height:690px;object-fit:contain}.label{position:relative;z-index:1;color:#7e698f;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}.card p{position:relative;z-index:1;margin:9px 0 5px;color:#8b7d96}.chrome{position:absolute;z-index:2;width:48px;height:48px;right:-12px;top:-18px;transform:rotate(18deg);opacity:.7}.chrome:before,.chrome:after{content:"";position:absolute;left:22px;top:0;width:4px;height:48px;border-radius:50%;background:linear-gradient(#fff,#999eaa,#fff)}.chrome:after{transform:rotate(90deg)}
-@media(max-width:720px){main{width:calc(100% - 28px);padding:38px 0 58px}.grid{grid-template-columns:1fr;gap:25px}.hero{margin-bottom:38px}.card{padding:21px}.title{font-size:21px}.bg,.orbit{display:none}}
 
-/* Refined chrome/silver headings */
-.head{
-  display:flex;
-  align-items:baseline;
-  flex-wrap:nowrap;
-  gap:12px;
-  white-space:nowrap;
-}
-.num{
-  flex:0 0 auto;
-  width:auto;
-  color:#9b9ba7;
-  background:linear-gradient(180deg,#f8f8fb 0%,#a8a8b2 42%,#73737f 62%,#dedee5 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 1px 0 rgba(255,255,255,.55);
-}
-.title{
-  min-width:0;
-  flex:1 1 auto;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  color:#777483;
-}
-.card{
-  border-color:rgba(181,181,193,.72);
-  box-shadow:0 16px 38px rgba(99,74,120,.09), inset 0 1px 0 rgba(255,255,255,.82);
-}
-.card:after{
-  border-color:rgba(218,218,226,.62);
-}
-.image{
-  outline-color:rgba(174,174,187,.72);
-}
-.hero-orn{
-  color:#aaaab5;
-}
-.hero-orn:before,.hero-orn:after{
-  background:linear-gradient(90deg,transparent,#b6b6c1,#f1f1f5,#9696a2,transparent);
-}
-@media(max-width:767px){
-  .head{gap:8px}
-  .title{font-size:clamp(14px,3.1vw,19px)}
-  .num{font-size:clamp(15px,3vw,18px)}
-}
+  <head>
 
-</style>
-</head>
-<body>
-<div class="stars" aria-hidden="true"></div><div class="orbit a"></div><div class="orbit b"></div><div class="orbit c"></div>
-<div class="column left" aria-hidden="true"></div><div class="column right" aria-hidden="true"></div>
-<div class="metal-swoop s1" aria-hidden="true"></div><div class="metal-swoop s2" aria-hidden="true"></div>
-<div class="bg b1">✦</div><div class="bg b2">✧</div><div class="bg b3">✦</div><div class="bg b4">✧</div>
-<main><span class="roman r1">I</span><span class="roman r2">II</span><span class="roman r3">III</span><span class="roman r4">IV</span>
-<header class="hero"><div class="kicker">Concert poster process</div><h1>Age of Romance</h1><p class="intro">A visual progression from hand-drawn concept to a romantic Y2K concert poster, combining classical ruins, soft sunset skies, and liquid-silver ornament.</p><div class="hero-orn">✦ · ◇ · ✧ · ☾ · ✦</div></header>
-<section class="grid">
-<article class="card"><i class="corner tl">✦</i><i class="corner tr">◇</i><i class="corner bl">✧</i><i class="corner br">✦</i><div class="head"><div class="num">01</div><div class="title">The First Sketch</div></div><div class="image"><img src="concert-draft-web.jpg" alt="Hand drawn sketch for the Age of Romance concert poster"></div><div class="label">Concept</div><p>Create a realistic poster for Silence Wang’s <em>Age of Romance</em> concert using my sketch. Use silver and pink Y2K typography with the title centered at the top and metallic Y2K elements around the title and lower-left corner. Create a background of Greek and Roman-inspired ruins surrounded by vines, flowers, and bushes. The upper 35% should feature a pink-and-blue sunset with Y2K-style clouds.</p></article>
-<article class="card"><span class="chrome"></span><i class="corner tl">◇</i><i class="corner tr">✦</i><i class="corner bl">✦</i><i class="corner br">✧</i><div class="head"><div class="num">02</div><div class="title">Draft 1</div></div><div class="image"><img src="concert1-web.png" alt="Early Age of Romance poster with pink sunset and classical ruins"></div><div class="label">Exploration</div><p>Make all Y2K elements silver and metallic, removing the pink accents. Shift the sky to a cooler, more grey-toned atmosphere.</p></article>
-<article class="card"><i class="corner tl">✧</i><i class="corner tr">◇</i><i class="corner bl">✦</i><i class="corner br">◇</i><div class="head"><div class="num">03</div><div class="title">Draft 2</div></div><div class="image"><img src="concert2-web.png" alt="Age of Romance poster with a grey blue sky and silver ornament"></div><div class="label">Refinement</div><p>Keep the ruins, typography, and Y2K elements from this version, but replace only the sky with the sky from the previous version.</p></article>
-<article class="card"><span class="chrome"></span><i class="corner tl">✦</i><i class="corner tr">✧</i><i class="corner bl">◇</i><i class="corner br">✦</i><div class="head"><div class="num">04</div><div class="title">The Final Poster</div></div><div class="image"><img src="concert-final-web.png" alt="Final Age of Romance concert poster"></div><div class="label">Final</div><p>Keep the ruins, typography, and Y2K elements from this version, but replace only the sky with the sky from the previous version. Use the star from the first version and make it silver only.</p></article>
-</section></main></body></html>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Age of Romance — Visual Process</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>:root {
+    --bg:#e9ddf6;
+    --paper:#f8f2fc;
+    --ink:#62546f;
+    --muted:#8c7d9a;
+    --lav:#a58ac3;
+    --pink:#d8b6cf;
+    --silver:#aeb3c2;
+    --border:#cbb9dc
+    }
+
+    * {
+    box-sizing:border-box
+    }
+
+    html {
+    scroll-behavior:smooth
+    }
+
+    body {
+    margin:0;
+    min-width:320px;
+    color:var(--ink);
+    font:300 16px/1.6 'DM Sans',Arial,sans-serif;
+    background:linear-gradient(180deg,#e5d5f3 0%,#f1e9f8 48%,#e7daf3 100%);
+    overflow-x:hidden
+    }
+
+    body:before,body:after {
+    content:"";
+    position:fixed;
+    border-radius:50%;
+    z-index:-2;
+    pointer-events:none
+    }
+
+    body:before {
+    width:650px;
+    height:650px;
+    left:-260px;
+    top:-220px;
+    background:radial-gradient(circle,rgba(255,255,255,.72),transparent 68%)
+    }
+
+    body:after {
+    width:700px;
+    height:700px;
+    right:-280px;
+    bottom:-260px;
+    background:radial-gradient(circle,rgba(205,181,225,.45),transparent 68%)
+    }
+
+    .stars {
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    opacity:.22;
+    background-image:radial-gradient(#fff 1.2px,transparent 1.3px),radial-gradient(#9f8ab8 1px,transparent 1.2px);
+    background-size:190px 190px,270px 270px
+    }
+
+    .orbit {
+    position:fixed;
+    border:1px solid rgba(158,153,170,.25);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-1;
+    box-shadow:0 0 12px rgba(255,255,255,.24)
+    }
+
+    .orbit.a {
+    width:720px;
+    height:210px;
+    top:90px;
+    right:-225px;
+    transform:rotate(-14deg)
+    }
+
+    .orbit.b {
+    width:610px;
+    height:180px;
+    bottom:100px;
+    left:-205px;
+    transform:rotate(20deg)
+    }
+
+    .orbit.c {
+    width:830px;
+    height:235px;
+    top:46%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-9deg);
+    opacity:.5
+    }
+
+    .bg {
+    position:fixed;
+    z-index:-1;
+    pointer-events:none;
+    color:#8f7aa7;
+    opacity:.16;
+    font-family:Georgia,serif
+    }
+
+    .b1 {
+    top:8%;
+    left:4%;
+    font-size:52px
+    }
+
+    .b2 {
+    top:22%;
+    right:4%;
+    font-size:62px
+    }
+
+    .b3 {
+    top:57%;
+    left:3%;
+    font-size:48px
+    }
+
+    .b4 {
+    bottom:10%;
+    right:5%;
+    font-size:58px
+    }
+
+    .column {
+    position:fixed;
+    z-index:-2;
+    pointer-events:none;
+    bottom:-40px;
+    width:115px;
+    height:68vh;
+    opacity:.07;
+    border-left:7px double #725f84;
+    border-right:7px double #725f84;
+    background:repeating-linear-gradient(90deg,transparent 0 13px,rgba(114,95,132,.8) 14px 16px,transparent 17px 28px)
+    }
+
+    .column:before {
+    content:"";
+    position:absolute;
+    left:-27px;
+    right:-27px;
+    top:-24px;
+    height:30px;
+    border:5px double #725f84;
+    border-radius:45% 45% 10% 10%
+    }
+
+    .column:after {
+    content:"";
+    position:absolute;
+    left:-24px;
+    right:-24px;
+    bottom:0;
+    height:24px;
+    border:5px double #725f84
+    }
+
+    .column.left {
+    left:1.5%;
+    transform:rotate(-2deg)
+    }
+
+    .column.right {
+    right:1.5%;
+    height:76vh;
+    transform:rotate(2deg)
+    }
+
+    .roman {
+    position:absolute;
+    z-index:0;
+    pointer-events:none;
+    font:italic 500 clamp(7rem,15vw,13rem)/1 Georgia,serif;
+    color:rgba(104,81,126,.045)
+    }
+
+    .r1 {
+    top:18%;
+    left:-5%
+    }
+
+    .r2 {
+    top:42%;
+    right:-4%
+    }
+
+    .r3 {
+    top:65%;
+    left:-4%
+    }
+
+    .r4 {
+    bottom:1%;
+    right:-3%
+    }
+
+    .metal-swoop {
+    position:fixed;
+    z-index:-1;
+    pointer-events:none;
+    width:360px;
+    height:105px;
+    border-top:3px solid rgba(255,255,255,.65);
+    border-bottom:1px solid rgba(125,126,142,.28);
+    border-radius:50%;
+    filter:drop-shadow(0 2px 4px rgba(100,91,115,.16));
+    opacity:.55
+    }
+
+    .metal-swoop.s1 {
+    top:34%;
+    left:-110px;
+    transform:rotate(29deg)
+    }
+
+    .metal-swoop.s2 {
+    bottom:24%;
+    right:-105px;
+    transform:rotate(-31deg)
+    }
+
+    main {
+    width:min(1200px,calc(100% - 64px));
+    margin:auto;
+    padding:64px 0 90px;
+    position:relative
+    }
+
+    .hero {
+    text-align:center;
+    margin-bottom:58px
+    }
+
+    .kicker {
+    text-transform:uppercase;
+    letter-spacing:.23em;
+    font-size:.72rem;
+    color:#967eac
+    }
+
+    .hero h1 {
+    margin:6px 0 0;
+    font-family:"Daith Big Medium Italic",Georgia,serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(3.2rem,7vw,6rem);
+    line-height:1;
+    color:#725f84;
+    text-shadow:0 2px 16px rgba(255,255,255,.65)
+    }
+
+    .intro {
+    max-width:660px;
+    margin:16px auto 0;
+    color:#8a7998
+    }
+
+    .hero-orn {
+    display:flex;
+    align-items:center;
+    gap:17px;
+    max-width:760px;
+    margin:26px auto 0;
+    color:#a8a5b2;
+    letter-spacing:8px
+    }
+
+    .hero-orn:before,.hero-orn:after {
+    content:"";
+    height:1px;
+    flex:1;
+    background:linear-gradient(90deg,transparent,#b99fca,#c7c6cf)
+    }
+
+    .hero-orn:after {
+    transform:scaleX(-1)
+    }
+
+    .grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:52px 44px;
+    position:relative;
+    z-index:1
+    }
+
+    .card {
+    position:relative;
+    padding:27px;
+    border:1px solid rgba(213,204,223,.88);
+    border-radius:15px;
+    background:linear-gradient(145deg,rgba(255,255,255,.56),rgba(242,232,249,.48));
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    box-shadow:0 16px 38px rgba(99,74,120,.09),inset 0 1px 0 rgba(255,255,255,.7);
+    transition:.35s ease
+    }
+
+    .card:hover {
+    transform:translateY(-6px);
+    border-color:rgba(177,172,190,.9);
+    box-shadow:0 22px 44px rgba(99,74,120,.14),0 0 24px rgba(255,255,255,.28)
+    }
+
+    .card:after {
+    content:"";
+    position:absolute;
+    inset:6px;
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:10px;
+    pointer-events:none
+    }
+
+    .corner {
+    position:absolute;
+    z-index:2;
+    color:#a691ba;
+    opacity:.75;
+    font-size:15px
+    }
+
+    .tl {
+    top:10px;
+    left:13px
+    }
+
+    .tr {
+    top:10px;
+    right:13px
+    }
+
+    .bl {
+    bottom:10px;
+    left:13px
+    }
+
+    .br {
+    bottom:10px;
+    right:13px
+    }
+
+    .head {
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:flex-start;
+    gap:13px;
+    margin:7px 0 20px
+    }
+
+    .num {
+    flex:0 0 55px;
+    color:#b29bc7;
+    font:italic 500 27px/1 Georgia,serif
+    }
+
+    .title {
+    font:italic 500 clamp(20px,2.1vw,27px)/1.15 Georgia,serif;
+    color:#6f5d7d;
+    white-space:nowrap
+    }
+
+    .image {
+    position:relative;
+    z-index:1;
+    width:100%;
+    overflow:hidden;
+    border:5px solid rgba(255,255,255,.86);
+    outline:1.5px solid #cbbadd;
+    border-radius:15px;
+    background:#f6effa;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(93,70,110,.08)
+    }
+
+    .image img {
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:690px;
+    object-fit:contain
+    }
+
+    .label {
+    position:relative;
+    z-index:1;
+    color:#7e698f;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:.16em;
+    text-transform:uppercase
+    }
+
+    .card p {
+    position:relative;
+    z-index:1;
+    margin:9px 0 5px;
+    color:#8b7d96
+    }
+
+    .chrome {
+    position:absolute;
+    z-index:2;
+    width:48px;
+    height:48px;
+    right:-12px;
+    top:-18px;
+    transform:rotate(18deg);
+    opacity:.7
+    }
+
+    .chrome:before,.chrome:after {
+    content:"";
+    position:absolute;
+    left:22px;
+    top:0;
+    width:4px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(#fff,#999eaa,#fff)
+    }
+
+    .chrome:after {
+    transform:rotate(90deg)
+    }
+
+    @media(max-width:720px) {
+    main {
+    width:calc(100% - 28px);
+    padding:38px 0 58px
+    }
+
+    .grid {
+    grid-template-columns:1fr;
+    gap:25px
+    }
+
+    .hero {
+    margin-bottom:38px
+    }
+
+    .card {
+    padding:21px
+    }
+
+    .title {
+    font-size:21px
+    }
+
+    .bg,.orbit {
+    display:none
+    }
+
+    }
+
+    /* Refined chrome/silver headings */
+    .head {
+
+    display:flex;
+    align-items:baseline;
+    flex-wrap:nowrap;
+    gap:12px;
+    white-space:nowrap;
+    }
+
+    .num {
+
+    flex:0 0 auto;
+    width:auto;
+    color:#9b9ba7;
+    background:linear-gradient(180deg,#f8f8fb 0%,#a8a8b2 42%,#73737f 62%,#dedee5 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 1px 0 rgba(255,255,255,.55);
+    }
+
+    .title {
+
+    min-width:0;
+    flex:1 1 auto;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:#777483;
+    }
+
+    .card {
+
+    border-color:rgba(181,181,193,.72);
+    box-shadow:0 16px 38px rgba(99,74,120,.09), inset 0 1px 0 rgba(255,255,255,.82);
+    }
+
+    .card:after {
+
+    border-color:rgba(218,218,226,.62);
+    }
+
+    .image {
+
+    outline-color:rgba(174,174,187,.72);
+    }
+
+    .hero-orn {
+
+    color:#aaaab5;
+    }
+
+    .hero-orn:before,.hero-orn:after {
+
+    background:linear-gradient(90deg,transparent,#b6b6c1,#f1f1f5,#9696a2,transparent);
+    }
+
+    @media(max-width:767px) {
+
+    .head {
+    gap:8px
+    }
+
+    .title {
+    font-size:clamp(14px,3.1vw,19px)
+    }
+
+    .num {
+    font-size:clamp(15px,3vw,18px)
+    }
+
+    }</style>
+
+  </head>
+
+  <body>
+
+    <div class="stars" aria-hidden="true">
+
+    </div>
+
+    <div class="orbit a">
+
+    </div>
+
+    <div class="orbit b">
+
+    </div>
+
+    <div class="orbit c">
+
+    </div>
+
+    <div class="column left" aria-hidden="true">
+
+    </div>
+
+    <div class="column right" aria-hidden="true">
+
+    </div>
+
+    <div class="metal-swoop s1" aria-hidden="true">
+
+    </div>
+
+    <div class="metal-swoop s2" aria-hidden="true">
+
+    </div>
+
+    <div class="bg b1">✦</div>
+
+    <div class="bg b2">✧</div>
+
+    <div class="bg b3">✦</div>
+
+    <div class="bg b4">✧</div>
+
+    <main>
+
+      <span class="roman r1">I</span>
+
+      <span class="roman r2">II</span>
+
+      <span class="roman r3">III</span>
+
+      <span class="roman r4">IV</span>
+
+      <header class="hero">
+
+        <div class="kicker">Concert poster process</div>
+
+        <h1>Age of Romance</h1>
+
+        <p class="intro">A visual progression from hand-drawn concept to a romantic Y2K concert poster, combining classical ruins, soft sunset skies, and liquid-silver ornament.</p>
+
+        <div class="hero-orn">✦ · ◇ · ✧ · ☾ · ✦</div>
+
+      </header>
+
+      <section class="grid">
+
+        <article class="card">
+
+          <i class="corner tl">✦</i>
+
+          <i class="corner tr">◇</i>
+
+          <i class="corner bl">✧</i>
+
+          <i class="corner br">✦</i>
+
+          <div class="head">
+
+            <div class="num">01</div>
+
+            <div class="title">The First Sketch</div>
+
+          </div>
+
+          <div class="image">
+
+            <img src="concert-draft-web.jpg" alt="Hand drawn sketch for the Age of Romance concert poster">
+
+          </div>
+
+          <div class="label">Concept</div>
+
+          <p>Create a realistic poster for Silence Wang’s <em>Age of Romance</em> concert using my sketch. Use silver and pink Y2K typography with the title centered at the top and metallic Y2K elements around the title and lower-left corner. Create a background of Greek and Roman-inspired ruins surrounded by vines, flowers, and bushes. The upper 35% should feature a pink-and-blue sunset with Y2K-style clouds.</p>
+
+        </article>
+
+        <article class="card">
+
+          <span class="chrome">
+
+          </span>
+
+          <i class="corner tl">◇</i>
+
+          <i class="corner tr">✦</i>
+
+          <i class="corner bl">✦</i>
+
+          <i class="corner br">✧</i>
+
+          <div class="head">
+
+            <div class="num">02</div>
+
+            <div class="title">Draft 1</div>
+
+          </div>
+
+          <div class="image">
+
+            <img src="concert1-web.png" alt="Early Age of Romance poster with pink sunset and classical ruins">
+
+          </div>
+
+          <div class="label">Exploration</div>
+
+          <p>Make all Y2K elements silver and metallic, removing the pink accents. Shift the sky to a cooler, more grey-toned atmosphere.</p>
+
+        </article>
+
+        <article class="card">
+
+          <i class="corner tl">✧</i>
+
+          <i class="corner tr">◇</i>
+
+          <i class="corner bl">✦</i>
+
+          <i class="corner br">◇</i>
+
+          <div class="head">
+
+            <div class="num">03</div>
+
+            <div class="title">Draft 2</div>
+
+          </div>
+
+          <div class="image">
+
+            <img src="concert2-web.png" alt="Age of Romance poster with a grey blue sky and silver ornament">
+
+          </div>
+
+          <div class="label">Refinement</div>
+
+          <p>Keep the ruins, typography, and Y2K elements from this version, but replace only the sky with the sky from the previous version.</p>
+
+        </article>
+
+        <article class="card">
+
+          <span class="chrome">
+
+          </span>
+
+          <i class="corner tl">✦</i>
+
+          <i class="corner tr">✧</i>
+
+          <i class="corner bl">◇</i>
+
+          <i class="corner br">✦</i>
+
+          <div class="head">
+
+            <div class="num">04</div>
+
+            <div class="title">The Final Poster</div>
+
+          </div>
+
+          <div class="image">
+
+            <img src="concert-final-web.png" alt="Final Age of Romance concert poster">
+
+          </div>
+
+          <div class="label">Final</div>
+
+          <p>Keep the ruins, typography, and Y2K elements from this version, but replace only the sky with the sky from the previous version. Use the star from the first version and make it silver only.</p>
+
+        </article>
+
+      </section>
+
+    </main>
+
+  </body>
+
+</html>

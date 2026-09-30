@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wendy Gao's visual design decisions for her AI for Designers class homepage.">
+  <title>A Style Guide for Your AI — Wendy Gao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFF8FB;
+      --surface: #FFFDFD;
+      --soft: #FBEAF2;
+      --text: #6D4A7D;
+      --secondary: #6D4A7D;
+      --accent: #B88AE6;
+      --hover: #B09AF0;
+      --border: #E6D8F3;
+      --glitter: #F8E9FF;
+      --gold: #E8D6A7;
+      --blue: #B7D7EA;
+      --blue-soft: #CFE6F3;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--text);
+      background: radial-gradient(circle at 15% 10%, #FBEAF2 0, transparent 35%),
+                  radial-gradient(circle at 90% 85%, #EFEAFF 0, transparent 38%), var(--bg);
+      font: 300 17px/1.6 "DM Sans Light", "DM Sans", sans-serif;
+    }
+    h1, h2, h3 {
+      font-family: "Daith Big Medium Italic", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+    a { color: #7864B3; text-underline-offset: 4px; }
+    :focus-visible { outline: 3px solid #8C74D6; outline-offset: 4px; }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image: radial-gradient(#B09AF0 1px, transparent 1.4px),
+                        radial-gradient(#fff 1px, transparent 1.4px),
+                        radial-gradient(#E8D6A7 1.3px, transparent 1.6px);
+      background-size: 157px 173px, 211px 191px, 251px 227px;
+      background-position: 18px 31px, 86px 72px, 140px 18px;
+      animation: float 38s linear infinite;
+    }
+    @keyframes float { to { transform: translateY(-95px); } }
+    .ornament {
+      position: absolute;
+      z-index: 0;
+      color: var(--accent);
+      opacity: .5;
+      pointer-events: none;
+      font-size: 68px;
+      line-height: 1;
+    }
+    .ornament.one { color: var(--gold); opacity: .85; top: 18px; left: 3%; }
+    .ornament.two { color: var(--gold); opacity: .85; top: 380px; right: 2%; font-size: 92px; }
+    .ornament.three { top: 1050px; left: 1%; font-size: 56px; }
+
+    main { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 56px 48px 90px; }
+    .back { display: inline-block; margin-bottom: 48px; font-size: 14px; }
+    .hero { text-align: center; max-width: 830px; margin: 0 auto 53px; }
+    .kicker { margin: 0 0 12px; color: var(--secondary); letter-spacing: .17em; text-transform: uppercase; font-size: 14px; }
+    h1 { margin: 0; font-size: clamp(52px, 7vw, 80px); color: var(--text); }
+    .intro { max-width: 690px; margin: 17px auto 20px; font-size: 18px; }
+    .hero-orn { color: var(--gold); letter-spacing: .42em; font-size: 19px; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 32px; }
+    .card {
+      position: relative;
+      min-width: 0;
+      padding: 30px;
+      border: 2px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255,253,253,.91);
+      box-shadow: 0 12px 35px rgba(160,135,185,.07);
+    }
+    .card:nth-child(2), .card:nth-child(3) { background: rgba(251,234,242,.62); }
+    .corner { position: absolute; color: var(--gold); font-size: 15px; font-style: normal; line-height: 1; }
+    .tl { top: 10px; left: 12px; } .tr { top: 10px; right: 12px; }
+    .bl { bottom: 10px; left: 12px; } .br { bottom: 10px; right: 12px; }
+    .head { display: flex; align-items: baseline; gap: 17px; padding-bottom: 17px; border-bottom: 1.5px solid var(--accent); }
+    .num { color: #866FBE; font-size: 14px; letter-spacing: .12em; }
+    h2 { margin: 0; font-size: clamp(28px, 3vw, 38px); }
+    .visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 265px;
+      margin: 23px 0 19px;
+      padding: 22px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      border-radius: 13px;
+      background: linear-gradient(140deg, #FBEAF2, #F8F1FF 56%, #FFFDFD);
+    }
+    .label { color: #806AB9; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
+    .card p { margin: 8px 0 0; }
+    .card ul { margin: 9px 0 0; padding-left: 1.15em; }
+    .card li + li { margin-top: 4px; }
+    .card code { font-size: .9em; color: #6B589F; }
+
+    .mini-page { width: 86%; max-width: 345px; background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px; transform: rotate(-3deg); box-shadow: 8px 12px 0 rgba(199,184,244,.22); }
+    .mini-hero { height: 100px; padding: 13px; text-align: right; color: var(--text); font: italic 500 21px "Daith Big Medium Italic", Georgia, serif; background: linear-gradient(125deg, #F7DDE9, #F5EDFF, #EEE4FD); border-radius: 5px; }
+    .mini-caption { margin: 12px 0 8px; text-align: center; font: italic 500 19px "Daith Big Medium Italic", Georgia, serif; }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .mini-grid span { height: 26px; border: 1.5px solid var(--accent); border-radius: 7px; }
+
+    .palette-visual { flex-direction: column; align-items: stretch; gap: 22px; }
+    .palette { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 16px; width: 100%; max-width: 320px; margin: 0 auto; }
+    .palette div { min-width: 0; text-align: center; font-size: 12px; }
+    .palette i { display: block; width: 42px; margin: 0 auto; aspect-ratio: 1; border: 1.5px solid var(--border); border-radius: 50%; box-shadow: 0 5px 14px rgba(160,135,185,.09); }
+    .palette span { display: block; margin-top: 5px; overflow-wrap: anywhere; }
+
+    .type-sample { text-align: center; }
+    .type-sample strong { display: block; color: var(--text); font: italic 500 clamp(42px,5vw,65px)/1.05 "Daith Big Medium Italic",Georgia,serif; }
+    .type-sample span { display: block; margin-top: 15px; color: var(--secondary); font-size: 16px; }
+    .type-sample em { display: block; margin-top: 14px; font-style: normal; letter-spacing: .22em; color: var(--hover); }
+
+    .button-sample { width: min(100%, 290px); }
+    .button-sample a { display: block; min-height: 56px; padding: 16px 24px; border: 1.5px solid var(--accent); border-radius: 14px; color: #7662AE; background: transparent; text-decoration: none; transition: color 300ms, border-color 300ms, background-color 300ms, opacity 300ms; }
+    .button-sample a + a { margin-top: 12px; }
+    .button-sample:hover a:not(:hover) { opacity: .68; }
+    .button-sample a:hover { color: #614C9B; border-color: var(--hover); background: #F8F2FF; text-decoration: underline; }
+
+    .home-navigation { margin: 65px auto 0; text-align: center; }
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 16px 28px;
+      border: 1.5px solid var(--accent);
+      border-radius: 14px;
+      color: var(--text);
+      background: var(--surface);
+      text-decoration: none;
+      transition: background-color 300ms, border-color 300ms;
+    }
+    .home-button:hover { background: var(--soft); border-color: var(--hover); text-decoration: underline; }
+
+    @media (max-width: 1023px) { main { padding-left: 32px; padding-right: 32px; } }
+    @media (max-width: 767px) {
+      body { font-size: 16px; }
+      main { padding: 24px 16px 70px; }
+      .back { margin-bottom: 38px; }
+      .hero { margin-bottom: 36px; }
+      .intro { font-size: 16px; }
+      .grid { gap: 16px 12px; }
+      .card { padding: 19px 13px; }
+      .head { display: block; }
+      .visual { min-height: 175px; padding: 9px; }
+      .mini-page { width: 100%; }
+      .mini-hero { height: 70px; font-size: 14px; }
+      .mini-caption { font-size: 14px; }
+      .palette { grid-template-columns: repeat(3, 1fr); gap: 10px 5px; }
+      .palette div { font-size: 9px; }
+      .palette i { width: 30px; margin: auto; }
+      .type-sample strong { font-size: 34px; }
+      .button-sample a { padding: 15px 8px; }
+    }
+    @media (max-width: 339px) { .grid { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .sparkles { animation: none; } * { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true"></div>
+  <div class="ornament one" aria-hidden="true">✿</div>
+  <div class="ornament two" aria-hidden="true">✧</div>
+  <div class="ornament three" aria-hidden="true">❀</div>
+
+  <main>
+    <a class="back" href="index(5).html">← Back to Work</a>
+
+    <header class="hero">
+      <h1>A Style Guide for Your AI</h1>
+      <p class="intro">My visual rules for a class homepage that feels dreamy, editorial, and distinctly mine. These are the decisions I want AI to carry through every revision.</p>
+      <div class="hero-orn" aria-hidden="true">✦ · ✿ · ✧ · ✦</div>
+    </header>
+
+    <section class="grid" aria-label="Design principles">
+      <article class="card">
+        <i class="corner tl" aria-hidden="true">✦</i><i class="corner tr" aria-hidden="true">✧</i><i class="corner bl" aria-hidden="true">❀</i><i class="corner br" aria-hidden="true">✦</i>
+        <div class="head"><div class="num">01</div><h2>The Page</h2></div>
+        <div class="visual" role="img" aria-label="Illustration of a pastel hero and a two-column assignment grid">
+          <div class="mini-page"><div class="mini-hero">Wendy Gao</div><div class="mini-caption">Work</div><div class="mini-grid"><span></span><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="label">Structure &amp; inspiration</div>
+        <p>Build a <strong>single-page class homepage</strong>: a full-width hero image first, my name inside its top-right corner, and the assignment grid immediately below. Keep all navigation and content on that page.</p>
+        <p>Draw on Flower Knows for romantic luxury, delicate ornament, soft gradients, frames, and editorial beauty styling. Draw on Cider for clean structure, spacing, confident hierarchy, and subtle link emphasis. Do not copy either site.</p>
+        <p>The hero is 45–55vh tall (360–650px), uses <code>object-fit: cover</code>, and may have a soft overlay. Position my name 32px from the top and right on desktop, 20px on mobile.</p>
+      </article>
+
+      <article class="card">
+        <i class="corner tl" aria-hidden="true">✿</i><i class="corner tr" aria-hidden="true">✦</i><i class="corner bl" aria-hidden="true">✧</i><i class="corner br" aria-hidden="true">❀</i>
+        <div class="head"><div class="num">02</div><h2>The Palette</h2></div>
+        <div class="visual palette-visual" role="img" aria-label="General palette of ivory, pearl, blush, pink, lavender, blue, and gold">
+          <div class="palette">
+            <div><i style="background:#FFF8FB"></i><span>Blush white<br>#FFF8FB</span></div>
+            <div><i style="background:#FFFDFD"></i><span>Pearl white<br>#FFFDFD</span></div>
+            <div><i style="background:#FBEAF2"></i><span>Soft blush<br>#FBEAF2</span></div>
+            <div><i style="background:#F2B8CF"></i><span>Pastel pink<br>#F2B8CF</span></div>
+            <div><i style="background:#CBBBEA"></i><span>Soft lavender<br>#CBBBEA</span></div>
+            <div><i style="background:#B88AE6"></i><span>Lavender accent<br>#B88AE6</span></div>
+            <div><i style="background:#BCDFF5"></i><span>Pale blue<br>#BCDFF5</span></div>
+            <div><i style="background:#8EBBD8"></i><span>Pastel blue<br>#8EBBD8</span></div>
+            <div><i style="background:#E8D6A7"></i><span>Soft gold<br>#E8D6A7</span></div>
+          </div>
+        </div>
+        <div class="label">Soft pastel luxury</div>
+        <p>My general palette combines blush white and pearl white with soft blush, pastel pink, lavender, gentle blue, and subtle gold. Keep the overall feeling airy, romantic, and softly layered.</p>
+        <p>Use blush white and pearl for backgrounds and surfaces, blush and pale blue for soft sections, pink and lavender for accents, and <code>#E8D6A7</code> for delicate gold decorations. Choose readable text tones that harmonize with the palette. Avoid dark themes, neon, harsh saturation, and heavy shadows.</p>
+      </article>
+
+      <article class="card">
+        <i class="corner tl" aria-hidden="true">✧</i><i class="corner tr" aria-hidden="true">❀</i><i class="corner bl" aria-hidden="true">✦</i><i class="corner br" aria-hidden="true">✿</i>
+        <div class="head"><div class="num">03</div><h2>The Typography</h2></div>
+        <div class="visual" role="img" aria-label="Large editorial heading above delicate body typography"><div class="type-sample"><strong>Dream in detail.</strong><span>Space, softness, and a considered point of view.</span><em>✦ · ✿ · ✧</em></div></div>
+        <div class="label">An airy editorial rhythm</div>
+        <p>Use <strong>Daith Big Medium Italic</strong> for every heading at Medium weight and <strong>DM Sans Light</strong> for body copy at Light weight. Add no other display font. Let type, spacing, and hierarchy do most of the work.</p>
+        <p>H1: 56–80px; H2: 36–56px; H3: 24–32px; labels: 14px; body: 16–18px with 1.6 line-height. Heading line-height is 1.15. Preserve generous whitespace: 56–80px between sections, 16–24px between cards, and refined 1.5–2px borders in <code>#E6D8F3</code>.</p>
+        <p>Center content at a maximum of 1200px. Use two equal columns with a 32px gap on laptops. On phones, keep two columns when each can be at least 140px wide, with a 12–16px gap. Use 48px desktop, 32px tablet, and 16px mobile side padding; breakpoints are 1024px+, 768–1023px, and 320–767px.</p>
+      </article>
+
+      <article class="card">
+        <i class="corner tl" aria-hidden="true">❀</i><i class="corner tr" aria-hidden="true">✦</i><i class="corner bl" aria-hidden="true">✿</i><i class="corner br" aria-hidden="true">✧</i>
+        <div class="head"><div class="num">04</div><h2>The Details</h2></div>
+        <div class="visual"><div class="button-sample"><a href="#homepage">Assignment link ✦</a><a href="#homepage">Another assignment ✧</a></div></div>
+        <div class="label">Interaction &amp; atmosphere</div>
+        <p>Assignment links are full-column unfilled buttons with accent text and borders, no default shadow, 14px rounded square corners, at least 56px height, and 16px vertical × 24px horizontal padding. On hover, underline and intensify the active link, while gently fading the rest. Transitions last 250–350ms.</p>
+        <p>Use <code>#E8D6A7</code> for floral ornaments, corner stars, and delicate gold details. Keep the glitter small, lavender, soft gold, and pearl-white, behind the content, and at no more than 0.25 opacity. Layer slow continuous movement; no bouncing, spinning, or aggressive animation. Use ornaments sparingly so cards feel lightly stacked and the content stays clear.</p>
+        <p>Give every interactive element a visible focus state, keep links recognizable without hover, ensure text remains legible, and respect reduced-motion settings.</p>
+      </article>
+    </section>
+
+    <nav class="home-navigation" id="homepage" aria-label="Return navigation">
+      <a class="home-button" href="index(5).html">← Return to Homepage</a>
+    </nav>
+  </main>
+</body>
+</html>

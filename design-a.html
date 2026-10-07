@@ -1,6 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+  .dream-home {
+    margin: 65px auto 0;
+    text-align: center;
+  }
+
+  .dream-home a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 16px 28px;
+
+    background: #fdf6e8;
+    color: #544a59;
+    border: 1.5px dashed #867989;
+    border-radius: 14px;
+    box-shadow: 4px 4px 0 #f9dbe7;
+
+    font: 300 16px/1.5 "DM Sans", sans-serif;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 300ms;
+  }
+
+  .dream-home .ornament {
+    color: #867989;
+    font-size: 22px;
+    text-shadow: 2px 2px #f2b8cf;
+  }
+
+  .dream-home a:hover {
+    background: #f9dbe7;
+    border-color: #544a59;
+    text-decoration: underline;
+  }
+
+  .dream-home a:focus-visible {
+    outline: 2px solid #867989;
+    outline-offset: 6px;
+  }
+</style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Dream Dispensary</title>
@@ -1350,6 +1393,13 @@
     </section>
 
     <p class="footer-note">“Some dreams are not meant to be understood. They are only meant to be kept.”</p>
+    <nav class="dream-home" aria-label="Return navigation">
+  <a href="index.html">
+    <span class="ornament" aria-hidden="true">✿</span>
+    <span>← Return to Homepage</span>
+    <span class="ornament" aria-hidden="true">☾</span>
+  </a>
+</nav>
   </main>
 
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">

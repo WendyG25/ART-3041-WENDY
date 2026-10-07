@@ -451,7 +451,45 @@ main {
         animation:none!important;
         transition:none!important
     }
+  .commute-home {
+    margin: 65px auto 0;
+    text-align: center;
+  }
 
+  .commute-home a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 16px 28px;
+
+    background: #f9fcff;
+    color: #65748f;
+    border: 1.5px solid #8ebbd8;
+    border-radius: 14px;
+
+    font: 300 16px/1.5 "DM Sans", sans-serif;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 300ms;
+  }
+
+  .commute-home .ornament {
+    color: #dbc68f;
+    font-size: 20px;
+  }
+
+  .commute-home a:hover {
+    background: #e8f5ff;
+    border-color: #9b8bc4;
+    text-decoration: underline;
+  }
+
+  .commute-home a:focus-visible {
+    outline: 2px solid #9b8bc4;
+    outline-offset: 4px;
+  }
 }
   </style>
  </head>
@@ -628,6 +666,13 @@ main {
      </p>
     </article>
    </section>
+   <nav class="commute-home" aria-label="Return navigation">
+  <a href="index.html">
+    <span class="ornament" aria-hidden="true">✧</span>
+    <span>← Return to Homepage</span>
+    <span class="ornament" aria-hidden="true">✧</span>
+  </a>
+</nav>
   </main>
  </body>
 </html>

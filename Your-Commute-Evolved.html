@@ -5,7 +5,47 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Your Commute, Evolved.</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
+.commute-home {
+    margin: 65px auto 0;
+    text-align: center;
+  }
+
+  .commute-home a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 16px 28px;
+
+    background: #f9fcff;
+    color: #65748f;
+    border: 1.5px solid #8ebbd8;
+    border-radius: 14px;
+
+    font: 300 16px/1.5 "DM Sans", sans-serif;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 300ms;
+  }
+
+  .commute-home .ornament {
+    color: #dbc68f;
+    font-size: 20px;
+  }
+
+  .commute-home a:hover {
+    background: #e8f5ff;
+    border-color: #9b8bc4;
+    text-decoration: underline;
+  }
+
+  .commute-home a:focus-visible {
+    outline: 2px solid #9b8bc4;
+    outline-offset: 4px;
+  }
+  
+  <style>
 :root{--bg:#e8f5ff;--paper:#f9fcff;--paper2:#f1f9ff;--ink:#65748f;--muted:#8798ae;--lav:#9b8bc4;--blue:#8ebbd8;--blue2:#b9daee;--pink:#d8b9d5;--gold:#dbc68f;--border:#c8dded}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-width:320px;color:var(--ink);font:300 16px/1.6 'DM Sans Light','DM Sans',Arial,sans-serif;background:linear-gradient(180deg,#dff1fc 0%,#edf8ff 44%,#e4f3fc 100%);overflow-x:hidden}
 body:before,body:after{content:"";position:fixed;z-index:-2;border-radius:50%;filter:blur(2px);pointer-events:none}body:before{width:620px;height:620px;left:-230px;top:-210px;background:radial-gradient(circle,rgba(255,255,255,.8),rgba(205,229,247,.18) 55%,transparent 72%)}body:after{width:700px;height:700px;right:-260px;bottom:-260px;background:radial-gradient(circle,rgba(206,193,232,.26),transparent 68%)}
@@ -26,5 +66,13 @@ main{width:min(1200px,calc(100% - 64px));margin:auto;padding:64px 0 88px;positio
 <article class="card"><i class="corner tl">✿</i><i class="corner tr">✦</i><i class="corner bl">✧</i><i class="corner br">❀</i><div class="head"><div class="num">02</div><div class="title">Notice the Details</div></div><div class="image"><img src="Commute2.jpg" alt="Commute step 2" onerror="this.remove()"></div><div class="label">Moment</div><p>Focus on the small visual details that usually disappear into the routine.</p></article>
 <article class="card"><i class="corner tl">✧</i><i class="corner tr">❀</i><i class="corner bl">✦</i><i class="corner br">✿</i><div class="head"><div class="num">03</div><div class="title">Shift the Atmosphere</div></div><div class="image"><img src="Commute3.jpg" alt="Commute step 3" onerror="this.remove()"></div><div class="label">Moment</div><p>Change the light, mood, or weather to make the familiar route feel new.</p></article>
 <article class="card"><i class="corner tl">❀</i><i class="corner tr">✧</i><i class="corner bl">✿</i><i class="corner br">✦</i><div class="head"><div class="num">04</div><div class="title">Reframe the Journey</div></div><div class="image"><img src="Commute4.jpg" alt="Commute step 4" onerror="this.remove()"></div><div class="label">Moment</div><p>Experiment with perspective and composition to change how the journey is seen.</p></article>
-</section></main>
+</section>
+<nav class="commute-home" aria-label="Return navigation">
+  <a href="index.html">
+    <span class="ornament" aria-hidden="true">✧</span>
+    <span>← Return to Homepage</span>
+    <span class="ornament" aria-hidden="true">✧</span>
+  </a>
+</nav>
+</main>
 </body></html>

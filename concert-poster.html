@@ -544,6 +544,55 @@
     .num {
     font-size:clamp(15px,3vw,18px)
     }
+      <style>
+  .concert-home {
+    margin: 65px auto 0;
+    text-align: center;
+  }
+
+  .concert-home a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    box-sizing: border-box;
+    min-height: 56px;
+    padding: 16px 28px;
+
+    background: #f8f2fc;
+    color: #62546f;
+    border: 1.5px solid #cbb9dc;
+    border-radius: 14px;
+
+    font: 300 16px/1.5 "DM Sans", sans-serif;
+    text-decoration: none;
+    transition: background-color 300ms, border-color 300ms;
+  }
+
+  .concert-home .ornament {
+    color: #aeb3c2;
+    font-size: 22px;
+  }
+
+  .concert-home a:hover {
+    background: #e9ddf6;
+    border-color: #a58ac3;
+    text-decoration: underline;
+  }
+
+  .concert-home a:focus-visible {
+    outline: 2px solid #a58ac3;
+    outline-offset: 4px;
+  }
+</style>
+
+<nav class="concert-home" aria-label="Return navigation">
+  <a href="index.html">
+    <span class="ornament" aria-hidden="true">✦</span>
+    <span>← Return to Homepage</span>
+    <span class="ornament" aria-hidden="true">✧</span>
+  </a>
+</nav>
 
     }</style>
 
@@ -745,6 +794,13 @@
 
       </section>
 
+      <nav class="concert-home" aria-label="Return navigation">
+  <a href="index.html">
+    <span class="ornament" aria-hidden="true">✦</span>
+    <span>← Return to Homepage</span>
+    <span class="ornament" aria-hidden="true">✧</span>
+  </a>
+</nav>
     </main>
 
   </body>

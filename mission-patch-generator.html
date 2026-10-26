@@ -1,0 +1,1344 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Orbit / Baruch Mission Patch Studio</title><style>
+:root{font-family:Inter,Arial,sans-serif;color:#101a43;background:#f3f6fc}*{box-sizing:border-box}body{margin:0}header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:white;border-bottom:1px solid #dce4f2}header strong{letter-spacing:.15em;font-size:14px}header span{font-size:12px;color:#667494}.shell{display:grid;grid-template-columns:310px minmax(360px,1fr) 260px;min-height:calc(100vh - 75px)}aside{background:#fff;padding:25px;border-right:1px solid #dce4f2}.right{border-right:0;border-left:1px solid #dce4f2}h1{font-size:27px;letter-spacing:-1px;margin:4px 0 12px}h2{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#687797;margin:27px 0 16px}p{font-size:13px;color:#667494;line-height:1.65}.field{margin:17px 0}.field label{display:flex;justify-content:space-between;font-size:12px;font-weight:650;margin-bottom:8px}.field output{color:#6b7eaa;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#263e9b}button{cursor:pointer;border:1px solid #cfdaf0;border-radius:9px;padding:12px 13px;background:#fff;color:#142353;font-weight:700;font-size:12px}button:hover{background:#eef3ff}.primary{background:#15255c;color:#fff;border-color:#15255c}.primary:hover{background:#263d85}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}.buttons button:first-child{grid-column:span 2}.stage{padding:40px 28px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:radial-gradient(circle at center,#fff 0%,#eaf0fa 80%)}.stage .top{display:flex;justify-content:space-between;width:min(100%,600px);align-items:center;margin-bottom:20px}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:800;color:#62759b}.patch-wrap{width:min(100%,560px);aspect-ratio:1;box-shadow:0 18px 55px #223c6c25;border:9px solid #fff;background:#a8ccff}canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}canvas.dragging{cursor:grabbing}.stage-footer{display:flex;justify-content:space-between;width:min(100%,560px);margin-top:18px;color:#697998;font-size:12px}.swatches{display:grid;grid-template-columns:repeat(3,42px);gap:16px;justify-content:start}.swatch{display:block;box-sizing:border-box;flex:none;width:42px!important;height:42px!important;min-width:42px;max-width:42px;min-height:42px;max-height:42px;aspect-ratio:1/1;padding:0;border-radius:50%!important;border:2px solid #fff;box-shadow:0 0 0 1px #d2d9e8;appearance:none;-webkit-appearance:none}.detail{background:#f3f6ff;padding:15px;border-radius:10px;margin:20px 0;font-size:12px;line-height:1.7;color:#506286}.detail b{color:#16265b}.right button{width:100%;margin:6px 0}.mini{font-size:11px;color:#8490a8}.toggle{display:flex;gap:8px;align-items:center;font-size:12px;margin:18px 0}input[type=checkbox]{accent-color:#14265e}@media(max-width:1000px){.shell{grid-template-columns:240px 1fr}.right{grid-column:1/-1;border-top:1px solid #dce4f2;display:grid;grid-template-columns:1fr 1fr;gap:10px}.right h2,.right p,.right .detail{grid-column:span 2}}@media(max-width:650px){header{padding:15px}.shell{display:flex;flex-direction:column}aside{padding:20px}.stage{padding:25px 14px}.right{display:block}}
+.element-library{display:grid;gap:9px}.library-item{display:flex;align-items:center;gap:10px;border:1px solid #dce4f2;border-radius:11px;padding:8px;background:#fafbff}.library-item.absent{opacity:.58}.element-icon{display:grid;place-items:center;width:45px;height:42px;background:#e6efff;border-radius:8px;color:#15255c;font-size:26px}.element-name{flex:1;cursor:pointer;font-size:12px;font-weight:700}.element-action{width:34px!important;height:34px;padding:0!important;font-size:20px!important}.swatches{margin-top:10px}.right #selectionControls button{display:block}.stage .mini{max-width:560px;text-align:center}#selectionFrame{border-color:#F35A77!important}#rotateHandle,#resizeHandle{font-size:14px!important;z-index:8!important}#rotateHandle{width:20px!important;height:20px!important;line-height:16px!important}
+</style><style>
+/* Keep the canvas in view as the left editor scrolls; favorites live below it. */
+@media(min-width:1001px){
+ .shell{align-items:start;}
+ .stage{position:sticky;top:0;align-self:start;height:100vh;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-top:22px;padding-bottom:24px;}
+ .stage .top{margin-bottom:12px;}
+ .patch-wrap{width:min(100%,min(54vh,560px));flex-shrink:0;}
+ .stage-footer{width:min(100%,560px);margin-top:10px;}
+}
+.header-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+.home-link{font-size:12px;font-weight:750;text-decoration:none;color:#142353;border:1px solid #cfdaf0;padding:10px 13px;border-radius:9px;white-space:nowrap;background:white}
+.home-link:hover{background:#eef3ff}
+.stage-favorites{width:min(100%,560px);margin-top:18px;padding:15px;background:#fff;border:1px solid #dce4f2;border-radius:12px;}
+.stage-favorites h2{margin:10px 0 12px;}
+.stage-favorites .favorites-grid{grid-template-columns:repeat(4,minmax(0,1fr));}
+@media(max-width:650px){.header-actions span{display:none}.home-link{font-size:11px}}
+
+#layerList .layer-row .layer-label{display:flex!important;align-items:center;gap:10px!important;min-height:47px}
+#layerList .layer-art-thumb{width:38px;height:38px;min-width:38px;display:grid;place-items:center;background:#A8CCFF;border-radius:9px;border:1px solid #c9d7f4}
+#layerList .layer-art-thumb img,#layerList .layer-art-thumb svg{display:block;width:32px!important;height:32px!important;object-fit:contain}
+#rotateHandle{width:19px!important;height:19px!important;font-size:13px!important;line-height:15px!important}
+
+/* Fixed preview: scroll the editing columns independently of the artwork. */
+@media (min-width:1001px) {
+ html,body{height:100%;overflow:hidden}
+ body{display:flex;flex-direction:column}
+ body>header{flex:0 0 auto}
+ .shell{flex:1;min-height:0;height:auto;align-items:stretch;overflow:hidden}
+ .shell>aside{height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+ .shell>.stage{position:relative;top:auto;height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;align-self:stretch;justify-content:flex-start;padding-top:18px}
+ .stage .patch-wrap{width:min(100%, 52vh, 560px);max-width:100%;flex-shrink:0}
+}
+</style><style>
+/* Compact, reversible editing sidebar; the patch preview never changes size. */
+#editingPanel{position:relative;transition:width .2s ease,flex-basis .2s ease;min-width:0}
+#editingPanel .editor-collapse{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin:0 0 14px;padding:9px 8px;background:#e9effb;color:#142353;border:1px solid #cad7f1;border-radius:9px;font-weight:700;cursor:pointer}
+#editingPanel .collapse-symbol{font-size:21px;line-height:1}
+#editingPanel.is-collapsed{width:57px!important;min-width:57px!important;max-width:57px!important;flex:0 0 57px!important;padding:12px 7px!important;overflow:hidden!important}
+#editingPanel.is-collapsed #editorContents{display:none!important}
+#editingPanel.is-collapsed .editor-collapse{writing-mode:vertical-rl;min-height:150px;padding:12px 6px;gap:9px}
+#editingPanel.is-collapsed .collapse-symbol{transform:rotate(180deg)}
+@media(max-width:1000px){#editingPanel.is-collapsed{min-height:54px!important;width:100%!important;max-width:none!important;flex:auto!important;padding:8px 12px!important}#editingPanel.is-collapsed .editor-collapse{writing-mode:horizontal-tb;min-height:0}#editingPanel.is-collapsed .collapse-symbol{transform:rotate(180deg)}}
+</style><style>
+.home-link{background:#193A83!important;color:#fff!important;border:2px solid #193A83!important;box-shadow:0 3px 10px #14235330;font-size:13px!important;font-weight:800!important;padding:11px 17px!important}
+.home-link:hover,.home-link:focus-visible{background:#315BC0!important;border-color:#315BC0!important;color:white!important}
+#elementLibrary .library-item{gap:7px;flex-wrap:wrap}
+#elementLibrary .element-name{min-width:80px;flex:1 1 80px}
+#elementLibrary .element-action,#elementLibrary .remove-element{font-size:11px!important;font-weight:800;width:auto!important;min-width:49px!important;height:32px!important;padding:5px 8px!important;border-radius:7px}
+#elementLibrary .add-element{background:#193A83;color:#fff;border:1px solid #193A83}
+#elementLibrary .remove-element{background:#fff;color:#a72b50;border:1px solid #e8bccb}
+#elementLibrary button:disabled{opacity:.43;cursor:not-allowed}
+</style><style>
+/* Dedicated scrollable editor; the artwork stays visible alongside it. */
+@media (min-width:1001px){
+ html,body{height:100%;overflow:hidden}
+ body{display:flex;flex-direction:column}
+ body>header{flex:none}
+ .shell{height:calc(100vh - 75px);flex:1;min-height:0;overflow:hidden;align-items:stretch}
+ #editingPanel,.shell>.right{height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9caed5 #f2f5fc}
+ .shell>.stage{height:100%;min-height:0;overflow-y:auto;position:relative;top:auto;align-self:stretch}
+}
+#editingPanel{width:auto!important;max-width:none!important;flex:auto!important}
+#editingPanel #editorContents{display:block!important}
+#editingPanel .editor-collapse{display:none!important}
+#selectionFrame{background:transparent!important}
+</style>
+<style>
+/* Compact add/remove icons placed below each element name. */
+#elementLibrary .library-item {
+ display:grid !important;
+ grid-template-columns:48px 30px 30px 1fr;
+ grid-template-rows:auto 25px;
+ column-gap:7px !important;row-gap:4px !important;align-items:center;
+}
+#elementLibrary .element-icon {grid-column:1;grid-row:1 / 3;align-self:center;}
+#elementLibrary .element-name {grid-column:2 / -1;grid-row:1;min-width:0!important;overflow-wrap:normal!important;white-space:normal;font-size:13px;}
+#elementLibrary .add-element {grid-column:2;grid-row:2;}
+#elementLibrary .remove-element {grid-column:3;grid-row:2;}
+#elementLibrary .element-action,#elementLibrary .remove-element {
+ width:24px!important;min-width:24px!important;height:24px!important;
+ padding:0!important;font-size:15px!important;line-height:1!important;
+ border-radius:6px!important;display:grid!important;place-items:center!important;
+}
+</style>
+<style>
+/* Dedicated vertical scrolling for the editing sidebar on desktop. */
+@media (min-width:1001px) {
+  html,body {height:100%;overflow:hidden;}
+  body {display:flex;flex-direction:column;min-height:0;}
+  body > header {flex-shrink:0;}
+  main.shell {flex:1 1 0!important;height:0!important;min-height:0!important;overflow:hidden!important;align-items:stretch!important;}
+  main.shell > #editingPanel {height:100%!important;max-height:100%!important;min-height:0!important;overflow-y:scroll!important;overflow-x:hidden!important;overscroll-behavior-y:contain!important;scrollbar-gutter:stable;scrollbar-width:auto;scrollbar-color:#6b86bf #e6ecf8;}
+  main.shell > #editingPanel::-webkit-scrollbar {width:11px;}
+  main.shell > #editingPanel::-webkit-scrollbar-track {background:#e6ecf8;border-radius:10px;}
+  main.shell > #editingPanel::-webkit-scrollbar-thumb {background:#6b86bf;border:2px solid #e6ecf8;border-radius:10px;}
+  main.shell > .stage {height:100%!important;max-height:100%!important;min-height:0!important;overflow-y:auto!important;}
+  main.shell > .right {height:100%!important;min-height:0!important;overflow-y:auto!important;}
+}
+</style><style id="editor-scroll-reliable-fix">
+/* Apply independent scrolling at tablet sizes too, not just wide desktops. */
+@media (min-width:651px) {
+  html,body {height:100%;overflow:hidden!important;}
+  body {display:flex;flex-direction:column;min-height:0;}
+  body > header {flex:0 0 auto;}
+  main.shell {display:grid!important;flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;overflow:hidden!important;align-items:stretch!important;}
+  main.shell > #editingPanel {display:block!important;position:relative!important;height:100%!important;max-height:100%!important;min-height:0!important;overflow-y:scroll!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-width:auto!important;scrollbar-color:#5679bd #e5ebf7!important;}
+  main.shell > .stage {position:relative!important;height:100%!important;max-height:100%!important;min-height:0!important;overflow-y:auto!important;}
+  main.shell > .right {height:100%!important;min-height:0!important;overflow-y:auto!important;}
+  #editingPanel::-webkit-scrollbar {width:12px!important;display:block!important;}
+  #editingPanel::-webkit-scrollbar-track {background:#e5ebf7!important;}
+  #editingPanel::-webkit-scrollbar-thumb {background:#5679bd!important;border:2px solid #e5ebf7!important;border-radius:12px!important;}
+}
+@media (min-width:651px) and (max-width:1000px) {
+  main.shell {grid-template-columns:240px minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;}
+  main.shell > .right {display:none!important;}
+}
+@media (max-width:650px) {
+  main.shell > #editingPanel {height:48vh!important;max-height:48vh!important;min-height:230px!important;overflow-y:scroll!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-width:auto!important;scrollbar-color:#5679bd #e5ebf7!important;}
+  main.shell > #editingPanel::-webkit-scrollbar {width:10px!important;display:block!important;}
+  main.shell > #editingPanel::-webkit-scrollbar-thumb {background:#5679bd!important;border-radius:12px!important;}
+}
+</style>
+
+<style id="two-column-element-library">
+/* Two distinct element cards per row, with original-size add/remove controls. */
+#elementLibrary.element-library{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;align-items:stretch!important}
+#elementLibrary .library-item{box-sizing:border-box!important;min-width:0!important;width:100%!important;display:grid!important;grid-template-columns:38px minmax(0,1fr)!important;grid-template-rows:auto auto!important;gap:6px!important;padding:8px!important;align-items:center!important}
+#elementLibrary .element-icon{grid-column:1!important;grid-row:1 / 3!important;width:38px!important;height:38px!important;min-width:0!important}
+#elementLibrary .element-name{grid-column:2!important;grid-row:1!important;font-size:11px!important;line-height:1.25!important;min-width:0!important;overflow-wrap:anywhere!important}
+#elementLibrary .add-element,#elementLibrary .remove-element{grid-row:2!important;width:24px!important;min-width:24px!important;height:24px!important;min-height:24px!important;max-height:24px!important;padding:0!important;margin:0!important;font-size:15px!important;border-radius:6px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+#elementLibrary .add-element{grid-column:2!important;justify-self:start!important}
+#elementLibrary .remove-element{grid-column:2!important;justify-self:start!important;margin-left:29px!important}
+@media(max-width:380px){#elementLibrary.element-library{grid-template-columns:1fr!important}}
+</style>
+
+<style id="matching-favorites-export-widths">
+/* Saved Variations and Export share the same responsive card width. */
+.stage > .stage-favorites,
+.stage > .editor-export {
+  box-sizing: border-box !important;
+  width: min(100%, 560px) !important;
+  max-width: 560px !important;
+  align-self: center !important;
+  flex-shrink: 0;
+}
+</style>
+
+<style id="compact-element-buttons-final">
+/* Compact add/remove controls, below each element thumbnail */
+#elementLibrary .library-item{grid-template-rows:60px 26px!important;row-gap:7px!important;}
+#elementLibrary .add-element,#elementLibrary .remove-element{width:26px!important;min-width:26px!important;max-width:26px!important;height:26px!important;min-height:26px!important;max-height:26px!important;font-size:15px!important;line-height:1!important;border-radius:7px!important;}
+@media(max-width:380px){#elementLibrary .add-element,#elementLibrary .remove-element{width:25px!important;min-width:25px!important;max-width:25px!important;height:25px!important;min-height:25px!important;max-height:25px!important;}}
+</style>
+<style>.white-patch-background #elementLibrary .element-icon svg, .white-patch-background #layerList .layer-art-thumb svg{filter:brightness(0) saturate(100%) invert(17%) sepia(45%) saturate(1698%) hue-rotate(193deg) brightness(90%) contrast(98%)}</style></head><body><header><strong>✦ ORBIT / PATCH STUDIO</strong><div class="header-actions"><a class="home-link" href="index.html">← Back to Homepage</a></div></header><main class="shell"><aside id="editingPanel"><div id="editorContents"><h1>Mission Patch Generator</h1><p>Explore new compositions using your Bearcat paw silhouette and orbital sketch. Generate compositions with the expanded element library and six-color palette.</p><div class="buttons"><button class="primary" id="generate">✦ Generate New Design</button><button id="original">Restore Original</button><button id="shuffle">Subtle Variation</button></div><h2>Elements</h2><p>Select an element in the library to add it to the patch. Click a visible element on the patch to edit it.</p><div id="elementLibrary" class="element-library"></div><h2>Color Palette</h2><div id="leftPalette"></div></div></aside><section class="stage"><div class="top"><div><div class="eyebrow">LIVE PATCH PREVIEW</div><h1 style="font-size:19px;margin:8px 0 0">Beyond the Orbit</h1></div><span class="eyebrow" id="variation">ORIGINAL / 001</span></div><p class="mini" style="align-self:center;margin:0 0 12px">Drag elements to move them. Use the corner icons to resize or rotate the selected paw or orbit directly on the design.</p><div class="patch-wrap" id="patchWrap" style="position:relative"><div id="resizeHandle" title="Drag to resize selected ring or planet outline" style="display:none;position:absolute;width:22px;height:22px;background:#F35A77;border:2px solid white;border-radius:50%;box-shadow:0 1px 7px #0006;z-index:5;cursor:nwse-resize;touch-action:none;transform:translate(-50%,-50%)"></div><div id="rotateHandle" title="Drag to rotate selected element" style="display:none;position:absolute;width:22px;height:22px;background:#fff;color:#E13D65;border:2px solid #F35A77;border-radius:50%;z-index:6;cursor:grab;touch-action:none;transform:translate(-50%,-50%);text-align:center;line-height:20px;font-size:18px">↻</div><canvas id="patch" width="1050" height="1050" aria-label="Generated Bearcat paw space mission patch"></canvas></div><div class="stage-footer"><span id="selectedElement">SELECTED: NONE</span><button id="resetPositions" style="padding:5px 9px">Reset element positions</button></div><div class="stage-footer"><span>3.5″ × 3.5″ · 300 DPI · 1050 × 1050 px</span><span>1:1 FIXED FORMAT</span></div><div class="stage-favorites"><div class="eyebrow">SAVED VARIATIONS</div><h2>Favorite Designs</h2><div id="favorites" class="favorites-grid"></div></div></section><aside class="right"><div style="display:none" aria-hidden="true"><div id="palette"></div><div id="selectionControls"></div></div><h2>Export</h2><p>Your export is an exact square PNG at 1050 × 1050 pixels, with 300 DPI metadata corresponding to 3.5 inches on each side.</p><button class="primary" id="export">↓ Download Patch PNG</button><button id="save">↓ Save Design Settings</button><button id="load">↑ Load Design Settings</button><input type="file" id="file" accept="application/json" hidden><label class="toggle"><input type="checkbox" id="soft" checked>Soft hand-drawn strokes</label><p class="mini">All designs preserve the supplied Bearcat paw, planetary circle, two crossing orbital rings with their far-side sections hidden behind the planet, and one independently resizable particle on each orbit. No typography is added to the patch.</p></aside></main><script>
+const canvas=document.getElementById('patch'),ctx=canvas.getContext('2d');let backgroundColor='#A8CCFF';const orbitInk=()=>{const h=backgroundColor.replace('#','');const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return (0.2126*r+0.7152*g+0.0722*b)>220?'#193A83':'#FFFFFF'};const defaults={pawSize:1,pawAngle:-13,pawX:0,pawY:0,circleSize:1,orbitASize:1,orbitBSize:1,ringA:-4,ringB:34,ringWidth:11,particleA:0.47,particleB:0.15,particleSize:1,particleSizeA:1,particleSizeB:1,pawDX:0,pawDY:0,circleDX:0,circleDY:0,orbitADX:0,orbitADY:0,orbitBDX:0,orbitBDY:0,particleADX:0,particleADY:0,particleBDX:0,particleBDY:0};let state={...defaults},index=1;const defs=[['pawSize','Paw scale',.75,1.18,.01],['pawAngle','Paw rotation',-30,25,1],['pawX','Horizontal position',-60,60,1],['pawY','Vertical position',-55,55,1],['circleSize','Planet outline scale',.55,1.25,.01],['orbitASize','First ring scale',.55,1.14,.01],['orbitBSize','Second ring scale',.55,1.14,.01],['ringA','First orbit tilt',-90,90,1],['ringB','Second orbit tilt',-90,90,1],['ringWidth','White line thickness',7,19,1],['particleA','First particle position',0,1,.01],['particleB','Second particle position',0,1,.01],['particleSizeA','Particle 1 size',.45,1.9,.01],['particleSizeB','Particle 2 size',.45,1.9,.01]];function controls(){for(let i=0;i<defs.length;i++){const [k,label,min,max,step]=defs[i];const host=document.getElementById(['pawSize','pawAngle','pawX','pawY'].includes(k)?'pawControls':['circleSize','orbitASize','orbitBSize','ringA','ringB','ringWidth'].includes(k)?'orbitControls':'detailControls');const div=document.createElement('div');div.className='field';div.innerHTML=`<label for="${k}">${label}<output id="o_${k}"></output></label><input id="${k}" type="range" min="${min}" max="${max}" step="${step}">`;host.appendChild(div);div.querySelector('input').addEventListener('input',e=>{state[k]=Number(e.target.value);sync(false);draw()})}sync(true)}function sync(set){defs.forEach(([k])=>{const el=document.getElementById(k);if(set)el.value=state[k];document.getElementById('o_'+k).textContent=Number(state[k]).toFixed(['pawSize','circleSize','orbitASize','orbitBSize','particleA','particleB','particleSizeA','particleSizeB'].includes(k)?2:0)})}
+function ellipse(cx,cy,rx,ry,angle){ctx.save();ctx.translate(cx,cy);ctx.rotate(angle*Math.PI/180);ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.restore()}function orbitArc(cx,cy,rx,ry,angle,which){
+  // A planet occludes the back half of each ring; the near half passes in front.
+  // Build visible arcs geometrically, so resizing and rotating stay accurate.
+  const rad=angle*Math.PI/180, co=Math.cos(rad),si=Math.sin(rad);
+  const planetX=525+state.circleDX,planetY=525+state.circleDY;
+  const planetR=390*state.circleSize;
+  const N=960;
+  let drawing=false;
+  ctx.beginPath();
+  for(let i=0;i<=N;i++){
+    const t=2*Math.PI*i/N;
+    const lx=rx*Math.cos(t),ly=ry*Math.sin(t);
+    const x=cx+lx*co-ly*si,y=cy+lx*si+ly*co;
+    const behind=ly<0;
+    const inside=Math.hypot(x-planetX,y-planetY)<planetR+ctx.lineWidth*.25;
+    const visible=!behind||!inside;
+    if(visible){if(!drawing)ctx.moveTo(x,y);else ctx.lineTo(x,y);drawing=true}
+    else drawing=false;
+  }
+  ctx.setLineDash([]);ctx.stroke();
+}
+function particle(rx,ry,angle,t,r,ox=0,oy=0){const a=t*Math.PI*2;const x=rx*Math.cos(a),y=ry*Math.sin(a),rad=angle*Math.PI/180;ctx.beginPath();ctx.arc(525+ox+x*Math.cos(rad)-y*Math.sin(rad),525+oy+x*Math.sin(rad)+y*Math.cos(rad),r,0,Math.PI*2);ctx.fill()}
+const pawImage=new Image();pawImage.onload=()=>draw();pawImage.src="data:image/png;base64,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";
+function paw(){if(window.visibleParts && !window.visibleParts.paw)return;if(!pawImage.complete||!pawImage.naturalWidth)return;ctx.save();ctx.translate(525+state.pawX+state.pawDX,553+state.pawY+state.pawDY);ctx.rotate(state.pawAngle*Math.PI/180);ctx.scale(state.pawSize,state.pawSize);ctx.drawImage(pawImage,-245,-285,490,490);ctx.restore()}
+
+// Keep decorative elements entirely outside the planetary boundary, including
+// particles from earlier saved/generated layouts. The test uses the whole glyph.
+function decorationOutsidePlanet(x,y,r){
+ const cx=525+(state.circleDX||0),cy=525+(state.circleDY||0);
+ const planetR=390*state.circleSize+(state.ringWidth+8)/2;
+ return Math.hypot(x-cx,y-cy)>=planetR+r+8;
+}
+function decorationAllowed(id){
+ if(id==='particleA'||id==='particleB'){
+  const A=id==='particleA',w=A?'A':'B';
+  const p=particlePoint(w);
+  return decorationOutsidePlanet(p.x,p.y,(A?25:31)*state['particleSize'+w]);
+ }
+ const e=window.extraElements?.find(e=>e.id===id);
+ if(!e||e.kind==='ring')return true;
+ const base=e.kind==='dot'?20:e.kind==='star'?44:e.kind==='spark'?29:e.kind==='atom'?70:24;
+ return decorationOutsidePlanet(e.x,e.y,base*(e.scale||1));
+}
+// Original sketch: the planet hides the far-side orbit arcs, while the near-side arcs cross in front of the paw.
+function draw(){
+ ctx.clearRect(0,0,1050,1050);ctx.fillStyle=backgroundColor;ctx.fillRect(0,0,1050,1050);
+ ctx.strokeStyle=orbitInk();ctx.fillStyle=orbitInk();ctx.lineCap='round';ctx.lineJoin='round';
+ const order=window.layerOrder||['paw','circle','orbitA','orbitB','particleA','particleB'];
+ for(const id of order){if(window.visibleParts&&window.visibleParts[id]===false)continue; if(!decorationAllowed(id))continue;
+ ctx.strokeStyle=orbitInk();ctx.fillStyle=orbitInk();ctx.setLineDash([]);
+ if(id==='paw')paw();
+ else if(id==='circle'){ctx.lineWidth=state.ringWidth+8;ellipse(525+state.circleDX,525+state.circleDY,390*state.circleSize,390*state.circleSize,0);ctx.stroke()}
+ else if(id==='orbitA'||id==='orbitB'){const A=id==='orbitA';ctx.lineWidth=state.ringWidth;orbitArc(525+state[A?'orbitADX':'orbitBDX'],525+state[A?'orbitADY':'orbitBDY'],(A?480:495)*state[A?'orbitASize':'orbitBSize'],(A?53:58)*state[A?'orbitASize':'orbitBSize'],state[A?'ringA':'ringB'],A?'A':'B')}
+ else if(id==='particleA'||id==='particleB'){const A=id==='particleA';particle((A?480:495)*state[A?'orbitASize':'orbitBSize'],(A?53:58)*state[A?'orbitASize':'orbitBSize'],state[A?'ringA':'ringB'],state[A?'particleA':'particleB'],(A?25:31)*state[A?'particleSizeA':'particleSizeB'],state[A?'orbitADX':'orbitBDX']+state[A?'particleADX':'particleBDX'],state[A?'orbitADY':'orbitBDY']+state[A?'particleADY':'particleBDY'])}
+ else if(window.extraElements){const e=window.extraElements.find(e=>e.id===id);if(e)drawExtra(e)}
+ }
+}
+// Independent direct-manipulation controls. Hit testing uses the rendered geometry in canvas coordinates.
+const movable={paw:['pawDX','pawDY'],circle:['circleDX','circleDY'],orbitA:['orbitADX','orbitADY'],orbitB:['orbitBDX','orbitBDY'],particleA:['particleADX','particleADY'],particleB:['particleBDX','particleBDY']};
+let selected=null,drag=null;
+function pos(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*1050/r.width,y:(e.clientY-r.top)*1050/r.height}}
+function particlePoint(which){const a=which==='A'?state.ringA:state.ringB,t=which==='A'?state.particleA:state.particleB,rx=which==='A'?480*state.orbitASize:495*state.orbitBSize,ry=which==='A'?53*state.orbitASize:58*state.orbitBSize,rad=a*Math.PI/180,v=t*Math.PI*2,ox=state['orbit'+which+'DX']+state['particle'+which+'DX'],oy=state['orbit'+which+'DY']+state['particle'+which+'DY'];return{x:525+ox+rx*Math.cos(v)*Math.cos(rad)-ry*Math.sin(v)*Math.sin(rad),y:525+oy+rx*Math.cos(v)*Math.sin(rad)+ry*Math.sin(v)*Math.cos(rad)}}
+function ellipseHit(x,y,cx,cy,rx,ry,angle,threshold,which=null){const a=-angle*Math.PI/180,dx=x-cx,dy=y-cy,X=dx*Math.cos(a)-dy*Math.sin(a),Y=dx*Math.sin(a)+dy*Math.cos(a);const theta=(Math.atan2(Y/ry,X/rx)+2*Math.PI)%(2*Math.PI);return Math.abs((Math.sqrt((X/rx)**2+(Y/ry)**2)-1)*Math.min(rx,ry))<threshold}
+function hit(x,y){for(const id of ['particleB','particleA']){if(window.visibleParts && !window.visibleParts[id])continue;const p=particlePoint(id.slice(-1).toUpperCase());if(Math.hypot(x-p.x,y-p.y)<(id==='particleA'?25*state.particleSizeA:31*state.particleSizeB)+18)return id}
+if((!window.visibleParts || window.visibleParts.orbitB)&&ellipseHit(x,y,525+state.orbitBDX,525+state.orbitBDY,495*state.orbitBSize,58*state.orbitBSize,state.ringB,18,'B'))return 'orbitB';
+if((!window.visibleParts || window.visibleParts.orbitA)&&ellipseHit(x,y,525+state.orbitADX,525+state.orbitADY,480*state.orbitASize,53*state.orbitASize,state.ringA,18,'A'))return 'orbitA';
+if((!window.visibleParts || window.visibleParts.circle)&&ellipseHit(x,y,525+state.circleDX,525+state.circleDY,390*state.circleSize,390*state.circleSize,0,22))return 'circle';
+if(window.visibleParts && !window.visibleParts.paw)return null;const px=525+state.pawX+state.pawDX,py=553+state.pawY+state.pawDY;if(Math.hypot(x-px,y-py)<190*state.pawSize || (x>px-180*state.pawSize&&x<px+200*state.pawSize&&y>py-340*state.pawSize&&y<py-75*state.pawSize))return 'paw';return null}
+function select(id){selected=id;updateHandle();updateRotateHandle();renderSelectionControls();document.getElementById('selectedElement').textContent='SELECTED: '+(id?({paw:'BEARCAT PAW',circle:'PLANET OUTLINE',orbitA:'ORBIT 1',orbitB:'ORBIT 2',particleA:'PARTICLE 1',particleB:'PARTICLE 2'}[id]):'NONE')}
+function updateHandle(){const h=document.getElementById('resizeHandle');if(!['circle','orbitA','orbitB'].includes(selected)){h.style.display='none';return}const cx=selected==='circle'?525+state.circleDX:525+state[selected==='orbitA'?'orbitADX':'orbitBDX'];const cy=selected==='circle'?525+state.circleDY:525+state[selected==='orbitA'?'orbitADY':'orbitBDY'];const r=selected==='circle'?390*state.circleSize:(selected==='orbitA'?455*state.orbitASize:458*state.orbitBSize);const a=selected==='circle'?Math.PI/4:state[selected==='orbitA'?'ringA':'ringB']*Math.PI/180;const x=cx+r*Math.cos(a),y=cy+r*Math.sin(a);const rect=canvas.getBoundingClientRect(),wrap=document.getElementById('patchWrap').getBoundingClientRect();h.style.left=(rect.left-wrap.left+x*rect.width/1050)+'px';h.style.top=(rect.top-wrap.top+y*rect.height/1050)+'px';h.style.display='block'}
+function updateRotateHandle(){
+ const h=document.getElementById('rotateHandle');
+ if(!['paw','orbitA','orbitB'].includes(selected)){h.style.display='none';return}
+ const cx=selected==='paw'?525+state.pawX+state.pawDX:525+state[selected==='orbitA'?'orbitADX':'orbitBDX'];
+ const cy=selected==='paw'?553+state.pawY+state.pawDY:525+state[selected==='orbitA'?'orbitADY':'orbitBDY'];
+ const angle=(selected==='paw'?state.pawAngle:state[selected==='orbitA'?'ringA':'ringB'])*Math.PI/180;
+ const radius=selected==='paw'?270: selected==='orbitA'?440*state.orbitASize:470*state.orbitBSize;
+ const x=cx+radius*Math.cos(angle-Math.PI/2),y=cy+radius*Math.sin(angle-Math.PI/2);
+ const r=canvas.getBoundingClientRect(),w=document.getElementById('patchWrap').getBoundingClientRect();
+ h.style.left=(r.left-w.left+x*r.width/1050)+'px';h.style.top=(r.top-w.top+y*r.height/1050)+'px';h.style.display='block';
+}
+let rotating=null;const rotateHandle=document.getElementById('rotateHandle');
+rotateHandle.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();rotating=selected;rotateHandle.setPointerCapture(e.pointerId)});
+rotateHandle.addEventListener('pointermove',e=>{if(!rotating)return;const p=pos(e);const cx=rotating==='paw'?525+state.pawX+state.pawDX:525+state[rotating==='orbitA'?'orbitADX':'orbitBDX'];const cy=rotating==='paw'?553+state.pawY+state.pawDY:525+state[rotating==='orbitA'?'orbitADY':'orbitBDY'];const key=rotating==='paw'?'pawAngle':rotating==='orbitA'?'ringA':'ringB';state[key]=Math.round(Math.atan2(p.y-cy,p.x-cx)*180/Math.PI+90);sync(true);draw();updateRotateHandle();renderSelectionControls()});
+['pointerup','pointercancel'].forEach(t=>rotateHandle.addEventListener(t,()=>rotating=null));
+window.addEventListener('resize',updateRotateHandle);
+const resizeHandle=document.getElementById('resizeHandle');let resizing=null;resizeHandle.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();const id=selected;const key=id==='circle'?'circleSize':id==='orbitA'?'orbitASize':'orbitBSize';const center=id==='circle'?[525+state.circleDX,525+state.circleDY]:id==='orbitA'?[525+state.orbitADX,525+state.orbitADY]:[525+state.orbitBDX,525+state.orbitBDY];const pt=pos(e);resizing={key,center,initial:Math.hypot(pt.x-center[0],pt.y-center[1]),value:state[key]};resizeHandle.setPointerCapture(e.pointerId)});resizeHandle.addEventListener('pointermove',e=>{if(!resizing)return;const pt=pos(e),distance=Math.hypot(pt.x-resizing.center[0],pt.y-resizing.center[1]);state[resizing.key]=Math.max(.35,Math.min(1.4,resizing.value*distance/Math.max(1,resizing.initial)));sync(true);draw();updateHandle();updateRotateHandle();updateRotateHandle();renderSelectionControls()});['pointerup','pointercancel'].forEach(t=>resizeHandle.addEventListener(t,()=>resizing=null));window.addEventListener('resize',updateHandle);
+canvas.addEventListener('pointerdown',e=>{const p=pos(e),id=hit(p.x,p.y);select(id);if(!id)return;drag={id,x:p.x,y:p.y,origX:state[movable[id][0]],origY:state[movable[id][1]]};canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging')});
+canvas.addEventListener('pointermove',e=>{if(!drag){const p=pos(e);canvas.style.cursor=hit(p.x,p.y)?'grab':'default';return}const p=pos(e),[kx,ky]=movable[drag.id];state[kx]=Math.max(-260,Math.min(260,drag.origX+p.x-drag.x));state[ky]=Math.max(-260,Math.min(260,drag.origY+p.y-drag.y));draw();updateHandle();updateRotateHandle()});
+function stopDrag(){drag=null;canvas.classList.remove('dragging')}canvas.addEventListener('pointerup',stopDrag);canvas.addEventListener('pointercancel',stopDrag);
+document.getElementById('resetPositions').onclick=()=>{Object.values(movable).flat().forEach(k=>state[k]=0);select(null);draw();updateHandle();updateRotateHandle()};
+function random(min,max){return min+Math.random()*(max-min)}function generate(subtle=false){defs.forEach(([k,,min,max,step])=>{const target=random(min,max);state[k]=subtle?Math.max(min,Math.min(max,state[k]+(target-state[k])*.35)):Math.round(target/step)*step});index++;document.getElementById('variation').textContent='VARIATION / '+String(index).padStart(3,'0');sync(true);draw();updateHandle();updateRotateHandle();updateRotateHandle();renderSelectionControls()}document.getElementById('generate').onclick=()=>generate();document.getElementById('shuffle').onclick=()=>generate(true);document.getElementById('original').onclick=()=>{state={...defaults};index=1;document.getElementById('variation').textContent='ORIGINAL / 001';sync(true);draw();updateHandle();updateRotateHandle();updateRotateHandle();renderSelectionControls()};document.getElementById('soft').onchange=draw;
+
+const selectionFields={paw:[['pawSize','Size'],['pawAngle','Rotation']],circle:[['circleSize','Size']],orbitA:[['orbitASize','Size'],['ringA','Angle'],['ringWidth','Stroke']],orbitB:[['orbitBSize','Size'],['ringB','Angle'],['ringWidth','Stroke']],particleA:[['particleSizeA','Size'],['particleA','Along orbit']],particleB:[['particleSizeB','Size'],['particleB','Along orbit']]};
+function renderSelectionControls(){const el=document.getElementById('selectionControls');if(!selected){el.textContent='Select an element on the patch or choose one from the element library.';return;}const names={paw:'Bearcat paw',circle:'Planet outline',orbitA:'Horizontal orbit',orbitB:'Diagonal orbit',particleA:'Particle 1',particleB:'Particle 2'};el.innerHTML='<b>'+names[selected]+'</b><p style="margin:6px 0">Move, rotate and resize using the controls around the highlighted selection.</p><button id="removeSelected" style="color:#c52f58">− Remove element</button><button id="centerSelected">↶ Reset position</button>';document.getElementById('removeSelected').onclick=()=>{visibleParts[selected]=false;select(null);renderLibrary();draw()};document.getElementById('centerSelected').onclick=()=>{for(const key of movable[selected])state[key]=0;draw();updateHandle();updateRotateHandle()}}
+// Restore the missing color palette buttons before attaching their click handlers.
+const paletteHost=document.getElementById('palette');
+paletteHost.classList.add('swatches');
+for(const [hex,name] of [['#A8CCFF','Light blue'],['#000042','Dark navy'],['#FFFFFF','White'],['#86B6EB','Sky blue'],['#C6D9FF','Pale blue'],['#536CB5','Royal blue']]){
+ const swatch=document.createElement('button');
+ swatch.type='button';swatch.className='swatch';swatch.dataset.color=hex;
+ swatch.style.setProperty('background-color',hex,'important');
+ swatch.title=name+' ('+hex+')';swatch.setAttribute('aria-label',name+' ('+hex+')');
+ if(hex.toLowerCase()===backgroundColor.toLowerCase())swatch.style.outline='3px solid #15255c';
+ paletteHost.appendChild(swatch);
+}
+document.querySelectorAll('#palette [data-color]').forEach(btn=>btn.addEventListener('click',()=>{backgroundColor=btn.dataset.color;document.querySelectorAll('#palette .swatch').forEach(b=>b.style.outline='none');btn.style.outline='3px solid #15255c';draw()}));
+
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}document.getElementById('save').onclick=()=>download(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),'baruch-patch-settings.json');document.getElementById('load').onclick=()=>document.getElementById('file').click();document.getElementById('file').onchange=async e=>{try{const obj=JSON.parse(await e.target.files[0].text());defs.forEach(([k,,min,max])=>{if(Number.isFinite(obj[k]))state[k]=Math.max(min,Math.min(max,obj[k]))});sync(true);draw();updateHandle();updateRotateHandle();updateRotateHandle();renderSelectionControls()}catch{alert('Could not read the design settings file.')}};
+// Insert a PNG pHYs chunk (11811 pixels/meter = 300 DPI) before IDAT.
+function crc(bytes){let c=-1;for(const b of bytes){c^=b;for(let j=0;j<8;j++)c=(c>>>1)^((c&1)?0xedb88320:0)}return(c^-1)>>>0}async function png300dpi(blob){const bytes=new Uint8Array(await blob.arrayBuffer()),chunk=new Uint8Array(21),view=new DataView(chunk.buffer);view.setUint32(0,9);chunk.set([112,72,89,115],4);view.setUint32(8,11811);view.setUint32(12,11811);chunk[16]=1;view.setUint32(17,crc(chunk.slice(4,17)));return new Blob([bytes.slice(0,33),chunk,bytes.slice(33)],{type:'image/png'})}document.getElementById('export').onclick=()=>canvas.toBlob(async blob=>download(await png300dpi(blob),'baruch-mission-patch-3.5in-300dpi.png'),'image/png');controls=function(){};sync=function(){};controls();draw();
+
+/* Selection frame is an editing aid only, never part of the exported canvas. */
+const selectionFrame=document.createElement('div');
+selectionFrame.id='selectionFrame';
+selectionFrame.setAttribute('aria-hidden','true');
+selectionFrame.style.cssText='position:absolute;display:none;pointer-events:none;border:0;background:rgba(243,90,119,.025);outline:none;z-index:4;transform:translateZ(0)';
+document.getElementById('patchWrap').appendChild(selectionFrame);
+selectionFrame.innerHTML='<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="width:100%;height:100%;overflow:visible;display:block"><rect x="0.6" y="0.6" width="98.8" height="98.8" fill="none" stroke="#E83E8C" stroke-width="1.2" vector-effect="non-scaling-stroke" stroke-dasharray="2 2"/></svg>';
+
+function refreshSelectionFrame(){
+ if(!selected){selectionFrame.style.display='none';return}
+ let cx=525,cy=525,w=200,h=200,angle=0;
+ if(selected==='paw'){cx+=state.pawX+state.pawDX;cy=553+state.pawY+state.pawDY;w=490*state.pawSize+16;h=490*state.pawSize+16;angle=state.pawAngle}
+ else if(selected==='circle'){cx+=state.circleDX;cy+=state.circleDY;w=h=780*state.circleSize+state.ringWidth+16}
+ else if(selected==='orbitA'||selected==='orbitB'){
+  const a=selected==='orbitA',size=state[a?'orbitASize':'orbitBSize'];
+  cx+=state[a?'orbitADX':'orbitBDX'];cy+=state[a?'orbitADY':'orbitBDY'];
+  w=(a?960:990)*size+state.ringWidth+16;h=(a?106:116)*size+state.ringWidth+16;angle=state[a?'ringA':'ringB'];
+ }else{
+  const a=selected==='particleA',point=particlePoint(a?'A':'B');cx=point.x;cy=point.y;
+  w=h=2*((a?25*state.particleSizeA:31*state.particleSizeB)+3);
+ }
+ const r=canvas.getBoundingClientRect(),wr=document.getElementById('patchWrap').getBoundingClientRect();
+ const scale=r.width/1050;
+ selectionFrame.style.left=(r.left-wr.left+(cx-w/2)*scale)+'px';
+ selectionFrame.style.top=(r.top-wr.top+(cy-h/2)*scale)+'px';
+ selectionFrame.style.width=w*scale+'px';selectionFrame.style.height=h*scale+'px';
+ selectionFrame.style.transform='rotate('+angle+'deg)';selectionFrame.style.transformOrigin='center';
+ selectionFrame.style.display='block';
+}
+const originalDraw=draw;
+draw=function(){originalDraw();refreshSelectionFrame()};
+const originalSelect=select;
+select=function(id){originalSelect(id);refreshSelectionFrame()};
+window.addEventListener('resize',refreshSelectionFrame);
+const selectionHint=document.querySelector('.stage .mini');
+if(selectionHint)selectionHint.textContent='Click an element to see its dashed selection frame. Drag to move; use the navy dot to resize or ↻ to rotate. The frame is hidden in PNG exports.';
+
+// Element library: individual visibility and one-click add/remove.
+window.visibleParts={paw:true,circle:true,orbitA:true,orbitB:true,particleA:true,particleB:true};
+const parts=[['paw','Bearcat paw','🐾'],['circle','Planet outline','◯'],['orbitA','Horizontal orbit','⬭'],['orbitB','Diagonal orbit','⤢'],['particleA','Particle 1','●'],['particleB','Particle 2','●']];
+const library=document.getElementById('elementLibrary');
+function renderLibrary(){
+ library.innerHTML='';
+ for(const [id,name,symbol] of parts){
+  const item=document.createElement('div');item.className='library-item';
+  item.classList.toggle('absent',!visibleParts[id]);
+  item.innerHTML='<span class="element-icon">'+symbol+'</span><span class="element-name">'+name+'</span><button type="button" class="element-action add-element" title="Add '+name+'" aria-label="Add '+name+'">＋</button><button type="button" class="remove-element" title="Remove '+name+'" aria-label="Remove '+name+'">−</button>';
+  const add=item.querySelector('.add-element'),remove=item.querySelector('.remove-element');
+  add.disabled=!!visibleParts[id];
+  add.textContent='+';
+  add.setAttribute('title',visibleParts[id]?name+' already added':'Add '+name);
+  remove.disabled=!visibleParts[id];
+  add.onclick=()=>{if(visibleParts[id])return;visibleParts[id]=true;select(id);renderLibrary();draw()};
+  remove.onclick=()=>{if(!visibleParts[id])return;visibleParts[id]=false;if(selected===id)select(null);renderLibrary();draw()};
+
+  library.appendChild(item);
+ }
+ if(typeof thumbnails==='function')thumbnails();
+}
+renderLibrary();
+// Put color swatches in the editing panel with the element library.
+document.getElementById('leftPalette').appendChild(document.getElementById('palette'));
+const librarySelect=select;select=function(id){librarySelect(id);renderLibrary()};
+const oldDrawWithFrame=draw;draw=function(){oldDrawWithFrame();if(selected){refreshSelectionFrame();positionCornerTools()}};
+function positionCornerTools(){const f=document.getElementById('selectionFrame');if(f.style.display==='none')return;const box=document.getElementById('patchWrap').getBoundingClientRect();const rect=f.getBoundingClientRect();const resize=document.getElementById('resizeHandle'),rotate=document.getElementById('rotateHandle');const sx=rect.right-box.left,sy=rect.bottom-box.top,rx=rect.left-box.left,ry=rect.top-box.top;resize.style.left=sx+'px';resize.style.top=sy+'px';resize.style.display='block';resize.textContent='⤢';resize.style.lineHeight='18px';resize.style.textAlign='center';resize.style.color='#fff';rotate.style.left=((rect.left+rect.right)/2-box.left)+'px';rotate.style.top=(ry-11)+'px';rotate.style.display=selected==='circle'?'none':'block';}
+const oldRefresh=refreshSelectionFrame;refreshSelectionFrame=function(){oldRefresh();if(selected)positionCornerTools()};
+// Generalize resizing to the paw and particles, with the same small resize icon.
+const newResize=document.getElementById('resizeHandle');
+newResize.addEventListener('pointerdown',e=>{if(!['paw','particleA','particleB'].includes(selected))return;e.stopImmediatePropagation();e.stopPropagation();e.preventDefault();const key=selected==='paw'?'pawSize':selected==='particleA'?'particleSizeA':'particleSizeB';const p=pos(e);const cx=selected==='paw'?525+state.pawX+state.pawDX:particlePoint(selected==='particleA'?'A':'B').x;const cy=selected==='paw'?553+state.pawY+state.pawDY:particlePoint(selected==='particleA'?'A':'B').y;window.extraResize={key,cx,cy,start:Math.hypot(p.x-cx,p.y-cy),value:state[key]};newResize.setPointerCapture(e.pointerId)},true);
+newResize.addEventListener('pointermove',e=>{if(!window.extraResize)return;e.stopImmediatePropagation();const d=window.extraResize,p=pos(e);state[d.key]=Math.max(.25,Math.min(2.3,d.value*Math.hypot(p.x-d.cx,p.y-d.cy)/Math.max(1,d.start)));draw()},true);
+for(const type of ['pointerup','pointercancel'])newResize.addEventListener(type,()=>window.extraResize=null,true);
+// Preserve element visibility across randomization; restore original restores all.
+const originalRestore=document.getElementById('original').onclick;document.getElementById('original').onclick=()=>{Object.keys(visibleParts).forEach(k=>visibleParts[k]=true);originalRestore();renderLibrary()};
+// Settings also remember which elements were added or removed.
+document.getElementById('save').onclick=()=>download(new Blob([JSON.stringify({...state,visibleParts,backgroundColor},null,2)],{type:'application/json'}),'baruch-patch-settings.json');
+const input=document.getElementById('file');input.onchange=async e=>{try{const data=JSON.parse(await e.target.files[0].text());for(const [key,,min,max] of defs){if(Number.isFinite(data[key]))state[key]=Math.max(min,Math.min(max,data[key]))}if(data.visibleParts)for(const k of Object.keys(visibleParts))if(typeof data.visibleParts[k]==='boolean')visibleParts[k]=data.visibleParts[k];if(typeof data.backgroundColor==='string'&&/^#[0-9a-f]{6}$/i.test(data.backgroundColor))backgroundColor=data.backgroundColor;select(null);renderLibrary();draw()}catch(err){alert('Could not load settings.')}};
+window.addEventListener('resize',()=>{refreshSelectionFrame();positionCornerTools()});
+renderSelectionControls();draw();
+</script>
+<style>
+.toolstrip{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.toolstrip button{padding:9px 10px;flex:1}.toolstrip button:disabled{opacity:.38;cursor:default}.layer-row{display:flex;gap:5px;align-items:center;border:1px solid #dce4f2;border-radius:9px;padding:5px;margin:6px 0;background:white}.layer-row.active{border-color:#ee4e9a;background:#fff5fa}.layer-row .layer-label{flex:1;text-align:left;padding:7px;border:0;background:transparent}.layer-row button{width:30px!important;min-width:30px;padding:5px!important;margin:0!important}.small-note{font-size:11px;color:#7585a5}.favorites-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.favorite{position:relative;border:1px solid #dce4f2;border-radius:9px;overflow:hidden}.favorite img{width:100%;display:block;cursor:pointer}.favorite button{position:absolute;right:2px;top:2px;padding:2px 5px!important;width:auto!important;background:white}.selection-grid{outline:1px solid #fff9;outline-offset:2px}
+</style>
+<style>
+#elementLibrary .element-action,#elementLibrary .remove-element{width:34px!important;min-width:34px!important;height:34px!important;padding:0!important;font-size:22px!important;line-height:1!important;display:grid;place-items:center;flex-shrink:0}
+#elementLibrary .element-name{min-width:65px;overflow-wrap:anywhere}
+/* Layer names occupy a separate row so controls never overlap text. */
+#layerList .layer-row {
+ display:grid !important;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:7px !important;
+ padding:11px !important;
+ min-width:0;
+}
+#layerList .layer-row .layer-label {
+ grid-column:1 / -1;
+ width:100% !important;
+ min-width:0 !important;
+ padding:3px 4px 7px !important;
+ font-size:15px !important;
+ line-height:1.35 !important;
+ font-weight:700;
+ white-space:normal;
+ overflow-wrap:break-word;
+ text-align:left;
+}
+#layerList .layer-row button:not(.layer-label) {
+ width:100% !important;
+ min-width:0 !important;
+ height:37px;
+ padding:4px !important;
+ font-size:19px;
+ border-radius:9px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+#layerList .layer-action-icon {display:block;flex:none;pointer-events:none}
+#layerList .layer-row button:focus-visible {outline:2px solid #E83E8C;outline-offset:2px}
+</style>
+<script>
+/* Non-destructive enhancement: retain the exact embedded Bearcat image and original orbital geometry. */
+window.layerOrder=['paw','circle','orbitA','orbitB','particleA','particleB'];
+window.extraElements=[];
+let extraCounter=0, history=[],future=[],favorites=[];
+const snapshot=()=>JSON.stringify({state,visibleParts,backgroundColor,layerOrder,extraElements,index});
+function restoreSnapshot(raw){const v=JSON.parse(raw);state={...defaults,...v.state};window.visibleParts={...v.visibleParts};backgroundColor=v.backgroundColor;window.layerOrder=[...v.layerOrder];window.extraElements=(v.extraElements||[]).map(x=>({...x}));index=v.index||1;selected=null;renderLibrary();renderLayers();renderExtras();draw();refreshSelectionFrame();renderSelectionControls();document.getElementById('variation').textContent='VARIATION / '+String(index).padStart(3,'0')}
+function checkpoint(){const v=snapshot();if(history.at(-1)!==v){history.push(v);if(history.length>70)history.shift()}future=[];historyButtons()}
+function historyButtons(){document.getElementById('undoBtn').disabled=!history.length;document.getElementById('redoBtn').disabled=!future.length}
+function undo(){if(!history.length)return;future.push(snapshot());restoreSnapshot(history.pop());historyButtons()}
+function redo(){if(!future.length)return;history.push(snapshot());restoreSnapshot(future.pop());historyButtons()}
+const gen=document.getElementById('generate');gen.textContent='✦ New Design';
+const layoutBtn=document.getElementById('shuffle');layoutBtn.textContent='New Layout';
+const buttons=document.querySelector('.buttons');buttons.insertAdjacentHTML('afterend','<div class="toolstrip"><button id="undoBtn" title="Undo (Ctrl/⌘ Z)">Undo</button><button id="redoBtn" title="Redo (Ctrl/⌘ Shift Z)">Redo</button><button id="favBtn" title="Save this variation">♡ Favorite</button></div><p class="small-note">Lock elements in Layers to preserve them during generation.</p>');
+const libraryEl=document.getElementById('elementLibrary');
+libraryEl.insertAdjacentHTML('afterend','<h2>Layers</h2><p class="small-note">Move layers up or down, hide them, or lock them.</p><div id="layerList"></div>');
+const extrasCatalog=[['star','Four-point star','✦'],['spark','Small sparkle','✧'],['dot','Orbital particle','●'],['ring','Additional orbit','⬭'],['atom','Atomic accent','◎']];
+function drawExtra(e){if(e.kind==='ring'&&e.generatedOrbitRing){ctx.save();ctx.strokeStyle=orbitInk();ctx.lineWidth=state.ringWidth;ctx.lineCap='round';ctx.lineJoin='round';orbitArc(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,'A');ctx.restore();return;}ctx.save();ctx.translate(e.x,e.y);ctx.rotate(e.angle*Math.PI/180);ctx.scale(e.scale,e.scale);ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=orbitInk();ctx.fillStyle=orbitInk();ctx.lineWidth=11;
+if(e.kind==='dot'){ctx.beginPath();ctx.arc(0,0,20,0,Math.PI*2);ctx.fill()}
+if(e.kind==='star'||e.kind==='spark'){const r=e.kind==='star'?44:29;ctx.beginPath();for(let i=0;i<8;i++){const t=i*Math.PI/4-Math.PI/2,rad=i%2?r*.18:r;const x=rad*Math.cos(t),y=rad*Math.sin(t);i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.closePath();if(e.kind==='star')ctx.fill();else ctx.stroke()}
+if(e.kind==='ring'){ctx.lineWidth=7/Math.max(.1,e.scale);ctx.beginPath();ctx.ellipse(0,0,150,15,0,0,Math.PI*2);ctx.stroke()}
+if(e.kind==='atom'){for(let a=0;a<3;a++){ctx.save();ctx.rotate(a*Math.PI/3);ctx.beginPath();ctx.ellipse(0,0,63,24,0,0,Math.PI*2);ctx.stroke();ctx.restore()}ctx.beginPath();ctx.arc(0,0,12,0,Math.PI*2);ctx.fill()}
+ctx.restore()}
+function addExtra(kind){checkpoint();const id='extra'+(++extraCounter);extraElements.push({id,kind,x:525+Math.random()*100-50,y:525+Math.random()*100-50,angle:0,scale:1,locked:false});visibleParts[id]=true;layerOrder.push(id);renderExtras();renderLayers();select(id);draw()}
+function renderExtras(){
+ const library=document.getElementById('elementLibrary');
+ library.querySelectorAll('.extra-library-item').forEach(el=>el.remove());
+ for(const [kind,name,symbol] of extrasCatalog.filter(x=>!['dot','ring'].includes(x[0]))){
+  const existing=extraElements.find(e=>e.kind===kind);
+  const item=document.createElement('div');item.className='library-item extra-library-item';
+  item.innerHTML='<span class="element-icon">'+symbol+'</span><span class="element-name">'+name+'</span><button type="button" class="element-action add-element" aria-label="Add '+name+'" title="Add '+name+'">+</button><button type="button" class="remove-element" aria-label="Remove '+name+'" title="Remove '+name+'">−</button>';
+  // Preview the actual white artwork used on the patch, not the dark text glyph.
+  const icon=item.querySelector('.element-icon');
+  const shape=kind==='star'
+    ? '<path d="M20 2 L24 15 L38 20 L24 25 L20 38 L16 25 L2 20 L16 15 Z" fill="white"/>'
+    : kind==='spark'
+    ? '<path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" fill="none" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>'
+    : '<g fill="none" stroke="white" stroke-width="2.4"><ellipse cx="20" cy="20" rx="16" ry="6"/><ellipse cx="20" cy="20" rx="16" ry="6" transform="rotate(60 20 20)"/><ellipse cx="20" cy="20" rx="16" ry="6" transform="rotate(120 20 20)"/></g><circle cx="20" cy="20" r="3.2" fill="white"/>';
+  icon.innerHTML='<svg viewBox="0 0 40 40" aria-hidden="true">'+shape+'</svg>';
+  icon.classList.add('v3-thumb');
+  const add=item.querySelector('.add-element'),remove=item.querySelector('.remove-element');
+  add.disabled=!!existing;remove.disabled=!existing;
+  add.onclick=()=>{if(!existing)addExtra(kind)};
+  remove.onclick=()=>{const e=extraElements.find(x=>x.kind===kind);if(!e)return;checkpoint();extraElements=extraElements.filter(x=>x.id!==e.id);layerOrder=layerOrder.filter(id=>id!==e.id);delete visibleParts[e.id];if(selected===e.id)select(null);renderExtras();renderLayers();draw()};
+  library.appendChild(item);
+ }
+}
+
+const labels={paw:'Bearcat paw',circle:'Planet outline',orbitA:'Orbit 1',orbitB:'Orbit 2',particleA:'Particle 1',particleB:'Particle 2'};
+const locks={};
+function locked(id){return !!locks[id]||!!extraElements.find(e=>e.id===id)?.locked}
+const layerIconPaths={
+ eye:'<path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+ 'eye-off':'<path d="M3 3l18 18M10.6 6.1A11 11 0 0 1 12 6c6.4 0 10 6 10 6a16 16 0 0 1-3.3 3.8M6.2 6.3C3.5 8 2 12 2 12s3.6 6 10 6c1.4 0 2.7-.3 3.9-.8"/><path d="M10 10a3 3 0 0 0 4 4"/>',
+ lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+ 'lock-open':'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 7-2.6"/>',
+ 'arrow-up':'<path d="M12 19V5m-7 7 7-7 7 7"/>',
+ 'arrow-down':'<path d="M12 5v14m-7-7 7 7 7-7"/>'
+};
+function layerIcon(name){return '<svg class="layer-action-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+layerIconPaths[name]+'</svg>'}
+function renderLayers(){const root=document.getElementById('layerList');root.innerHTML='';[...layerOrder].reverse().forEach(id=>{const e=extraElements.find(x=>x.id===id),label=labels[id]||(e?extrasCatalog.find(x=>x[0]===e.kind)?.[1]:'Element');const row=document.createElement('div');row.className='layer-row'+(selected===id?' active':'');row.innerHTML='<button class="layer-label" title="Select">'+label+'</button><button title="'+(visibleParts[id]?'Hide':'Show')+'">'+layerIcon(visibleParts[id]?'eye':'eye-off')+'</button><button title="'+(locked(id)?'Unlock':'Lock')+'">'+layerIcon(locked(id)?'lock':'lock-open')+'</button><button title="Bring forward">'+layerIcon('arrow-up')+'</button><button title="Send backward">'+layerIcon('arrow-down')+'</button>';
+row.setAttribute('aria-label',label+' layer controls');
+const actionButtons=row.querySelectorAll('button:not(.layer-label)');
+actionButtons[0].setAttribute('aria-label',visibleParts[id]?'Hide '+label:'Show '+label);
+actionButtons[1].setAttribute('aria-label',locked(id)?'Unlock '+label:'Lock '+label);
+actionButtons[2].setAttribute('aria-label','Move '+label+' forward');
+actionButtons[3].setAttribute('aria-label','Move '+label+' backward');
+const bs=row.querySelectorAll('button');bs[0].onclick=()=>{select(id);draw()};bs[1].onclick=()=>{checkpoint();visibleParts[id]=!visibleParts[id];if(!visibleParts[id]&&selected===id)select(null);renderLibrary();renderLayers();draw()};bs[2].onclick=()=>{if(e)e.locked=!e.locked;else locks[id]=!locks[id];renderLayers()};bs[3].onclick=()=>moveLayer(id,1);bs[4].onclick=()=>moveLayer(id,-1);root.appendChild(row)})}
+function moveLayer(id,delta){const i=layerOrder.indexOf(id),j=i+delta;if(j<0||j>=layerOrder.length)return;checkpoint();[layerOrder[i],layerOrder[j]]=[layerOrder[j],layerOrder[i]];renderLayers();draw()}
+const prevSelect=select;select=function(id){prevSelect(id);renderLayers()};
+const prevHit=hit;hit=function(x,y){for(const id of [...layerOrder].reverse()){const e=extraElements.find(v=>v.id===id);if(e&&visibleParts[id]!==false&&Math.hypot(x-e.x,y-e.y)<Math.max(26,65*e.scale))return id}return prevHit(x,y)};
+const prevFrame=refreshSelectionFrame;refreshSelectionFrame=function(){if(selected?.startsWith('extra')){const e=extraElements.find(v=>v.id===selected);if(!e)return;const size=(e.kind==='ring'?320: e.kind==='atom'?145:100)*e.scale;const rect=canvas.getBoundingClientRect(),wrap=document.getElementById('patchWrap').getBoundingClientRect(),k=rect.width/1050;selectionFrame.style.left=rect.left-wrap.left+(e.x-size/2)*k+'px';selectionFrame.style.top=rect.top-wrap.top+(e.y-size/2)*k+'px';selectionFrame.style.width=size*k+'px';selectionFrame.style.height=size*k+'px';selectionFrame.style.transform='rotate('+e.angle+'deg)';selectionFrame.style.display='block';positionCornerTools();return}prevFrame()};
+const prevControls=renderSelectionControls;renderSelectionControls=function(){if(selected?.startsWith('extra')){const e=extraElements.find(v=>v.id===selected);const el=document.getElementById('selectionControls');el.innerHTML='<b>'+extrasCatalog.find(x=>x[0]===e.kind)[1]+'</b><p>Drag on canvas; use corner icons to resize and rotate.</p><button id="removeSelected">− Remove element</button>';document.getElementById('removeSelected').onclick=()=>{checkpoint();extraElements=extraElements.filter(v=>v.id!==selected);layerOrder=layerOrder.filter(id=>id!==selected);select(null);renderLayers();draw()};return}prevControls()};
+let extraDrag=null,extraTool=null;
+canvas.addEventListener('pointerdown',e=>{const p=pos(e),id=hit(p.x,p.y);if(locked(id)){e.stopImmediatePropagation();select(id);return}if(id?.startsWith('extra')){e.stopImmediatePropagation();checkpoint();select(id);const o=extraElements.find(v=>v.id===id);extraDrag={id,x:p.x,y:p.y,ox:o.x,oy:o.y};canvas.setPointerCapture(e.pointerId)}else if(id&&!locked(id))checkpoint()},true);
+canvas.addEventListener('pointermove',e=>{if(!extraDrag)return;e.stopImmediatePropagation();const p=pos(e),o=extraElements.find(v=>v.id===extraDrag.id);if(o){o.x=Math.max(0,Math.min(1050,extraDrag.ox+p.x-extraDrag.x));o.y=Math.max(0,Math.min(1050,extraDrag.oy+p.y-extraDrag.y));draw()}},true);
+for(const t of ['pointerup','pointercancel'])canvas.addEventListener(t,()=>extraDrag=null,true);
+for(const [handle,mode] of [['resizeHandle','scale'],['rotateHandle','angle']]){const el=document.getElementById(handle);el.addEventListener('pointerdown',e=>{if(!selected?.startsWith('extra')){checkpoint();return}e.stopImmediatePropagation();e.preventDefault();checkpoint();const o=extraElements.find(v=>v.id===selected),p=pos(e);extraTool={id:o.id,mode,start:Math.hypot(p.x-o.x,p.y-o.y),startAngle:Math.atan2(p.y-o.y,p.x-o.x),initial:o[mode]};el.setPointerCapture(e.pointerId)},true);el.addEventListener('pointermove',e=>{if(!extraTool)return;e.stopImmediatePropagation();const o=extraElements.find(v=>v.id===extraTool.id),p=pos(e);if(extraTool.mode==='scale')o.scale=Math.max(.25,Math.min(3,extraTool.initial*Math.hypot(p.x-o.x,p.y-o.y)/Math.max(1,extraTool.start)));else o.angle=extraTool.initial+(Math.atan2(p.y-o.y,p.x-o.x)-extraTool.startAngle)*180/Math.PI;draw()},true);for(const t of ['pointerup','pointercancel'])el.addEventListener(t,()=>extraTool=null,true)}
+// The existing handles support the original objects; provide handles for every extra.
+const priorPositionTools=positionCornerTools;positionCornerTools=function(){priorPositionTools();if(selected?.startsWith('extra'))document.getElementById('rotateHandle').style.display='block'};
+function generation(layoutOnly){checkpoint();const before=structuredClone(state);const extrasBefore=structuredClone(extraElements);generate(false);if(layoutOnly){for(const [k,v] of Object.entries(before))if(!/DX$|DY$|pawX$|pawY$|ringA$|ringB$|particleA$|particleB$/.test(k))state[k]=v}
+for(const [id,keys] of Object.entries({paw:['pawSize','pawAngle','pawX','pawY','pawDX','pawDY'],circle:['circleSize','circleDX','circleDY'],orbitA:['orbitASize','ringA','orbitADX','orbitADY'],orbitB:['orbitBSize','ringB','orbitBDX','orbitBDY'],particleA:['particleA','particleSizeA','particleADX','particleADY'],particleB:['particleB','particleSizeB','particleBDX','particleBDY']}))if(locked(id))for(const k of keys)state[k]=before[k];
+for(const e of extraElements){const old=extrasBefore.find(v=>v.id===e.id);if(locked(e.id))Object.assign(e,old);else{e.x=Math.max(80,Math.min(970,e.x+(Math.random()-.5)*260));e.y=Math.max(80,Math.min(970,e.y+(Math.random()-.5)*260));if(!layoutOnly){e.angle=Math.random()*120-60;e.scale=.65+Math.random()*.7}}}draw();renderLayers()}
+gen.onclick=()=>generation(false);layoutBtn.onclick=()=>generation(true);
+const originalClick=document.getElementById('original').onclick;document.getElementById('original').onclick=()=>{checkpoint();originalClick();extraElements=[];layerOrder=['paw','circle','orbitA','orbitB','particleA','particleB'];Object.keys(locks).forEach(k=>delete locks[k]);renderLayers();draw()};
+for(const id of ['resetPositions','soft'])document.getElementById(id).addEventListener(id==='soft'?'change':'click',checkpoint,true);
+document.getElementById('undoBtn').onclick=undo;document.getElementById('redoBtn').onclick=redo;
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo()}});
+function renderFavorites(){const root=document.getElementById('favorites');root.innerHTML='';favorites.forEach((f,i)=>{const div=document.createElement('div');div.className='favorite';const img=document.createElement('img');img.src=f.preview;img.title='Restore favorite '+(i+1);img.onclick=()=>{checkpoint();restoreSnapshot(f.data)};const del=document.createElement('button');del.textContent='×';del.title='Remove favorite';del.onclick=()=>{favorites.splice(i,1);renderFavorites()};div.append(img,del);root.append(div)})}
+document.getElementById('favBtn').onclick=()=>{favorites.unshift({data:snapshot(),preview:canvas.toDataURL('image/png')});if(favorites.length>12)favorites.pop();renderFavorites()};
+const saveBtn=document.getElementById('save');saveBtn.onclick=()=>download(new Blob([JSON.stringify({version:2,design:JSON.parse(snapshot()),favorites},null,2)],{type:'application/json'}),'baruch-patch-design.json');
+document.getElementById('file').onchange=async e=>{try{const v=JSON.parse(await e.target.files[0].text());checkpoint();if(v.design){restoreSnapshot(JSON.stringify(v.design));favorites=Array.isArray(v.favorites)?v.favorites:[];renderFavorites()}else{const d={state:v,visibleParts:v.visibleParts||visibleParts,backgroundColor:v.backgroundColor||backgroundColor,layerOrder,extraElements,index};restoreSnapshot(JSON.stringify(d))}}catch(err){alert('Could not load design settings.')}e.target.value=''};
+// History also covers palette changes and visibility changes in the existing element library.
+document.getElementById('palette').addEventListener('click',e=>{if(e.target.closest('[data-color]'))checkpoint()},true);
+libraryEl.addEventListener('click',e=>{if(e.target.closest('.element-action,.remove-element'))checkpoint()},true);
+renderExtras();renderLayers();historyButtons();
+</script>
+<script>
+/* PATCH STUDIO v3 — additive controls; retains original embedded paw and canvas renderer. */
+(()=>{
+const $=id=>document.getElementById(id), clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const css=document.createElement('style');css.textContent=`
+.v3-panel{border:1px solid #dce4f2;border-radius:12px;padding:12px;margin:12px 0;background:#f9fbff}.v3-panel h3{font-size:13px;margin:0 0 10px}.v3-row{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:8px 0}.v3-row button,.v3-row select{font-size:12px;padding:8px;border:1px solid #dce4f2;border-radius:8px;background:white;color:#172553}.v3-row button.active{background:#15275d;color:white}.v3-check{font-size:12px;display:inline-flex;gap:5px;align-items:center}.v3-thumb{width:43px;height:43px;display:grid;place-items:center;border-radius:8px;background:#a8ccff;flex-shrink:0}.v3-thumb svg{width:38px;height:38px}.v3-zoom{overflow:hidden;touch-action:none;cursor:grab}.v3-zoom.panning{cursor:grabbing}.v3-zoom canvas{transform-origin:center center}.v3-note{font-size:11px;color:#6c7895;line-height:1.5}.v3-groups{display:flex;flex-direction:column;gap:5px}.v3-groups label{font-size:12px;display:flex;gap:8px;align-items:center}.v3-status{font-size:11px;color:#526b9a}`;document.head.appendChild(css);
+const tool=document.createElement('div');tool.className='v3-panel';tool.innerHTML=`<h3>Generate a variation</h3><div class="v3-row" id="v3Layouts"><button data-layout="centered" class="active">Centered</button><button data-layout="diagonal">Diagonal</button><button data-layout="orbital">Orbital</button></div><div class="v3-row" id="v3Random"><label class="v3-check"><input type="checkbox" data-prop="position" checked>Position</label><label class="v3-check"><input type="checkbox" data-prop="rotation" checked>Rotation</label><label class="v3-check"><input type="checkbox" data-prop="size" checked>Size</label><label class="v3-check"><input type="checkbox" data-prop="particles" checked>Particles</label><label class="v3-check"><input type="checkbox" data-prop="color" checked>Color</label></div><p class="v3-note">Locked elements stay unchanged.</p>`;
+$('generate').closest('.buttons').insertAdjacentElement('afterend',tool);
+let layout='centered';$('v3Layouts').onclick=e=>{const b=e.target.closest('[data-layout]');if(!b)return;layout=b.dataset.layout;$('v3Layouts').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b))};
+const rand=(a,b)=>a+Math.random()*(b-a), props=()=>new Set([...document.querySelectorAll('#v3Random input:checked')].map(x=>x.dataset.prop));
+function applyVariation(layoutOnly){checkpoint();
+// Every generated patch keeps the complete planetary composition visible.
+// Users may still hide or remove elements manually afterward.
+if(!layoutOnly){
+ for(const core of ['paw','circle','orbitA','orbitB','particleA','particleB']){
+   visibleParts[core]=true;
+   if(!layerOrder.includes(core))layerOrder.push(core);
+ }
+ // Restore a consistent stacking order so orbit arcs surround the paw.
+ const coreOrder=['circle','paw','orbitA','orbitB','particleA','particleB'];
+ layerOrder=[...coreOrder,...layerOrder.filter(id=>!coreOrder.includes(id))];
+}
+const enabled=props(),old=structuredClone(state),oldBg=backgroundColor,oldExtras=structuredClone(extraElements);let a=layout==='centered'?[-10,28]:layout==='diagonal'?[4,43]:[-18,32];
+if(enabled.has('position')){state.pawX=rand(-14,14);state.pawY=rand(-16,16);state.circleDX=rand(-12,12);state.circleDY=rand(-12,12);state.orbitADX=rand(-16,16);state.orbitADY=rand(-15,15);state.orbitBDX=rand(-16,16);state.orbitBDY=rand(-15,15);state.particleADX=rand(-8,8);state.particleADY=rand(-8,8);state.particleBDX=rand(-8,8);state.particleBDY=rand(-8,8)}
+if(enabled.has('rotation')){state.ringA=rand(a[0]-7,a[0]+7);state.ringB=rand(a[1]-8,a[1]+8);state.pawAngle=rand(-30,30)}
+if(!layoutOnly&&enabled.has('size')){state.pawSize=rand(.72,1.08);state.circleSize=rand(.94,1.04);state.orbitASize=rand(.99,1.04);state.orbitBSize=rand(.99,1.04);state.ringWidth=rand(9,13)}
+if(!layoutOnly&&enabled.has('particles')){state.particleA=rand(.36,.58);state.particleB=rand(.08,.24);state.particleSizeA=rand(1,1.55);state.particleSizeB=rand(1,1.55)}
+if(!layoutOnly&&enabled.has('color'))backgroundColor=['#A8CCFF','#FFFFFF','#86B6EB','#C6D9FF','#A8CCFF','#536CB5'][Math.floor(rand(0,6))];
+// New Design also explores the added artwork library. Layout-only keeps the set of elements.
+if(!layoutOnly){
+ // Keep the planet, two orbit paths, and Bearcat paw as the focal composition.
+ // Additional space symbols are sparse accents near the outer perimeter, never
+ // a second cluster of rings or an atomic symbol across the center of the paw.
+ const kinds=['star','spark','dot'];
+ const protectedExtras=extraElements.filter(e=>locked(e.id));
+ const unlocked=extraElements.filter(e=>!locked(e.id));
+ const desired=Math.floor(rand(2,5));
+ const accentSites=[
+   [180,170],[855,170],[175,860],[855,860],
+   [345,110],[715,940],[105,735],[945,295]
+ ].sort(()=>Math.random()-.5);
+ for(const e of unlocked){layerOrder=layerOrder.filter(id=>id!==e.id);delete visibleParts[e.id]}
+ extraElements=[...protectedExtras];
+ for(let i=0;i<desired;i++){
+   const kind=kinds[Math.floor(rand(0,kinds.length))];
+   const [px,py]=accentSites[i];
+   const id='extra'+(++extraCounter);
+   extraElements.push({id,kind,x:clamp(px+rand(-18,18),90,960),y:clamp(py+rand(-18,18),90,960),angle:rand(-25,25),scale:rand(.72,1.05),locked:false});
+   visibleParts[id]=true;layerOrder.push(id);
+ }
+ renderExtras();renderLibrary();
+}
+const keys={paw:['pawX','pawY','pawAngle','pawSize','pawDX','pawDY'],circle:['circleSize','circleDX','circleDY'],orbitA:['orbitASize','ringA','orbitADX','orbitADY'],orbitB:['orbitBSize','ringB','orbitBDX','orbitBDY'],particleA:['particleA','particleSizeA','particleADX','particleADY'],particleB:['particleB','particleSizeB','particleBDX','particleBDY']};for(const [id,ks] of Object.entries(keys))if(locked(id))for(const k of ks)state[k]=old[k];
+for(const e of extraElements){if(locked(e.id))continue;if(enabled.has('position')){e.x=clamp(e.x+rand(-12,12),90,960);e.y=clamp(e.y+rand(-12,12),90,960)}if(!layoutOnly&&enabled.has('rotation'))e.angle=rand(-55,55);if(!layoutOnly&&enabled.has('size'))e.scale=rand(.72,1.05)}
+index++;$('variation').textContent=layout.toUpperCase()+' / '+String(index).padStart(3,'0');select(null);draw();renderLayers();renderLibrary();}
+$('generate').onclick=()=>applyVariation(false);if($('newLayout'))$('newLayout').onclick=()=>applyVariation(true);else{const b=[...document.querySelectorAll('button')].find(x=>x.textContent.includes('New Layout'));if(b)b.onclick=()=>applyVariation(true)};
+// Real artwork thumbnails, including the original embedded paw bitmap.
+function mini(id){if(id==='paw')return `<img alt="Bearcat paw" src="${pawImage.src}" style="width:38px;height:38px;object-fit:contain">`;if(id==='circle')return '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="none" stroke="white" stroke-width="3"/></svg>';if(id.startsWith('orbit'))return `<svg viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="18" ry="6" transform="rotate(${id==='orbitA'?-8:35} 20 20)" fill="none" stroke="white" stroke-width="2.5"/></svg>`;return '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="8" fill="white"/></svg>'}
+function thumbnails(){document.querySelectorAll('#elementLibrary .library-item').forEach((item,i)=>{const icon=item.querySelector('.element-icon');if(icon){icon.innerHTML=mini(parts[i][0]);icon.classList.add('v3-thumb')}})}
+const oldLibrary=renderLibrary;renderLibrary=function(){oldLibrary();thumbnails();renderExtras()};renderLibrary();
+// Keep element-library and layer thumbnails faithful to the current patch palette.
+// The previews use the same background as the artwork, rather than a fixed blue.
+const palettePreviewCSS=document.createElement('style');
+palettePreviewCSS.textContent=`
+#elementLibrary .element-icon, #elementLibrary .v3-thumb,
+#layerList .layer-art-thumb {background:var(--patch-preview-bg,#A8CCFF)!important;}
+#elementLibrary .element-icon svg, #layerList .layer-art-thumb svg {overflow:visible;}
+`;
+document.head.appendChild(palettePreviewCSS);
+function syncElementPreviewColors(){
+ document.documentElement.style.setProperty('--patch-preview-bg',backgroundColor);document.documentElement.style.setProperty('--patch-preview-ink',orbitInk());document.documentElement.classList.toggle('white-patch-background',orbitInk()!=='#FFFFFF');
+}
+const originalDrawForPreviews=draw;
+draw=function(...args){const result=originalDrawForPreviews(...args);syncElementPreviewColors();return result;};
+syncElementPreviewColors();
+// Complete thumbnail set in the Layers panel, including both particles.
+const layersWithThumbs=renderLayers;
+renderLayers=function(){layersWithThumbs();document.querySelectorAll('#layerList .layer-row').forEach(row=>{
+ const label=row.querySelector('.layer-label');if(!label)return;
+ const name=label.textContent.trim().toLowerCase();
+ let id=name.includes('bearcat')?'paw':name.includes('planet')?'circle':name.includes('particle 1')?'particleA':name.includes('particle 2')?'particleB':name.includes('horizontal')||name==='orbit 1'?'orbitA':name.includes('diagonal')||name==='orbit 2'?'orbitB':null;
+ if(!id)return;
+ const thumb=document.createElement('span');thumb.className='layer-art-thumb';thumb.innerHTML=mini(id);label.prepend(thumb);
+ });};renderLayers();
+// Group management: select multiple layer ids and drag them as a single unit.
+const groupBox=document.createElement('div');groupBox.className='v3-panel';groupBox.innerHTML='<h3>Group elements</h3><p class="v3-note">Select two or more elements below, then group them to move together.</p><div class="v3-groups" id="v3GroupItems"></div><div class="v3-row"><button id="v3Group">Group selected</button><button id="v3Ungroup">Ungroup</button></div><div class="v3-status" id="v3GroupStatus">No group selected</div>';
+$('layerList').insertAdjacentElement('afterend',groupBox);
+let groups=[],nextGroup=1,chosen=new Set();
+function renderGroups(){const el=$('v3GroupItems');el.innerHTML='';for(const id of layerOrder){const line=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=chosen.has(id);input.onchange=()=>{input.checked?chosen.add(id):chosen.delete(id)};line.append(input,document.createTextNode(labels[id]||extrasCatalog.find(x=>x[0]===extraElements.find(e=>e.id===id)?.kind)?.[1]||id));el.append(line)}$('v3GroupStatus').textContent=groups.length?groups.map(g=>g.name+': '+g.ids.map(id=>labels[id]||id).join(', ')).join(' · '):'No groups created'}
+$('v3Group').onclick=()=>{const ids=[...chosen].filter(id=>layerOrder.includes(id));if(ids.length<2){alert('Select at least two elements to group.');return}checkpoint();groups=groups.filter(g=>!g.ids.some(id=>ids.includes(id)));groups.push({name:'Group '+nextGroup++,ids});chosen.clear();renderGroups();scheduleSave()};$('v3Ungroup').onclick=()=>{checkpoint();groups=groups.filter(g=>!g.ids.some(id=>chosen.has(id)));chosen.clear();renderGroups();scheduleSave()};
+const oldLayers=renderLayers;renderLayers=function(){oldLayers();renderGroups()};renderGroups();
+function moveOne(id,dx,dy){const e=extraElements.find(v=>v.id===id);if(e){e.x=clamp(e.x+dx,0,1050);e.y=clamp(e.y+dy,0,1050);return}const m=movable[id];if(m){state[m[0]]+=dx;state[m[1]]+=dy}}
+let groupDrag=null;
+canvas.addEventListener('pointerdown',ev=>{if(ev.button!==0)return;const p=pos(ev),id=hit(p.x,p.y),g=groups.find(g=>g.ids.includes(id));if(!g||locked(id))return;ev.stopImmediatePropagation();ev.preventDefault();checkpoint();select(id);groupDrag={ids:g.ids.filter(i=>!locked(i)),x:p.x,y:p.y};canvas.setPointerCapture(ev.pointerId)},true);
+canvas.addEventListener('pointermove',ev=>{if(!groupDrag)return;ev.stopImmediatePropagation();const p=pos(ev),dx=p.x-groupDrag.x,dy=p.y-groupDrag.y;groupDrag.x=p.x;groupDrag.y=p.y;for(const id of groupDrag.ids)moveOne(id,dx,dy);draw()},true);
+for(const name of ['pointerup','pointercancel'])canvas.addEventListener(name,ev=>{if(groupDrag){ev.stopImmediatePropagation();groupDrag=null;scheduleSave()}},true);
+// Zoom and pan the canvas preview only; exported artwork stays 1050px square.
+const zoomPanel=document.createElement('div');zoomPanel.className='v3-row';zoomPanel.innerHTML='<button id="v3ZoomOut" title="Zoom out">−</button><span id="v3ZoomLabel">100%</span><button id="v3ZoomIn" title="Zoom in">＋</button><button id="v3ZoomReset">Reset view</button><label class="v3-check"><input id="v3Pan" type="checkbox">Pan mode</label>';
+$('patchWrap').insertAdjacentElement('afterend',zoomPanel);
+let zoom=1,panX=0,panY=0,panning=null;function updateZoom(){canvas.style.transform=`translate(${panX}px,${panY}px) scale(${zoom})`;$('v3ZoomLabel').textContent=Math.round(zoom*100)+'%';refreshSelectionFrame();positionCornerTools()}
+$('v3ZoomIn').onclick=()=>{zoom=clamp(zoom+.25,1,3);updateZoom()};$('v3ZoomOut').onclick=()=>{zoom=clamp(zoom-.25,1,3);if(zoom===1)panX=panY=0;updateZoom()};$('v3ZoomReset').onclick=()=>{zoom=1;panX=panY=0;updateZoom()};
+canvas.addEventListener('pointerdown',ev=>{if(!$('v3Pan').checked)return;ev.stopImmediatePropagation();ev.preventDefault();panning={x:ev.clientX,y:ev.clientY,px:panX,py:panY};canvas.setPointerCapture(ev.pointerId)},true);
+canvas.addEventListener('pointermove',ev=>{if(!panning)return;ev.stopImmediatePropagation();panX=panning.px+ev.clientX-panning.x;panY=panning.py+ev.clientY-panning.y;updateZoom()},true);
+for(const name of ['pointerup','pointercancel'])canvas.addEventListener(name,ev=>{if(panning){ev.stopImmediatePropagation();panning=null}},true);
+const oldPos=pos;pos=function(ev){const r=canvas.getBoundingClientRect();return{x:(ev.clientX-r.left)*1050/r.width,y:(ev.clientY-r.top)*1050/r.height}};
+// Project files include groups, locks, favorites, and all original design data.
+const storageKey='baruch-mission-patch-v3';let saveTimer;
+function fullProject(){return {version:3,design:JSON.parse(snapshot()),groups,locks:{...locks},favorites,nextGroup,layout}}
+function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem(storageKey,JSON.stringify(fullProject()));$('v3SaveStatus').textContent='Saved in this browser'}catch(e){$('v3SaveStatus').textContent='Local autosave unavailable'}},700)}
+const status=document.createElement('p');status.className='v3-note';status.id='v3SaveStatus';status.textContent='Autosave enabled';$('save').insertAdjacentElement('afterend',status);
+const originalDraw3=draw;draw=function(){originalDraw3();scheduleSave()};
+function applyProject(v){if(v.design)restoreSnapshot(JSON.stringify(v.design));else if(v.state)restoreSnapshot(JSON.stringify(v));else throw Error('Invalid project');groups=Array.isArray(v.groups)?v.groups.filter(g=>Array.isArray(g.ids)):[];Object.keys(locks).forEach(k=>delete locks[k]);Object.assign(locks,v.locks||{});favorites=Array.isArray(v.favorites)?v.favorites:[];nextGroup=v.nextGroup||1;layout=v.layout||'centered';$('v3Layouts').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.layout===layout));renderLayers();renderFavorites();draw()}
+$('save').onclick=()=>download(new Blob([JSON.stringify(fullProject(),null,2)],{type:'application/json'}),'baruch-mission-patch-project.json');
+$('file').onchange=async ev=>{try{const v=JSON.parse(await ev.target.files[0].text());checkpoint();applyProject(v)}catch(e){alert('Could not import the project file.')}ev.target.value=''};
+try{const saved=localStorage.getItem(storageKey);if(saved)applyProject(JSON.parse(saved))}catch(e){console.warn('Autosave restore unavailable',e)}
+// SVG: orbit paths and particles are true vector; original embedded paw image is preserved unchanged.
+const svgButton=document.createElement('button');svgButton.id='v3SVG';svgButton.textContent='↓ Download Patch SVG';$('export').insertAdjacentElement('afterend',svgButton);
+function escapeXML(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function ellipsePath(cx,cy,rx,ry,angle,occlude){const c=Math.cos(angle*Math.PI/180),s=Math.sin(angle*Math.PI/180),N=960;let path='',active=false;for(let i=0;i<=N;i++){const t=2*Math.PI*i/N,lx=rx*Math.cos(t),ly=ry*Math.sin(t),x=cx+lx*c-ly*s,y=cy+lx*s+ly*c;const hidden=occlude&&ly<0&&Math.hypot(x-(525+state.circleDX),y-(525+state.circleDY))<390*state.circleSize+state.ringWidth*.25;if(hidden){active=false;continue}path+=(active?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)+' ';active=true}return path}
+function exportSVG(){let out=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3.5in" height="3.5in" viewBox="0 0 1050 1050"><rect width="1050" height="1050" fill="${escapeXML(backgroundColor)}"/>`;for(const id of layerOrder){if(visibleParts[id]===false||!decorationAllowed(id))continue;if(id==='paw'){if(pawImage.src)out+=`<image x="-245" y="-285" width="490" height="490" href="${pawImage.src}" transform="translate(${525+state.pawX+state.pawDX} ${553+state.pawY+state.pawDY}) rotate(${state.pawAngle}) scale(${state.pawSize})"/>`}
+else if(id==='circle')out+=`<circle cx="${525+state.circleDX}" cy="${525+state.circleDY}" r="${390*state.circleSize}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth+8}"/>`;
+else if(id==='orbitA'||id==='orbitB'){const A=id==='orbitA',sz=state[A?'orbitASize':'orbitBSize'];out+=`<path d="${ellipsePath(525+state[A?'orbitADX':'orbitBDX'],525+state[A?'orbitADY':'orbitBDY'],(A?480:495)*sz,(A?53:58)*sz,state[A?'ringA':'ringB'],true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round" stroke-linejoin="round"/>`}
+else if(id==='particleA'||id==='particleB'){const A=id==='particleA',pt=particlePoint(A?'A':'B');out+=`<circle cx="${pt.x}" cy="${pt.y}" r="${(A?25:31)*state[A?'particleSizeA':'particleSizeB']}" fill="${orbitInk()}"/>`}
+else{const e=extraElements.find(x=>x.id===id);if(!e)continue;let shape='';if(e.kind==='star')shape='<path d="M0 -42 L10 -10 L42 0 L10 10 L0 42 L-10 10 L-42 0 L-10 -10 Z" fill="${orbitInk()}"/>';else if(e.kind==='sparkle')shape='<path d="M0 -40 L7 -7 L40 0 L7 7 L0 40 L-7 7 L-40 0 L-7 -7 Z" fill="${orbitInk()}"/>';else if(e.kind==='ring'&&e.generatedOrbitRing){out+=`<path d="${ellipsePath(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round"/>`;continue;}else if(e.kind==='ring')shape=`<ellipse rx="150" ry="15" fill="none" stroke="${orbitInk()}" stroke-width="${7/Math.max(.1,e.scale)}"/>`;else if(e.kind==='atom')shape='<ellipse rx="70" ry="24" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(60)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(120)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><circle r="12" fill="${orbitInk()}"/>';else shape='<circle r="18" fill="${orbitInk()}"/>';out+=`<g transform="translate(${e.x} ${e.y}) rotate(${e.angle}) scale(${e.scale})">${shape}</g>`}}
+out+='</svg>';download(new Blob([out],{type:'image/svg+xml'}),'baruch-mission-patch-3.5in.svg')}
+svgButton.onclick=exportSVG;
+// Persist groups and lock state after changes. Existing undo/redo remain available.
+const prevCheckpoint=checkpoint;checkpoint=function(){prevCheckpoint();scheduleSave()};
+window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,JSON.stringify(fullProject()))}catch(e){}});
+})();
+
+</script>
+<style>
+/* Final compact controls: override legacy sizing declarations. */
+#elementLibrary .library-item {grid-template-columns:48px 22px 22px minmax(0,1fr)!important;grid-template-rows:auto 22px!important;column-gap:6px!important;row-gap:3px!important;}
+#elementLibrary .add-element,#elementLibrary .remove-element {box-sizing:border-box!important;width:20px!important;min-width:20px!important;max-width:20px!important;height:20px!important;min-height:20px!important;padding:0!important;font-size:12px!important;line-height:18px!important;border-radius:5px!important;display:grid!important;place-items:center!important;}
+#elementLibrary .element-name {grid-column:2/-1!important;grid-row:1!important;min-width:0!important;}
+#elementLibrary .add-element {grid-column:2!important;grid-row:2!important;}
+#elementLibrary .remove-element {grid-column:3!important;grid-row:2!important;}
+</style>
+
+<script>
+/* Allow unlimited copies of every library element, without changing the original artwork. */
+(()=>{
+ const baseNames={paw:'Bearcat paw',circle:'Planet outline',orbitA:'Horizontal orbit',orbitB:'Diagonal orbit',particleA:'Particle 1',particleB:'Particle 2'};
+ const oldDrawExtra=drawExtra;
+ drawExtra=function(e){
+   if(!baseNames[e.kind])return oldDrawExtra(e);
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate(e.angle*Math.PI/180);ctx.scale(e.scale,e.scale);
+   ctx.strokeStyle='#fff';ctx.fillStyle='#fff';ctx.lineWidth=10;ctx.lineCap='round';
+   if(e.kind==='paw' && pawImage.complete && pawImage.naturalWidth){ctx.drawImage(pawImage,-145,-155,290,310)}
+   if(e.kind==='circle'){ctx.beginPath();ctx.arc(0,0,140,0,Math.PI*2);ctx.stroke()}
+   if(e.kind==='orbitA'||e.kind==='orbitB'){ctx.beginPath();ctx.ellipse(0,0,170,42,0,0,Math.PI*2);ctx.stroke()}
+   if(e.kind==='particleA'||e.kind==='particleB'){ctx.beginPath();ctx.arc(0,0,23,0,Math.PI*2);ctx.fill()}
+   ctx.restore();
+ };
+ const oldRender=renderLibrary;
+ renderLibrary=function(){
+   oldRender();
+   const cards=[...document.querySelectorAll('#elementLibrary .library-item')];
+   cards.forEach(card=>{
+     const name=card.querySelector('.element-name')?.textContent?.trim();
+     const kind=Object.keys(baseNames).find(k=>baseNames[k]===name) || extrasCatalog.find(x=>x[1]===name)?.[0];
+     if(!kind)return;
+     const add=card.querySelector('.add-element'),remove=card.querySelector('.remove-element');
+     if(!add||!remove)return;
+     add.disabled=false;add.title='Add another '+name;add.setAttribute('aria-label','Add another '+name);
+     add.onclick=()=>{addExtra(kind);renderLibrary()};
+     const copies=extraElements.filter(e=>e.kind===kind);
+     const total=copies.length+(baseNames[kind]&&visibleParts[kind]!==false?1:0);
+     remove.disabled=total===0;
+     remove.title='Remove one '+name;remove.setAttribute('aria-label','Remove one '+name);
+     remove.onclick=()=>{
+       const last=extraElements.filter(e=>e.kind===kind).at(-1);
+       if(last){checkpoint();extraElements=extraElements.filter(e=>e.id!==last.id);layerOrder=layerOrder.filter(id=>id!==last.id);delete visibleParts[last.id];if(selected===last.id)select(null)}
+       else if(baseNames[kind]&&visibleParts[kind]!==false){checkpoint();visibleParts[kind]=false;if(selected===kind)select(null)}
+       renderLibrary();renderLayers();draw();
+     };
+     let count=card.querySelector('.element-count');
+     if(!count){count=document.createElement('span');count.className='element-count';card.querySelector('.element-name')?.appendChild(count)}
+     count.textContent=' ×'+total;
+   });
+ };
+ const oldAddExtra=addExtra;
+ addExtra=function(kind){oldAddExtra(kind);renderLibrary()};
+ const oldRenderLayers=renderLayers;
+ renderLayers=function(){oldRenderLayers();document.querySelectorAll('#layerList .layer-row').forEach(row=>{
+    const label=row.querySelector('.layer-label');if(!label)return;
+    const id=[...layerOrder].reverse()[[...row.parentNode.children].indexOf(row)];
+    const e=extraElements.find(x=>x.id===id);
+    if(e&&baseNames[e.kind])label.textContent=baseNames[e.kind]+' (copy)';
+ });};
+ renderLibrary();renderLayers();draw();
+})();
+</script>
+<style>#elementLibrary .element-count{font-size:11px;font-weight:600;color:#66789d;margin-left:5px;white-space:nowrap}</style>
+
+<style>
+/* Artwork previews on every layer card, including repeated elements. */
+#layerList .layer-label {display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important;}
+#layerList .layer-art-thumb {display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 44px!important;width:44px!important;height:44px!important;border-radius:10px!important;overflow:hidden;}
+#layerList .layer-art-thumb img,#layerList .layer-art-thumb svg {width:36px!important;height:36px!important;object-fit:contain;}
+#layerList .layer-name-text {display:inline-block;min-width:0;overflow-wrap:anywhere;}
+</style>
+<script>
+/* The final layer renderer can replace labels when making copies; restore a
+   thumbnail for each instance after every render, using its actual kind. */
+(()=>{
+ const renderLayersBeforeArtwork=renderLayers;
+ renderLayers=function(){
+   renderLayersBeforeArtwork();
+   const ids=[...layerOrder].reverse();
+   document.querySelectorAll('#layerList .layer-row').forEach((row,index)=>{
+     const id=ids[index],label=row.querySelector('.layer-label');
+     if(!id||!label)return;
+     const extra=extraElements.find(item=>item.id===id);
+     const kind=extra?extra.kind:id;
+     const name=label.textContent.trim();
+     label.replaceChildren();
+     const thumb=document.createElement('span');
+     thumb.className='layer-art-thumb';
+     thumb.setAttribute('aria-hidden','true');
+     if(typeof mini==='function' && ['paw','circle','orbitA','orbitB','particleA','particleB'].includes(kind)){
+       thumb.innerHTML=mini(kind);
+     }else{
+       const source=[...document.querySelectorAll('#elementLibrary .library-item')].find(card=>{
+         const title=card.querySelector('.element-name');
+         return title && title.textContent.replace(/\s*×\d+\s*$/,'').trim()===name.replace(/\s*\(copy\)\s*$/,'').trim();
+       });
+       const icon=source?.querySelector('.element-icon');
+       if(icon)thumb.innerHTML=icon.innerHTML;
+       else if(typeof extrasCatalog!=='undefined'){
+         const spec=extrasCatalog.find(item=>item[0]===kind);
+         const card=[...document.querySelectorAll('#elementLibrary .library-item')].find(c=>c.querySelector('.element-name')?.textContent.includes(spec?.[1]||'\0'));
+         thumb.innerHTML=card?.querySelector('.element-icon')?.innerHTML||'';
+       }
+     }
+     const title=document.createElement('span');title.className='layer-name-text';title.textContent=name;
+     label.append(thumb,title);
+   });
+ };
+ renderLayers();
+})();
+</script>
+
+<style>
+/* One compact layer toolbar for the selected canvas element. */
+#layerList {display:block!important;margin-top:10px!important}
+#layerList .selected-layer-toolbar {display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px;border:1px solid #d7e2f6;border-radius:14px;background:#f9fbff}
+#layerList .selected-layer-title {flex-basis:100%;font-size:13px;font-weight:700;color:#182754;margin-bottom:2px}
+#layerList .selected-layer-actions {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%}
+#layerList .selected-layer-control {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0;padding:9px 3px 7px;background:#fff;border:1px solid #d3def1;border-radius:10px;color:#192b5d;cursor:pointer;font:inherit}
+#layerList .selected-layer-control svg {width:18px;height:18px}
+#layerList .selected-layer-control span {font-size:11px;font-weight:700;white-space:nowrap}
+#layerList .selected-layer-control:disabled {opacity:.35;cursor:not-allowed}
+#layerList .selected-layer-control:focus-visible {outline:2px solid #f35b9b;outline-offset:2px}
+</style>
+<script>
+/* Replace the repeated layer cards with actions for the element selected on canvas. */
+(function(){
+ const oldSelect=select;
+ function activeId(){return selected && layerOrder.includes(selected)?selected:null}
+ renderLayers=function(){
+   const root=document.getElementById('layerList');
+   if(!root)return;
+   const id=activeId();
+   root.replaceChildren();
+   const bar=document.createElement('div');bar.className='selected-layer-toolbar';
+   const heading=document.createElement('div');heading.className='selected-layer-title';
+   const extra=id?extraElements.find(e=>e.id===id):null;
+   const name=id?(labels[id]||extrasCatalog.find(e=>e[0]===extra?.kind)?.[1]||'Selected element'):'No element selected';
+   heading.textContent=id?'Selected: '+name:'Click an element on the patch to edit its layer';
+   bar.appendChild(heading);
+   const actions=document.createElement('div');actions.className='selected-layer-actions';
+   const index=id?layerOrder.indexOf(id):-1;
+   const options=[
+     {name:visibleParts[id]===false?'Show':'Hide',icon:visibleParts[id]===false?'eye-off':'eye',disabled:!id,action:()=>{checkpoint();visibleParts[id]=visibleParts[id]===false;renderLibrary();renderLayers();draw();}},
+     {name:locked(id)?'Unlock':'Lock',icon:locked(id)?'lock':'lock-open',disabled:!id,action:()=>{checkpoint();if(extra)extra.locked=!extra.locked;else locks[id]=!locks[id];renderLayers();}},
+     {name:'Up',icon:'arrow-up',disabled:!id||index===layerOrder.length-1,action:()=>moveLayer(id,1)},
+     {name:'Down',icon:'arrow-down',disabled:!id||index===0,action:()=>moveLayer(id,-1)}
+   ];
+   options.forEach(opt=>{const btn=document.createElement('button');btn.type='button';btn.className='selected-layer-control';btn.disabled=opt.disabled;btn.title=opt.name+' selected element';btn.setAttribute('aria-label',opt.name+' '+name);btn.innerHTML=layerIcon(opt.icon)+'<span>'+opt.name+'</span>';btn.onclick=opt.action;actions.appendChild(btn)});
+   bar.appendChild(actions);root.appendChild(bar);
+ };
+ select=function(id){oldSelect(id);renderLayers()};
+ const note=rootNote();if(note)note.textContent='Click an element on the patch, then use Show/Hide, Lock, Up or Down.';
+ function rootNote(){const root=document.getElementById('layerList');return root?.previousElementSibling?.matches('.small-note')?root.previousElementSibling:null}
+ renderLayers();
+})();
+</script>
+
+<style>
+/* Export follows Saved Variations beneath the patch preview. */
+.stage .editor-export {margin-top:22px;padding:16px;border:1px solid #d7e2f6;border-radius:15px;background:#f9fbff;display:grid;gap:9px}
+.stage .editor-export h2 {margin:0 0 3px}
+.stage .editor-export button {width:100%}
+.stage .editor-export .export-note {font-size:12px;color:#536587;line-height:1.45;margin:0 0 5px}
+</style>
+<script>
+(function(){
+ const favorites=document.querySelector('.stage-favorites');
+ const exportButton=document.getElementById('export');
+ const svgButton=document.getElementById('v3SVG');
+ const saveButton=document.getElementById('save');
+ const loadButton=document.getElementById('load');
+ if(!favorites||!exportButton)return;
+ const section=document.createElement('section');
+ section.className='editor-export';
+ section.setAttribute('aria-label','Export mission patch');
+ const title=document.createElement('h2');title.textContent='Export';section.append(title);
+ const note=document.createElement('p');note.className='export-note';note.textContent='Download your 3.5 × 3.5 inch patch as a 1050 × 1050 PNG (300 DPI) or SVG.';section.append(note);
+ section.append(exportButton);
+ if(svgButton)section.append(svgButton);
+ if(saveButton)section.append(saveButton);
+ if(loadButton)section.append(loadButton);
+ favorites.insertAdjacentElement('afterend',section);
+ const right=document.querySelector('aside.right');
+ if(right){const heading=[...right.querySelectorAll('h2')].find(x=>x.textContent.trim()==='Export');if(heading)heading.remove();}
+})();
+</script>
+
+<style>
+/* Compact two-column element cards: artwork plus adjacent Add/Remove buttons.
+   Retain names in DOM for existing add/remove and thumbnail logic. */
+#elementLibrary.element-library {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+#elementLibrary .library-item {display:grid!important;grid-template-columns:minmax(0,1fr) 27px 27px!important;grid-template-rows:56px!important;align-items:center!important;column-gap:5px!important;row-gap:0!important;padding:8px!important;min-width:0!important}
+#elementLibrary .element-name,#elementLibrary .element-count {display:none!important}
+#elementLibrary .element-icon {grid-column:1!important;grid-row:1!important;width:52px!important;height:52px!important;max-width:100%!important;justify-self:center!important;align-self:center!important}
+#elementLibrary .add-element,#elementLibrary .remove-element {grid-row:1!important;width:27px!important;min-width:27px!important;max-width:27px!important;height:27px!important;min-height:27px!important;max-height:27px!important;margin:0!important;padding:0!important;font-size:17px!important;border-radius:7px!important;display:flex!important;align-items:center!important;justify-content:center!important;justify-self:center!important}
+#elementLibrary .add-element {grid-column:2!important}
+#elementLibrary .remove-element {grid-column:3!important}
+@media(max-width:380px){#elementLibrary.element-library{grid-template-columns:repeat(2,minmax(0,1fr))!important}#elementLibrary .library-item{grid-template-columns:minmax(0,1fr) 23px 23px!important;column-gap:3px!important;padding:5px!important}#elementLibrary .add-element,#elementLibrary .remove-element{width:23px!important;min-width:23px!important;max-width:23px!important;height:23px!important;min-height:23px!important;max-height:23px!important}}
+</style>
+
+<style>
+/* Correct the card layout: thumbnail on its own row, controls side-by-side below. */
+#elementLibrary.element-library{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+#elementLibrary .library-item{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:60px 34px!important;column-gap:8px!important;row-gap:8px!important;justify-items:center!important;align-items:center!important;min-width:0!important;padding:10px 8px!important;box-sizing:border-box!important}
+#elementLibrary .element-icon{grid-column:1 / -1!important;grid-row:1!important;width:58px!important;height:58px!important;max-width:100%!important;justify-self:center!important;align-self:center!important;overflow:hidden!important}
+#elementLibrary .add-element,#elementLibrary .remove-element{grid-row:2!important;position:static!important;transform:none!important;width:34px!important;min-width:34px!important;max-width:34px!important;height:34px!important;min-height:34px!important;max-height:34px!important;padding:0!important;margin:0!important;font-size:19px!important;line-height:1!important;display:flex!important;align-items:center!important;justify-content:center!important;justify-self:center!important;border-radius:9px!important;z-index:1!important}
+#elementLibrary .add-element{grid-column:1!important}
+#elementLibrary .remove-element{grid-column:2!important}
+#elementLibrary .element-name,#elementLibrary .element-count{display:none!important}
+@media(max-width:380px){#elementLibrary .library-item{padding:8px 5px!important;column-gap:4px!important}}
+</style>
+
+<script>
+/* Keep the Bearcat paw beneath both orbit rings in the canvas and exports.
+   Normalize the shared painter's-order array before every redraw/export,
+   including after manual layer moves, loading settings and randomization. */
+(function(){
+ function keepPawBelowRings(){
+   const pawIndex=layerOrder.indexOf('paw');
+   if(pawIndex<0)return;
+   const ringIds=layerOrder.filter(id=>id==='orbitA'||id==='orbitB'||extraElements.some(e=>e.id===id&&e.kind==='ring'));
+   if(!ringIds.length)return;
+   const firstRing=Math.min(...ringIds.map(id=>layerOrder.indexOf(id)));
+   if(pawIndex>firstRing){
+     layerOrder.splice(pawIndex,1);
+     layerOrder.splice(firstRing,0,'paw');
+   }
+ }
+ const previousDraw=draw;
+ draw=function(){keepPawBelowRings();return previousDraw.apply(this,arguments)};
+ if(typeof exportSVG==='function'){
+   const previousSVG=exportSVG;
+   exportSVG=function(){keepPawBelowRings();return previousSVG.apply(this,arguments)};
+ }
+ const previousMove=moveLayer;
+ moveLayer=function(id,delta){
+   previousMove(id,delta);
+   keepPawBelowRings();
+   renderLayers();
+   draw();
+ };
+ keepPawBelowRings();draw();
+})();
+</script>
+<script>
+/* Keep the full Bearcat paw artwork inside the planet circle during
+   generation, dragging, resizing, rotation, and before SVG/PNG export. */
+(function(){
+ function containPaw(){
+   if(!window.state || !state || !Number.isFinite(state.pawSize))return;
+   const radius=390*state.circleSize - 14;
+   // A conservative radius encloses the paw image's visible silhouette,
+   // regardless of rotation, including its claws.
+   const artworkRadius=295;
+   state.pawSize=Math.max(.35,Math.min(state.pawSize,(radius-12)/artworkRadius));
+   const px=525+state.pawX+state.pawDX;
+   const py=553+state.pawY+state.pawDY;
+   const cx=525+state.circleDX,cy=525+state.circleDY;
+   const dx=px-cx,dy=py-cy;
+   const distance=Math.hypot(dx,dy);
+   const allowance=Math.max(0,radius-artworkRadius*state.pawSize);
+   if(distance>allowance){
+     const factor=distance ? allowance/distance : 0;
+     state.pawDX+=dx*factor-dx;
+     state.pawDY+=dy*factor-dy;
+   }
+ }
+ const oldDraw=draw;
+ draw=function(){containPaw();return oldDraw.apply(this,arguments)};
+ if(typeof exportSVG==='function'){
+   const oldSVG=exportSVG;
+   exportSVG=function(){containPaw();return oldSVG.apply(this,arguments)};
+ }
+ containPaw();draw();
+})();
+</script>
+
+<script>
+/* Robust element-library thumbnails and space-themed generation. */
+(function(){
+ // The previous thumbnail routine indexed the six base elements even when
+ // extra cards were present, causing Add to fail after a generated design.
+ thumbnails=function(){
+   document.querySelectorAll('#elementLibrary .library-item').forEach((card,i)=>{
+     if(i>=parts.length)return;
+     const icon=card.querySelector('.element-icon');
+     if(icon){icon.classList.add('v3-thumb')}
+   });
+ };
+ // A fresh add routine avoids stale captured "existing" element references.
+ addExtra=function(kind){
+   if(typeof checkpoint==='function')checkpoint();
+   const id='extra'+(++extraCounter);
+   const orbit=kind==='ring';
+   const x=orbit?525:525+(Math.random()-.5)*300;
+   const y=orbit?525:525+(Math.random()-.5)*300;
+   extraElements.push({id,kind,x,y,angle:orbit?(Math.random()*65-32):0,scale:orbit?3.2:1,locked:false});
+   visibleParts[id]=true;layerOrder.push(id);
+   renderLibrary();renderLayers();select(id);draw();
+ };
+ const newDesign=document.getElementById('generate');
+ const previousGenerate=newDesign.onclick;
+ newDesign.onclick=function(event){
+   previousGenerate.call(this,event);
+   // The main planet and its two large crossing orbits remain the focus.
+   // Some variations add a further wide orbital ring, and a variable number
+   // of small particles distributed on the ring paths rather than the paw.
+   const ringCount=Math.random()<.48?1:0;
+   const dotCount=Math.floor(Math.random()*6); // zero through five
+   for(let n=0;n<ringCount;n++){
+     const id='extra'+(++extraCounter);
+     extraElements.push({id,kind:'ring',x:525,y:525,angle:(Math.random()<.5?-12:28)+Math.random()*12-6,scale:3.14+Math.random()*.18,locked:false});
+     visibleParts[id]=true;layerOrder.push(id);
+   }
+   for(let n=0;n<dotCount;n++){
+     const theta=(n%2===0?0:Math.PI)+(Math.random()-.5)*.65;
+     const orbitAngle=(n%2===0?-12:36)*Math.PI/180;
+     const major=475,minor=55;
+     const u=major*Math.cos(theta),v=minor*Math.sin(theta);
+     const x=525+u*Math.cos(orbitAngle)-v*Math.sin(orbitAngle);
+     const y=525+u*Math.sin(orbitAngle)+v*Math.cos(orbitAngle);
+     const id='extra'+(++extraCounter);
+     extraElements.push({id,kind:'dot',x:Math.max(75,Math.min(975,x)),y:Math.max(75,Math.min(975,y)),angle:0,scale:.65+Math.random()*.35,locked:false});
+     visibleParts[id]=true;layerOrder.push(id);
+   }
+   renderLibrary();renderLayers();draw();
+ };
+})();
+</script>
+
+<script>
+/* Balanced planetary generation: one or two consistently thin orbital rings,
+   and a legible paw at the center. Preserve all manual editing controls. */
+(function(){
+  const generateButton=document.getElementById('generate');
+  const earlier=generateButton.onclick;
+  function balance(){
+    // Extra generated rings previously scaled their stroke as well as their
+    // dimensions, creating wide diagonal bands. The two core rings are enough.
+    for(let i=extraElements.length-1;i>=0;i--){
+      const e=extraElements[i];
+      if(e.kind==='ring' && !locked(e.id)){
+        extraElements.splice(i,1);
+        const at=layerOrder.indexOf(e.id);
+        if(at>=0)layerOrder.splice(at,1);
+        delete visibleParts[e.id];
+      }
+    }
+    // Randomly show one or two rings; never remove a manually locked ring.
+    visibleParts.orbitA=true;
+    visibleParts.orbitB=locked('orbitB')?visibleParts.orbitB:Math.random()>=0.34;
+    state.ringWidth=8;
+    state.orbitASize=Math.max(1.03,Math.min(1.10,state.orbitASize));
+    state.orbitBSize=Math.max(1.03,Math.min(1.10,state.orbitBSize));
+    state.circleSize=Math.max(.98,Math.min(1.06,state.circleSize));
+    // Keep the paw large, but fit the entire rotated silhouette inside the planet.
+    const radius=390*state.circleSize-18;
+    state.pawSize=Math.max(.96,Math.min(1.12,(radius-14)/295));
+    state.pawX=Math.max(-12,Math.min(12,state.pawX));
+    state.pawY=Math.max(-12,Math.min(12,state.pawY));
+    state.pawDX=0;state.pawDY=0;
+    // Give the rings distinct orientations, rather than parallel thick bands.
+    state.ringA=-8+(Math.random()-.5)*16;
+    state.ringB=32+(Math.random()-.5)*17;
+    const first=layerOrder.indexOf('paw');
+    const ringIndex=layerOrder.findIndex(id=>id==='orbitA'||id==='orbitB');
+    if(first>ringIndex && ringIndex>=0){layerOrder.splice(first,1);layerOrder.splice(ringIndex,0,'paw')}
+    sync(true);
+    renderLibrary();renderLayers();draw();
+  }
+  generateButton.onclick=function(e){earlier.call(this,e);balance()};
+})();
+</script>
+
+<script>
+/* Keep generated particles centered on their actual orbital paths.
+   The Elements library shows one ring and one particle choice; both still
+   support adding multiple copies, and existing two-ring designs remain valid. */
+(function(){
+  const priorLibrary=renderLibrary;
+  renderLibrary=function(){
+    priorLibrary();
+    const cards=[...document.querySelectorAll('#elementLibrary .library-item')];
+    for(const card of cards){
+      const plus=card.querySelector('.add-element');
+      const label=(plus?.getAttribute('aria-label')||plus?.title||'').toLowerCase();
+      if(/diagonal orbit|particle 2/.test(label))card.remove();
+    }
+  };
+  const button=document.getElementById('generate');
+  const previous=button.onclick;
+  function snapGeneratedParticles(){
+    const orbits=['A','B'].filter(letter=>visibleParts['orbit'+letter]!==false);
+    if(!orbits.length)return;
+    const dots=extraElements.filter(e=>e.kind==='dot'&&e.generatedOrbitParticle);
+    dots.forEach((dot,i)=>{
+      const which=orbits[i%orbits.length];
+      const a=state['ring'+which]*Math.PI/180;
+      const sz=state['orbit'+which+'Size'];
+      const rx=(which==='A'?480:495)*sz, ry=(which==='A'?53:58)*sz;
+      const cx=525+state['orbit'+which+'DX'],cy=525+state['orbit'+which+'DY'];
+      // Place particles near the outer ends of each ellipse so the paw stays legible.
+      const t=(i%2===0?0:Math.PI)+(i%3-1)*.23;
+      const x=rx*Math.cos(t),y=ry*Math.sin(t);
+      dot.x=cx+x*Math.cos(a)-y*Math.sin(a);
+      dot.y=cy+x*Math.sin(a)+y*Math.cos(a);
+      dot.scale=Math.max(.8,Math.min(1.05,dot.scale||1));
+    });
+  }
+  button.onclick=function(e){
+    previous.call(this,e);
+    // Mark the additional particles created by the generator (not user-added dots).
+    const dots=extraElements.filter(v=>v.kind==='dot'&&!v.locked);
+    dots.forEach(d=>{d.generatedOrbitParticle=true});
+    snapGeneratedParticles();
+    renderLibrary();renderLayers();draw();
+  };
+  renderLibrary();
+})();
+</script>
+<script>
+/* Prevent particles from stacking at orbit tips or intersecting other particles.
+   All placements are evaluated on the real, transformed orbit centerlines. */
+(function(){
+ const button=document.getElementById('generate');
+ const previous=button.onclick;
+ const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+ function point(which,t){
+   const a=state['ring'+which]*Math.PI/180, size=state['orbit'+which+'Size'];
+   const rx=(which==='A'?480:495)*size,ry=(which==='A'?53:58)*size;
+   const x=rx*Math.cos(t),y=ry*Math.sin(t);
+   return {x:525+state['orbit'+which+'DX']+x*Math.cos(a)-y*Math.sin(a),
+           y:525+state['orbit'+which+'DY']+x*Math.sin(a)+y*Math.cos(a)};
+ }
+ function distribute(){
+   const paths=['A','B'].filter(w=>visibleParts['orbit'+w]!==false);
+   if(!paths.length)return;
+   const used=[];
+   // Reserve core particles first and reposition them if they overlap.
+   for(const w of paths){
+     const id='particle'+w;
+     if(visibleParts[id]===false)continue;
+     const r=(w==='A'?25:31)*state['particleSize'+w];
+     const start=(state['particle'+w]||0)*2*Math.PI;
+     const options=Array.from({length:72},(_,i)=>start+(i%2?1:-1)*Math.ceil(i/2)*.16);
+     let chosen=null;
+     for(const t of options){
+       const pt=point(w,t);
+       if(pt.x<70+r||pt.x>980-r||pt.y<70+r||pt.y>980-r)continue;
+       if(used.every(v=>distance(pt,v)>r+v.r+26)){chosen={...pt,t};break;}
+     }
+     if(chosen){state['particle'+w]=((chosen.t/(2*Math.PI))%1+1)%1;
+       state['particle'+w+'DX']=0;state['particle'+w+'DY']=0;
+       used.push({...chosen,r});}
+   }
+   // Extra dots have smaller footprints and must not touch another dot or core particle.
+   const dots=extraElements.filter(e=>e.kind==='dot'&&e.generatedOrbitParticle&&visibleParts[e.id]!==false);
+   for(let i=0;i<dots.length;i++){
+     const dot=dots[i];if(dot.locked)continue;
+     const r=18*(dot.scale||1);
+     let placed=false;
+     for(let k=0;k<120&&!placed;k++){
+       const w=paths[(i+k)%paths.length];
+       const t=((i*0.61803398875+k*0.137508)%1)*Math.PI*2;
+       const pt=point(w,t);
+       if(pt.x<80+r||pt.x>970-r||pt.y<80+r||pt.y>970-r)continue;
+       // Avoid crowded ring crossings, especially at the left and right tips.
+       if(used.some(v=>distance(pt,v)<r+v.r+30))continue;
+       dot.x=pt.x;dot.y=pt.y;used.push({...pt,r});placed=true;
+     }
+     if(!placed){visibleParts[dot.id]=false;}
+   }
+ }
+ button.onclick=function(e){previous.call(this,e);distribute();renderLibrary();renderLayers();draw();};
+})();
+</script>
+
+<script>
+/* Scatter a few background particles in open space, without covering the planet,
+   orbital paths, paw, or other decorations. Generated particles remain editable. */
+(function(){
+ const button=document.getElementById('generate');
+ const previous=button.onclick;
+ const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+ function orbitSamples(which){
+   if(visibleParts['orbit'+which]===false)return [];
+   const a=state['ring'+which]*Math.PI/180,sz=state['orbit'+which+'Size'];
+   const rx=(which==='A'?480:495)*sz,ry=(which==='A'?53:58)*sz;
+   const cx=525+state['orbit'+which+'DX'],cy=525+state['orbit'+which+'DY'];
+   return Array.from({length:240},(_,i)=>{
+     const t=i*Math.PI/120,x=rx*Math.cos(t),y=ry*Math.sin(t);
+     return {x:cx+x*Math.cos(a)-y*Math.sin(a),y:cy+x*Math.sin(a)+y*Math.cos(a)};
+   });
+ }
+ function addBackgroundParticles(){
+   const ringPoints=[...orbitSamples('A'),...orbitSamples('B')];
+   const circle={x:525+state.circleDX,y:525+state.circleDY};
+   const circleRadius=390*state.circleSize;
+   const occupied=[];
+   for(const e of extraElements){
+     if(visibleParts[e.id]===false)continue;
+     occupied.push({x:e.x,y:e.y,r:e.kind==='dot'?24*(e.scale||1):e.kind==='star'?52*(e.scale||1):40*(e.scale||1)});
+   }
+   for(const w of ['A','B']){
+     if(visibleParts['particle'+w]===false)continue;
+     const p=particlePoint(w);
+     occupied.push({x:p.x,y:p.y,r:(w==='A'?25:31)*state['particleSize'+w]});
+   }
+   const count=Math.floor(Math.random()*5); // zero to four background dots
+   for(let i=0;i<count;i++){
+     let position=null;
+     for(let attempt=0;attempt<180;attempt++){
+       const x=90+Math.random()*870,y=90+Math.random()*870;
+       const scale=.65+Math.random()*.35,r=20*scale;
+       if(dist({x,y},circle)<circleRadius+r+34)continue;
+       if(ringPoints.some(p=>Math.abs(p.x-x)<r+19&&Math.abs(p.y-y)<r+19&&dist(p,{x,y})<r+19))continue;
+       if(occupied.some(p=>dist(p,{x,y})<r+p.r+35))continue;
+       position={x,y,scale,r};break;
+     }
+     if(!position)continue;
+     const id='extra'+(++extraCounter);
+     extraElements.push({id,kind:'dot',x:position.x,y:position.y,angle:0,scale:position.scale,locked:false,generatedBackgroundParticle:true,generatedOrbitParticle:false});
+     visibleParts[id]=true;layerOrder.push(id);
+     occupied.push({x:position.x,y:position.y,r:position.r});
+   }
+ }
+ button.onclick=function(event){
+   previous.call(this,event);
+   addBackgroundParticles();
+   renderExtras();renderLibrary();renderLayers();draw();
+ };
+})();
+</script>
+<script>
+/* Final generation pass: keep the planet interior reserved for the paw and
+   orbital strokes. Decorations sit OUTSIDE the planetary outline. */
+(function(){
+ const button=document.getElementById('generate');
+ const previous=button.onclick;
+ const separation=12;
+ function orbitPoint(which,t){
+   const a=state['ring'+which]*Math.PI/180;
+   const size=state['orbit'+which+'Size'];
+   const rx=(which==='A'?480:495)*size, ry=(which==='A'?53:58)*size;
+   const x=rx*Math.cos(t), y=ry*Math.sin(t);
+   return {x:525+state['orbit'+which+'DX']+x*Math.cos(a)-y*Math.sin(a),
+           y:525+state['orbit'+which+'DY']+x*Math.sin(a)+y*Math.cos(a),t};
+ }
+ function clearPlanet(pt,r,center,radius){
+   return Math.hypot(pt.x-center.x,pt.y-center.y)>radius+r+separation;
+ }
+ function fix(){
+   const center={x:525+(state.circleDX||0),y:525+(state.circleDY||0)};
+   const radius=390*state.circleSize;
+   const used=[];
+   const free=(p,r)=>p.x>65+r&&p.x<985-r&&p.y>65+r&&p.y<985-r&&
+      clearPlanet(p,r,center,radius)&&used.every(q=>Math.hypot(q.x-p.x,q.y-p.y)>q.r+r+24);
+   const paths=['A','B'].filter(w=>visibleParts['orbit'+w]!==false);
+   // Core ring particles are only visible on OUTER segments of the rings.
+   for(const w of ['A','B']){
+     if(visibleParts['orbit'+w]===false||visibleParts['particle'+w]===false)continue;
+     const r=(w==='A'?25:31)*state['particleSize'+w];
+     let chosen;
+     for(let i=0;i<240;i++){
+       const t=(i/240)*Math.PI*2;
+       const p=orbitPoint(w,t);
+       if(free(p,r)){chosen=p;break;}
+     }
+     if(chosen){
+       state['particle'+w]=chosen.t/(Math.PI*2);
+       state['particle'+w+'DX']=0;state['particle'+w+'DY']=0;
+       used.push({...chosen,r});
+     }else visibleParts['particle'+w]=false;
+   }
+   for(const e of extraElements){
+     if(visibleParts[e.id]===false||e.kind==='ring')continue;
+     const r=e.kind==='dot'?20*(e.scale||1):e.kind==='star'?48*(e.scale||1):e.kind==='sparkle'?40*(e.scale||1):e.kind==='atom'?65*(e.scale||1):25*(e.scale||1);
+     if(free(e,r)){used.push({x:e.x,y:e.y,r});continue;}
+     let chosen=null;
+     // Particles on rings must be centered on a ring AND outside the planet.
+     if(e.generatedOrbitParticle&&paths.length){
+       for(let i=0;i<360;i++){
+         const w=paths[(i+extraElements.indexOf(e))%paths.length];
+         const p=orbitPoint(w,((i*.61803398875)%1)*Math.PI*2);
+         if(free(p,r)){chosen=p;break;}
+       }
+     }else{
+       for(let i=0;i<450;i++){
+         const x=75+Math.random()*900,y=75+Math.random()*900;
+         if(free({x,y},r)){chosen={x,y};break;}
+       }
+     }
+     if(chosen){e.x=chosen.x;e.y=chosen.y;used.push({...chosen,r});}
+     else visibleParts[e.id]=false;
+   }
+   renderLibrary();renderLayers();draw();
+ }
+ button.onclick=function(e){previous.call(this,e);fix();};
+})();
+</script>
+<script>
+/* Curated mission-patch compositions: a final generation pass that enforces
+   legibility, spacing, coherent colors and clear planet interiors. */
+(function(){
+ const button=document.getElementById('generate');
+ const previous=button.onclick;
+ const styleBar=document.createElement('div');
+ styleBar.className='v3-panel';
+ styleBar.style.marginTop='10px';
+ styleBar.innerHTML='<h3>Composition style</h3><div class="v3-row" id="missionStyles"><button type="button" data-mstyle="mix" class="active">Surprise me</button><button type="button" data-mstyle="minimal">Minimal Planet</button><button type="button" data-mstyle="orbital">Orbital Motion</button><button type="button" data-mstyle="cosmic">Cosmic Exploration</button></div><p class="v3-note">New Design creates 1–4 evenly thin orbital rings with balanced angles and a clear central paw.</p>';
+ const target=document.getElementById('v3Layouts');
+ if(target)target.closest('.v3-panel').insertAdjacentElement('afterend',styleBar);
+ let preference='mix';
+ styleBar.addEventListener('click',e=>{const b=e.target.closest('[data-mstyle]');if(!b)return;preference=b.dataset.mstyle;styleBar.querySelectorAll('[data-mstyle]').forEach(x=>x.classList.toggle('active',x===b));});
+ const random=(a,b)=>a+Math.random()*(b-a);
+ const choose=a=>a[Math.floor(Math.random()*a.length)];
+ const palettes=[
+  {bg:'#A8CCFF'}, {bg:'#86B6EB'}, {bg:'#C6D9FF'}, {bg:'#536CB5'}, {bg:'#FFFFFF'}
+ ];
+ function orbitalPoint(w,t){
+  const a=state['ring'+w]*Math.PI/180,sz=state['orbit'+w+'Size'];
+  const x=(w==='A'?480:495)*sz*Math.cos(t),y=(w==='A'?53:58)*sz*Math.sin(t);
+  return {x:525+state['orbit'+w+'DX']+x*Math.cos(a)-y*Math.sin(a),y:525+state['orbit'+w+'DY']+x*Math.sin(a)+y*Math.cos(a)};
+ }
+ function curate(){
+  const style=preference==='mix'?choose(['minimal','orbital','cosmic']):preference;
+  // Colors are selected as a coherent set by the existing orbitInk() function.
+  if(!document.querySelector('#v3Random input[data-prop="color"]') || document.querySelector('#v3Random input[data-prop="color"]').checked)backgroundColor=choose(palettes).bg;
+  visibleParts.circle=true;visibleParts.paw=true;visibleParts.orbitA=true;
+  if(!locked('orbitB'))visibleParts.orbitB=style!=='minimal';
+  if(!locked('circle')){state.circleSize=random(.96,1.035);state.circleDX=0;state.circleDY=0;}
+  if(!locked('paw')){
+   state.pawSize=random(.99,1.09);state.pawAngle=random(-21,21);
+   state.pawX=random(-7,7);state.pawY=random(-7,7);state.pawDX=0;state.pawDY=0;
+  }
+  state.ringWidth=6;
+  if(!locked('orbitA')){state.orbitASize=random(1.045,1.085);state.ringA=random(-12,-4);state.orbitADX=0;state.orbitADY=0;}
+  if(!locked('orbitB')){state.orbitBSize=random(1.045,1.085);state.ringB=random(29,40);state.orbitBDX=0;state.orbitBDY=0;}
+  // Never allow additional generated rings to become thick bands.
+  for(let i=extraElements.length-1;i>=0;i--){const e=extraElements[i];if(!locked(e.id)){
+   extraElements.splice(i,1);layerOrder=layerOrder.filter(id=>id!==e.id);delete visibleParts[e.id];
+  }}
+  const core=['circle','paw','orbitA','orbitB','particleA','particleB'];
+  layerOrder=[...core,...layerOrder.filter(id=>!core.includes(id))];
+  // Generate up to four distinct thin orbital rings. Extra rings are full-size,
+  // deliberately angled apart, and retain the same apparent stroke as the core rings.
+  const targetRings=style==='minimal'?1:style==='orbital'?choose([2,2,3]):choose([3,3,4]);
+  const existingRings=(visibleParts.orbitA!==false?1:0)+(visibleParts.orbitB!==false?1:0);
+  const ringAngles=targetRings===4?[-27,-8,12,31]:targetRings===3?[-25,0,25]:[];
+  if(targetRings>=3){
+   // Re-angle the two core orbits so additional rings are visually distinct.
+   if(!locked('orbitA'))state.ringA=ringAngles[0];
+   if(!locked('orbitB'))state.ringB=ringAngles[1];
+   for(let i=0;i<Math.max(0,targetRings-existingRings);i++){
+    const id='extra'+(++extraCounter);
+    const angle=ringAngles[Math.min(i+existingRings,ringAngles.length-1)];
+    extraElements.push({id,kind:'ring',x:525,y:525,angle,scale:1.075,generatedOrbitRing:true,locked:false});
+    layerOrder.push(id);visibleParts[id]=true;
+   }
+  }
+  const center={x:525+state.circleDX,y:525+state.circleDY},radius=390*state.circleSize;
+  const occupied=[];
+  const insidePatch=(p,r)=>p.x>60+r&&p.x<990-r&&p.y>60+r&&p.y<990-r;
+  const outsidePlanet=(p,r)=>Math.hypot(p.x-center.x,p.y-center.y)>radius+r+23;
+  const spaced=(p,r)=>occupied.every(q=>Math.hypot(p.x-q.x,p.y-q.y)>r+q.r+24);
+  const acceptable=(p,r)=>insidePatch(p,r)&&outsidePlanet(p,r)&&spaced(p,r);
+  const paths=['A','B'].filter(w=>visibleParts['orbit'+w]!==false);
+  // Original particles are positioned exactly on an orbit's centerline.
+  for(const w of ['A','B']){
+   const id='particle'+w;if(locked(id))continue;
+   visibleParts[id]=false;
+   if(!paths.includes(w))continue;
+   if(Math.random()<(style==='minimal'?.38:.16))continue;
+   state['particleSize'+w]=random(.58,.82);
+   const r=(w==='A'?25:31)*state['particleSize'+w];
+   const start=Math.random()*Math.PI*2;
+   for(let j=0;j<400;j++){
+    const t=(start+j*Math.PI*2/400)%(Math.PI*2),p=orbitalPoint(w,t);
+    if(!acceptable(p,r))continue;
+    state['particle'+w]=t/(Math.PI*2);state['particle'+w+'DX']=0;state['particle'+w+'DY']=0;
+    visibleParts[id]=true;occupied.push({...p,r});break;
+   }
+  }
+  const add=(kind,p,scale,angle=0)=>{
+   const id='extra'+(++extraCounter);
+   extraElements.push({id,kind,x:p.x,y:p.y,scale,angle,locked:false});
+   layerOrder.push(id);visibleParts[id]=true;
+  };
+  // Ring particles are sparse and sit outside the planet, never at clustered tips.
+  const additional=style==='minimal'?0:style==='orbital'?Math.floor(random(0,2)):Math.floor(random(1,3));
+  for(let i=0;i<additional;i++){
+   const w=paths[i%paths.length];if(!w)break;
+   const r=13,start=random(0,Math.PI*2);
+   for(let j=0;j<400;j++){
+    const p=orbitalPoint(w,start+j*Math.PI*2/400);
+    if(!acceptable(p,r))continue;
+    add('dot',p,r/18);occupied.push({...p,r});break;
+   }
+  }
+  // Background accents must be OUTSIDE the circle and away from rings.
+  const accentCount=style==='minimal'?Math.floor(random(0,2)):style==='orbital'?Math.floor(random(1,3)):Math.floor(random(2,5));
+  const orbitSamples=[];
+  for(const w of paths)for(let i=0;i<160;i++)orbitSamples.push(orbitalPoint(w,i*Math.PI*2/160));
+  for(let i=0;i<accentCount;i++){
+   const kind=choose(style==='minimal'?['dot','star']:['dot','star','spark']);
+   const scale=kind==='dot'?random(.55,.85):random(.48,.68);
+   const r=(kind==='dot'?18:kind==='star'?42:40)*scale;
+   for(let attempt=0;attempt<500;attempt++){
+    const p={x:random(85,965),y:random(85,965)};
+    if(!acceptable(p,r))continue;
+    if(orbitSamples.some(q=>Math.hypot(p.x-q.x,p.y-q.y)<r+16))continue;
+    add(kind,p,scale,random(-20,20));occupied.push({...p,r});break;
+   }
+  }
+  // Respect manually locked items and preserve the planet / paw / orbit hierarchy.
+  renderExtras();renderLibrary();renderLayers();draw();
+ }
+ button.onclick=function(e){
+  try{previous.call(this,e);}catch(err){console.warn('Previous generation pass failed; using curated composition.',err);}
+  try{curate();}catch(err){console.error('Composition generation error:',err);alert('Could not finish generating this design. Please try New Design again.');}
+ };
+})();
+</script>
+</body></html>

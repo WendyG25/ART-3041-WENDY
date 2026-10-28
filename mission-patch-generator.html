@@ -1,4 +1,12 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Orbit / Baruch Mission Patch Studio</title><style>
+<!doctype html><html lang="en"><head>
+<!-- Mission typography: Baruch-inspired athletic lettering + aerospace technical labels. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  header strong, .stage .top h1 {font-family:'Barlow Condensed','Arial Narrow',Arial,sans-serif;letter-spacing:.07em;font-weight:700;}
+  .eyebrow, .stage-footer, #variation, .scale-check figcaption {font-family:'IBM Plex Mono','Courier New',monospace;letter-spacing:.04em;}
+</style><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Orbit / Baruch Mission Patch Studio</title><style>
 :root{font-family:Inter,Arial,sans-serif;color:#101a43;background:#f3f6fc}*{box-sizing:border-box}body{margin:0}header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:white;border-bottom:1px solid #dce4f2}header strong{letter-spacing:.15em;font-size:14px}header span{font-size:12px;color:#667494}.shell{display:grid;grid-template-columns:310px minmax(360px,1fr) 260px;min-height:calc(100vh - 75px)}aside{background:#fff;padding:25px;border-right:1px solid #dce4f2}.right{border-right:0;border-left:1px solid #dce4f2}h1{font-size:27px;letter-spacing:-1px;margin:4px 0 12px}h2{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#687797;margin:27px 0 16px}p{font-size:13px;color:#667494;line-height:1.65}.field{margin:17px 0}.field label{display:flex;justify-content:space-between;font-size:12px;font-weight:650;margin-bottom:8px}.field output{color:#6b7eaa;font-variant-numeric:tabular-nums}input[type=range]{width:100%;accent-color:#263e9b}button{cursor:pointer;border:1px solid #cfdaf0;border-radius:9px;padding:12px 13px;background:#fff;color:#142353;font-weight:700;font-size:12px}button:hover{background:#eef3ff}.primary{background:#15255c;color:#fff;border-color:#15255c}.primary:hover{background:#263d85}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}.buttons button:first-child{grid-column:span 2}.stage{padding:40px 28px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:radial-gradient(circle at center,#fff 0%,#eaf0fa 80%)}.stage .top{display:flex;justify-content:space-between;width:min(100%,600px);align-items:center;margin-bottom:20px}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:800;color:#62759b}.patch-wrap{width:min(100%,560px);aspect-ratio:1;box-shadow:0 18px 55px #223c6c25;border:9px solid #fff;background:#a8ccff}canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}canvas.dragging{cursor:grabbing}.stage-footer{display:flex;justify-content:space-between;width:min(100%,560px);margin-top:18px;color:#697998;font-size:12px}.swatches{display:grid;grid-template-columns:repeat(3,42px);gap:16px;justify-content:start}.swatch{display:block;box-sizing:border-box;flex:none;width:42px!important;height:42px!important;min-width:42px;max-width:42px;min-height:42px;max-height:42px;aspect-ratio:1/1;padding:0;border-radius:50%!important;border:2px solid #fff;box-shadow:0 0 0 1px #d2d9e8;appearance:none;-webkit-appearance:none}.detail{background:#f3f6ff;padding:15px;border-radius:10px;margin:20px 0;font-size:12px;line-height:1.7;color:#506286}.detail b{color:#16265b}.right button{width:100%;margin:6px 0}.mini{font-size:11px;color:#8490a8}.toggle{display:flex;gap:8px;align-items:center;font-size:12px;margin:18px 0}input[type=checkbox]{accent-color:#14265e}@media(max-width:1000px){.shell{grid-template-columns:240px 1fr}.right{grid-column:1/-1;border-top:1px solid #dce4f2;display:grid;grid-template-columns:1fr 1fr;gap:10px}.right h2,.right p,.right .detail{grid-column:span 2}}@media(max-width:650px){header{padding:15px}.shell{display:flex;flex-direction:column}aside{padding:20px}.stage{padding:25px 14px}.right{display:block}}
 .element-library{display:grid;gap:9px}.library-item{display:flex;align-items:center;gap:10px;border:1px solid #dce4f2;border-radius:11px;padding:8px;background:#fafbff}.library-item.absent{opacity:.58}.element-icon{display:grid;place-items:center;width:45px;height:42px;background:#e6efff;border-radius:8px;color:#15255c;font-size:26px}.element-name{flex:1;cursor:pointer;font-size:12px;font-weight:700}.element-action{width:34px!important;height:34px;padding:0!important;font-size:20px!important}.swatches{margin-top:10px}.right #selectionControls button{display:block}.stage .mini{max-width:560px;text-align:center}#selectionFrame{border-color:#F35A77!important}#rotateHandle,#resizeHandle{font-size:14px!important;z-index:8!important}#rotateHandle{width:20px!important;height:20px!important;line-height:16px!important}
 </style><style>
@@ -154,7 +162,16 @@
 #elementLibrary .add-element,#elementLibrary .remove-element{width:26px!important;min-width:26px!important;max-width:26px!important;height:26px!important;min-height:26px!important;max-height:26px!important;font-size:15px!important;line-height:1!important;border-radius:7px!important;}
 @media(max-width:380px){#elementLibrary .add-element,#elementLibrary .remove-element{width:25px!important;min-width:25px!important;max-width:25px!important;height:25px!important;min-height:25px!important;max-height:25px!important;}}
 </style>
-<style>.white-patch-background #elementLibrary .element-icon svg, .white-patch-background #layerList .layer-art-thumb svg{filter:brightness(0) saturate(100%) invert(17%) sepia(45%) saturate(1698%) hue-rotate(193deg) brightness(90%) contrast(98%)}</style></head><body><header><strong>✦ ORBIT / PATCH STUDIO</strong><div class="header-actions"><a class="home-link" href="index.html">← Back to Homepage</a></div></header><main class="shell"><aside id="editingPanel"><div id="editorContents"><h1>Mission Patch Generator</h1><p>Explore new compositions using your Bearcat paw silhouette and orbital sketch. Generate compositions with the expanded element library and six-color palette.</p><div class="buttons"><button class="primary" id="generate">✦ Generate New Design</button><button id="original">Restore Original</button><button id="shuffle">Subtle Variation</button></div><h2>Elements</h2><p>Select an element in the library to add it to the patch. Click a visible element on the patch to edit it.</p><div id="elementLibrary" class="element-library"></div><h2>Color Palette</h2><div id="leftPalette"></div></div></aside><section class="stage"><div class="top"><div><div class="eyebrow">LIVE PATCH PREVIEW</div><h1 style="font-size:19px;margin:8px 0 0">Beyond the Orbit</h1></div><span class="eyebrow" id="variation">ORIGINAL / 001</span></div><p class="mini" style="align-self:center;margin:0 0 12px">Drag elements to move them. Use the corner icons to resize or rotate the selected paw or orbit directly on the design.</p><div class="patch-wrap" id="patchWrap" style="position:relative"><div id="resizeHandle" title="Drag to resize selected ring or planet outline" style="display:none;position:absolute;width:22px;height:22px;background:#F35A77;border:2px solid white;border-radius:50%;box-shadow:0 1px 7px #0006;z-index:5;cursor:nwse-resize;touch-action:none;transform:translate(-50%,-50%)"></div><div id="rotateHandle" title="Drag to rotate selected element" style="display:none;position:absolute;width:22px;height:22px;background:#fff;color:#E13D65;border:2px solid #F35A77;border-radius:50%;z-index:6;cursor:grab;touch-action:none;transform:translate(-50%,-50%);text-align:center;line-height:20px;font-size:18px">↻</div><canvas id="patch" width="1050" height="1050" aria-label="Generated Bearcat paw space mission patch"></canvas></div><div class="stage-footer"><span id="selectedElement">SELECTED: NONE</span><button id="resetPositions" style="padding:5px 9px">Reset element positions</button></div><div class="stage-footer"><span>3.5″ × 3.5″ · 300 DPI · 1050 × 1050 px</span><span>1:1 FIXED FORMAT</span></div><div class="stage-favorites"><div class="eyebrow">SAVED VARIATIONS</div><h2>Favorite Designs</h2><div id="favorites" class="favorites-grid"></div></div></section><aside class="right"><div style="display:none" aria-hidden="true"><div id="palette"></div><div id="selectionControls"></div></div><h2>Export</h2><p>Your export is an exact square PNG at 1050 × 1050 pixels, with 300 DPI metadata corresponding to 3.5 inches on each side.</p><button class="primary" id="export">↓ Download Patch PNG</button><button id="save">↓ Save Design Settings</button><button id="load">↑ Load Design Settings</button><input type="file" id="file" accept="application/json" hidden><label class="toggle"><input type="checkbox" id="soft" checked>Soft hand-drawn strokes</label><p class="mini">All designs preserve the supplied Bearcat paw, planetary circle, two crossing orbital rings with their far-side sections hidden behind the planet, and one independently resizable particle on each orbit. No typography is added to the patch.</p></aside></main><script>
+<style>.white-patch-background #elementLibrary .element-icon svg, .white-patch-background #layerList .layer-art-thumb svg{filter:brightness(0) saturate(100%) invert(17%) sepia(45%) saturate(1698%) hue-rotate(193deg) brightness(90%) contrast(98%)}</style><style id="compact-add-only-elements">
+/* Compact, add-only element palette: keep every add button functional. */
+#elementLibrary.element-library{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;align-items:stretch!important}
+#elementLibrary .library-item{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:44px 24px!important;gap:5px!important;min-width:0!important;padding:7px 4px!important;border-radius:9px!important;justify-items:center!important;align-items:center!important}
+#elementLibrary .element-icon{grid-column:1!important;grid-row:1!important;width:43px!important;height:43px!important;max-width:100%!important;min-width:0!important;border-radius:6px!important;font-size:21px!important;overflow:hidden!important}
+#elementLibrary .element-icon svg,#elementLibrary .element-icon img{max-width:100%!important;max-height:100%!important}
+#elementLibrary .add-element{grid-column:1!important;grid-row:2!important;display:flex!important;position:static!important;visibility:visible!important;width:24px!important;min-width:24px!important;max-width:24px!important;height:24px!important;min-height:24px!important;max-height:24px!important;margin:0!important;padding:0!important;border-radius:6px!important;font-size:17px!important;line-height:1!important;justify-self:center!important;align-items:center!important;justify-content:center!important;cursor:pointer!important}
+#elementLibrary .remove-element,#elementLibrary .element-name,#elementLibrary .element-count{display:none!important}
+@media(max-width:380px){#elementLibrary.element-library{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}#elementLibrary .library-item{padding:6px 2px!important}}
+</style></head><body><header><strong>✦ ORBIT / PATCH STUDIO</strong><div class="header-actions"><a class="home-link" href="index.html">← Back to Homepage</a></div></header><main class="shell"><aside id="editingPanel"><div id="editorContents"><h1>Mission Patch Generator</h1><p>Explore new compositions using your Bearcat paw silhouette and orbital sketch. Generate compositions with the expanded element library and six-color palette.</p><div class="buttons"><button class="primary" id="generate">✦ Generate New Design</button><button id="original">Restore Original</button><button id="shuffle">Subtle Variation</button></div><h2>Elements</h2><p>Select an element in the library to add it to the patch. Click a visible element on the patch to edit it.</p><div id="elementLibrary" class="element-library"></div><h2>Color Palette</h2><div id="leftPalette"></div></div></aside><section class="stage"><div class="top"><div><div class="eyebrow">LIVE PATCH PREVIEW</div><h1 style="font-size:19px;margin:8px 0 0">Beyond the Orbit</h1></div><span class="eyebrow" id="variation">ORIGINAL / 001</span></div><p class="mini" style="align-self:center;margin:0 0 12px">Drag any selected element to move it. Resize from the bottom-right corner or rotate from the top-center handle.</p><div class="patch-wrap" id="patchWrap" style="position:relative"><div id="resizeHandle" title="Drag to resize selected element" style="display:none;position:absolute;width:22px;height:22px;background:#F35A77;border:2px solid white;border-radius:50%;box-shadow:0 1px 7px #0006;z-index:5;cursor:nwse-resize;touch-action:none;transform:translate(-50%,-50%)"></div><div id="rotateHandle" title="Drag to rotate selected element" style="display:none;position:absolute;width:22px;height:22px;background:#fff;color:#E13D65;border:2px solid #F35A77;border-radius:50%;z-index:6;cursor:grab;touch-action:none;transform:translate(-50%,-50%);text-align:center;line-height:20px;font-size:18px">↻</div><canvas id="patch" width="1050" height="1050" aria-label="Generated Bearcat paw space mission patch"></canvas></div><div class="stage-footer"><span id="selectedElement">SELECTED: NONE</span><button id="resetPositions" style="padding:5px 9px">Reset element positions</button></div><div class="stage-footer"><span>3.5″ × 3.5″ · 300 DPI · 1050 × 1050 px</span><span>1:1 FIXED FORMAT</span></div><div class="stage-favorites"><div class="eyebrow">SAVED VARIATIONS</div><h2>Favorite Designs</h2><div id="favorites" class="favorites-grid"></div></div></section><aside class="right"><div style="display:none" aria-hidden="true"><div id="palette"></div><div id="selectionControls"></div></div><section class="scale-check" aria-label="Small-scale patch check"><h2>Small-Scale Check</h2><p class="mini">See how the patch reads at smaller sizes before exporting.</p><div class="scale-check-previews"><figure><canvas id="scalePreviewOne" width="180" height="180" aria-label="Patch preview at one inch"></canvas><figcaption>1 inch · 100%</figcaption></figure><figure><canvas id="scalePreviewHalf" width="90" height="90" aria-label="Patch preview at half an inch"></canvas><figcaption>½ inch · 50%</figcaption></figure></div><p class="mini scale-check-note">Check that the paw remains recognizable and fine rings are visible.</p></section><h2>Export</h2><p>Your export is an exact square PNG at 1050 × 1050 pixels, with 300 DPI metadata corresponding to 3.5 inches on each side.</p><button class="primary" id="export">↓ Download Patch PNG</button><button id="save">↓ Save Design Settings</button><button id="load">↑ Load Design Settings</button><input type="file" id="file" accept="application/json" hidden><label class="toggle"><input type="checkbox" id="soft" checked>Soft hand-drawn strokes</label><p class="mini">Designs preserve the Bearcat paw and planet, with 1–4 consistently thin orbital rings, optional stars, particles, and technical typography. Ring sections behind the planet are hidden.</p></aside></main><script>
 const canvas=document.getElementById('patch'),ctx=canvas.getContext('2d');let backgroundColor='#A8CCFF';const orbitInk=()=>{const h=backgroundColor.replace('#','');const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return (0.2126*r+0.7152*g+0.0722*b)>220?'#193A83':'#FFFFFF'};const defaults={pawSize:1,pawAngle:-13,pawX:0,pawY:0,circleSize:1,orbitASize:1,orbitBSize:1,ringA:-4,ringB:34,ringWidth:11,particleA:0.47,particleB:0.15,particleSize:1,particleSizeA:1,particleSizeB:1,pawDX:0,pawDY:0,circleDX:0,circleDY:0,orbitADX:0,orbitADY:0,orbitBDX:0,orbitBDY:0,particleADX:0,particleADY:0,particleBDX:0,particleBDY:0};let state={...defaults},index=1;const defs=[['pawSize','Paw scale',.75,1.18,.01],['pawAngle','Paw rotation',-30,25,1],['pawX','Horizontal position',-60,60,1],['pawY','Vertical position',-55,55,1],['circleSize','Planet outline scale',.55,1.25,.01],['orbitASize','First ring scale',.55,1.14,.01],['orbitBSize','Second ring scale',.55,1.14,.01],['ringA','First orbit tilt',-90,90,1],['ringB','Second orbit tilt',-90,90,1],['ringWidth','White line thickness',7,19,1],['particleA','First particle position',0,1,.01],['particleB','Second particle position',0,1,.01],['particleSizeA','Particle 1 size',.45,1.9,.01],['particleSizeB','Particle 2 size',.45,1.9,.01]];function controls(){for(let i=0;i<defs.length;i++){const [k,label,min,max,step]=defs[i];const host=document.getElementById(['pawSize','pawAngle','pawX','pawY'].includes(k)?'pawControls':['circleSize','orbitASize','orbitBSize','ringA','ringB','ringWidth'].includes(k)?'orbitControls':'detailControls');const div=document.createElement('div');div.className='field';div.innerHTML=`<label for="${k}">${label}<output id="o_${k}"></output></label><input id="${k}" type="range" min="${min}" max="${max}" step="${step}">`;host.appendChild(div);div.querySelector('input').addEventListener('input',e=>{state[k]=Number(e.target.value);sync(false);draw()})}sync(true)}function sync(set){defs.forEach(([k])=>{const el=document.getElementById(k);if(set)el.value=state[k];document.getElementById('o_'+k).textContent=Number(state[k]).toFixed(['pawSize','circleSize','orbitASize','orbitBSize','particleA','particleB','particleSizeA','particleSizeB'].includes(k)?2:0)})}
 function ellipse(cx,cy,rx,ry,angle){ctx.save();ctx.translate(cx,cy);ctx.rotate(angle*Math.PI/180);ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.restore()}function orbitArc(cx,cy,rx,ry,angle,which){
   // A planet occludes the back half of each ring; the near half passes in front.
@@ -280,7 +297,7 @@ function refreshSelectionFrame(){
  if(!selected){selectionFrame.style.display='none';return}
  let cx=525,cy=525,w=200,h=200,angle=0;
  if(selected==='paw'){cx+=state.pawX+state.pawDX;cy=553+state.pawY+state.pawDY;w=490*state.pawSize+16;h=490*state.pawSize+16;angle=state.pawAngle}
- else if(selected==='circle'){cx+=state.circleDX;cy+=state.circleDY;w=h=780*state.circleSize+state.ringWidth+16}
+ else if(selected==='circle'){cx+=state.circleDX-24;cy+=state.circleDY-24;w=h=780*state.circleSize+state.ringWidth+8}
  else if(selected==='orbitA'||selected==='orbitB'){
   const a=selected==='orbitA',size=state[a?'orbitASize':'orbitBSize'];
   cx+=state[a?'orbitADX':'orbitBDX'];cy+=state[a?'orbitADY':'orbitBDY'];
@@ -407,7 +424,7 @@ const extrasCatalog=[['star','Four-point star','✦'],['spark','Small sparkle','
 function drawExtra(e){if(e.kind==='ring'&&e.generatedOrbitRing){ctx.save();ctx.strokeStyle=orbitInk();ctx.lineWidth=state.ringWidth;ctx.lineCap='round';ctx.lineJoin='round';orbitArc(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,'A');ctx.restore();return;}ctx.save();ctx.translate(e.x,e.y);ctx.rotate(e.angle*Math.PI/180);ctx.scale(e.scale,e.scale);ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle=orbitInk();ctx.fillStyle=orbitInk();ctx.lineWidth=11;
 if(e.kind==='dot'){ctx.beginPath();ctx.arc(0,0,20,0,Math.PI*2);ctx.fill()}
 if(e.kind==='star'||e.kind==='spark'){const r=e.kind==='star'?44:29;ctx.beginPath();for(let i=0;i<8;i++){const t=i*Math.PI/4-Math.PI/2,rad=i%2?r*.18:r;const x=rad*Math.cos(t),y=rad*Math.sin(t);i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.closePath();if(e.kind==='star')ctx.fill();else ctx.stroke()}
-if(e.kind==='ring'){ctx.lineWidth=7/Math.max(.1,e.scale);ctx.beginPath();ctx.ellipse(0,0,150,15,0,0,Math.PI*2);ctx.stroke()}
+if(e.kind==='ring'){ctx.lineWidth=state.ringWidth/Math.max(.1,e.scale);ctx.beginPath();ctx.ellipse(0,0,150,15,0,0,Math.PI*2);ctx.stroke()}
 if(e.kind==='atom'){for(let a=0;a<3;a++){ctx.save();ctx.rotate(a*Math.PI/3);ctx.beginPath();ctx.ellipse(0,0,63,24,0,0,Math.PI*2);ctx.stroke();ctx.restore()}ctx.beginPath();ctx.arc(0,0,12,0,Math.PI*2);ctx.fill()}
 ctx.restore()}
 function addExtra(kind){checkpoint();const id='extra'+(++extraCounter);extraElements.push({id,kind,x:525+Math.random()*100-50,y:525+Math.random()*100-50,angle:0,scale:1,locked:false});visibleParts[id]=true;layerOrder.push(id);renderExtras();renderLayers();select(id);draw()}
@@ -459,7 +476,7 @@ function moveLayer(id,delta){const i=layerOrder.indexOf(id),j=i+delta;if(j<0||j>
 const prevSelect=select;select=function(id){prevSelect(id);renderLayers()};
 const prevHit=hit;hit=function(x,y){for(const id of [...layerOrder].reverse()){const e=extraElements.find(v=>v.id===id);if(e&&visibleParts[id]!==false&&Math.hypot(x-e.x,y-e.y)<Math.max(26,65*e.scale))return id}return prevHit(x,y)};
 const prevFrame=refreshSelectionFrame;refreshSelectionFrame=function(){if(selected?.startsWith('extra')){const e=extraElements.find(v=>v.id===selected);if(!e)return;const size=(e.kind==='ring'?320: e.kind==='atom'?145:100)*e.scale;const rect=canvas.getBoundingClientRect(),wrap=document.getElementById('patchWrap').getBoundingClientRect(),k=rect.width/1050;selectionFrame.style.left=rect.left-wrap.left+(e.x-size/2)*k+'px';selectionFrame.style.top=rect.top-wrap.top+(e.y-size/2)*k+'px';selectionFrame.style.width=size*k+'px';selectionFrame.style.height=size*k+'px';selectionFrame.style.transform='rotate('+e.angle+'deg)';selectionFrame.style.display='block';positionCornerTools();return}prevFrame()};
-const prevControls=renderSelectionControls;renderSelectionControls=function(){if(selected?.startsWith('extra')){const e=extraElements.find(v=>v.id===selected);const el=document.getElementById('selectionControls');el.innerHTML='<b>'+extrasCatalog.find(x=>x[0]===e.kind)[1]+'</b><p>Drag on canvas; use corner icons to resize and rotate.</p><button id="removeSelected">− Remove element</button>';document.getElementById('removeSelected').onclick=()=>{checkpoint();extraElements=extraElements.filter(v=>v.id!==selected);layerOrder=layerOrder.filter(id=>id!==selected);select(null);renderLayers();draw()};return}prevControls()};
+const prevControls=renderSelectionControls;renderSelectionControls=function(){if(selected?.startsWith('extra')){const e=extraElements.find(v=>v.id===selected);const el=document.getElementById('selectionControls');el.innerHTML='<b>'+(extrasCatalog.find(x=>x[0]===e.kind)?.[1]||parts.find(x=>x[0]===e.kind)?.[1]||'Element')+'</b><p>Drag on canvas; use corner icons to resize and rotate.</p><button id="removeSelected">− Remove element</button>';document.getElementById('removeSelected').onclick=()=>{checkpoint();extraElements=extraElements.filter(v=>v.id!==selected);layerOrder=layerOrder.filter(id=>id!==selected);select(null);renderLayers();draw()};return}prevControls()};
 let extraDrag=null,extraTool=null;
 canvas.addEventListener('pointerdown',e=>{const p=pos(e),id=hit(p.x,p.y);if(locked(id)){e.stopImmediatePropagation();select(id);return}if(id?.startsWith('extra')){e.stopImmediatePropagation();checkpoint();select(id);const o=extraElements.find(v=>v.id===id);extraDrag={id,x:p.x,y:p.y,ox:o.x,oy:o.y};canvas.setPointerCapture(e.pointerId)}else if(id&&!locked(id))checkpoint()},true);
 canvas.addEventListener('pointermove',e=>{if(!extraDrag)return;e.stopImmediatePropagation();const p=pos(e),o=extraElements.find(v=>v.id===extraDrag.id);if(o){o.x=Math.max(0,Math.min(1050,extraDrag.ox+p.x-extraDrag.x));o.y=Math.max(0,Math.min(1050,extraDrag.oy+p.y-extraDrag.y));draw()}},true);
@@ -492,7 +509,8 @@ const css=document.createElement('style');css.textContent=`
 .v3-panel{border:1px solid #dce4f2;border-radius:12px;padding:12px;margin:12px 0;background:#f9fbff}.v3-panel h3{font-size:13px;margin:0 0 10px}.v3-row{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:8px 0}.v3-row button,.v3-row select{font-size:12px;padding:8px;border:1px solid #dce4f2;border-radius:8px;background:white;color:#172553}.v3-row button.active{background:#15275d;color:white}.v3-check{font-size:12px;display:inline-flex;gap:5px;align-items:center}.v3-thumb{width:43px;height:43px;display:grid;place-items:center;border-radius:8px;background:#a8ccff;flex-shrink:0}.v3-thumb svg{width:38px;height:38px}.v3-zoom{overflow:hidden;touch-action:none;cursor:grab}.v3-zoom.panning{cursor:grabbing}.v3-zoom canvas{transform-origin:center center}.v3-note{font-size:11px;color:#6c7895;line-height:1.5}.v3-groups{display:flex;flex-direction:column;gap:5px}.v3-groups label{font-size:12px;display:flex;gap:8px;align-items:center}.v3-status{font-size:11px;color:#526b9a}`;document.head.appendChild(css);
 const tool=document.createElement('div');tool.className='v3-panel';tool.innerHTML=`<h3>Generate a variation</h3><div class="v3-row" id="v3Layouts"><button data-layout="centered" class="active">Centered</button><button data-layout="diagonal">Diagonal</button><button data-layout="orbital">Orbital</button></div><div class="v3-row" id="v3Random"><label class="v3-check"><input type="checkbox" data-prop="position" checked>Position</label><label class="v3-check"><input type="checkbox" data-prop="rotation" checked>Rotation</label><label class="v3-check"><input type="checkbox" data-prop="size" checked>Size</label><label class="v3-check"><input type="checkbox" data-prop="particles" checked>Particles</label><label class="v3-check"><input type="checkbox" data-prop="color" checked>Color</label></div><p class="v3-note">Locked elements stay unchanged.</p>`;
 $('generate').closest('.buttons').insertAdjacentElement('afterend',tool);
-let layout='centered';$('v3Layouts').onclick=e=>{const b=e.target.closest('[data-layout]');if(!b)return;layout=b.dataset.layout;$('v3Layouts').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b))};
+let layout='centered';$('v3Layouts').style.display='none';
+$('v3Layouts').onclick=e=>{const b=e.target.closest('[data-layout]');if(!b)return;layout=b.dataset.layout;$('v3Layouts').querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b))};
 const rand=(a,b)=>a+Math.random()*(b-a), props=()=>new Set([...document.querySelectorAll('#v3Random input:checked')].map(x=>x.dataset.prop));
 function applyVariation(layoutOnly){checkpoint();
 // Every generated patch keeps the complete planetary composition visible.
@@ -509,7 +527,7 @@ if(!layoutOnly){
 const enabled=props(),old=structuredClone(state),oldBg=backgroundColor,oldExtras=structuredClone(extraElements);let a=layout==='centered'?[-10,28]:layout==='diagonal'?[4,43]:[-18,32];
 if(enabled.has('position')){state.pawX=rand(-14,14);state.pawY=rand(-16,16);state.circleDX=rand(-12,12);state.circleDY=rand(-12,12);state.orbitADX=rand(-16,16);state.orbitADY=rand(-15,15);state.orbitBDX=rand(-16,16);state.orbitBDY=rand(-15,15);state.particleADX=rand(-8,8);state.particleADY=rand(-8,8);state.particleBDX=rand(-8,8);state.particleBDY=rand(-8,8)}
 if(enabled.has('rotation')){state.ringA=rand(a[0]-7,a[0]+7);state.ringB=rand(a[1]-8,a[1]+8);state.pawAngle=rand(-30,30)}
-if(!layoutOnly&&enabled.has('size')){state.pawSize=rand(.72,1.08);state.circleSize=rand(.94,1.04);state.orbitASize=rand(.99,1.04);state.orbitBSize=rand(.99,1.04);state.ringWidth=rand(9,13)}
+if(!layoutOnly&&enabled.has('size')){state.pawSize=rand(.72,1.08);state.circleSize=rand(.94,1.04);state.orbitASize=rand(.99,1.04);state.orbitBSize=rand(.99,1.04);state.ringWidth=defaults.ringWidth}
 if(!layoutOnly&&enabled.has('particles')){state.particleA=rand(.36,.58);state.particleB=rand(.08,.24);state.particleSizeA=rand(1,1.55);state.particleSizeB=rand(1,1.55)}
 if(!layoutOnly&&enabled.has('color'))backgroundColor=['#A8CCFF','#FFFFFF','#86B6EB','#C6D9FF','#A8CCFF','#536CB5'][Math.floor(rand(0,6))];
 // New Design also explores the added artwork library. Layout-only keeps the set of elements.
@@ -603,11 +621,20 @@ try{const saved=localStorage.getItem(storageKey);if(saved)applyProject(JSON.pars
 const svgButton=document.createElement('button');svgButton.id='v3SVG';svgButton.textContent='↓ Download Patch SVG';$('export').insertAdjacentElement('afterend',svgButton);
 function escapeXML(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
 function ellipsePath(cx,cy,rx,ry,angle,occlude){const c=Math.cos(angle*Math.PI/180),s=Math.sin(angle*Math.PI/180),N=960;let path='',active=false;for(let i=0;i<=N;i++){const t=2*Math.PI*i/N,lx=rx*Math.cos(t),ly=ry*Math.sin(t),x=cx+lx*c-ly*s,y=cy+lx*s+ly*c;const hidden=occlude&&ly<0&&Math.hypot(x-(525+state.circleDX),y-(525+state.circleDY))<390*state.circleSize+state.ringWidth*.25;if(hidden){active=false;continue}path+=(active?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)+' ';active=true}return path}
-function exportSVG(){let out=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3.5in" height="3.5in" viewBox="0 0 1050 1050"><rect width="1050" height="1050" fill="${escapeXML(backgroundColor)}"/>`;for(const id of layerOrder){if(visibleParts[id]===false||!decorationAllowed(id))continue;if(id==='paw'){if(pawImage.src)out+=`<image x="-245" y="-285" width="490" height="490" href="${pawImage.src}" transform="translate(${525+state.pawX+state.pawDX} ${553+state.pawY+state.pawDY}) rotate(${state.pawAngle}) scale(${state.pawSize})"/>`}
+function exportSVG(){let out=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3.5in" height="3.5in" viewBox="0 0 1050 1050"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style><rect width="1050" height="1050" fill="${escapeXML(backgroundColor)}"/>`;for(const id of layerOrder){if(visibleParts[id]===false||!decorationAllowed(id))continue;if(id==='paw'){if(pawImage.src)out+=`<image x="-245" y="-285" width="490" height="490" href="${pawImage.src}" transform="translate(${525+state.pawX+state.pawDX} ${553+state.pawY+state.pawDY}) rotate(${state.pawAngle}) scale(${state.pawSize})"/>`}
 else if(id==='circle')out+=`<circle cx="${525+state.circleDX}" cy="${525+state.circleDY}" r="${390*state.circleSize}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth+8}"/>`;
 else if(id==='orbitA'||id==='orbitB'){const A=id==='orbitA',sz=state[A?'orbitASize':'orbitBSize'];out+=`<path d="${ellipsePath(525+state[A?'orbitADX':'orbitBDX'],525+state[A?'orbitADY':'orbitBDY'],(A?480:495)*sz,(A?53:58)*sz,state[A?'ringA':'ringB'],true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round" stroke-linejoin="round"/>`}
 else if(id==='particleA'||id==='particleB'){const A=id==='particleA',pt=particlePoint(A?'A':'B');out+=`<circle cx="${pt.x}" cy="${pt.y}" r="${(A?25:31)*state[A?'particleSizeA':'particleSizeB']}" fill="${orbitInk()}"/>`}
-else{const e=extraElements.find(x=>x.id===id);if(!e)continue;let shape='';if(e.kind==='star')shape='<path d="M0 -42 L10 -10 L42 0 L10 10 L0 42 L-10 10 L-42 0 L-10 -10 Z" fill="${orbitInk()}"/>';else if(e.kind==='sparkle')shape='<path d="M0 -40 L7 -7 L40 0 L7 7 L0 40 L-7 7 L-40 0 L-7 -7 Z" fill="${orbitInk()}"/>';else if(e.kind==='ring'&&e.generatedOrbitRing){out+=`<path d="${ellipsePath(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round"/>`;continue;}else if(e.kind==='ring')shape=`<ellipse rx="150" ry="15" fill="none" stroke="${orbitInk()}" stroke-width="${7/Math.max(.1,e.scale)}"/>`;else if(e.kind==='atom')shape='<ellipse rx="70" ry="24" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(60)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(120)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><circle r="12" fill="${orbitInk()}"/>';else shape='<circle r="18" fill="${orbitInk()}"/>';out+=`<g transform="translate(${e.x} ${e.y}) rotate(${e.angle}) scale(${e.scale})">${shape}</g>`}}
+else{const e=extraElements.find(x=>x.id===id);if(!e)continue;let shape='';if(e.kind==='star')shape='<path d="M0 -42 L10 -10 L42 0 L10 10 L0 42 L-10 10 L-42 0 L-10 -10 Z" fill="${orbitInk()}"/>';else if(e.kind==='sparkle')shape='<path d="M0 -40 L7 -7 L40 0 L7 7 L0 40 L-7 7 L-40 0 L-7 -7 Z" fill="${orbitInk()}"/>';else if(e.kind==='text'){
+ const ts=window.patchTextStyle?window.patchTextStyle(e):{fontSize:e.fontSize||24,weight:700,family:'Barlow Condensed',tracking:2,opacity:1};
+ const pieces=String(e.text||'').split(/\n/).map(v=>escapeXML(v.toUpperCase()));
+ const lineHeight=ts.fontSize*1.18, offset=-(pieces.length-1)*lineHeight/2;
+ const anchor=e.align==='left'?'start':e.align==='right'?'end':'middle';
+ const family=ts.family==='IBM Plex Mono'?'IBM Plex Mono, monospace':'Barlow Condensed, Arial Narrow, sans-serif';
+ const content=pieces.map((line,i)=>`<tspan x="0" y="${(offset+i*lineHeight).toFixed(2)}">${line}</tspan>`).join('');
+ out+=`<text transform="translate(${e.x} ${e.y}) rotate(${e.angle||0})" text-anchor="${anchor}" dominant-baseline="middle" font-family="${family}" font-size="${ts.fontSize}" font-weight="${ts.weight}" letter-spacing="${ts.tracking}" fill="${escapeXML(e.color||orbitInk())}" fill-opacity="${ts.opacity}">${content}</text>`;
+ continue;
+ }else if(e.kind==='ring'&&e.generatedOrbitRing){out+=`<path d="${ellipsePath(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round"/>`;continue;}else if(e.kind==='ring')shape=`<ellipse rx="150" ry="15" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth/Math.max(.1,e.scale)}"/>`;else if(e.kind==='atom')shape='<ellipse rx="70" ry="24" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(60)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(120)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><circle r="12" fill="${orbitInk()}"/>';else shape='<circle r="18" fill="${orbitInk()}"/>';out+=`<g transform="translate(${e.x} ${e.y}) rotate(${e.angle}) scale(${e.scale})">${shape}</g>`}}
 out+='</svg>';download(new Blob([out],{type:'image/svg+xml'}),'baruch-mission-patch-3.5in.svg')}
 svgButton.onclick=exportSVG;
 // Persist groups and lock state after changes. Existing undo/redo remain available.
@@ -782,28 +809,7 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
 .stage .editor-export button {width:100%}
 .stage .editor-export .export-note {font-size:12px;color:#536587;line-height:1.45;margin:0 0 5px}
 </style>
-<script>
-(function(){
- const favorites=document.querySelector('.stage-favorites');
- const exportButton=document.getElementById('export');
- const svgButton=document.getElementById('v3SVG');
- const saveButton=document.getElementById('save');
- const loadButton=document.getElementById('load');
- if(!favorites||!exportButton)return;
- const section=document.createElement('section');
- section.className='editor-export';
- section.setAttribute('aria-label','Export mission patch');
- const title=document.createElement('h2');title.textContent='Export';section.append(title);
- const note=document.createElement('p');note.className='export-note';note.textContent='Download your 3.5 × 3.5 inch patch as a 1050 × 1050 PNG (300 DPI) or SVG.';section.append(note);
- section.append(exportButton);
- if(svgButton)section.append(svgButton);
- if(saveButton)section.append(saveButton);
- if(loadButton)section.append(loadButton);
- favorites.insertAdjacentElement('afterend',section);
- const right=document.querySelector('aside.right');
- if(right){const heading=[...right.querySelectorAll('h2')].find(x=>x.textContent.trim()==='Export');if(heading)heading.remove();}
-})();
-</script>
+
 
 <style>
 /* Compact two-column element cards: artwork plus adjacent Add/Remove buttons.
@@ -969,7 +975,7 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
     // Randomly show one or two rings; never remove a manually locked ring.
     visibleParts.orbitA=true;
     visibleParts.orbitB=locked('orbitB')?visibleParts.orbitB:Math.random()>=0.34;
-    state.ringWidth=8;
+    state.ringWidth=defaults.ringWidth;
     state.orbitASize=Math.max(1.03,Math.min(1.10,state.orbitASize));
     state.orbitBSize=Math.max(1.03,Math.min(1.10,state.orbitBSize));
     state.circleSize=Math.max(.98,Math.min(1.06,state.circleSize));
@@ -1227,6 +1233,7 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
  const styleBar=document.createElement('div');
  styleBar.className='v3-panel';
  styleBar.style.marginTop='10px';
+ styleBar.style.display='none';
  styleBar.innerHTML='<h3>Composition style</h3><div class="v3-row" id="missionStyles"><button type="button" data-mstyle="mix" class="active">Surprise me</button><button type="button" data-mstyle="minimal">Minimal Planet</button><button type="button" data-mstyle="orbital">Orbital Motion</button><button type="button" data-mstyle="cosmic">Cosmic Exploration</button></div><p class="v3-note">New Design creates 1–4 evenly thin orbital rings with balanced angles and a clear central paw.</p>';
  const target=document.getElementById('v3Layouts');
  if(target)target.closest('.v3-panel').insertAdjacentElement('afterend',styleBar);
@@ -1253,7 +1260,7 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
    state.pawSize=random(.99,1.09);state.pawAngle=random(-21,21);
    state.pawX=random(-7,7);state.pawY=random(-7,7);state.pawDX=0;state.pawDY=0;
   }
-  state.ringWidth=6;
+  state.ringWidth=defaults.ringWidth;
   if(!locked('orbitA')){state.orbitASize=random(1.045,1.085);state.ringA=random(-12,-4);state.orbitADX=0;state.orbitADY=0;}
   if(!locked('orbitB')){state.orbitBSize=random(1.045,1.085);state.ringB=random(29,40);state.orbitBDX=0;state.orbitBDY=0;}
   // Never allow additional generated rings to become thick bands.
@@ -1339,6 +1346,1914 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
   try{previous.call(this,e);}catch(err){console.warn('Previous generation pass failed; using curated composition.',err);}
   try{curate();}catch(err){console.error('Composition generation error:',err);alert('Could not finish generating this design. Please try New Design again.');}
  };
+})();
+</script>
+<style>
+/* Export occupies the right-hand sidebar, while the canvas and favorites stay centered. */
+.shell > aside.right{display:flex;flex-direction:column;gap:10px;align-self:stretch;min-width:0}
+.shell > aside.right h2{margin:0 0 8px;font-size:14px}
+.shell > aside.right p{margin:0 0 10px}
+.shell > aside.right > button{width:100%;text-align:center}
+.shell > aside.right .toggle{margin-top:14px}
+.stage > .editor-export{display:none!important}
+@media(max-width:950px){.shell > aside.right{width:100%}}
+</style>
+<style>
+.scale-check{padding:14px 12px;margin-bottom:8px;border:1px solid #d7e2f6;border-radius:13px;background:#f9fbff}
+.shell > aside.right .scale-check h2{margin:0 0 7px;font-size:15px}
+.scale-check .mini{font-size:12px;line-height:1.5;margin:0 0 12px}
+.scale-check-previews{display:flex;align-items:end;justify-content:space-evenly;gap:12px}
+.scale-check-previews figure{display:flex;flex-direction:column;align-items:center;gap:7px;margin:0;min-width:0}
+.scale-check-previews canvas{display:block;width:100%;height:auto;max-width:130px;aspect-ratio:1;border:1px solid #cbd7e8;background:#fff;image-rendering:auto}
+#scalePreviewHalf{max-width:65px}
+.scale-check-previews figcaption{font-size:11px;text-align:center;color:#536587;white-space:nowrap}
+.shell > aside.right .scale-check-note{margin:11px 0 0}
+</style>
+<script>
+/* Live small-scale check: previews reflect the rendered patch without changing exports. */
+(function(){
+ const original=document.getElementById('patch');
+ const targets=[document.getElementById('scalePreviewOne'),document.getElementById('scalePreviewHalf')];
+ if(!original||targets.some(t=>!t))return;
+ function refresh(){
+  for(const target of targets){
+   const ctx=target.getContext('2d');if(!ctx)continue;
+   ctx.clearRect(0,0,target.width,target.height);
+   ctx.drawImage(original,0,0,target.width,target.height);
+  }
+ }
+ refresh();
+ // Polling keeps thumbnails current after any edit, undo, load, or new design.
+ const timer=window.setInterval(refresh,350);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+ window.addEventListener('pagehide',()=>window.clearInterval(timer),{once:true});
+})();
+</script>
+
+<script>
+/* Repair add buttons after library redraws, including copies of base elements. */
+(function(){
+ const library=document.getElementById('elementLibrary');
+ if(!library)return;
+ library.addEventListener('click',function(event){
+   const button=event.target.closest('button.add-element');
+   if(!button||!library.contains(button))return;
+   event.preventDefault();event.stopImmediatePropagation();
+   const card=button.closest('.library-item');
+   const label=(button.getAttribute('aria-label')||button.title||'').replace(/^Add (another )?/i,'').trim();
+   const catalog=[...parts,...extrasCatalog];
+   const entry=catalog.find(row=>row[1].toLowerCase()===label.toLowerCase());
+   if(!entry)return;
+   try{
+     checkpoint();
+     const kind=entry[0],id='extra'+(++extraCounter);
+     const orbit=kind==='ring';
+     extraElements.push({id,kind,x:orbit?525:525+(Math.random()-.5)*200,y:orbit?525:525+(Math.random()-.5)*200,angle:orbit?Math.random()*55-27:0,scale:orbit?1.075:1,generatedOrbitRing:orbit,locked:false});
+     visibleParts[id]=true;layerOrder.push(id);
+     renderExtras();renderLibrary();renderLayers();
+     select(id);draw();
+   }catch(error){console.error('Could not add element:',error);try{renderExtras();renderLibrary();renderLayers();draw()}catch(_){} }
+ },true);
+})();
+</script>
+
+<script>
+/* Match the selection to the opaque pixels of the actual paw artwork. */
+(()=>{
+ const frame=document.getElementById('selectionFrame');
+ const resize=document.getElementById('resizeHandle');
+ const rotate=document.getElementById('rotateHandle');
+ if(!frame||!resize)return;
+ let cachedImage=null, bounds=null;
+ function pawBounds(){
+   if(!pawImage.complete||!pawImage.naturalWidth)return {left:-210,top:-240,right:210,bottom:205};
+   if(cachedImage===pawImage.src&&bounds)return bounds;
+   const c=document.createElement('canvas');c.width=490;c.height=490;
+   const g=c.getContext('2d',{willReadFrequently:true});
+   g.drawImage(pawImage,0,0,490,490);
+   const data=g.getImageData(0,0,490,490).data;
+   let minX=490,minY=490,maxX=-1,maxY=-1;
+   for(let y=0;y<490;y++)for(let x=0;x<490;x++){
+     if(data[(y*490+x)*4+3]>32){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y)}
+   }
+   bounds=maxX<0?{left:-210,top:-240,right:210,bottom:205}:{left:minX-245-5,top:minY-285-5,right:maxX-245+5,bottom:maxY-285+5};
+   cachedImage=pawImage.src;return bounds;
+ }
+ const originalRefresh=refreshSelectionFrame;
+ refreshSelectionFrame=function(){
+   if(selected!=='paw'){originalRefresh();return}
+   const b=pawBounds(), r=canvas.getBoundingClientRect(),wr=document.getElementById('patchWrap').getBoundingClientRect();
+   const k=r.width/1050,sz=state.pawSize,theta=state.pawAngle*Math.PI/180;
+   const localX=(b.left+b.right)/2*sz,localY=(b.top+b.bottom)/2*sz;
+   const px=525+state.pawX+state.pawDX,py=553+state.pawY+state.pawDY;
+   const cx=px+localX*Math.cos(theta)-localY*Math.sin(theta);
+   const cy=py+localX*Math.sin(theta)+localY*Math.cos(theta);
+   const w=(b.right-b.left)*sz*k,h=(b.bottom-b.top)*sz*k;
+   frame.style.left=(r.left-wr.left+cx*k-w/2)+'px';
+   frame.style.top=(r.top-wr.top+cy*k-h/2)+'px';
+   frame.style.width=w+'px';frame.style.height=h+'px';
+   frame.style.transform='rotate('+state.pawAngle+'deg)';
+   frame.style.transformOrigin='center center';frame.style.display='block';
+   positionCornerTools();
+ };
+ const originalPosition=positionCornerTools;
+ positionCornerTools=function(){
+   if(selected!=='paw'){originalPosition();return}
+   if(frame.style.display==='none')return;
+   const left=parseFloat(frame.style.left),top=parseFloat(frame.style.top);
+   const w=parseFloat(frame.style.width),h=parseFloat(frame.style.height);
+   const a=state.pawAngle*Math.PI/180,cx=left+w/2,cy=top+h/2;
+   const x=cx+(w/2)*Math.cos(a)-(h/2)*Math.sin(a);
+   const y=cy+(w/2)*Math.sin(a)+(h/2)*Math.cos(a);
+   resize.style.left=x+'px';resize.style.top=y+'px';resize.style.display='flex';
+   resize.style.alignItems='center';resize.style.justifyContent='center';
+   resize.style.zIndex='30';resize.style.pointerEvents='auto';resize.textContent='⤢';
+   resize.title='Drag to resize paw';
+   rotate.style.left=(cx+(h/2+22)*Math.sin(a))+'px';
+   rotate.style.top=(cy-(h/2+22)*Math.cos(a))+'px';rotate.style.display='flex';rotate.style.alignItems='center';rotate.style.justifyContent='center';rotate.style.zIndex='31';
+ };
+ const positionedTools=positionCornerTools;
+ positionCornerTools=function(){
+   positionedTools();
+   if(selected==='circle'&&frame.style.display!=='none'){
+     const x=parseFloat(frame.style.left),y=parseFloat(frame.style.top),w=parseFloat(frame.style.width);
+     rotate.style.left=(x+w/2)+'px';rotate.style.top=(y-23)+'px';
+     rotate.style.display='flex';rotate.style.alignItems='center';rotate.style.justifyContent='center';
+     rotate.style.zIndex='31';rotate.style.pointerEvents='auto';rotate.textContent='↻';
+     rotate.title='Rotate selected element (a circular outline looks the same at any angle)';
+   }
+ };
+ const previousDraw=draw;draw=function(){previousDraw();refreshSelectionFrame()};
+ const previousSelect=select;select=function(id){previousSelect(id);refreshSelectionFrame()};
+ pawImage.addEventListener('load',()=>{cachedImage=null;refreshSelectionFrame()});
+ refreshSelectionFrame();
+})();
+</script>
+
+<style>
+/* A locked selection displays a compact badge on its upper-left corner. */
+#selectionLockBadge{position:absolute;display:none;z-index:35;width:26px;height:26px;align-items:center;justify-content:center;border-radius:50%;background:#f35a77;color:white;border:2px solid white;box-shadow:0 2px 7px #15255c44;pointer-events:none;transform:translate(-50%,-50%)}
+#selectionLockBadge svg{width:14px;height:14px;display:block}
+</style>
+<script>
+(()=>{
+ const wrap=document.getElementById('patchWrap');
+ const frame=document.getElementById('selectionFrame');
+ if(!wrap||!frame)return;
+ const badge=document.createElement('div');badge.id='selectionLockBadge';badge.setAttribute('aria-label','Selected element locked');
+ badge.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>';
+ wrap.appendChild(badge);
+ function updateBadge(){
+  if(!selected||!locked(selected)||frame.style.display==='none'){badge.style.display='none';return}
+  const x=parseFloat(frame.style.left),y=parseFloat(frame.style.top),w=parseFloat(frame.style.width),h=parseFloat(frame.style.height);
+  if(![x,y,w,h].every(Number.isFinite)){badge.style.display='none';return}
+  const angle=parseFloat(frame.style.transform.match(/rotate\((-?[\d.]+)deg\)/)?.[1]||'0')*Math.PI/180;
+  const cx=x+w/2,cy=y+h/2;
+  badge.style.left=(cx-w/2*Math.cos(angle)+h/2*Math.sin(angle))+'px';
+  badge.style.top=(cy-w/2*Math.sin(angle)-h/2*Math.cos(angle))+'px';
+  badge.style.display='flex';
+ }
+ const oldRefresh=refreshSelectionFrame;
+ refreshSelectionFrame=function(){oldRefresh();updateBadge()};
+ const oldRender=renderLayers;
+ renderLayers=function(){oldRender();updateBadge()};
+ const oldSelect=select;
+ select=function(id){oldSelect(id);updateBadge()};
+ updateBadge();
+})();
+</script>
+
+<script>
+/* Selection repair: test visible artwork geometry rather than only an extra element's center.
+   Generated orbital rings are long, thin ellipses, so their visible strokes must be clickable. */
+(() => {
+  const previousHit = hit;
+  function ellipseDistance(x,y,cx,cy,rx,ry,deg) {
+    const a=deg*Math.PI/180, dx=x-cx, dy=y-cy;
+    const X=dx*Math.cos(a)+dy*Math.sin(a), Y=-dx*Math.sin(a)+dy*Math.cos(a);
+    const t=Math.atan2(Y/Math.max(1,ry),X/Math.max(1,rx));
+    return Math.hypot(X-rx*Math.cos(t),Y-ry*Math.sin(t));
+  }
+  function extraDistance(e,x,y) {
+    const scale=Math.max(.01,e.scale||1);
+    if(e.kind==='ring') {
+      const rx=(e.generatedOrbitRing?480:150)*scale;
+      const ry=(e.generatedOrbitRing?53:15)*scale;
+      return ellipseDistance(x,y,e.x,e.y,rx,ry,e.angle||0);
+    }
+    const a=-(e.angle||0)*Math.PI/180,dx=x-e.x,dy=y-e.y;
+    const X=(dx*Math.cos(a)-dy*Math.sin(a))/scale;
+    const Y=(dx*Math.sin(a)+dy*Math.cos(a))/scale;
+    if(e.kind==='atom') return Math.min(
+      ellipseDistance(X,Y,0,0,70,24,0),
+      ellipseDistance(X,Y,0,0,70,24,60),
+      ellipseDistance(X,Y,0,0,70,24,120)
+    )*scale;
+    return Math.max(0,Math.hypot(X,Y)-(e.kind==='star'||e.kind==='spark'?32:18))*scale;
+  }
+  hit=function(x,y) {
+    // Search actual extra-element paths first; their center can be hundreds of pixels
+    // away from the portion of an orbit that the user clicked.
+    for(const id of [...layerOrder].reverse()) {
+      if(visibleParts[id]===false) continue;
+      const e=extraElements.find(v=>v.id===id);
+      if(!e) continue;
+      const tolerance=e.kind==='ring'?Math.max(13,state.ringWidth/2+9):15;
+      if(extraDistance(e,x,y)<=tolerance) return id;
+    }
+    return previousHit(x,y);
+  };
+})();
+</script>
+
+<script>
+/* Tight, artwork-sized selection bounds for all addable elements. */
+(() => {
+ const frame=document.getElementById('selectionFrame');
+ const wrap=document.getElementById('patchWrap');
+ if(!frame||!wrap)return;
+ const previousRefresh=refreshSelectionFrame;
+ function boundsFor(e){
+  const scale=Math.max(0.01,Number(e.scale)||1);
+  const stroke=Math.max(1,Number(state.ringWidth)||11);
+  let halfW,halfH;
+  switch(e.kind){
+   case 'dot': halfW=halfH=20*scale;break;
+   case 'star': halfW=halfH=44*scale;break;
+   case 'spark': halfW=halfH=(29+5.5)*scale;break;
+   case 'atom': halfW=halfH=(70+5.5)*scale;break;
+   case 'ring':
+    halfW=(e.generatedOrbitRing?480:150)*scale+stroke/2;
+    halfH=(e.generatedOrbitRing?53:15)*scale+stroke/2;
+    break;
+   default:halfW=halfH=45*scale;
+  }
+  const margin=4; // canvas coordinates: minimal breathing room around the actual drawing
+  return {w:2*(halfW+margin),h:2*(halfH+margin)};
+ }
+ refreshSelectionFrame=function(){
+  if(!selected||!selected.startsWith('extra')){previousRefresh();return}
+  const e=extraElements.find(item=>item.id===selected);
+  if(!e||visibleParts[selected]===false){frame.style.display='none';return}
+  const b=boundsFor(e),r=canvas.getBoundingClientRect(),wr=wrap.getBoundingClientRect();
+  const k=r.width/1050;
+  frame.style.left=(r.left-wr.left+(e.x-b.w/2)*k)+'px';
+  frame.style.top=(r.top-wr.top+(e.y-b.h/2)*k)+'px';
+  frame.style.width=b.w*k+'px';frame.style.height=b.h*k+'px';
+  frame.style.transform='rotate('+(e.angle||0)+'deg)';
+  frame.style.transformOrigin='center center';frame.style.display='block';
+  positionCornerTools();
+ };
+ const previousDraw=draw;
+ draw=function(){previousDraw();if(selected?.startsWith('extra'))refreshSelectionFrame()};
+ window.addEventListener('resize',()=>{if(selected?.startsWith('extra'))refreshSelectionFrame()});
+ refreshSelectionFrame();
+})();
+</script>
+
+<script>
+/* Final selection geometry: the visible artwork, not a generic element size. */
+(()=>{
+ const frame=document.getElementById('selectionFrame');
+ const wrap=document.getElementById('patchWrap');
+ if(!frame||!wrap)return;
+ const prior=refreshSelectionFrame;
+ refreshSelectionFrame=function(){
+  if(!selected){frame.style.display='none';return;}
+  let cx,cy,halfW,halfH,angle=0;
+  if(selected==='particleA'||selected==='particleB'){
+   const a=selected==='particleA',pt=particlePoint(a?'A':'B');
+   cx=pt.x;cy=pt.y;
+   halfW=halfH=(a?25*state.particleSizeA:31*state.particleSizeB)+2;
+  }else if(selected.startsWith('extra')){
+   const e=extraElements.find(v=>v.id===selected);
+   if(!e||visibleParts[selected]===false){frame.style.display='none';return;}
+   cx=e.x;cy=e.y;angle=e.angle||0;
+   const sc=e.scale||1;
+   if(e.kind==='dot')halfW=halfH=20*sc+2;
+   else if(e.kind==='star')halfW=halfH=44*sc+2;
+   else if(e.kind==='spark')halfW=halfH=29*sc+state.ringWidth/2+2;
+   else if(e.kind==='atom')halfW=halfH=63*sc+state.ringWidth/2+2;
+   else if(e.kind==='ring'){
+    halfW=(e.generatedOrbitRing?480:150)*sc+state.ringWidth/2+2;
+    halfH=(e.generatedOrbitRing?53:15)*sc+state.ringWidth/2+2;
+   }else halfW=halfH=45*sc;
+  }else{prior();return;}
+  const r=canvas.getBoundingClientRect(),wr=wrap.getBoundingClientRect();
+  const k=r.width/1050;
+  frame.style.transform='none';
+  frame.style.left=(r.left-wr.left+(cx-halfW)*k)+'px';
+  frame.style.top=(r.top-wr.top+(cy-halfH)*k)+'px';
+  frame.style.width=2*halfW*k+'px';frame.style.height=2*halfH*k+'px';
+  frame.style.transformOrigin='center center';
+  frame.style.transform='rotate('+angle+'deg)';
+  frame.style.display='block';
+  positionCornerTools();
+ };
+ const prevDraw=draw;
+ draw=function(){prevDraw();refreshSelectionFrame()};
+ const prevSelect=select;
+ select=function(id){prevSelect(id);refreshSelectionFrame()};
+ window.addEventListener('resize',()=>refreshSelectionFrame());
+ refreshSelectionFrame();
+})();
+</script>
+
+<script>
+/* Exact local artwork bounds for copied particle elements. Previous generic
+   fallback was 90px wide although the rendered particle is 46px wide. */
+(()=>{
+ const previous=refreshSelectionFrame;
+ refreshSelectionFrame=function(){
+   if(!selected || !selected.startsWith('extra'))return previous();
+   const e=extraElements.find(item=>item.id===selected);
+   if(!e || visibleParts[selected]===false)return previous();
+   if(e.kind!=='particleA' && e.kind!=='particleB')return previous();
+   const frame=document.getElementById('selectionFrame');
+   const wrap=document.getElementById('patchWrap');
+   const rect=canvas.getBoundingClientRect(),parent=wrap.getBoundingClientRect();
+   const k=rect.width/1050;
+   const radius=23*Math.abs(e.scale||1);
+   const half=radius+2;
+   // Position from the same e.x/e.y origin used by drawExtra, not the
+   // orbit's particlePoint() or the original particle's offset.
+   frame.style.transform='none';
+   frame.style.left=(rect.left-parent.left+(e.x-half)*k)+'px';
+   frame.style.top=(rect.top-parent.top+(e.y-half)*k)+'px';
+   frame.style.width=(2*half*k)+'px';
+   frame.style.height=(2*half*k)+'px';
+   frame.style.transformOrigin='center center';
+   frame.style.display='block';
+   positionCornerTools();
+ };
+ const oldDraw=draw;
+ draw=function(){oldDraw();if(selected?.startsWith('extra'))refreshSelectionFrame()};
+ const oldSelect=select;
+ select=function(id){oldSelect(id);refreshSelectionFrame()};
+ window.addEventListener('resize',()=>refreshSelectionFrame());
+ refreshSelectionFrame();
+})();
+</script>
+
+<script>
+/* Selection-frame repair: use the rendered circle, not only the model's
+   estimated center. This corrects drift caused by accumulated position patches. */
+(()=>{
+ const oldRefresh=refreshSelectionFrame;
+ const frame=document.getElementById('selectionFrame');
+ const wrap=document.getElementById('patchWrap');
+ function whitePixel(data,x,y){
+   x=Math.round(x);y=Math.round(y);
+   if(x<0||y<0||x>=1050||y>=1050)return false;
+   const i=(y*1050+x)*4;
+   const r=data[i],g=data[i+1],b=data[i+2];
+   const bg=backgroundColor.match(/[0-9a-f]{2}/gi).map(h=>parseInt(h,16));
+   return Math.abs(r-bg[0])+Math.abs(g-bg[1])+Math.abs(b-bg[2])>150 && r>180 && g>180 && b>180;
+ }
+ function diskCenter(cx,cy,r){
+   // Find the strongest filled circular region in the neighborhood. Thin orbit
+   // strokes cannot win because they do not contain a filled disk.
+   const image=ctx.getImageData(0,0,1050,1050).data;
+   let best=null,score=-Infinity;
+   const radius=Math.max(8,Math.min(65,r));
+   for(let y=Math.round(cy-55);y<=cy+55;y+=3){
+     for(let x=Math.round(cx-55);x<=cx+55;x+=3){
+       if(!whitePixel(image,x,y))continue;
+       let n=0;
+       for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1],[.707,.707],[-.707,.707],[.707,-.707],[-.707,-.707]]){
+         if(whitePixel(image,x+dx*radius*.52,y+dy*radius*.52))n++;
+       }
+       const candidate=n*20-Math.hypot(x-cx,y-cy)*.3;
+       if(candidate>score){score=candidate;best={x,y,n}}
+     }
+   }
+   return best&&best.n>=7?best:null;
+ }
+ refreshSelectionFrame=function(){
+   oldRefresh();
+   if(!selected||frame.style.display==='none')return;
+   let cx,cy,r;
+   if(selected==='particleA'||selected==='particleB'){
+     const a=selected==='particleA',pt=particlePoint(a?'A':'B');
+     cx=pt.x;cy=pt.y;r=(a?25*state.particleSizeA:31*state.particleSizeB);
+   }else if(selected.startsWith('extra')){
+     const e=extraElements.find(v=>v.id===selected);
+     if(!e||!['dot','particleA','particleB'].includes(e.kind))return;
+     cx=e.x;cy=e.y;r=(e.kind==='dot'?20:23)*Math.abs(e.scale||1);
+   }else return;
+   const detected=diskCenter(cx,cy,r);
+   if(detected){cx=detected.x;cy=detected.y;}
+   const rect=canvas.getBoundingClientRect(),parent=wrap.getBoundingClientRect(),k=rect.width/1050;
+   const half=r+3;
+   frame.style.transform='none';
+   frame.style.left=(rect.left-parent.left+(cx-half)*k)+'px';
+   frame.style.top=(rect.top-parent.top+(cy-half)*k)+'px';
+   frame.style.width=2*half*k+'px';frame.style.height=2*half*k+'px';
+   frame.style.display='block';
+   positionCornerTools();
+ };
+ const prevDraw=draw;
+ draw=function(){prevDraw();if(selected)refreshSelectionFrame()};
+ const prevSelect=select;
+ select=function(id){prevSelect(id);refreshSelectionFrame()};
+ window.addEventListener('resize',refreshSelectionFrame);
+ refreshSelectionFrame();
+})();
+</script>
+
+<style>
+/* Selection tools must sit above both canvas and selection overlay. */
+#patchWrap #resizeHandle,#patchWrap #rotateHandle{z-index:80!important;pointer-events:auto!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;box-sizing:border-box}
+#patchWrap #resizeHandle{color:white!important;font-size:16px!important;line-height:1!important}
+#patchWrap #rotateHandle{color:#e13d65!important;font-size:17px!important;line-height:1!important}
+</style>
+<script>
+/* Keep tools visible and attached to the final computed selection rectangle. */
+(()=>{
+ const frame=document.getElementById('selectionFrame');
+ const wrap=document.getElementById('patchWrap');
+ const resize=document.getElementById('resizeHandle');
+ const rotate=document.getElementById('rotateHandle');
+ if(!frame||!wrap||!resize||!rotate)return;
+ function restoreTools(){
+   if(!selected||frame.style.display==='none'){
+     resize.style.display='none';rotate.style.display='none';return;
+   }
+   const wr=wrap.getBoundingClientRect(),fr=frame.getBoundingClientRect();
+   if(!fr.width||!fr.height)return;
+   // The actual transformed selection rectangle is the single source of truth.
+   const x=fr.right-wr.left, y=fr.bottom-wr.top;
+   resize.style.left=x+'px';resize.style.top=y+'px';
+   resize.style.display='flex';resize.textContent='⤢';
+   const centerX=(fr.left+fr.right)/2-wr.left;
+   const topY=fr.top-wr.top-17;
+   rotate.style.left=centerX+'px';rotate.style.top=topY+'px';
+   rotate.style.display='flex';rotate.textContent='↻';
+ }
+ const priorRefresh=refreshSelectionFrame;
+ refreshSelectionFrame=function(){priorRefresh();restoreTools()};
+ const priorDraw=draw;
+ draw=function(){priorDraw();restoreTools()};
+ const priorSelect=select;
+ select=function(id){priorSelect(id);restoreTools()};
+ window.addEventListener('resize',restoreTools);
+ restoreTools();
+})();
+</script>
+
+<style>
+/* Keep small-element tools legible and above the patch artwork. */
+#patchWrap #rotateHandle,#patchWrap #resizeHandle{display:flex;align-items:center;justify-content:center;z-index:120!important;width:24px!important;height:24px!important;min-width:24px;min-height:24px;box-sizing:border-box;}
+#patchWrap #rotateHandle[style*="display: none"],#patchWrap #resizeHandle[style*="display: none"]{display:none;}
+</style>
+<script>
+/* Re-anchor both tools after every selection-frame update, including generated
+   extra elements. Tiny selections get a little clearance between controls. */
+(()=>{
+ const wrap=document.getElementById('patchWrap');
+ const frame=document.getElementById('selectionFrame');
+ const rotate=document.getElementById('rotateHandle');
+ const resize=document.getElementById('resizeHandle');
+ if(!wrap||!frame||!rotate||!resize)return;
+ function syncSmallElementHandles(){
+  if(!selected||frame.style.display==='none'){
+   rotate.style.display='none';resize.style.display='none';return;
+  }
+  const wr=wrap.getBoundingClientRect(),fr=frame.getBoundingClientRect();
+  if(fr.width<1||fr.height<1)return;
+  const topX=(fr.left+fr.right)/2-wr.left;
+  const topY=fr.top-wr.top-17;
+  const bottomX=fr.right-wr.left+9;
+  const bottomY=fr.bottom-wr.top+9;
+  rotate.style.left=topX+'px';rotate.style.top=topY+'px';
+  resize.style.left=bottomX+'px';resize.style.top=bottomY+'px';
+  rotate.style.display='flex';resize.style.display='flex';
+  rotate.textContent='↻';resize.textContent='⤢';
+ }
+ const priorRefresh=refreshSelectionFrame;
+ refreshSelectionFrame=function(){priorRefresh();syncSmallElementHandles()};
+ const priorSelect=select;
+ select=function(id){priorSelect(id);syncSmallElementHandles()};
+ const priorDraw=draw;
+ draw=function(){priorDraw();syncSmallElementHandles()};
+ window.addEventListener('resize',syncSmallElementHandles);
+ syncSmallElementHandles();
+})();
+</script>
+
+<style>
+/* Uniform selection controls for every element, regardless of its dimensions. */
+#patchWrap #rotateHandle,#patchWrap #resizeHandle{
+  position:absolute!important;width:24px!important;height:24px!important;
+  min-width:24px!important;min-height:24px!important;
+  z-index:250!important;transform:translate(-50%,-50%)!important;
+  pointer-events:auto!important;visibility:visible!important;
+  align-items:center!important;justify-content:center!important;
+}
+</style>
+<script>
+/* Final authoritative positioning: use the actual transformed selection frame.
+   Both controls share one coordinate system with the selection rectangle. */
+(()=>{
+ const wrap=document.getElementById('patchWrap');
+ const frame=document.getElementById('selectionFrame');
+ const rotate=document.getElementById('rotateHandle');
+ const resize=document.getElementById('resizeHandle');
+ if(!wrap||!frame||!rotate||!resize)return;
+ function placeHandles(){
+   if(!selected||getComputedStyle(frame).display==='none'){
+     rotate.style.display='none';resize.style.display='none';return;
+   }
+   const bounds=frame.getBoundingClientRect();
+   const parent=wrap.getBoundingClientRect();
+   if(bounds.width<1||bounds.height<1){rotate.style.display='none';resize.style.display='none';return;}
+   // The top control is centered horizontally, 16 px above the frame.
+   rotate.style.left=((bounds.left+bounds.right)/2-parent.left)+'px';
+   rotate.style.top=(bounds.top-parent.top-17)+'px';
+   // The resize control is exactly on the bottom-right corner, not offset outward.
+   resize.style.left=(bounds.right-parent.left)+'px';
+   resize.style.top=(bounds.bottom-parent.top)+'px';
+   rotate.textContent='↻';resize.textContent='⤢';
+   rotate.style.display='flex';resize.style.display='flex';
+ }
+ const previousFrame=refreshSelectionFrame;
+ refreshSelectionFrame=function(){previousFrame();placeHandles()};
+ const previousTools=positionCornerTools;
+ positionCornerTools=function(){previousTools();placeHandles()};
+ const previousDraw=draw;
+ draw=function(){previousDraw();placeHandles()};
+ const previousSelect=select;
+ select=function(id){previousSelect(id);placeHandles()};
+ window.addEventListener('resize',placeHandles);
+ placeHandles();
+})();
+</script>
+<style id="selection-handles-final-rebuild">
+/* One set of consistent, accessible handles for every selected element. */
+#patchWrap { overflow: visible; }
+#patchWrap #selectionFrame {
+  pointer-events: none !important; z-index: 15 !important;
+  box-sizing: border-box !important; background: transparent !important;
+  border: 2px dotted #ed344d !important;
+  outline: none !important; border-radius: 0 !important;
+}
+#patchWrap #selectionFrame > svg { display:none !important; }
+#patchWrap #rotateHandle, #patchWrap #resizeHandle {
+  position: absolute !important; display: none; width: 22px !important; height: 22px !important;
+  min-width: 22px !important; min-height: 22px !important;
+  padding: 0 !important; margin: 0 !important;
+  z-index: 400 !important; box-sizing: border-box !important;
+  transform: translate(-50%, -50%) !important; border-radius: 50% !important;
+  touch-action: none !important; pointer-events: auto !important;
+  visibility: visible !important; opacity: 1 !important;
+  align-items: center !important; justify-content: center !important;
+  font-family: Arial, sans-serif !important; font-weight: bold !important;
+  line-height: 1 !important; user-select: none !important;
+}
+#patchWrap #rotateHandle { color: #e13d65 !important; background: white !important; border: 2px solid #F35A77 !important; font-size: 17px !important; cursor: grab; }
+#patchWrap #resizeHandle { color: white !important; background: #F35A77 !important; border: 2px solid white !important; font-size: 16px !important; cursor: nwse-resize; }
+#patchWrap #rotateHandle[aria-disabled="true"],#patchWrap #resizeHandle[aria-disabled="true"] { cursor: not-allowed !important; opacity: .62 !important; }
+</style>
+<script id="selection-handles-final-rebuild-script">
+/* Authoritative selection geometry and interaction code.
+   Earlier amendments are intentionally bypassed rather than chained. */
+(()=>{
+ const wrap=document.getElementById('patchWrap');
+ const frame=document.getElementById('selectionFrame');
+ if(!wrap||!frame)return;
+ // Replacing the two legacy elements discards their competing pointer listeners.
+ const oldResize=document.getElementById('resizeHandle');
+ const oldRotate=document.getElementById('rotateHandle');
+ const resize=oldResize.cloneNode(false),rotate=oldRotate.cloneNode(false);
+ oldResize.replaceWith(resize); oldRotate.replaceWith(rotate);
+ resize.textContent='⤢';rotate.textContent='↻';
+ resize.setAttribute('role','button');rotate.setAttribute('role','button');
+ resize.setAttribute('aria-label','Resize selected element');
+ rotate.setAttribute('aria-label','Rotate selected element');
+ resize.tabIndex=0;rotate.tabIndex=0;
+ let geometry=null;
+ let pawCache=null;
+ function pawBox(){
+   if(!pawImage.complete||!pawImage.naturalWidth) return [-220,-250,220,205];
+   if(pawCache&&pawCache.src===pawImage.src) return pawCache.b;
+   const c=document.createElement('canvas');c.width=490;c.height=490;
+   const g=c.getContext('2d',{willReadFrequently:true});
+   let b=[-220,-250,220,205];
+   try{
+     g.drawImage(pawImage,0,0,490,490);
+     const a=g.getImageData(0,0,490,490).data;
+     let minX=490,minY=490,maxX=-1,maxY=-1;
+     for(let y=0;y<490;y++)for(let x=0;x<490;x++)if(a[(y*490+x)*4+3]>32){
+       minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);
+     }
+     if(maxX>=0)b=[minX-245-2,minY-285-2,maxX-245+2,maxY-285+2];
+   }catch(_){ /* Use a safe image-dimension fallback. */ }
+   pawCache={src:pawImage.src,b};return b;
+ }
+ const xtra=(id)=>extraElements.find(e=>e.id===id);
+ // Geometries are in 1050 x 1050 canvas coordinates, exactly matching draw().
+ function selectionGeometry(id){
+   if(!id || visibleParts[id]===false || !decorationAllowed(id))return null;
+   const line=Number(state.ringWidth)||11;
+   const box=(cx,cy,w,h,angle=0)=>({cx,cy,w:Math.max(w,2),h:Math.max(h,2),angle});
+   if(id==='paw'){
+     const b=pawBox(),sz=state.pawSize,a=state.pawAngle*Math.PI/180;
+     const midX=(b[0]+b[2])/2*sz,midY=(b[1]+b[3])/2*sz;
+     const cx=525+state.pawX+state.pawDX+midX*Math.cos(a)-midY*Math.sin(a);
+     const cy=553+state.pawY+state.pawDY+midX*Math.sin(a)+midY*Math.cos(a);
+     return box(cx,cy,(b[2]-b[0])*sz,(b[3]-b[1])*sz,state.pawAngle);
+   }
+   if(id==='circle'){
+     const d=2*(390*state.circleSize+(line+8)/2+2);
+     return box(525+state.circleDX,525+state.circleDY,d,d);
+   }
+   if(id==='orbitA'||id==='orbitB'){
+     const A=id==='orbitA',sz=state[A?'orbitASize':'orbitBSize'];
+     return box(525+state[A?'orbitADX':'orbitBDX'],525+state[A?'orbitADY':'orbitBDY'],
+       2*((A?480:495)*sz+line/2+2),2*((A?53:58)*sz+line/2+2),state[A?'ringA':'ringB']);
+   }
+   if(id==='particleA'||id==='particleB'){
+     const A=id==='particleA',p=particlePoint(A?'A':'B');
+     const d=2*((A?25*state.particleSizeA:31*state.particleSizeB)+2);
+     return box(p.x,p.y,d,d);
+   }
+   const e=xtra(id);if(!e)return null;
+   if(['text','crosshair','constellation','bracket','scan'].includes(e.kind)&&typeof window.patchExtraBounds==='function')return window.patchExtraBounds(e);
+   const sc=Math.max(.01,Math.abs(e.scale||1)),cx=e.x,cy=e.y,a=e.angle||0;
+   const circle=(r)=>box(cx,cy,2*r,2*r,a);
+   if(e.kind==='dot')return box(cx,cy,2*(20*sc+1.5),2*(20*sc+1.5),0);
+   if(e.kind==='particleA'||e.kind==='particleB')return circle(23*sc+2);
+   if(e.kind==='star')return circle(44*sc+1.5);
+   if(e.kind==='spark')return circle(29*sc+5.5*sc+1.5);
+   if(e.kind==='atom')return circle(63*sc+5.5*sc+1.5);
+   if(e.kind==='circle')return circle((140+5)*sc+2);
+   if(e.kind==='paw')return box(cx,cy,294*sc,314*sc,a);
+   if(e.kind==='orbitA'||e.kind==='orbitB')return box(cx,cy,2*(170*sc+5*sc+2),2*(42*sc+5*sc+2),a);
+   if(e.kind==='ring')return box(cx,cy,
+      2*((e.generatedOrbitRing?480:150)*sc+line/2+2),
+      2*((e.generatedOrbitRing?53:15)*sc+line/2+2),a);
+   return circle(45*sc+2);
+ }
+ function visibleCanvasPoint(x,y){
+   const c=canvas.getBoundingClientRect(),w=wrap.getBoundingClientRect();
+   return {x:c.left-w.left-wrap.clientLeft+x*c.width/1050,y:c.top-w.top-wrap.clientTop+y*c.height/1050};
+ }
+ function rotatedPoint(g,dx,dy){
+   const rad=g.angle*Math.PI/180,c=Math.cos(rad),s=Math.sin(rad);
+   return visibleCanvasPoint(g.cx+dx*c-dy*s,g.cy+dx*s+dy*c);
+ }
+ function anchorHandles(g){
+   // The actual ROTATED top-edge midpoint and bottom-right vertex, not
+   // the axis-aligned bounding rectangle of a rotated frame.
+   const t=rotatedPoint(g,0,-g.h/2), b=rotatedPoint(g,g.w/2,g.h/2);
+   const rad=g.angle*Math.PI/180;
+   // The center of the rotate control sits ON the top boundary midpoint.
+   rotate.style.left=t.x+'px';
+   rotate.style.top=t.y+'px';
+   resize.style.left=b.x+'px';resize.style.top=b.y+'px';
+   for(const handle of [resize,rotate]){
+     handle.style.display='flex';
+     handle.setAttribute('aria-disabled',String(!!locked(selected)));
+   }
+ }
+ refreshSelectionFrame=function(){
+   geometry=selectionGeometry(selected);
+   if(!geometry){frame.style.display='none';rotate.style.display='none';resize.style.display='none';return;}
+   const g=geometry;
+   const p=visibleCanvasPoint(g.cx,g.cy);
+   const scale=canvas.getBoundingClientRect().width/1050;
+   frame.style.left=(p.x-g.w*scale/2)+'px';
+   frame.style.top=(p.y-g.h*scale/2)+'px';
+   frame.style.width=(g.w*scale)+'px';
+   frame.style.height=(g.h*scale)+'px';
+   frame.style.transform='rotate('+g.angle+'deg)';
+   frame.style.transformOrigin='center center';
+   frame.style.display='block';
+   anchorHandles(g);
+ };
+ positionCornerTools=function(){refreshSelectionFrame()};
+ // No legacy pointer handlers remain on the handles: support every editable element.
+ let draggingHandle=null;
+ function elementCenter(id){
+   const g=selectionGeometry(id);
+   return g?{x:g.cx,y:g.cy}:null;
+ }
+ function applyRotation(id,value){
+   if(id==='paw')state.pawAngle=value;
+   else if(id==='orbitA')state.ringA=value;
+   else if(id==='orbitB')state.ringB=value;
+   else if(id==='circle'){ /* A circle is rotation invariant. */ }
+   else if(id==='particleA')state.particleA=((value/360)%1+1)%1;
+   else if(id==='particleB')state.particleB=((value/360)%1+1)%1;
+   else {const e=xtra(id);if(e)e.angle=value;}
+ }
+ function scaleFor(id){
+   if(id==='paw')return ['pawSize',state.pawSize];
+   if(id==='circle')return ['circleSize',state.circleSize];
+   if(id==='orbitA')return ['orbitASize',state.orbitASize];
+   if(id==='orbitB')return ['orbitBSize',state.orbitBSize];
+   if(id==='particleA')return ['particleSizeA',state.particleSizeA];
+   if(id==='particleB')return ['particleSizeB',state.particleSizeB];
+   const e=xtra(id);return e?['scale',e.scale]:null;
+ }
+ function setScale(id,value){
+   const [key]=scaleFor(id)||[];if(!key)return;
+   const min=id==='paw'?.20:id==='circle'?.25:id.startsWith('orbit')?.25:id.startsWith('particle')?.2:.2;
+   const max=id==='paw'?2.6:id==='circle'?1.7:id.startsWith('orbit')?1.65:id.startsWith('particle')?2.6:3;
+   const v=Math.max(min,Math.min(max,value));
+   if(id.startsWith('extra'))xtra(id).scale=v;
+   else state[key]=v;
+ }
+ function begin(e,mode){
+   if(!selected||locked(selected))return;
+   const center=elementCenter(selected);if(!center)return;
+   e.preventDefault();e.stopPropagation();
+   if(typeof checkpoint==='function')checkpoint();
+   const p=pos(e);
+   const original=scaleFor(selected);
+   const angle=Math.atan2(p.y-center.y,p.x-center.x)*180/Math.PI;
+   const value=selected==='paw'?state.pawAngle:selected==='orbitA'?state.ringA:selected==='orbitB'?state.ringB:
+     selected.startsWith('extra')?(xtra(selected)?.angle||0):0;
+   draggingHandle={id:selected,mode,center,startDistance:Math.max(1,Math.hypot(p.x-center.x,p.y-center.y)),
+      initialScale:original?original[1]:1,initialAngle:angle,rotationValue:value};
+   e.currentTarget.setPointerCapture(e.pointerId);
+ }
+ rotate.addEventListener('pointerdown',e=>begin(e,'rotate'));
+ resize.addEventListener('pointerdown',e=>begin(e,'resize'));
+ function change(e){
+   if(!draggingHandle)return;
+   e.preventDefault();e.stopPropagation();
+   const d=draggingHandle,p=pos(e);
+   if(d.mode==='resize')setScale(d.id,d.initialScale*Math.hypot(p.x-d.center.x,p.y-d.center.y)/d.startDistance);
+   else{
+     let delta=Math.atan2(p.y-d.center.y,p.x-d.center.x)*180/Math.PI-d.initialAngle;
+     if(delta>180)delta-=360;if(delta<-180)delta+=360;
+     applyRotation(d.id,d.rotationValue+delta);
+   }
+   draw();refreshSelectionFrame();
+ }
+ rotate.addEventListener('pointermove',change);resize.addEventListener('pointermove',change);
+ for(const h of [rotate,resize])for(const ev of ['pointerup','pointercancel','lostpointercapture'])
+   h.addEventListener(ev,()=>{if(draggingHandle){draggingHandle=null;if(typeof scheduleSave==='function')scheduleSave()}});
+ const priorSelect=select;
+ select=function(id){priorSelect(id);refreshSelectionFrame()};
+ const priorDraw=draw;
+ draw=function(){priorDraw();refreshSelectionFrame()};
+ window.addEventListener('resize',refreshSelectionFrame);
+ pawImage.addEventListener('load',()=>{pawCache=null;refreshSelectionFrame()});
+ refreshSelectionFrame();
+})();
+</script>
+
+<style id="generation-variety-styles">
+#variation-strength-control {margin:13px 0 17px;padding:13px;border:1px solid #cbd9f0;border-radius:12px;background:#f8faff;color:#182956;}
+#variation-strength-control .variation-heading {font-size:13px;font-weight:800;display:block;margin-bottom:9px;}
+#variation-strength-control .strength-options {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;}
+#variation-strength-control .strength-option {border:1px solid #c5d5ee;border-radius:8px;padding:8px 1px;font-size:10px;letter-spacing:-.25px;font-weight:700;text-align:center;cursor:pointer;background:#fff;color:#213561;white-space:nowrap;}
+#variation-strength-control .strength-option input {position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;}
+#variation-strength-control .strength-option:has(input:checked) {background:#1c2f69;color:white;border-color:#1c2f69;box-shadow:inset 0 0 0 1px #1c2f69;}
+#variation-strength-control .strength-option:focus-within {outline:2px solid #4f8cff;outline-offset:2px;}
+#variation-strength-control .variation-explanation{font-size:11px;line-height:1.4;color:#53658d;margin:8px 0 0;min-height:2.6em;}
+@media(max-width:380px){#variation-strength-control .strength-option{font-size:10px;}}
+</style>
+<script id="generation-variety-script">
+(()=>{
+ const button=document.getElementById('generate');
+ const layoutButton=document.getElementById('shuffle');
+ const controls=document.createElement('div');
+ controls.id='variation-strength-control';
+ controls.innerHTML=`<span class="variation-heading">Design variation</span>
+ <div class="strength-options" role="radiogroup" aria-label="Design variation strength">
+ <label class="strength-option"><input type="radio" name="design-variation" value="subtle">Subtle</label>
+ <label class="strength-option"><input type="radio" name="design-variation" value="balanced" checked>Balanced</label>
+ <label class="strength-option"><input type="radio" name="design-variation" value="experimental">Experimental</label>
+ </div><p class="variation-explanation" aria-live="polite">New compositions, orbit layouts, color pairings, and accents.</p>`;
+ button.closest('.buttons').insertAdjacentElement('afterend',controls);
+ const explanations={
+  subtle:'Refine the current composition with smaller shifts in size, angle and details.',
+  balanced:'Explore six varied layouts while keeping the paw and orbits recognizable.',
+  experimental:'Try bold asymmetry, cropped planets, new scales and denser accents.'
+ };
+ const strength=()=>controls.querySelector('input:checked')?.value||'balanced';
+ controls.addEventListener('change',()=>{controls.querySelector('.variation-explanation').textContent=explanations[strength()]});
+ let currentFamily='centered';
+ let lastFamily=['centered'];
+ let recentSignatures=[];
+ const families=['centered','diagonal','multiple','cropped','cosmic','minimal'];
+ const colors=['#A8CCFF','#86B6EB','#C6D9FF','#536CB5','#FFFFFF'];
+ const range=(lo,hi)=>lo+Math.random()*(hi-lo);
+ const pick=a=>a[Math.floor(Math.random()*a.length)];
+ const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+ const visible=id=>visibleParts[id]!==false;
+ const polar=(w,t)=>{
+  const A=w==='A', theta=state[A?'ringA':'ringB']*Math.PI/180;
+  const rx=(A?480:495)*state[A?'orbitASize':'orbitBSize'];
+  const ry=(A?53:58)*state[A?'orbitASize':'orbitBSize'];
+  return {x:525+state[A?'orbitADX':'orbitBDX']+rx*Math.cos(t)*Math.cos(theta)-ry*Math.sin(t)*Math.sin(theta),
+   y:525+state[A?'orbitADY':'orbitBDY']+rx*Math.cos(t)*Math.sin(theta)+ry*Math.sin(t)*Math.cos(theta)};
+ };
+ function nextFamily(level,forceDifferent){
+  if(level==='subtle'&&!forceDifferent&&currentFamily)return currentFamily;
+  let pool=families.filter(f=>f!==currentFamily&&(!lastFamily.includes(f)||Math.random()<.15));
+  if(level==='experimental')pool=pool.filter(f=>['cropped','diagonal','cosmic','multiple'].includes(f));
+  const f=pick(pool.length?pool:families.filter(f=>f!==currentFamily));
+  lastFamily.push(f);if(lastFamily.length>3)lastFamily.shift();
+  currentFamily=f;return f;
+ }
+ function removeGenerated(){
+  for(let i=extraElements.length-1;i>=0;i--){
+   const e=extraElements[i];
+   if(!e.generatedByVariation || locked(e.id))continue;
+   extraElements.splice(i,1);layerOrder=layerOrder.filter(id=>id!==e.id);
+   delete visibleParts[e.id];
+  }
+ }
+ function generated(kind,x,y,scale,angle=0,attrs={}){
+  const id='extra'+(++extraCounter);
+  extraElements.push({id,kind,x,y,scale,angle,locked:false,generatedByVariation:true,...attrs});
+  layerOrder.push(id);visibleParts[id]=true;
+ }
+ function fillState(family,level){
+  const wild=level==='experimental',gentle=level==='subtle';
+  const designs={
+   centered:{cx:[500,550],cy:[505,545],size:[.92,1.02],paw:[.95,1.06],rings:[2,2,3],angles:[-9,29]},
+   diagonal:{cx:[440,555],cy:[465,560],size:[.84,.98],paw:[.86,1.03],rings:[2,3],angles:[-41,18]},
+   multiple:{cx:[495,555],cy:[500,555],size:[.91,1.025],paw:[.96,1.07],rings:[3,4],angles:[-29,3]},
+   cropped:{cx:pick([[405,445],[605,655]]),cy:pick([[405,455],[585,645]]),size:[1.12,1.25],paw:[.93,1.06],rings:[1,2],angles:[-21,27]},
+   cosmic:{cx:[470,565],cy:[455,565],size:[.67,.83],paw:[.72,.89],rings:[2,3],angles:[-32,28]},
+   minimal:{cx:[490,555],cy:[490,555],size:[.85,.98],paw:[.86,1.01],rings:[1,1,2],angles:[-18,26]}
+  };
+  const d=designs[family];
+  let cx=range(...d.cx),cy=range(...d.cy),size=range(...d.size);
+  let pawSz=range(...d.paw);
+  if(gentle){cx=state.circleDX+525+(cx-(525+state.circleDX))*.30;cy=525+state.circleDY+(cy-(525+state.circleDY))*.30;
+    size=state.circleSize+(size-state.circleSize)*.33;pawSz=state.pawSize+(pawSz-state.pawSize)*.30;}
+  if(wild&&family==='diagonal'){cx+=pick([-30,30]);cy+=pick([-25,25]);}
+  // Cropping is intentional only for the Cropped Planet family.
+  if(family!=='cropped'){
+   const radius=390*size+10;cx=clamp(cx,radius+10,1050-radius-10);cy=clamp(cy,radius+10,1050-radius-10);
+  }
+  if(!locked('circle')){
+   visibleParts.circle=true;
+   state.circleSize=size;state.circleDX=cx-525;state.circleDY=cy-525;
+  }
+  const pcx=525+state.circleDX,pcy=525+state.circleDY;
+  if(!locked('paw')){
+   visibleParts.paw=true;
+   // Keep the paw safely inside the planet even in the small-planet family.
+   const fit=state.circleSize/.92;
+   state.pawSize=Math.min(pawSz,fit*1.06);
+   state.pawAngle=range(family==='diagonal'?-25:-16,family==='diagonal'?26:17);
+   state.pawX=pcx-525+range(-12,12);state.pawY=pcy-553+range(-10,10);
+   state.pawDX=0;state.pawDY=0;
+  }
+  state.ringWidth=defaults.ringWidth;
+  const ringCount=pick(d.rings);
+  // Angle separation remains controlled to avoid chaotic crisscrossing.
+  const first=d.angles[0]+range(-7,7),second=d.angles[1]+range(-7,7);
+  const ringScale=Math.max(.84,Math.min(1.24,(390*state.circleSize+75)/480));
+  if(!locked('orbitA')){
+   visibleParts.orbitA=true;state.ringA=first;state.orbitASize=ringScale*range(1.00,1.035);
+   state.orbitADX=pcx-525;state.orbitADY=pcy-525;
+  }
+  if(!locked('orbitB')){
+   visibleParts.orbitB=ringCount>=2;state.ringB=second;state.orbitBSize=ringScale*range(.99,1.025);
+   state.orbitBDX=pcx-525;state.orbitBDY=pcy-525;
+  }
+  let count=(visible('orbitA')?1:0)+(visible('orbitB')?1:0);
+  if(ringCount>count){
+   const candidates=ringCount===4?[-28,-7,15,36]:ringCount===3?[-23,5,32]:[first,second];
+   for(let i=count;i<ringCount;i++)generated('ring',pcx,pcy,ringScale*range(.99,1.04),candidates[i]+range(-4,4),{generatedOrbitRing:true});
+  }
+  return {ringCount};
+ }
+ function fillDetails(family,level){
+  const center={x:525+state.circleDX,y:525+state.circleDY};
+  const radius=390*state.circleSize+((state.ringWidth+8)/2);
+  const occupied=extraElements.filter(e=>!e.generatedByVariation&&visible(e.id)&&e.kind!=='ring')
+    .map(e=>({x:e.x,y:e.y,r:(e.kind==='dot'?20:e.kind==='star'?44:40)*e.scale}));
+  function good(p,r,avoidRings){
+   if(p.x<r+30||p.y<r+30||p.x>1020-r||p.y>1020-r)return false;
+   if(Math.hypot(p.x-center.x,p.y-center.y)<radius+r+17)return false;
+   if(occupied.some(q=>Math.hypot(p.x-q.x,p.y-q.y)<q.r+r+24))return false;
+   if(avoidRings){
+    const rings=['A','B'].filter(w=>visible('orbit'+w));
+    for(const w of rings)for(let i=0;i<120;i++){
+     const rp=polar(w,2*Math.PI*i/120);
+     if(Math.hypot(p.x-rp.x,p.y-rp.y)<r+19)return false;
+    }
+   }
+   return true;
+  }
+  // Core orbit particles remain on their actual ring paths and outside the planet.
+  for(const w of ['A','B']){
+   const id='particle'+w;
+   if(locked(id))continue;
+   visibleParts[id]=false;
+   if(!visible('orbit'+w))continue;
+   if(family==='minimal'&&Math.random()<.55)continue;
+   const r0=w==='A'?25:31;
+   const r=r0*range(.62,.92);
+   state['particleSize'+w]=r/r0;state['particle'+w+'DX']=0;state['particle'+w+'DY']=0;
+   for(let n=0;n<200;n++){
+    const t=range(0,Math.PI*2),p=polar(w,t);
+    if(!good(p,r,false))continue;
+    visibleParts[id]=true;state['particle'+w]=t/(Math.PI*2);occupied.push({...p,r});break;
+   }
+  }
+  const starCounts={centered:[1,2],diagonal:[1,3],multiple:[0,2],cropped:[0,2],cosmic:[4,7],minimal:[0,1]};
+  let [min,max]=starCounts[family];
+  if(level==='subtle'){max=Math.min(max,2);}else if(level==='experimental'){max+=2;}
+  const count=Math.floor(range(min,max+1));
+  for(let j=0;j<count;j++){
+   const kind=pick(family==='cosmic'?['star','spark','dot','atom']:['star','spark','dot']);
+   const sc=kind==='dot'?range(.52,.98):kind==='atom'?range(.48,.62):range(.43,.85);
+   const r=(kind==='dot'?20:kind==='star'?44:kind==='atom'?69:35)*sc;
+   for(let n=0;n<350;n++){
+    const p={x:range(38+r,1012-r),y:range(38+r,1012-r)};
+    if(!good(p,r,true))continue;
+    generated(kind,p.x,p.y,sc,range(-38,38));
+    occupied.push({...p,r});break;
+   }
+  }
+ }
+ function newDesign(forceDifferent=false){
+  const level=strength();
+  if(typeof checkpoint==='function')checkpoint();
+  removeGenerated();
+  const family=nextFamily(level,forceDifferent);
+  // Change background, avoiding the previous combination in consecutive designs.
+  const prevColor=backgroundColor;
+  if(level!=='subtle'||Math.random()<.35){
+   const available=colors.filter(c=>c!==prevColor);
+   backgroundColor=pick(available);
+  }
+  fillState(family,level);
+  fillDetails(family,level);
+  // Avoid accidental near-duplicates in the same family and colors.
+  const signature=[family,backgroundColor,Math.round(state.circleSize*10),Math.round(state.ringA/10),extraElements.filter(e=>e.generatedByVariation&&e.kind==='star').length].join('|');
+  if(recentSignatures.includes(signature)){
+   if(!locked('orbitA'))state.ringA+=pick([-9,9]);
+   if(!locked('paw'))state.pawAngle+=pick([-7,7]);
+  }
+  recentSignatures.push(signature);if(recentSignatures.length>8)recentSignatures.shift();
+  index++;
+  document.getElementById('variation').textContent=family.replace(/^./,c=>c.toUpperCase())+' / '+String(index).padStart(3,'0');
+  select(null);renderLibrary();renderExtras();renderLayers();draw();
+ }
+ // Replace the chains of older generation onclick handlers. No extra passes
+ // reset the composition after our new generator has run.
+ button.onclick=()=>newDesign(false);
+ // Keep the selected-element label meaningful for newly generated decorations.
+ const priorSelect=select;
+ select=function(id){
+  priorSelect(id);
+  const label=document.getElementById('selectedElement');
+  if(!id){label.textContent='SELECTED: NONE';return;}
+  const baseNames={paw:'BEARCAT PAW',circle:'PLANET OUTLINE',orbitA:'ORBIT 1',orbitB:'ORBIT 2',particleA:'PARTICLE 1',particleB:'PARTICLE 2'};
+  const extra=extraElements.find(e=>e.id===id);
+  const kind=extra?.kind;
+  const extraNames={star:'FOUR-POINT STAR',spark:'SPARKLE',dot:'PARTICLE',ring:'ORBIT',atom:'ATOMIC ACCENT'};
+  label.textContent='SELECTED: '+(baseNames[id]||extraNames[kind]||'ELEMENT');
+ };
+ layoutButton.textContent='Remix Layout';
+ layoutButton.onclick=()=>newDesign(true);
+ window.patchGeneratorVariation={generate:newDesign,getFamily:()=>currentFamily};
+})();
+</script>
+
+<script>
+/* Inspired, balanced mission-patch generation with optional text labels. */
+(function(){
+  const button=document.getElementById('generate');
+  const remix=document.getElementById('shuffle');
+  const variationLabel=document.getElementById('variation');
+  const explanation=document.querySelector('.variation-explanation');
+  const note=document.querySelector('.right .mini:last-of-type');
+  if(explanation) explanation.textContent='Balanced compositions with optional type, clearer families, and broader variation.';
+  if(note) note.textContent='Designs preserve the Bearcat paw and planet, with 1–4 consistently thin orbital rings, optional stars, particles, and words. Ring sections behind the planet are hidden.';
+
+  const palette=['#A8CCFF','#86B6EB','#C6D9FF','#536CB5','#FFFFFF','#7FA7E5'];
+  const familyNames=['centered','diagonal','multiple','cropped','cosmic','minimal'];
+  let lastFamily='centered';
+  let designCount=1;
+  let recent=[];
+
+  const pick=(arr)=>arr[Math.floor(Math.random()*arr.length)];
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const strength=()=>document.querySelector('input[name="design-variation"]:checked')?.value||'balanced';
+  const canEdit=id=>!(window.locks&&window.locks[id]);
+
+  // One text-style resolver is shared by canvas, selection bounds, and SVG export.
+  // Larger editorial labels are condensed and strong; small data labels are monospaced.
+  window.patchTextStyle=function(e){
+    const role=e.fontRole || e.role || ((e.fontSize||22)>=18?'display':'technical');
+    const display=role==='display';
+    const source=Number(e.fontSize)||20;
+    return {
+      role,
+      fontSize:display?Math.max(58,Math.min(80,source*3.2)):Math.max(40,Math.min(52,source*2.7)),
+      family:display?'Barlow Condensed':'IBM Plex Mono',
+      fallback:display?'Arial Narrow, Arial, sans-serif':'Courier New, monospace',
+      weight:display?700:500,
+      tracking:display?Math.max(2,Math.min(4,(e.tracking??3)*.9)):Math.max(2,Math.min(3.5,(e.tracking??3)*.9)),
+      opacity:e.alpha??1
+    };
+  };
+  const baseDrawExtra=window.drawExtra;
+  window.drawExtra=function(e){
+    if(e.kind==='text'){
+      ctx.save();
+      ctx.translate(e.x,e.y);
+      ctx.rotate((e.angle||0)*Math.PI/180);
+      const ts=window.patchTextStyle(e);
+      ctx.globalAlpha=ts.opacity;
+      ctx.fillStyle=e.color||orbitInk();
+      ctx.textAlign='left'; // Tracking is rendered character-by-character with explicit alignment.
+      ctx.textBaseline='middle';
+      const lines=String(e.text||'').split(/\n/g);
+      const fontSize=ts.fontSize;
+      const lh=(e.lineHeight && String(e.text||'').includes('\n')) ? Math.max(ts.fontSize*1.12,e.lineHeight*1.7) : Math.round(fontSize*1.18);
+      const total=(lines.length-1)*lh;
+      const tracking=ts.tracking;
+      const weight=ts.weight;
+      ctx.font=`${weight} ${fontSize}px "${ts.family}", ${ts.fallback}`;
+      const drawTracked=(text,y)=>{
+        if(!tracking || text.length<2){ ctx.fillText(text,0,y); return; }
+        let widths=[...text].map(ch=>ctx.measureText(ch).width);
+        let width=widths.reduce((a,b)=>a+b,0)+tracking*(text.length-1);
+        let x=(e.align==='left') ? 0 : (e.align==='right' ? -width : -width/2);
+        for(let i=0;i<text.length;i++){
+          ctx.fillText(text[i],x,y);
+          x+=widths[i]+tracking;
+        }
+      };
+      lines.forEach((line,i)=>drawTracked(String(line).toUpperCase(), i*lh-total/2));
+      ctx.restore();
+      return;
+    }
+    return baseDrawExtra(e);
+  };
+
+  const baseSelectionGeometry=window.selectionGeometry;
+  window.selectionGeometry=function(id){
+    const extra=(window.extraElements||[]).find(e=>e.id===id);
+    if(extra&&extra.kind==='text'){
+      ctx.save();
+      const lines=String(extra.text||'').split(/\n/g);
+      const ts=window.patchTextStyle(extra);
+      const fontSize=ts.fontSize;
+      const lh=(extra.lineHeight && String(extra.text||'').includes('\n')) ? Math.max(ts.fontSize*1.12,extra.lineHeight*1.7) : Math.round(fontSize*1.18);
+      const tracking=ts.tracking;
+      const weight=ts.weight;
+      ctx.font=`${weight} ${fontSize}px "${ts.family}", ${ts.fallback}`;
+      const lineWidth=(line)=>{
+        const t=String(line).toUpperCase();
+        if(t.length<2) return ctx.measureText(t).width;
+        return [...t].reduce((acc,ch)=>acc+ctx.measureText(ch).width,0)+tracking*(t.length-1);
+      };
+      const w=Math.max(...lines.map(lineWidth))+12;
+      const h=lh*(lines.length-1)+(fontSize*0.9)+12;
+      ctx.restore();
+      // Left/right aligned labels start or end at the text anchor, not its center.
+      // Rotate the alignment offset with the label so the red selection grid hugs it.
+      const horizontal=(extra.align==='left')?w/2:(extra.align==='right'?-w/2:0);
+      const angle=extra.angle||0, rad=angle*Math.PI/180;
+      return {cx:extra.x+horizontal*Math.cos(rad),cy:extra.y+horizontal*Math.sin(rad),w,h,angle};
+    }
+    return baseSelectionGeometry(id);
+  };
+
+  const baseHit=window.hit;
+  window.hit=function(x,y){
+    for(const id of [...(window.layerOrder||[])].reverse()){
+      const extra=(window.extraElements||[]).find(e=>e.id===id);
+      if(!extra||extra.kind!=='text'||window.visibleParts?.[id]===false) continue;
+      const g=window.selectionGeometry(id);
+      if(!g) continue;
+      const rad=-(g.angle||0)*Math.PI/180;
+      const dx=x-g.cx, dy=y-g.cy;
+      const lx=dx*Math.cos(rad)-dy*Math.sin(rad);
+      const ly=dx*Math.sin(rad)+dy*Math.cos(rad);
+      if(Math.abs(lx)<=g.w/2 && Math.abs(ly)<=g.h/2) return id;
+    }
+    return baseHit(x,y);
+  };
+
+  function orbitPoint(centerX,centerY,rx,ry,angleDeg,t){
+    const a=angleDeg*Math.PI/180;
+    const x=rx*Math.cos(t), y=ry*Math.sin(t);
+    return {x:centerX+x*Math.cos(a)-y*Math.sin(a), y:centerY+x*Math.sin(a)+y*Math.cos(a)};
+  }
+  function pushGenerated(kind,x,y,scale=1,angle=0,attrs={}){
+    const id='extra'+(++extraCounter);
+    extraElements.push({id,kind,x,y,scale,angle,locked:false,generatedByVariation:true,...attrs});
+    visibleParts[id]=true;
+    layerOrder.push(id);
+    return id;
+  }
+  function clearGenerated(){
+    for(let i=extraElements.length-1;i>=0;i--){
+      const e=extraElements[i];
+      if(e.generatedByVariation && !e.locked){
+        extraElements.splice(i,1);
+        layerOrder=layerOrder.filter(id=>id!==e.id);
+        delete visibleParts[e.id];
+      }
+    }
+  }
+  function ensureCoreOrder(){
+    const core=['circle','paw','orbitA','orbitB','particleA','particleB'];
+    layerOrder=[...core,...layerOrder.filter(id=>!core.includes(id))];
+    visibleParts.circle=true;visibleParts.paw=true;
+  }
+  function setBackground(level){
+    const prev=backgroundColor;
+    let options=palette.filter(c=>c!==prev);
+    if(level==='subtle' && Math.random()<0.6) options=[prev,...options];
+    backgroundColor=pick(options.length?options:palette);
+  }
+  function resetCore(){
+    state.ringWidth=defaults.ringWidth||11;
+    ['orbitA','orbitB','particleA','particleB','circle','paw'].forEach(id=>visibleParts[id]=true);
+    state.pawDX=0; state.pawDY=0;
+    state.orbitADX=0; state.orbitADY=0; state.orbitBDX=0; state.orbitBDY=0;
+    state.particleADX=0; state.particleADY=0; state.particleBDX=0; state.particleBDY=0;
+  }
+  function addText(text,x,y,opts={}){
+    return pushGenerated('text',x,y,1,opts.angle||0,{text, fontSize:opts.fontSize||22, lineHeight:opts.lineHeight||Math.round((opts.fontSize||22)*1.05), tracking:opts.tracking??4, weight:opts.weight||700, fontRole:opts.fontRole||(opts.fontSize>=18?'display':'technical'), align:opts.align||'center', color:opts.color||orbitInk(), locked:opts.locked??false});
+  }
+  function addPair(kind,left,right,scaleA=1,scaleB=scaleA){
+    const safe=(pt)=>({x:clamp(pt.x,48,1002), y:clamp(pt.y,48,1002), angle:pt.angle||0, attrs:pt.attrs||{}});
+    const a=safe(left), b=safe(right);
+    pushGenerated(kind,a.x,a.y,scaleA,a.angle,a.attrs);
+    pushGenerated(kind,b.x,b.y,scaleB,b.angle,b.attrs);
+  }
+  function balanceStars(centerX,centerY,radius,mode){
+    if(mode==='minimal'){
+      if(Math.random()<0.8) pushGenerated('spark', centerX-radius-92, centerY-radius+108, rand(0.42,0.55), rand(-12,12));
+      if(Math.random()<0.5) pushGenerated('dot', centerX+radius+62, centerY+radius-78, rand(0.55,0.7), 0);
+      return;
+    }
+    const paired=[
+      [{x:centerX-radius-86,y:centerY-radius+86,angle:rand(-12,12)},{x:centerX+radius+82,y:centerY+radius-76,angle:rand(-12,12)}],
+      [{x:centerX-radius-98,y:centerY+radius-86,angle:rand(-10,10)},{x:centerX+radius+92,y:centerY-radius+74,angle:rand(-10,10)}]
+    ];
+    paired.forEach((pair,idx)=>{
+      if(mode==='cosmic' || idx===0 || Math.random()<0.55){
+        const kind=idx===0?'star':'spark';
+        addPair(kind,pair[0],pair[1], rand(0.48,0.7), rand(0.48,0.7));
+      }
+    });
+    if(mode==='cosmic' || Math.random()<0.75){
+      addPair('dot',{x:centerX-radius-118,y:centerY-12},{x:centerX+radius+118,y:centerY+18},rand(0.56,0.74));
+    }
+  }
+  function setCoreParticle(which,t,sizeScale=1){
+    const rBase=which==='A'?25:31;
+    visibleParts['particle'+which]=true;
+    state['particle'+which]=((t/(Math.PI*2))%1+1)%1;
+    state['particleSize'+which]=sizeScale;
+    state['particle'+which+'DX']=0;
+    state['particle'+which+'DY']=0;
+  }
+  function hideCoreParticle(which){ visibleParts['particle'+which]=false; }
+  function placeOrbitDot(centerX,centerY,orbitAngle,rx,ry,t,scale){
+    const p=orbitPoint(centerX,centerY,rx,ry,orbitAngle,t);
+    pushGenerated('dot',p.x,p.y,scale,0,{generatedOrbitParticle:true});
+  }
+  function setDesignByFamily(family,level){
+    const subtle=level==='subtle', experimental=level==='experimental';
+    resetCore();
+    let cx=525, cy=525, planetSize=0.95, pawSize=1.0, pawAngle=0;
+    let angles=[-14,24], ringCount=2, ringScales=[1.00,1.02], extraRingAngles=[];
+    let textPlan=[];
+    switch(family){
+      case 'centered':
+        cx=525+rand(-18,18); cy=525+rand(-12,18); planetSize=rand(0.90,1.0); pawSize=rand(0.96,1.08); pawAngle=rand(-10,10);
+        angles=[rand(-18,-6),rand(16,30)]; ringCount=experimental?pick([2,3]):2; extraRingAngles=ringCount>2?[rand(48,72)]:[];
+        textPlan=[{text:'BARUCH',x:190,y:114,size:20,tracking:5,align:'left'},{text:'SPACE RESEARCH',x:856,y:940,size:18,tracking:4,align:'right'}];
+        break;
+      case 'diagonal':
+        cx=rand(470,550); cy=rand(470,548); planetSize=rand(0.88,0.99); pawSize=rand(0.94,1.08); pawAngle=rand(-18,18);
+        angles=[rand(-40,-24),rand(10,24)]; ringCount=pick(experimental?[2,3,3]:[2,2,3]); extraRingAngles=ringCount>2?[rand(58,74)]:[];
+        textPlan=[{text:'ORBITAL\nSTUDY',x:162,y:180,size:18,tracking:4,align:'left',angle:-20},{text:'PATCH 02',x:898,y:864,size:18,tracking:4,align:'right'}];
+        break;
+      case 'multiple':
+        cx=525+rand(-8,8); cy=525+rand(-8,8); planetSize=rand(0.90,0.99); pawSize=rand(0.95,1.06); pawAngle=rand(-10,10);
+        angles=[rand(-26,-10),rand(10,28)]; ringCount=pick(experimental?[3,4,4]:[3,3,4]); extraRingAngles=[rand(46,64)]; if(ringCount>3) extraRingAngles.push(rand(72,88));
+        textPlan=[{text:'MISSION PATCH',x:526,y:96,size:18,tracking:4,align:'center'},{text:'BEYOND THE ORBIT',x:526,y:958,size:16,tracking:3,align:'center'}];
+        break;
+      case 'cropped':
+        cx=pick([rand(420,470),rand(580,630)]); cy=pick([rand(420,470),rand(580,630)]); planetSize=rand(1.10,1.23); pawSize=rand(0.92,1.04); pawAngle=rand(-12,12);
+        angles=[rand(-24,-8),rand(18,32)]; ringCount=pick(experimental?[2,3]:[1,2]); extraRingAngles=ringCount>2?[rand(52,66)]:[];
+        textPlan=[{text:'COSMIC',x:cx<525?870:180,y:150,size:22,tracking:5,align:cx<525?'right':'left'},{text:'EXPLORATION',x:cx<525?854:196,y:180,size:16,tracking:4,align:cx<525?'right':'left'},{text:'BARUCH',x:cx<525?176:874,y:912,size:18,tracking:4,align:cx<525?'left':'right'}];
+        break;
+      case 'cosmic':
+        cx=rand(470,578); cy=rand(450,578); planetSize=rand(0.72,0.84); pawSize=rand(0.76,0.90); pawAngle=rand(-16,16);
+        angles=[rand(-32,-16),rand(18,32)]; ringCount=pick(experimental?[2,3,4]:[2,3]); extraRingAngles=ringCount>2?[rand(56,74)]:[]; if(ringCount>3) extraRingAngles.push(rand(86,104));
+        textPlan=[{text:'LOW EARTH',x:166,y:126,size:18,tracking:4,align:'left'},{text:'RESEARCH / NYC',x:872,y:926,size:15,tracking:3,align:'right'}];
+        break;
+      case 'minimal':
+      default:
+        cx=525+rand(-10,10); cy=525+rand(-6,8); planetSize=rand(0.84,0.96); pawSize=rand(0.92,1.02); pawAngle=rand(-9,9);
+        angles=[rand(-18,-8),rand(16,24)]; ringCount=pick(experimental?[1,2,2]:[1,1,2]); extraRingAngles=[];
+        textPlan=[{text:'MINIMAL PLANET',x:176,y:116,size:18,tracking:4,align:'left'},{text:'PATCH / 02',x:874,y:938,size:15,tracking:3,align:'right'}];
+        break;
+    }
+    if(subtle){ ringCount=Math.min(ringCount,2); extraRingAngles=[]; pawAngle*=0.65; }
+    state.circleSize=planetSize; state.circleDX=cx-525; state.circleDY=cy-525;
+    state.pawSize=Math.min(pawSize,1.08*planetSize/0.9 + 0.02);
+    state.pawAngle=pawAngle; state.pawX=cx-525+rand(-10,10); state.pawY=cy-553+rand(-8,10);
+    const ringScale=Math.max(0.84,Math.min(1.26,(390*state.circleSize+78)/480));
+    state.orbitASize=ringScale*ringScales[0]; state.orbitADX=cx-525; state.orbitADY=cy-525; state.ringA=angles[0]; visibleParts.orbitA=true;
+    state.orbitBSize=ringScale*ringScales[1]; state.orbitBDX=cx-525; state.orbitBDY=cy-525; state.ringB=angles[1]; visibleParts.orbitB=ringCount>=2;
+    // Distribute core particles near the outermost ends of visible orbits.
+    setCoreParticle('A', pick([0.06,0.42,0.56,0.92])*Math.PI*2/(Math.PI*2), rand(0.88,1.18));
+    state.particleA=pick([0.06,0.42,0.56,0.92]);
+    state.particleSizeA=rand(0.85,1.15);
+    if(visibleParts.orbitB){ state.particleB=pick([0.18,0.32,0.68,0.82]); state.particleSizeB=rand(0.82,1.12); visibleParts.particleB=true; }
+    else hideCoreParticle('B');
+
+    const radius=390*state.circleSize;
+    const near=((a,b)=>Math.abs(a-b)<12);
+    // Add extra rings that relate to the inspiration but stay balanced.
+    extraRingAngles.slice(0,2).forEach((ang,i)=>{
+      if(near(ang,state.ringA)||near(ang,state.ringB)) ang+=i?16:-16;
+      pushGenerated('ring',cx,cy,ringScale*(i?0.98:1.04),ang,{generatedOrbitRing:true});
+    });
+    if(ringCount>=4 && extraRingAngles.length<2){
+      pushGenerated('ring',cx,cy,ringScale*1.03, rand(-70,70), {generatedOrbitRing:true});
+    }
+
+    // Orbit dots for extra rhythm, always on rings and spaced apart.
+    if(family!=='minimal' || Math.random()<0.45){
+      const dotSpecs=[];
+      if(visibleParts.orbitA) dotSpecs.push({ang:state.ringA,rx:480*state.orbitASize,ry:53*state.orbitASize,t:pick([0.13,0.37,0.61,0.87]),scale:rand(0.58,0.9)});
+      if(visibleParts.orbitB) dotSpecs.push({ang:state.ringB,rx:495*state.orbitBSize,ry:58*state.orbitBSize,t:pick([0.08,0.28,0.72,0.92]),scale:rand(0.54,0.86)});
+      if(family==='multiple' || family==='cosmic') dotSpecs.push({ang:(extraRingAngles[0]||state.ringA+58),rx:480*ringScale,ry:53*ringScale,t:pick([0.22,0.78]),scale:rand(0.46,0.7)});
+      dotSpecs.forEach(spec=>placeOrbitDot(cx,cy,spec.ang,spec.rx,spec.ry,spec.t*Math.PI*2,spec.scale));
+    }
+
+    // Balanced accents placed outside the planet.
+    balanceStars(cx,cy,radius,family==='cosmic'?'cosmic':family==='minimal'?'minimal':'balanced');
+    if(family==='cosmic' && !subtle){
+      addPair('atom',{x:cx-radius-128,y:cy+radius*0.1,angle:18},{x:cx+radius+126,y:cy-radius*0.08,angle:-18}, rand(0.34,0.46), rand(0.34,0.46));
+    }
+
+    // Text labels balance the composition and make the designs feel more editorial.
+    const allowText=family!=='minimal' || Math.random()<0.65;
+    if(allowText){
+      textPlan.forEach((t,idx)=>{
+        const size=t.size + (experimental&&idx===0?2:0) - (subtle?1:0);
+        addText(t.text,t.x,t.y,{fontSize:size,tracking:t.tracking,align:t.align,angle:t.angle||0,weight:idx===0?700:600});
+      });
+      if(experimental && family!=='cropped' && Math.random()<0.55){
+        addText(pick(['PATCH SYSTEM','SPACE LAB','MISSION 02']), cx<525?900:150, cy<525?155:915, {fontSize:14,tracking:3,align:cx<525?'right':'left',angle:0,weight:600});
+      }
+    }
+  }
+
+  function chooseFamily(forceDifferent){
+    const level=strength();
+    let choices=[...familyNames];
+    if(forceDifferent) choices=choices.filter(f=>f!==lastFamily);
+    if(level==='experimental') choices=choices.filter(f=>['multiple','cropped','cosmic','diagonal'].includes(f));
+    const f=pick(choices.length?choices:familyNames);
+    lastFamily=f; return f;
+  }
+
+  function generateInspired(forceDifferent=false){
+    try{
+      if(typeof checkpoint==='function') checkpoint();
+      clearGenerated();
+      ensureCoreOrder();
+      const level=strength();
+      setBackground(level);
+      const family=chooseFamily(forceDifferent);
+      setDesignByFamily(family,level);
+      const signature=[family,backgroundColor,Math.round(state.circleSize*100),Math.round(state.ringA),Math.round(state.ringB),extraElements.filter(e=>e.generatedByVariation).length].join('|');
+      if(recent.includes(signature)){
+        // Try once more for more noticeable variation.
+        clearGenerated();
+        const second=chooseFamily(true);
+        setBackground('balanced');
+        setDesignByFamily(second,level);
+      } else recent.push(signature);
+      if(recent.length>8) recent.shift();
+      designCount++;
+      if(variationLabel) variationLabel.textContent=family.toUpperCase()+' / '+String(designCount).padStart(3,'0');
+      select(null); renderLibrary(); renderExtras(); renderLayers(); draw();
+    } catch(err){ console.error('Inspired generation failed:', err); try{draw()}catch(_){} }
+  }
+
+  button.onclick=()=>generateInspired(false);
+  if(remix){ remix.textContent='Remix Layout'; remix.onclick=()=>generateInspired(true); }
+})();
+</script>
+
+<script>
+/* Space-research enhancement layer: more scientific motifs, balanced compositions, and broader generation variety. */
+(function(){
+  const explanation=document.querySelector('.variation-explanation');
+  const note=document.querySelector('.right .mini:last-of-type');
+  if(explanation) explanation.textContent='More distinct generations with research-style labels, targets, data frames, and balanced orbital systems.';
+  if(note) note.textContent='Designs now explore mission-patch variations with research labels, calibrated orbit systems, technical accents, and balanced visual weight.';
+
+  // Extend the element library with research-themed motifs.
+  const extraKindsToAdd=[
+    ['crosshair','Research target','⌖'],
+    ['constellation','Constellation link','✣'],
+    ['bracket','Data frame','⌜'],
+    ['scan','Scan lines','≋']
+  ];
+  if(Array.isArray(window.extrasCatalog)){
+    for(const row of extraKindsToAdd){
+      if(!window.extrasCatalog.find(r=>r[0]===row[0])) window.extrasCatalog.push(row);
+    }
+  }
+
+  const oldDrawExtra=window.drawExtra;
+  window.drawExtra=function(e){
+    if(['crosshair','constellation','bracket','scan'].includes(e.kind)){
+      ctx.save();
+      ctx.translate(e.x,e.y);
+      ctx.rotate((e.angle||0)*Math.PI/180);
+      ctx.scale(e.scale||1,e.scale||1);
+      ctx.globalAlpha=(e.alpha==null?1:e.alpha);
+      ctx.strokeStyle=e.color||orbitInk();
+      ctx.fillStyle=e.color||orbitInk();
+      ctx.lineCap='round';
+      ctx.lineJoin='round';
+      ctx.lineWidth=e.strokeWidth||10;
+      if(e.kind==='crosshair'){
+        ctx.beginPath(); ctx.arc(0,0,62,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(0,0,18,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-86,0); ctx.lineTo(-30,0); ctx.moveTo(30,0); ctx.lineTo(86,0); ctx.moveTo(0,-86); ctx.lineTo(0,-30); ctx.moveTo(0,30); ctx.lineTo(0,86); ctx.stroke();
+        ctx.beginPath(); ctx.arc(0,0,6,0,Math.PI*2); ctx.fill();
+      } else if(e.kind==='constellation'){
+        const pts=e.points||[[-42,-28],[-10,-50],[34,-16],[12,26],[-36,38]];
+        ctx.lineWidth=e.strokeWidth||8;
+        ctx.beginPath();
+        pts.forEach((p,i)=>{ if(i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); });
+        ctx.stroke();
+        for(const p of pts){ ctx.beginPath(); ctx.arc(p[0],p[1],8,0,Math.PI*2); ctx.fill(); }
+      } else if(e.kind==='bracket'){
+        ctx.lineWidth=e.strokeWidth||9;
+        const w=98,h=70,l=24;
+        ctx.beginPath();
+        ctx.moveTo(-w,-h+l); ctx.lineTo(-w,-h); ctx.lineTo(-w+l,-h);
+        ctx.moveTo(w-l,-h); ctx.lineTo(w,-h); ctx.lineTo(w,-h+l);
+        ctx.moveTo(-w,h-l); ctx.lineTo(-w,h); ctx.lineTo(-w+l,h);
+        ctx.moveTo(w-l,h); ctx.lineTo(w,h); ctx.lineTo(w,h-l);
+        ctx.stroke();
+      } else if(e.kind==='scan'){
+        ctx.lineWidth=e.strokeWidth||7;
+        const widths=[120,98,132,88];
+        widths.forEach((w,i)=>{ ctx.globalAlpha=(e.alpha==null?0.72:e.alpha)*(1-i*0.12); ctx.beginPath(); ctx.moveTo(-w/2,-30+i*20); ctx.lineTo(w/2,-30+i*20); ctx.stroke(); });
+      }
+      ctx.restore();
+      return;
+    }
+    if(e && e.alpha!=null){
+      ctx.save();
+      ctx.globalAlpha=e.alpha;
+      const result=oldDrawExtra(e);
+      ctx.restore();
+      return result;
+    }
+    return oldDrawExtra(e);
+  };
+
+  const prevSelectionGeometry=window.selectionGeometry;
+  window.selectionGeometry=function(id){
+    const extra=(window.extraElements||[]).find(e=>e.id===id);
+    if(extra){
+      const map={crosshair:[190,190],constellation:[140,120],bracket:[215,155],scan:[145,86]};
+      if(map[extra.kind]) return {cx:extra.x,cy:extra.y,w:map[extra.kind][0]*(extra.scale||1),h:map[extra.kind][1]*(extra.scale||1),angle:extra.angle||0};
+    }
+    return prevSelectionGeometry(id);
+  };
+
+  const prevRenderExtras=window.renderExtras;
+  window.renderExtras=function(){
+    prevRenderExtras();
+    const root=document.getElementById('elementLibrary');
+    if(!root) return;
+    root.querySelectorAll('.extra-library-item[data-space-research="1"]').forEach(el=>el.remove());
+    const defs={
+      crosshair:'<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"><circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="4"/><path d="M20 2v6M20 32v6M2 20h6M32 20h6"/></g></svg>',
+      constellation:'<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="white" stroke="white" stroke-width="1.8"><path d="M5 26 L12 10 L24 8 L33 18 L28 30 L11 33 Z" fill="none" stroke="white"/><circle cx="5" cy="26" r="2.4"/><circle cx="12" cy="10" r="2.4"/><circle cx="24" cy="8" r="2.4"/><circle cx="33" cy="18" r="2.4"/><circle cx="28" cy="30" r="2.4"/><circle cx="11" cy="33" r="2.4"/></g></svg>',
+      bracket:'<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"><path d="M7 15V7h8M25 7h8v8M7 25v8h8M25 33h8v-8"/></g></svg>',
+      scan:'<svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"><path d="M6 10h28M10 17h20M4 24h32M12 31h16"/></g></svg>'
+    };
+    ['crosshair','constellation','bracket','scan'].forEach(kind=>{
+      const item=document.createElement('div');
+      item.className='library-item extra-library-item';
+      item.dataset.spaceResearch='1';
+      item.innerHTML='<span class="element-icon v3-thumb">'+defs[kind]+'</span><span class="element-name">'+({'crosshair':'Research target','constellation':'Constellation link','bracket':'Data frame','scan':'Scan lines'})[kind]+'</span><button type="button" class="element-action add-element" aria-label="Add '+kind+'" title="Add '+kind+'">+</button>';
+      item.querySelector('.add-element').onclick=()=>{
+        if(typeof checkpoint==='function') checkpoint();
+        const id='extra'+(++extraCounter);
+        const base={id,kind,x:525+(Math.random()-.5)*260,y:525+(Math.random()-.5)*260,angle:0,scale:1,locked:false};
+        if(kind==='crosshair') Object.assign(base,{scale:.62,alpha:.85});
+        if(kind==='constellation') Object.assign(base,{scale:.85,alpha:.88});
+        if(kind==='bracket') Object.assign(base,{scale:.80,alpha:.76});
+        if(kind==='scan') Object.assign(base,{scale:.75,alpha:.58});
+        extraElements.push(base); visibleParts[id]=true; layerOrder.push(id);
+        renderExtras(); renderLayers(); select(id); draw();
+      };
+      root.appendChild(item);
+    });
+  };
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function rand(a,b){ return a+Math.random()*(b-a); }
+  function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+  function strength(){ return document.querySelector('input[name="design-variation"]:checked')?.value || 'balanced'; }
+  function clearGenerated(){
+    for(let i=extraElements.length-1;i>=0;i--){
+      const e=extraElements[i];
+      if(e.generatedByVariation && !e.locked){ extraElements.splice(i,1); layerOrder=layerOrder.filter(id=>id!==e.id); delete visibleParts[e.id]; }
+    }
+  }
+  function gen(kind,x,y,scale=1,angle=0,attrs={}){
+    const id='extra'+(++extraCounter);
+    extraElements.push({id,kind,x,y,scale,angle,generatedByVariation:true,locked:false,...attrs});
+    visibleParts[id]=true; layerOrder.push(id); return id;
+  }
+  function addText(text,x,y,size,opts={}){ gen('text',x,y,1,opts.angle||0,{text,fontSize:size,lineHeight:opts.lineHeight||Math.round(size*1.05),tracking:opts.tracking??3,fontRole:opts.fontRole||'technical',weight:opts.weight||700,align:opts.align||'center',color:opts.color||orbitInk(),alpha:opts.alpha??0.96}); }
+  function orbitXY(centerX,centerY,rx,ry,angleDeg,t){
+    const a=angleDeg*Math.PI/180; const x=rx*Math.cos(t), y=ry*Math.sin(t);
+    return {x:centerX+x*Math.cos(a)-y*Math.sin(a), y:centerY+x*Math.sin(a)+y*Math.cos(a)};
+  }
+  function addGeneratedDotOnOrbit(cx,cy,ang,rx,ry,t,scale){ const p=orbitXY(cx,cy,rx,ry,ang,t); gen('dot',p.x,p.y,scale,0,{alpha:1}); }
+  function setNoWhiteIfWhiteBackground(){
+    if(backgroundColor==='#FFFFFF'){
+      // make sure visible ring/planet colors stay dark enough by disabling pure white through orbitInk()
+      // accomplished by temporarily switching soft strokes off if needed; core draw already uses orbitInk().
+    }
+  }
+
+  let famCycle=['centered','diagonal','multiple','cropped','cosmic','minimal'];
+  let lastFam='centered';
+  let index=100;
+  function nextFamily(forceDifferent){
+    const level=strength();
+    let options=[...famCycle];
+    if(level==='experimental') options=['multiple','cropped','cosmic','diagonal'];
+    if(forceDifferent) options=options.filter(f=>f!==lastFam);
+    const f=pick(options.length?options:famCycle); lastFam=f; return f;
+  }
+
+  function buildResearchDesign(forceDifferent){
+    if(typeof checkpoint==='function') checkpoint();
+    clearGenerated();
+    state.ringWidth = defaults.ringWidth || 11;
+    const palette=['#A8CCFF','#86B6EB','#C6D9FF','#536CB5','#FFFFFF','#7FA7E5'];
+    const prev=backgroundColor;
+    const usable=palette.filter(c=>c!==prev);
+    backgroundColor=pick(usable.length?usable:palette);
+    const family=nextFamily(forceDifferent);
+    const level=strength();
+    const experimental=level==='experimental', subtle=level==='subtle';
+
+    // Core setup
+    const cfg={
+      centered:{cx:[510,540],cy:[508,540],circle:[.9,.99],paw:[.96,1.08],rings:[2,3],angles:[-16,24]},
+      diagonal:{cx:[474,560],cy:[470,558],circle:[.88,.98],paw:[.94,1.08],rings:[2,3],angles:[-34,18]},
+      multiple:{cx:[500,550],cy:[500,552],circle:[.9,.99],paw:[.94,1.06],rings:[3,4],angles:[-25,16]},
+      cropped:{cx:pick([[430,470],[580,620]]),cy:pick([[430,470],[585,635]]),circle:[1.1,1.22],paw:[.93,1.02],rings:[1,2,3],angles:[-18,26]},
+      cosmic:{cx:[470,575],cy:[460,575],circle:[.72,.84],paw:[.78,.92],rings:[2,3,4],angles:[-28,26]},
+      minimal:{cx:[515,535],cy:[515,535],circle:[.86,.96],paw:[.95,1.03],rings:[1,2],angles:[-16,22]}
+    };
+    const d=cfg[family];
+    const cx=Array.isArray(d.cx)?rand(d.cx[0],d.cx[1]):rand(d.cx[0],d.cx[1]);
+    const cy=Array.isArray(d.cy)?rand(d.cy[0],d.cy[1]):rand(d.cy[0],d.cy[1]);
+    state.circleSize=rand(d.circle[0],d.circle[1]);
+    state.circleDX=cx-525; state.circleDY=cy-525;
+    state.pawSize=rand(d.paw[0],d.paw[1]);
+    state.pawAngle=family==='diagonal'?rand(-14,16):rand(-10,10);
+    state.pawX=cx-525+rand(-10,10); state.pawY=cy-553+rand(-10,10); state.pawDX=0; state.pawDY=0;
+    visibleParts.circle=true; visibleParts.paw=true;
+
+    const ringScale=Math.max(0.84,Math.min(1.26,(390*state.circleSize+70)/480));
+    const ringCount=subtle?Math.min(2,pick(d.rings)):pick(d.rings);
+    const a1=rand(d.angles[0]-6,d.angles[0]+6), a2=rand(d.angles[1]-6,d.angles[1]+6);
+    state.orbitASize=ringScale; state.ringA=a1; state.orbitADX=cx-525; state.orbitADY=cy-525; visibleParts.orbitA=true;
+    state.orbitBSize=ringScale*rand(.98,1.05); state.ringB=a2; state.orbitBDX=cx-525; state.orbitBDY=cy-525; visibleParts.orbitB=ringCount>=2;
+    state.particleA=pick([0.08,0.16,0.38,0.64,0.88]); state.particleSizeA=rand(.85,1.12); visibleParts.particleA=true;
+    state.particleB=pick([0.12,0.31,0.58,0.79]); state.particleSizeB=rand(.82,1.08); visibleParts.particleB=ringCount>=2;
+    state.particleADX=state.particleADY=state.particleBDX=state.particleBDY=0;
+
+    const extraAngles=[];
+    if(ringCount>=3) extraAngles.push(rand(50,74));
+    if(ringCount>=4) extraAngles.push(rand(-72,-48));
+    extraAngles.forEach((ang,i)=>gen('ring',cx,cy,ringScale*rand(.96,1.06),ang,{generatedOrbitRing:true,alpha:1}));
+
+    // Research-style text
+    const leftOrRight = cx<525 ? 'right':'left';
+    const farX = cx<525 ? 900 : 150;
+    const nearX = cx<525 ? 170 : 880;
+    const researchTextSets={
+      centered:[['BARUCH SPACE RESEARCH',180,115,18,{align:'left',tracking:4}],['LOW EARTH ORBIT',870,935,15,{align:'right',tracking:3}]],
+      diagonal:[['RESEARCH UNIT 02',nearX,145,16,{align:leftOrRight,tracking:3}],['ORBIT STUDY',farX,910,20,{align:leftOrRight,tracking:4}]],
+      multiple:[['MISSION PATCH',525,96,18,{align:'center',tracking:4}],['SENSOR ARRAY',525,945,15,{align:'center',tracking:3}]],
+      cropped:[['SPACE RESEARCH',farX,145,20,{align:leftOrRight,tracking:4}],['DATA / ORBIT / NYC',nearX,915,14,{align:leftOrRight,tracking:3}]],
+      cosmic:[['EXPERIMENTAL FLIGHT',180,118,16,{align:'left',tracking:3}],['RADIAL TRACKING',870,932,16,{align:'right',tracking:3}]],
+      minimal:[['PATCH 02',180,115,15,{align:'left',tracking:3}],['BARUCH',870,935,15,{align:'right',tracking:4}]]
+    };
+    if(family!=='minimal' || Math.random()<0.7){
+      researchTextSets[family].forEach((row,i)=>addText(row[0],row[1],row[2],row[3],{...row[4],fontRole:(i===0||/^BARUCH(?:$|\s)/.test(row[0]))?'display':'technical'}));
+      if(experimental && family!=='minimal') addText(pick(['LAB SYSTEM','SPACE PROGRAM','RESEARCH MAP']), cx, cy<525?948:102, 13, {align:'center',tracking:3,fontRole:'technical',alpha:.72});
+    }
+
+    // Balanced space-research motifs.
+    const radius=390*state.circleSize;
+    const motifMode=pick(['paired','research','scan-heavy']);
+    if(motifMode!=='scan-heavy'){
+      gen('crosshair', clamp(cx-radius-118,80,970), clamp(cy-radius+120,80,970), rand(.42,.6), rand(-12,12), {alpha:.55,strokeWidth:8});
+      gen('crosshair', clamp(cx+radius+108,80,970), clamp(cy+radius-110,80,970), rand(.38,.55), rand(-10,10), {alpha:.42,strokeWidth:7});
+    }
+    gen('bracket', clamp(cx-radius-138,85,965), clamp(cy+radius*0.08,85,965), rand(.44,.62), 0, {alpha:.48,strokeWidth:8});
+    gen('bracket', clamp(cx+radius+132,85,965), clamp(cy-radius*0.06,85,965), rand(.38,.58), 180, {alpha:.42,strokeWidth:8});
+
+    if(family==='cosmic' || family==='multiple' || experimental){
+      gen('constellation', clamp(cx-radius-104,85,965), clamp(cy-radius-84,85,965), rand(.55,.82), rand(-10,12), {alpha:.68,strokeWidth:6});
+      gen('constellation', clamp(cx+radius+94,85,965), clamp(cy+radius+82,85,965), rand(.48,.76), rand(-10,10), {alpha:.52,strokeWidth:6});
+    }
+    if(family!=='minimal'){
+      gen('scan', clamp(cx-radius-120,85,965), clamp(cy+radius-58,85,965), rand(.54,.78), 0, {alpha:.28,strokeWidth:6});
+      if(family==='cropped' || family==='diagonal' || experimental) gen('scan', clamp(cx+radius+112,85,965), clamp(cy-radius+44,85,965), rand(.48,.7), 0, {alpha:.24,strokeWidth:6});
+    }
+
+    // Orbit-attached particles / sensors
+    addGeneratedDotOnOrbit(cx,cy,state.ringA,480*state.orbitASize,53*state.orbitASize,pick([0.24,0.76])*Math.PI*2, rand(.44,.62));
+    if(visibleParts.orbitB) addGeneratedDotOnOrbit(cx,cy,state.ringB,495*state.orbitBSize,58*state.orbitBSize,pick([0.18,0.82])*Math.PI*2, rand(.40,.58));
+    if(extraAngles.length) addGeneratedDotOnOrbit(cx,cy,extraAngles[0],480*ringScale,53*ringScale,pick([0.33,0.66])*Math.PI*2, rand(.36,.52));
+
+    // Corner stars / dots for overall balance
+    if(family!=='minimal') gen('spark', clamp(cx-radius-88,65,985), clamp(cy-radius-76,65,985), rand(.45,.64), rand(-12,12), {alpha:.95});
+    gen('dot', clamp(cx+radius+88,65,985), clamp(cy-radius-64,65,985), rand(.34,.5), 0, {alpha: family==='minimal' ? .95 : .72});
+    if(family==='cosmic' || experimental) gen('star', clamp(cx-radius-116,65,985), clamp(cy+radius+84,65,985), rand(.36,.56), 0, {alpha:.95});
+
+    // Keep order clean and readable.
+    layerOrder = layerOrder.filter((id,idx,self)=>self.indexOf(id)===idx);
+    const core=['circle','paw','orbitA','orbitB','particleA','particleB'];
+    layerOrder = [...core.filter(id=>layerOrder.includes(id)), ...layerOrder.filter(id=>!core.includes(id))];
+    index += 1;
+    const variation=document.getElementById('variation');
+    if(variation) variation.textContent=family.toUpperCase()+' / '+String(index).padStart(3,'0');
+    setNoWhiteIfWhiteBackground();
+    renderLibrary(); renderExtras(); renderLayers(); select(null); draw();
+  }
+
+  const generateBtn=document.getElementById('generate');
+  const remixBtn=document.getElementById('shuffle');
+  if(generateBtn) generateBtn.onclick=()=>buildResearchDesign(false);
+  if(remixBtn){ remixBtn.textContent='Remix Layout'; remixBtn.onclick=()=>buildResearchDesign(true); }
+
+  // Refresh library once with the new themed items.
+  if(typeof renderExtras==='function') renderExtras();
+})();
+</script>
+
+<script>
+/* Re-render the patch after web fonts finish loading, keeping selection frames accurate. */
+if(document.fonts && document.fonts.load){
+  Promise.allSettled([
+    document.fonts.load('700 38px "Barlow Condensed"'),
+    document.fonts.load('500 24px "IBM Plex Mono"')
+  ]).then(()=>{
+    try { draw(); if(typeof refreshSelectionFrame==='function') refreshSelectionFrame(); } catch(error) { console.warn('Font refresh:',error); }
+  });
+}
+</script>
+<script id="grid-and-variety-v4">
+/* v4: (1) exact selection grids for every element type, incl. text + research motifs;
+       (2) a much wider random-design generator (15 composition families, randomized recipes, text, palettes). */
+(()=>{
+ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+ const rand=(a,b)=>a+Math.random()*(b-a);
+ const pick=a=>a[Math.floor(Math.random()*a.length)];
+ const chance=p=>Math.random()<p;
+ const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+ const NEW_KINDS=new Set(['crosshair','constellation','bracket','scan','text']);
+
+ /* ---------- 1. Tight bounds for the kinds the earlier handle code did not know ---------- */
+ const DEFAULT_POINTS=[[-42,-28],[-10,-50],[34,-16],[12,26],[-36,38]];
+ window.patchExtraBounds=function(e){
+  if(!e||!NEW_KINDS.has(e.kind))return null;
+  const a=e.angle||0,rad=a*Math.PI/180,co=Math.cos(rad),si=Math.sin(rad);
+  if(e.kind==='text'){
+   const ts=window.patchTextStyle(e),lines=String(e.text||'').split(/\n/g);
+   ctx.save();
+   ctx.font=ts.weight+' '+ts.fontSize+'px "'+ts.family+'", '+ts.fallback;
+   const lh=(e.lineHeight&&lines.length>1)?Math.max(ts.fontSize*1.12,e.lineHeight*1.7):Math.round(ts.fontSize*1.18);
+   let W=0;
+   for(const line of lines){
+    const t=line.toUpperCase();
+    W=Math.max(W,[...t].reduce((s,ch)=>s+ctx.measureText(ch).width,0)+ts.tracking*Math.max(0,t.length-1));
+   }
+   ctx.restore();
+   const ox=e.align==='left'?W/2:e.align==='right'?-W/2:0;
+   return {cx:e.x+ox*co,cy:e.y+ox*si,w:W+8,h:lh*(lines.length-1)+ts.fontSize*.8+8,angle:a};
+  }
+  const sc=Math.max(.01,Math.abs(e.scale||1));
+  let ox=0,oy=0,w,h;
+  if(e.kind==='crosshair'){const lw=e.strokeWidth||10;w=h=2*(86+lw/2)}
+  else if(e.kind==='bracket'){const lw=e.strokeWidth||9;w=2*(98+lw/2);h=2*(70+lw/2)}
+  else if(e.kind==='scan'){const lw=e.strokeWidth||7;w=132+lw;h=60+lw}
+  else{
+   const pts=e.points||DEFAULT_POINTS,lw=e.strokeWidth||8,pad=Math.max(8,lw/2);
+   const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);
+   const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+   w=x1-x0+2*pad;h=y1-y0+2*pad;ox=(x0+x1)/2;oy=(y0+y1)/2;
+  }
+  return {cx:e.x+(ox*co-oy*si)*sc,cy:e.y+(ox*si+oy*co)*sc,w:w*sc,h:h*sc,angle:a};
+ };
+ window.selectionGeometry=function(id){
+  const e=extraElements.find(v=>v.id===id);
+  return e?window.patchExtraBounds(e):null;
+ };
+
+ // Text now honours the element's scale, so the resize handle works on labels too.
+ const baseTextStyle=window.patchTextStyle;
+ window.patchTextStyle=function(e){
+  const ts=baseTextStyle(e),s=clamp(e.scale||1,.2,4);
+  return s===1?ts:{...ts,fontSize:ts.fontSize*s,tracking:ts.tracking*s};
+ };
+
+ // Clicking anywhere inside the tight box of text / research motifs selects them.
+ const previousHit=hit;
+ hit=function(x,y){
+  for(const id of [...layerOrder].reverse()){
+   if(visibleParts[id]===false)continue;
+   const e=extraElements.find(v=>v.id===id);
+   if(!e||!NEW_KINDS.has(e.kind))continue;
+   const b=window.patchExtraBounds(e);if(!b)continue;
+   const r=b.angle*Math.PI/180,dx=x-b.cx,dy=y-b.cy;
+   const lx=dx*Math.cos(r)+dy*Math.sin(r),ly=-dx*Math.sin(r)+dy*Math.cos(r);
+   if(Math.abs(lx)<=b.w/2+6&&Math.abs(ly)<=b.h/2+6)return id;
+  }
+  return previousHit(x,y);
+ };
+
+ /* ---------- 2. Generator ---------- */
+ const PAL=['#A8CCFF','#86B6EB','#536CB5','#000042','#FFFFFF','#C6D9FF'];
+ const DISPLAY=['BARUCH','BEARCATS IN ORBIT','BARUCH SPACE RESEARCH','BARUCH SSEP','BEARCAT MISSION','BARUCH IN SPACE','BARUCH / ISS'];
+ const TECH=['SPACE STATION','LOW EARTH ORBIT','SPACE RESEARCH','SSEP','BARUCH COLLEGE','NYC TO ISS','ALTITUDE 408 KM','16 ORBITS A DAY','FLIGHT EXPERIMENT','ASTRONAUT SCIENCE','NEW YORK CITY'];
+ const PAIRS=[['BARUCH','LOW EARTH ORBIT'],['BARUCH SSEP','SPACE RESEARCH'],['BEARCATS IN ORBIT','BARUCH COLLEGE'],['BARUCH / ISS','16 ORBITS A DAY'],['BARUCH','SPACE STATION'],['BARUCH SPACE RESEARCH','NYC TO ISS']];
+ const SLOTS={
+  tl:{x:64,y:88,align:'left'},tr:{x:986,y:88,align:'right'},bl:{x:64,y:962,align:'left'},br:{x:986,y:962,align:'right'},
+  tc:{x:525,y:72,align:'center'},bc:{x:525,y:978,align:'center'},
+  ml:{x:58,y:525,align:'center',angle:-90},mr:{x:992,y:525,align:'center',angle:90}
+ };
+ const FAMS={
+  centered:()=>({cx:rand(500,550),cy:rand(500,550),cs:rand(.9,1),paw:[rand(.96,1.08),rand(-12,12)],rings:[rand(-18,-4),rand(16,34)],margin:rand(55,95),acc:['stars','beads','dust'],text:['headline','corners']}),
+  diagonal:()=>{const s=pick([1,-1]);return{cx:rand(470,560),cy:rand(470,560),cs:rand(.86,.98),paw:[rand(.94,1.08),s*rand(6,20)],rings:[s*rand(-40,-26),s*rand(6,20)],margin:rand(60,100),acc:['stars','crosshairs','beads'],text:['tech','headline']}},
+  fan:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.84,.95),paw:[rand(.94,1.04),rand(-8,8)],rings:shuffle([-62,-31,0,31,62]).slice(0,pick([3,4])).map(a=>a+rand(-6,6)),margin:rand(55,90),acc:['dust','beads','brackets'],text:['headline','tech']}),
+  cropped:()=>{const sx=pick([-1,1]),sy=pick([-1,1]);return{cx:525+sx*rand(55,120),cy:525+sy*rand(55,120),cs:rand(1.12,1.3),paw:[rand(.95,1.08),rand(-12,12)],rings:pick([[rand(-20,-6)],[rand(-24,-8),rand(18,32)],[rand(-24,-8),rand(18,32),rand(48,70)]]),margin:rand(40,80),bleed:true,acc:['stars','scans','dust'],text:['headline','tech']}},
+  tiny:()=>({cx:rand(440,610),cy:rand(440,610),cs:rand(.58,.76),paw:[rand(.7,.92),rand(-18,18)],rings:pick([[rand(-28,-10),rand(14,32)],[rand(-30,-14),rand(8,22),rand(44,66)],[rand(-34,-20),rand(-4,8),rand(20,34),rand(50,70)]]),margin:rand(110,170),acc:['stars','constellations','atoms','dust'],text:['tech','corners']}),
+  minimal:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.84,.96),paw:[rand(.94,1.04),rand(-8,8)],rings:chance(.8)?[rand(-16,-6)]:[],margin:rand(60,90),acc:['stars','dust'],text:['tech','block','none']}),
+  lowPlanet:()=>{const cs=rand(.8,.92);return{cx:rand(490,560),cy:rand(585,650),cs,paw:[rand(.94,1.06),rand(-10,10)],rings:[rand(-14,-4),rand(14,28)],margin:rand(55,90),acc:['stars','crosshairs','dust'],text:['headline']}},
+  highPlanet:()=>{const cs=rand(.8,.92);return{cx:rand(490,560),cy:rand(400,465),cs,paw:[rand(.94,1.06),rand(-10,10)],rings:[rand(-14,-4),rand(14,28)],margin:rand(55,90),acc:['stars','scans','dust'],text:['headline','tech']}},
+  sideLeft:()=>{const cs=rand(.78,.9);return{cx:rand(585,630),cy:rand(490,560),cs,paw:[rand(.9,1.04),rand(-14,14)],rings:[rand(-22,-8),rand(12,28)],margin:rand(50,85),acc:['brackets','stars','dust'],text:['vertical','block']}},
+  flat:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.82,.94),paw:[rand(.92,1.04),rand(-8,8)],rings:chance(.35)?[rand(-5,5),rand(-5,5)+pick([-1,1])*rand(9,15),rand(-5,5)-pick([-1,1])*rand(16,22)]:[rand(-5,5),rand(-5,5)+pick([-1,1])*rand(9,15)],margin:rand(60,100),acc:['beads','stars','scans'],text:['tech','corners']}),
+  steep:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.82,.94),paw:[rand(.92,1.04),rand(-12,12)],rings:chance(.4)?[rand(52,72),rand(-72,-52),rand(-8,8)]:[rand(52,72),rand(-72,-52)],margin:rand(55,95),acc:['beads','crosshairs','dust'],text:['headline','tech']}),
+  bare:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.9,1),paw:[rand(.98,1.08),rand(-14,14)],rings:[],margin:60,acc:['stars','dust','crosshairs','constellations'],text:['headline','corners']}),
+  frame:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.8,.9),paw:[rand(.92,1.04),rand(-10,10)],rings:[rand(-14,-4),rand(18,30)],margin:rand(50,80),acc:['brackets','crosshairs','scans'],text:['corners','block','tech']}),
+  gyro:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.74,.84),paw:[rand(.86,.98),rand(-10,10)],rings:shuffle([rand(-8,8),45+rand(-6,6),90+rand(-6,6),-45+rand(-6,6)]).slice(0,pick([3,4])),margin:rand(55,80),acc:['dust','beads'],text:['tech','headline']}),
+  sky:()=>({cx:rand(440,620),cy:rand(450,600),cs:rand(.68,.84),paw:[rand(.78,.94),rand(-16,16)],rings:[rand(-26,-10)],margin:rand(80,130),acc:['constellations','stars','starfield','dust'],text:['tech','vertical']}),
+  halo:()=>({cx:rand(505,545),cy:rand(505,545),cs:rand(.86,.96),paw:[rand(.96,1.06),rand(-8,8)],rings:[rand(-14,-4),rand(10,26),rand(-42,-26)],margin:rand(30,45),acc:['beads','stars','dust'],text:['headline','tech']})
+ };
+ const SAFE=['centered','diagonal','minimal','flat','lowPlanet','highPlanet','bare','halo'];
+ let recentFam=[],recentCols=[];
+
+ const aabb=b=>{const r=b.angle*Math.PI/180,c=Math.abs(Math.cos(r)),s=Math.abs(Math.sin(r));const hw=(b.w*c+b.h*s)/2,hh=(b.w*s+b.h*c)/2;return{x0:b.cx-hw,x1:b.cx+hw,y0:b.cy-hh,y1:b.cy+hh}};
+ const overlap=(a,b,m)=>a.x0<b.x1+m&&a.x1>b.x0-m&&a.y0<b.y1+m&&a.y1>b.y0-m;
+ function bnd(e){
+  const sc=Math.abs(e.scale||1),circ=r=>({cx:e.x,cy:e.y,w:2*r,h:2*r,angle:0});
+  if(e.kind==='dot')return circ(20*sc+2);
+  if(e.kind==='star')return circ(44*sc+2);
+  if(e.kind==='spark')return circ(34.5*sc+2);
+  if(e.kind==='atom')return circ(68.5*sc+2);
+  return window.patchExtraBounds(e);
+ }
+ function planetGap(b,P){
+  const r=b.angle*Math.PI/180,dx=P.x-b.cx,dy=P.y-b.cy;
+  const lx=dx*Math.cos(r)+dy*Math.sin(r),ly=-dx*Math.sin(r)+dy*Math.cos(r);
+  return Math.hypot(lx-clamp(lx,-b.w/2,b.w/2),ly-clamp(ly,-b.h/2,b.h/2))-P.R;
+ }
+ function inBox(p,b,m){
+  const r=b.angle*Math.PI/180,dx=p.x-b.cx,dy=p.y-b.cy;
+  const lx=dx*Math.cos(r)+dy*Math.sin(r),ly=-dx*Math.sin(r)+dy*Math.cos(r);
+  return Math.abs(lx)<=b.w/2+m&&Math.abs(ly)<=b.h/2+m;
+ }
+ function ringPoints(){
+  const pts=[];
+  const add=(cx,cy,rx,ry,deg)=>{const a=deg*Math.PI/180;for(let i=0;i<160;i++){const t=i/160*2*Math.PI,x=rx*Math.cos(t),y=ry*Math.sin(t);pts.push({x:cx+x*Math.cos(a)-y*Math.sin(a),y:cy+x*Math.sin(a)+y*Math.cos(a)})}};
+  if(visibleParts.orbitA!==false)add(525+state.orbitADX,525+state.orbitADY,480*state.orbitASize,53*state.orbitASize,state.ringA);
+  if(visibleParts.orbitB!==false)add(525+state.orbitBDX,525+state.orbitBDY,495*state.orbitBSize,58*state.orbitBSize,state.ringB);
+  for(const e of extraElements)if(e.kind==='ring'&&visibleParts[e.id]!==false){const g=e.generatedOrbitRing;add(e.x,e.y,(g?480:150)*e.scale,(g?53:15)*e.scale,e.angle||0)}
+  return pts;
+ }
+ const ORDER_CORE=['circle','paw','orbitA','orbitB','particleA','particleB'];
+
+ function build(forceDifferent){
+  try{
+   if(typeof checkpoint==='function')checkpoint();
+   const level=document.querySelector('input[name="design-variation"]:checked')?.value||'balanced';
+   const dens=level==='subtle'?.45:level==='experimental'?1.1:.75;
+
+   // remove earlier generated items (never locked or hand-added ones)
+   for(let i=extraElements.length-1;i>=0;i--){
+    const e=extraElements[i];
+    if(!locked(e.id)&&(e.generatedByVariation||e.generatedOrbitParticle||e.generatedBackgroundParticle)){
+     extraElements.splice(i,1);layerOrder=layerOrder.filter(id=>id!==e.id);delete visibleParts[e.id];
+    }
+   }
+
+   // choose a family that differs from the last three
+   let names=Object.keys(FAMS);
+   if(level==='subtle')names=SAFE;
+   if(level==='experimental')names=names.filter(n=>n!=='centered'&&n!=='minimal');
+   let avail=names.filter(n=>!recentFam.includes(n));
+   if(!avail.length)avail=names;
+   const famName=pick(avail);
+   recentFam.push(famName);if(recentFam.length>3)recentFam.shift();
+   const cfg=FAMS[famName](),flip=chance(.5);
+   if(flip){cfg.cx=1050-cfg.cx;cfg.rings=cfg.rings.map(a=>-a);cfg.paw=[cfg.paw[0],-cfg.paw[1]]}
+
+   // background: never the previous color or one of the last two
+   const options=PAL.filter(c=>c!==backgroundColor&&!recentCols.includes(c));
+   backgroundColor=pick(options.length?options:PAL.filter(c=>c!==backgroundColor));
+   recentCols.push(backgroundColor);if(recentCols.length>2)recentCols.shift();
+
+   // planet
+   state.ringWidth=defaults.ringWidth||11;
+   let cx=cfg.cx,cy=cfg.cy,cs=cfg.cs;
+   if(locked('circle')){cx=525+state.circleDX;cy=525+state.circleDY;cs=state.circleSize}
+   else{
+    if(!cfg.bleed){const R=390*cs+10;cx=clamp(cx,R+12,1038-R);cy=clamp(cy,R+12,1038-R)}
+    state.circleSize=cs;state.circleDX=cx-525;state.circleDY=cy-525;
+   }
+   visibleParts.circle=true;
+   const R=390*cs;
+
+   // paw
+   visibleParts.paw=true;
+   if(!locked('paw')){
+    state.pawSize=Math.min(cfg.paw[0],(R-34)/295);
+    state.pawAngle=cfg.paw[1];
+    state.pawX=cx-525+rand(-8,8);state.pawY=cy-525+rand(-8,8);
+    state.pawDX=0;state.pawDY=0;
+   }
+
+   // rings: core A and B first, extras beyond that
+   const nested=chance(.35);
+   const maxRx=cfg.bleed?1e4:Math.min(cx-24,1026-cx);
+   const rxFor=i=>clamp(R+cfg.margin+(nested?(i%2?1:-1)*i*rand(8,22):0),R+28,maxRx);
+   const angles=cfg.rings;
+   if(!locked('orbitA')){
+    visibleParts.orbitA=angles.length>=1;
+    if(angles.length>=1){state.orbitASize=rxFor(0)/480;state.ringA=angles[0];state.orbitADX=cx-525;state.orbitADY=cy-525}
+   }
+   if(!locked('orbitB')){
+    visibleParts.orbitB=angles.length>=2;
+    if(angles.length>=2){state.orbitBSize=rxFor(1)/495;state.ringB=angles[1];state.orbitBDX=cx-525;state.orbitBDY=cy-525}
+   }
+   for(let i=2;i<angles.length;i++){
+    const id='extra'+(++extraCounter);
+    extraElements.push({id,kind:'ring',x:cx,y:cy,scale:rxFor(i)/480,angle:angles[i],generatedOrbitRing:true,generatedByVariation:true,locked:false});
+    layerOrder.push(id);visibleParts[id]=true;
+   }
+
+   // placement context
+   const P={x:cx,y:cy,R:R+(state.ringWidth+8)/2};
+   const rp=ringPoints(),placed=[];
+   for(const e of extraElements){
+    if(e.kind==='ring'||visibleParts[e.id]===false)continue;
+    const b=bnd(e);if(b)placed.push({a:aabb(b)});
+   }
+   const fits=(b,o={})=>{
+    const a=aabb(b);
+    if(a.x0<28||a.x1>1022||a.y0<28||a.y1>1022)return false;
+    if(planetGap(b,P)<(o.gap??20))return false;
+    if(!o.ignoreRings&&rp.some(p=>inBox(p,b,12)))return false;
+    return !placed.some(q=>overlap(a,q.a,o.pad??12));
+   };
+   function tryAdd(kind,sampler,scaleFn,extra,o={}){
+    for(let n=0;n<(o.tries||70);n++){
+     const p=sampler(),ex=typeof extra==='function'?extra():(extra||{});
+     const e={kind,x:p.x,y:p.y,scale:scaleFn(),angle:p.angle??ex.angle??0,locked:false,generatedByVariation:true,...ex};
+     if(p.angle!=null)e.angle=p.angle;
+     const b=bnd(e);
+     if(!b||!fits(b,o))continue;
+     e.id='extra'+(++extraCounter);
+     extraElements.push(e);visibleParts[e.id]=true;layerOrder.push(e.id);
+     placed.push({a:aabb(b)});
+     return e;
+    }
+    return null;
+   }
+
+   // core particles sit on their own ring path, clear of the planet
+   const orbitPt=(w,t)=>{
+    const A=w==='A',a=state[A?'ringA':'ringB']*Math.PI/180,sz=state[A?'orbitASize':'orbitBSize'];
+    const u=t*2*Math.PI,x=(A?480:495)*sz*Math.cos(u),y=(A?53:58)*sz*Math.sin(u);
+    return{x:525+state['orbit'+w+'DX']+x*Math.cos(a)-y*Math.sin(a),y:525+state['orbit'+w+'DY']+x*Math.sin(a)+y*Math.cos(a)};
+   };
+   for(const w of ['A','B']){
+    const id='particle'+w;if(locked(id))continue;
+    visibleParts[id]=false;
+    if(visibleParts['orbit'+w]===false||chance(.18/dens))continue;
+    const base=w==='A'?25:31,sz=rand(.6,1.0),r=base*sz;
+    for(let n=0;n<140;n++){
+     const t=Math.random(),p=orbitPt(w,t);
+     const b={cx:p.x,cy:p.y,w:2*(r+2),h:2*(r+2),angle:0};
+     if(!fits(b,{ignoreRings:true,gap:20}))continue;
+     state['particleSize'+w]=sz;state['particle'+w]=t;
+     state['particle'+w+'DX']=0;state['particle'+w+'DY']=0;
+     visibleParts[id]=true;placed.push({a:aabb(b)});break;
+    }
+   }
+
+   // accent recipes
+   const anyPt=()=>({x:rand(48,1002),y:rand(48,1002)});
+   const cornerPt=()=>({x:chance(.5)?rand(48,300):rand(750,1002),y:chance(.5)?rand(48,300):rand(750,1002)});
+   const ringPt=()=>pick(rp);
+   const poly=()=>{const n=Math.floor(rand(4,7));let x=-50,y=rand(-30,30);const pts=[[x,y]];for(let i=1;i<n;i++){x+=rand(18,34);y=clamp(y+rand(-38,38),-55,55);pts.push([x,y])}return pts};
+   const count=(a,b)=>Math.max(1,Math.round(rand(a,b)*dens));
+   const RECIPES={
+    stars(){for(let i=count(1,3);i>0;i--)tryAdd(pick(['star','spark','star','spark','dot']),()=>chance(.7)?cornerPt():anyPt(),()=>rand(.4,.85),()=>({angle:rand(-20,20)}))},
+    dust(){for(let i=count(2,5);i>0;i--)tryAdd('dot',anyPt,()=>rand(.28,.55),{})},
+    starfield(){for(let i=count(4,8);i>0;i--)tryAdd(pick(['spark','dot','dot']),anyPt,()=>rand(.22,.4),()=>({angle:rand(0,45)}))},
+    beads(){if(!rp.length)return;for(let i=count(2,5);i>0;i--)tryAdd('dot',ringPt,()=>rand(.4,.7),{},{ignoreRings:true,gap:16})},
+    crosshairs(){for(let i=count(1,3);i>0;i--)tryAdd('crosshair',()=>chance(.6)?cornerPt():anyPt(),()=>rand(.28,.5),()=>({alpha:rand(.5,.9),strokeWidth:rand(7,10),angle:rand(-15,15)}))},
+    brackets(){for(let i=count(1,2);i>0;i--)tryAdd('bracket',()=>chance(.6)?cornerPt():anyPt(),()=>rand(.35,.62),()=>({alpha:rand(.55,.9),strokeWidth:rand(8,10),angle:pick([0,0,90,180,-90])}))},
+    constellations(){for(let i=count(1,3);i>0;i--)tryAdd('constellation',()=>chance(.6)?cornerPt():anyPt(),()=>rand(.5,.9),()=>({points:poly(),alpha:rand(.55,.9),strokeWidth:rand(6,8),angle:rand(-25,25)}))},
+    scans(){for(let i=count(1,2);i>0;i--)tryAdd('scan',()=>chance(.6)?cornerPt():anyPt(),()=>rand(.5,.9),()=>({alpha:rand(.3,.6),strokeWidth:rand(6,7),angle:pick([0,0,90,-90])}))},
+    atoms(){for(let i=count(1,2);i>0;i--)tryAdd('atom',()=>chance(.6)?cornerPt():anyPt(),()=>rand(.28,.45),()=>({angle:rand(0,60)}))}
+   };
+   const names2=Object.keys(RECIPES),chosen=[];
+   for(const n of shuffle([...cfg.acc,...cfg.acc,...names2])){
+    if(!chosen.includes(n))chosen.push(n);
+    if(chosen.length>=clamp(Math.round(rand(1.4,3)*dens*1.3),1,4))break;
+   }
+   chosen.forEach(n=>RECIPES[n]());
+   {const cap=level==='experimental'?8:level==='subtle'?3:5;
+    const acc=extraElements.filter(e=>e.generatedByVariation&&!['ring','text'].includes(e.kind));
+    for(const e of shuffle(acc).slice(cap)){extraElements.splice(extraElements.indexOf(e),1);layerOrder=layerOrder.filter(id=>id!==e.id);delete visibleParts[e.id]}}
+
+   // text
+   const used=new Set();
+   const flipSlot=sl=>flip?{x:1050-sl.x,y:sl.y,align:sl.align==='left'?'right':sl.align==='right'?'left':'center',angle:-(sl.angle||0)}:{...sl,angle:sl.angle||0};
+   function put(keys,text,role,fs,scl,track){
+    for(const k of shuffle(keys)){
+     const sl=flipSlot(SLOTS[k]);
+     const e=tryAdd('text',()=>({x:sl.x+rand(-6,6),y:sl.y+rand(-4,4),angle:sl.angle}),()=>scl,{text,fontSize:fs,fontRole:role,tracking:track,align:sl.align},{tries:2,gap:46,pad:10});
+     if(e){used.add(text);return e}
+    }
+    return null;
+   }
+   const CORNERS=['tl','tr','bl','br'],TOPBOT=['tc','bc'],ALL=['tc','bc','tl','tr','bl','br'];
+   // simple rule: a short headline and/or one supporting line, always about Baruch, SSEP, the ISS or space research
+   const headline=(keys)=>{for(const t of shuffle(DISPLAY).slice(0,5))if(put(keys,t,'display',rand(19,21),rand(1,1.3),4))return t;return null};
+   const support=(keys)=>{for(const t of shuffle(TECH).slice(0,6))if(!used.has(t)&&put(keys,t,'technical',rand(14,16),1,3))return t;return null};
+   const TEXT={
+    headline(){headline(ALL)},
+    pair(){const p=pick(PAIRS),top=chance(.5);
+      const a=put(top?['tc']:['bc'],p[0],'display',rand(19,21),1,4);
+      if(a)put(top?['bc']:['tc'],p[1],'technical',rand(14,16),1,3);
+      else{headline(ALL)}},
+    tech(){support(ALL)},
+    corners(){headline(CORNERS);support(CORNERS)},
+    block(){support(CORNERS)},
+    vertical(){put(['ml','mr'],pick(['LOW EARTH ORBIT','SPACE STATION','SPACE RESEARCH','BARUCH SPACE RESEARCH']),'technical',15,1,5)},
+    none(){}
+   };
+   const modeMap={headline:'pair',tech:'tech',corners:'corners',block:'block',vertical:'vertical',none:'none'};
+   if(!chance(.06)){
+    const m=pick(cfg.text.concat(['pair','pair']));
+    (TEXT[modeMap[m]||m])();
+    if(level==='experimental'&&chance(.4))TEXT.tech();
+   }
+
+   // finish
+   layerOrder=[...ORDER_CORE,...layerOrder.filter(id=>!ORDER_CORE.includes(id))];
+   index++;
+   const label=document.getElementById('variation');
+   if(label)label.textContent=famName.replace(/([A-Z])/g,' $1').toUpperCase()+' / '+String(index).padStart(3,'0');
+   select(null);renderLibrary();renderExtras();renderLayers();draw();
+  }catch(err){console.error('Generation failed:',err);try{renderLibrary();renderLayers();draw()}catch(_){}}
+ }
+ document.getElementById('generate').onclick=()=>build(false);
+ document.getElementById('shuffle').onclick=()=>build(true);
+ const explanation=document.querySelector('.variation-explanation');
+ if(explanation)explanation.textContent='Simple compositions: the paw and planet, 0–4 thin rings, a few accents, and short labels about Baruch, SSEP, the ISS and space research.';
+ window.patchGeneratorV4={build};
 })();
 </script>
 </body></html>

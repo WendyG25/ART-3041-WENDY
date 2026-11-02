@@ -171,7 +171,49 @@
 #elementLibrary .add-element{grid-column:1!important;grid-row:2!important;display:flex!important;position:static!important;visibility:visible!important;width:24px!important;min-width:24px!important;max-width:24px!important;height:24px!important;min-height:24px!important;max-height:24px!important;margin:0!important;padding:0!important;border-radius:6px!important;font-size:17px!important;line-height:1!important;justify-self:center!important;align-items:center!important;justify-content:center!important;cursor:pointer!important}
 #elementLibrary .remove-element,#elementLibrary .element-name,#elementLibrary .element-count{display:none!important}
 @media(max-width:380px){#elementLibrary.element-library{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}#elementLibrary .library-item{padding:6px 2px!important}}
-</style></head><body><header><strong>✦ ORBIT / PATCH STUDIO</strong><div class="header-actions"><a class="home-link" href="index.html">← Back to Homepage</a></div></header><main class="shell"><aside id="editingPanel"><div id="editorContents"><h1>Mission Patch Generator</h1><p>Explore new compositions using your Bearcat paw silhouette and orbital sketch. Generate compositions with the expanded element library and six-color palette.</p><div class="buttons"><button class="primary" id="generate">✦ Generate New Design</button><button id="original">Restore Original</button><button id="shuffle">Subtle Variation</button></div><h2>Elements</h2><p>Select an element in the library to add it to the patch. Click a visible element on the patch to edit it.</p><div id="elementLibrary" class="element-library"></div><h2>Color Palette</h2><div id="leftPalette"></div></div></aside><section class="stage"><div class="top"><div><div class="eyebrow">LIVE PATCH PREVIEW</div><h1 style="font-size:19px;margin:8px 0 0">Beyond the Orbit</h1></div><span class="eyebrow" id="variation">ORIGINAL / 001</span></div><p class="mini" style="align-self:center;margin:0 0 12px">Drag any selected element to move it. Resize from the bottom-right corner or rotate from the top-center handle.</p><div class="patch-wrap" id="patchWrap" style="position:relative"><div id="resizeHandle" title="Drag to resize selected element" style="display:none;position:absolute;width:22px;height:22px;background:#F35A77;border:2px solid white;border-radius:50%;box-shadow:0 1px 7px #0006;z-index:5;cursor:nwse-resize;touch-action:none;transform:translate(-50%,-50%)"></div><div id="rotateHandle" title="Drag to rotate selected element" style="display:none;position:absolute;width:22px;height:22px;background:#fff;color:#E13D65;border:2px solid #F35A77;border-radius:50%;z-index:6;cursor:grab;touch-action:none;transform:translate(-50%,-50%);text-align:center;line-height:20px;font-size:18px">↻</div><canvas id="patch" width="1050" height="1050" aria-label="Generated Bearcat paw space mission patch"></canvas></div><div class="stage-footer"><span id="selectedElement">SELECTED: NONE</span><button id="resetPositions" style="padding:5px 9px">Reset element positions</button></div><div class="stage-footer"><span>3.5″ × 3.5″ · 300 DPI · 1050 × 1050 px</span><span>1:1 FIXED FORMAT</span></div><div class="stage-favorites"><div class="eyebrow">SAVED VARIATIONS</div><h2>Favorite Designs</h2><div id="favorites" class="favorites-grid"></div></div></section><aside class="right"><div style="display:none" aria-hidden="true"><div id="palette"></div><div id="selectionControls"></div></div><section class="scale-check" aria-label="Small-scale patch check"><h2>Small-Scale Check</h2><p class="mini">See how the patch reads at smaller sizes before exporting.</p><div class="scale-check-previews"><figure><canvas id="scalePreviewOne" width="180" height="180" aria-label="Patch preview at one inch"></canvas><figcaption>1 inch · 100%</figcaption></figure><figure><canvas id="scalePreviewHalf" width="90" height="90" aria-label="Patch preview at half an inch"></canvas><figcaption>½ inch · 50%</figcaption></figure></div><p class="mini scale-check-note">Check that the paw remains recognizable and fine rings are visible.</p></section><h2>Export</h2><p>Your export is an exact square PNG at 1050 × 1050 pixels, with 300 DPI metadata corresponding to 3.5 inches on each side.</p><button class="primary" id="export">↓ Download Patch PNG</button><button id="save">↓ Save Design Settings</button><button id="load">↑ Load Design Settings</button><input type="file" id="file" accept="application/json" hidden><label class="toggle"><input type="checkbox" id="soft" checked>Soft hand-drawn strokes</label><p class="mini">Designs preserve the Bearcat paw and planet, with 1–4 consistently thin orbital rings, optional stars, particles, and technical typography. Ring sections behind the planet are hidden.</p></aside></main><script>
+</style><style id="remove-obsolete-element-cards">
+    #editingPanel #elementLibrary,
+    #editingPanel #elementLibrary.element-library,
+    #editingPanel #elementLibrary.studio-original-library-hidden {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    </style>
+<style id="improved-editor-layout">
+#studioElementManager .studio-inspector {
+  position:sticky; top:10px; z-index:24;
+  background:#eaf1ff; border:2px solid #9bb5e3;
+  box-shadow:0 6px 20px rgba(23,51,109,.1);
+}
+#studioElementManager .studio-inspector-title::before{display:none}
+#studioElementManager .studio-inspector-title{margin-bottom:10px;font-size:13px}
+#studioElementManager .studio-quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0 12px}
+#studioElementManager .studio-quick-actions button{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  min-height:40px;border-radius:9px;font-size:12px;font-weight:800;padding:7px;
+}
+#studioElementManager .studio-action-add{background:#193a83;color:white;border-color:#193a83}
+#studioElementManager .studio-action-delete{background:white;color:#a82e57;border-color:#e7b8c9}
+#studioElementManager .studio-quick-actions button:disabled{opacity:.42;cursor:not-allowed}
+#studioElementManager .studio-quick-actions span{font-size:21px;line-height:1}
+#studioElementManager .studio-slider{margin-top:10px}
+#studioElementManager .studio-category{margin:8px 0;border:1px solid #d8e2f3;border-radius:10px;background:#fafcff;overflow:hidden}
+#studioElementManager .studio-category summary{padding:11px 12px;font-size:12px;font-weight:750;color:#193a83;cursor:pointer}
+#studioElementManager .studio-category[open] summary{border-bottom:1px solid #e1e8f4}
+#studioElementManager .studio-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:9px}
+#studioElementManager .studio-add-card{min-height:76px;padding:6px 3px}
+#studioElementManager .studio-current{max-height:175px}
+#editingPanel #elementLibrary{display:none!important}
+</style>
+<style id="animation-timing-controls-css">
+#animationStudio .anim-timing{display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:12px 13px;margin:10px 0 14px;background:#f1f5ff;border:1px solid #d3dff4;border-radius:11px}
+#animationStudio .anim-timing label{display:flex;align-items:start;justify-content:space-between;gap:7px;line-height:1.4;color:#223d76}
+#animationStudio .anim-timing output{font:10px 'IBM Plex Mono',monospace;text-align:right;color:#41619c}
+#animationStudio .anim-timing input{width:100%;accent-color:#193a83;margin:11px 0 4px}
+#animationStudio .anim-help{display:block;font-size:10px;line-height:1.5;color:#7584a2}
+@media(max-width:650px){#animationStudio .anim-timing{grid-template-columns:1fr}}
+</style></head><body><header><strong>✦ ORBIT / PATCH STUDIO</strong><div class="header-actions"><a class="home-link" href="index.html">← Back to Homepage</a></div></header><main class="shell"><aside id="editingPanel"><div id="editorContents"><h1>Mission Patch Generator</h1><p>Generate distinct Baruch space-research designs inspired by your favorites: two-world studies, technical type, oversized Bearcat paws, crossing orbital rings, and minimal single-planet layouts.</p><div class="buttons"><button class="primary" id="generate">✦ Generate New Design</button><button id="original">Restore Original</button><button id="shuffle">Subtle Variation</button></div><h2>Elements</h2><p>Select an element in the library to add it to the patch. Click a visible element on the patch to edit it.</p><div id="elementLibrary" class="element-library" hidden aria-hidden="true" style="display:none!important"></div><h2>Color Palette</h2><div id="leftPalette"></div><div class="field"><label for="bearcatColor">Bearcat paw color</label><input id="bearcatColor" type="color" value="#000042" style="width:100%;height:38px;cursor:pointer"><p class="mini">Vector paw: recolor freely without losing sharpness.</p></div></div></aside><section class="stage"><div class="top"><div><div class="eyebrow">LIVE PATCH PREVIEW</div><h1 style="font-size:19px;margin:8px 0 0">Beyond the Orbit</h1></div><span class="eyebrow" id="variation">ORIGINAL / 001</span></div><p class="mini" style="align-self:center;margin:0 0 12px">Drag any selected element to move it. Resize from the bottom-right corner or rotate from the top-center handle.</p><div class="patch-wrap" id="patchWrap" style="position:relative"><div id="resizeHandle" title="Drag to resize selected element" style="display:none;position:absolute;width:22px;height:22px;background:#F35A77;border:2px solid white;border-radius:50%;box-shadow:0 1px 7px #0006;z-index:5;cursor:nwse-resize;touch-action:none;transform:translate(-50%,-50%)"></div><div id="rotateHandle" title="Drag to rotate selected element" style="display:none;position:absolute;width:22px;height:22px;background:#fff;color:#E13D65;border:2px solid #F35A77;border-radius:50%;z-index:6;cursor:grab;touch-action:none;transform:translate(-50%,-50%);text-align:center;line-height:20px;font-size:18px">↻</div><canvas id="patch" width="1050" height="1050" aria-label="Generated Bearcat paw space mission patch"></canvas></div><div class="stage-footer"><span id="selectedElement">SELECTED: NONE</span><button id="resetPositions" style="padding:5px 9px">Reset element positions</button></div><div class="stage-footer"><span>3.5″ × 3.5″ · 300 DPI · 1050 × 1050 px</span><span>1:1 FIXED FORMAT</span></div><div class="stage-favorites"><div class="eyebrow">SAVED VARIATIONS</div><h2>Favorite Designs</h2><div id="favorites" class="favorites-grid"></div></div></section><aside class="right"><div style="display:none" aria-hidden="true"><div id="palette"></div><div id="selectionControls"></div></div><section class="scale-check" aria-label="Small-scale patch check"><h2>Small-Scale Check</h2><p class="mini">See how the patch reads at smaller sizes before exporting.</p><div class="scale-check-previews"><figure><canvas id="scalePreviewOne" width="180" height="180" aria-label="Patch preview at one inch"></canvas><figcaption>1 inch · 100%</figcaption></figure><figure><canvas id="scalePreviewHalf" width="90" height="90" aria-label="Patch preview at half an inch"></canvas><figcaption>½ inch · 50%</figcaption></figure></div><p class="mini scale-check-note">Check that the paw remains recognizable and fine rings are visible.</p></section><h2>Export</h2><p>Your export is an exact square PNG at 1050 × 1050 pixels, with 300 DPI metadata corresponding to 3.5 inches on each side.</p><button class="primary" id="export">↓ Download Patch PNG</button><button id="save">↓ Save Design Settings</button><button id="load">↑ Load Design Settings</button><input type="file" id="file" accept="application/json" hidden><label class="toggle"><input type="checkbox" id="soft" checked>Soft hand-drawn strokes</label><p class="mini">Designs preserve the Bearcat paw and planet, with 1–4 consistently thin orbital rings, optional stars, particles, and technical typography. Ring sections behind the planet are hidden.</p></aside></main><script>
+document.getElementById('bearcatColor').addEventListener('input',e=>updateBearcatColor(e.target.value));
 const canvas=document.getElementById('patch'),ctx=canvas.getContext('2d');let backgroundColor='#A8CCFF';const orbitInk=()=>{const h=backgroundColor.replace('#','');const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return (0.2126*r+0.7152*g+0.0722*b)>220?'#193A83':'#FFFFFF'};const defaults={pawSize:1,pawAngle:-13,pawX:0,pawY:0,circleSize:1,orbitASize:1,orbitBSize:1,ringA:-4,ringB:34,ringWidth:11,particleA:0.47,particleB:0.15,particleSize:1,particleSizeA:1,particleSizeB:1,pawDX:0,pawDY:0,circleDX:0,circleDY:0,orbitADX:0,orbitADY:0,orbitBDX:0,orbitBDY:0,particleADX:0,particleADY:0,particleBDX:0,particleBDY:0};let state={...defaults},index=1;const defs=[['pawSize','Paw scale',.75,1.18,.01],['pawAngle','Paw rotation',-30,25,1],['pawX','Horizontal position',-60,60,1],['pawY','Vertical position',-55,55,1],['circleSize','Planet outline scale',.55,1.25,.01],['orbitASize','First ring scale',.55,1.14,.01],['orbitBSize','Second ring scale',.55,1.14,.01],['ringA','First orbit tilt',-90,90,1],['ringB','Second orbit tilt',-90,90,1],['ringWidth','White line thickness',7,19,1],['particleA','First particle position',0,1,.01],['particleB','Second particle position',0,1,.01],['particleSizeA','Particle 1 size',.45,1.9,.01],['particleSizeB','Particle 2 size',.45,1.9,.01]];function controls(){for(let i=0;i<defs.length;i++){const [k,label,min,max,step]=defs[i];const host=document.getElementById(['pawSize','pawAngle','pawX','pawY'].includes(k)?'pawControls':['circleSize','orbitASize','orbitBSize','ringA','ringB','ringWidth'].includes(k)?'orbitControls':'detailControls');const div=document.createElement('div');div.className='field';div.innerHTML=`<label for="${k}">${label}<output id="o_${k}"></output></label><input id="${k}" type="range" min="${min}" max="${max}" step="${step}">`;host.appendChild(div);div.querySelector('input').addEventListener('input',e=>{state[k]=Number(e.target.value);sync(false);draw()})}sync(true)}function sync(set){defs.forEach(([k])=>{const el=document.getElementById(k);if(set)el.value=state[k];document.getElementById('o_'+k).textContent=Number(state[k]).toFixed(['pawSize','circleSize','orbitASize','orbitBSize','particleA','particleB','particleSizeA','particleSizeB'].includes(k)?2:0)})}
 function ellipse(cx,cy,rx,ry,angle){ctx.save();ctx.translate(cx,cy);ctx.rotate(angle*Math.PI/180);ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.restore()}function orbitArc(cx,cy,rx,ry,angle,which){
   // A planet occludes the back half of each ring; the near half passes in front.
@@ -195,8 +237,12 @@ function ellipse(cx,cy,rx,ry,angle){ctx.save();ctx.translate(cx,cy);ctx.rotate(a
   ctx.setLineDash([]);ctx.stroke();
 }
 function particle(rx,ry,angle,t,r,ox=0,oy=0){const a=t*Math.PI*2;const x=rx*Math.cos(a),y=ry*Math.sin(a),rad=angle*Math.PI/180;ctx.beginPath();ctx.arc(525+ox+x*Math.cos(rad)-y*Math.sin(rad),525+oy+x*Math.sin(rad)+y*Math.cos(rad),r,0,Math.PI*2);ctx.fill()}
-const pawImage=new Image();pawImage.onload=()=>draw();pawImage.src="data:image/png;base64,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";
-function paw(){if(window.visibleParts && !window.visibleParts.paw)return;if(!pawImage.complete||!pawImage.naturalWidth)return;ctx.save();ctx.translate(525+state.pawX+state.pawDX,553+state.pawY+state.pawDY);ctx.rotate(state.pawAngle*Math.PI/180);ctx.scale(state.pawSize,state.pawSize);ctx.drawImage(pawImage,-245,-285,490,490);ctx.restore()}
+const pawImage=new Image();pawImage.onload=()=>draw();const bearcatPathData='M 183.07 173.54 C 181.28 173.60 179.51 173.76 177.75 173.99 C 176.00 174.23 174.26 174.55 172.53 174.95 C 170.80 175.35 169.08 175.83 167.38 176.37 C 165.67 176.91 163.98 177.52 162.29 178.19 C 160.61 178.86 158.94 179.60 157.27 180.38 C 155.61 181.16 153.95 182.00 152.30 182.88 C 150.65 183.76 149.01 184.69 147.37 185.65 C 145.73 186.60 144.10 187.60 142.47 188.63 C 140.84 189.65 139.22 190.70 137.60 191.77 C 135.98 192.84 134.36 193.94 132.74 195.04 C 131.12 196.14 129.50 197.26 127.88 198.37 C 126.26 199.49 124.64 200.62 123.02 201.73 C 121.40 202.85 119.78 203.96 118.15 205.06 C 116.52 206.16 114.89 207.25 113.25 208.32 C 111.62 209.38 109.98 210.43 108.33 211.45 C 106.68 212.46 105.02 213.45 103.36 214.40 C 101.70 215.35 100.02 216.26 98.34 217.14 C 96.66 218.01 94.97 218.83 93.28 219.64 C 91.58 220.45 89.88 221.21 88.18 221.98 C 86.48 222.74 84.77 223.48 83.07 224.22 C 81.37 224.97 79.67 225.70 77.97 226.45 C 76.28 227.21 74.59 227.96 72.91 228.75 C 71.23 229.54 69.56 230.34 67.90 231.19 C 66.24 232.04 64.59 232.91 62.96 233.84 C 61.33 234.77 59.71 235.75 58.11 236.79 C 56.52 237.83 54.93 238.93 53.39 240.09 C 51.85 241.25 50.32 242.47 48.85 243.74 C 47.39 245.00 45.95 246.33 44.57 247.70 C 43.20 249.07 41.87 250.50 40.62 251.96 C 39.36 253.42 38.17 254.93 37.06 256.48 C 35.95 258.03 34.91 259.62 33.96 261.24 C 33.02 262.86 32.16 264.52 31.41 266.21 C 30.65 267.90 29.99 269.62 29.46 271.37 C 28.92 273.11 28.49 274.89 28.18 276.68 C 27.87 278.47 27.69 280.29 27.60 282.12 C 27.52 283.94 27.56 285.78 27.69 287.62 C 27.82 289.46 28.06 291.31 28.40 293.15 C 28.73 294.99 29.17 296.83 29.69 298.65 C 30.21 300.47 30.83 302.29 31.53 304.08 C 32.23 305.87 33.01 307.64 33.87 309.38 C 34.73 311.12 35.68 312.84 36.69 314.51 C 37.70 316.18 38.79 317.83 39.93 319.42 C 41.08 321.01 42.30 322.56 43.57 324.05 C 44.84 325.54 46.18 326.99 47.56 328.37 C 48.94 329.74 50.38 331.07 51.86 332.31 C 53.34 333.55 54.88 334.74 56.44 335.83 C 58.01 336.93 59.62 337.96 61.26 338.89 C 62.89 339.82 64.57 340.68 66.27 341.43 C 67.97 342.18 69.70 342.85 71.44 343.40 C 73.19 343.96 74.96 344.41 76.74 344.76 C 78.52 345.11 80.31 345.35 82.12 345.51 C 83.93 345.68 85.76 345.74 87.60 345.74 C 89.43 345.74 91.28 345.66 93.14 345.52 C 95.00 345.38 96.87 345.17 98.74 344.93 C 100.62 344.68 102.50 344.37 104.39 344.04 C 106.28 343.70 108.17 343.32 110.07 342.93 C 111.97 342.54 113.88 342.11 115.78 341.68 C 117.68 341.26 119.59 340.81 121.50 340.38 C 123.40 339.94 125.31 339.50 127.22 339.09 C 129.12 338.67 131.03 338.26 132.92 337.89 C 134.82 337.52 136.72 337.17 138.61 336.87 C 140.49 336.57 142.38 336.30 144.25 336.09 C 146.13 335.89 147.99 335.73 149.85 335.65 C 151.71 335.57 153.55 335.54 155.39 335.61 C 157.22 335.67 159.05 335.82 160.86 336.04 C 162.67 336.27 164.47 336.58 166.26 336.95 C 168.05 337.32 169.82 337.77 171.59 338.26 C 173.36 338.76 175.13 339.32 176.88 339.91 C 178.64 340.50 180.38 341.15 182.13 341.82 C 183.87 342.48 185.61 343.20 187.34 343.92 C 189.08 344.64 190.81 345.39 192.53 346.14 C 194.26 346.89 195.99 347.66 197.72 348.42 C 199.44 349.17 201.17 349.94 202.90 350.68 C 204.62 351.41 206.35 352.15 208.08 352.85 C 209.82 353.55 211.55 354.23 213.29 354.86 C 215.03 355.50 216.77 356.11 218.52 356.65 C 220.27 357.20 222.03 357.71 223.79 358.14 C 225.56 358.58 227.33 358.97 229.11 359.27 C 230.89 359.57 232.68 359.81 234.48 359.95 C 236.29 360.10 238.10 360.17 239.93 360.13 C 241.75 360.10 243.59 359.97 245.43 359.76 C 247.27 359.54 249.12 359.23 250.97 358.84 C 252.81 358.45 254.65 357.97 256.48 357.41 C 258.30 356.85 260.12 356.21 261.92 355.50 C 263.71 354.79 265.50 354.00 267.24 353.15 C 268.99 352.30 270.72 351.37 272.40 350.38 C 274.09 349.40 275.74 348.34 277.35 347.23 C 278.95 346.13 280.52 344.95 282.03 343.73 C 283.54 342.51 285.01 341.23 286.41 339.91 C 287.81 338.59 289.15 337.22 290.43 335.80 C 291.70 334.39 292.91 332.93 294.04 331.44 C 295.17 329.95 296.23 328.41 297.20 326.85 C 298.17 325.29 299.07 323.69 299.86 322.07 C 300.66 320.45 301.37 318.80 301.97 317.13 C 302.58 315.46 303.09 313.76 303.49 312.05 C 303.88 310.35 304.18 308.62 304.36 306.88 C 304.53 305.15 304.59 303.40 304.54 301.65 C 304.49 299.90 304.32 298.13 304.06 296.38 C 303.80 294.62 303.42 292.85 302.97 291.10 C 302.52 289.35 301.96 287.59 301.34 285.85 C 300.72 284.12 300.00 282.38 299.23 280.67 C 298.46 278.95 297.60 277.25 296.70 275.57 C 295.80 273.89 294.82 272.23 293.81 270.60 C 292.80 268.97 291.73 267.35 290.63 265.78 C 289.53 264.20 288.38 262.66 287.21 261.14 C 286.04 259.62 284.83 258.14 283.61 256.67 C 282.38 255.20 281.13 253.76 279.86 252.33 C 278.60 250.89 277.31 249.48 276.02 248.08 C 274.73 246.67 273.42 245.28 272.12 243.88 C 270.81 242.48 269.50 241.10 268.20 239.70 C 266.90 238.30 265.60 236.91 264.32 235.50 C 263.04 234.08 261.76 232.67 260.51 231.23 C 259.26 229.80 258.02 228.35 256.82 226.87 C 255.61 225.40 254.44 223.89 253.27 222.38 C 252.11 220.87 250.98 219.33 249.85 217.80 C 248.72 216.26 247.61 214.71 246.49 213.17 C 245.37 211.63 244.26 210.09 243.13 208.56 C 242.00 207.04 240.87 205.52 239.72 204.03 C 238.56 202.54 237.40 201.07 236.19 199.63 C 234.99 198.20 233.77 196.78 232.50 195.42 C 231.22 194.06 229.93 192.73 228.57 191.46 C 227.21 190.19 225.81 188.96 224.36 187.80 C 222.90 186.64 221.38 185.54 219.82 184.50 C 218.26 183.46 216.64 182.49 214.99 181.58 C 213.34 180.68 211.65 179.84 209.93 179.08 C 208.22 178.31 206.46 177.62 204.70 177.01 C 202.93 176.39 201.14 175.85 199.34 175.39 C 197.54 174.93 195.72 174.55 193.91 174.26 C 192.10 173.97 190.28 173.75 188.47 173.64 C 186.66 173.52 184.85 173.48 183.07 173.54 Z M 141.69 86.89 C 140.08 87.22 138.43 87.76 136.82 88.46 C 135.21 89.16 133.59 90.06 132.03 91.08 C 130.47 92.10 128.92 93.30 127.45 94.58 C 125.98 95.87 124.55 97.30 123.22 98.80 C 121.88 100.30 120.60 101.91 119.45 103.56 C 118.29 105.21 117.22 106.95 116.28 108.70 C 115.34 110.46 114.52 112.26 113.80 114.09 C 113.09 115.92 112.50 117.78 112.01 119.67 C 111.52 121.55 111.15 123.46 110.89 125.38 C 110.62 127.30 110.47 129.24 110.43 131.18 C 110.38 133.12 110.44 135.09 110.61 137.02 C 110.78 138.96 111.06 140.91 111.45 142.80 C 111.83 144.69 112.32 146.56 112.92 148.36 C 113.53 150.15 114.23 151.90 115.05 153.54 C 115.87 155.18 116.80 156.76 117.83 158.19 C 118.87 159.63 120.02 160.98 121.27 162.17 C 122.51 163.36 123.89 164.42 125.31 165.33 C 126.73 166.25 128.26 167.03 129.81 167.65 C 131.36 168.28 132.98 168.76 134.61 169.08 C 136.24 169.40 137.91 169.56 139.56 169.56 C 141.21 169.56 142.89 169.40 144.51 169.07 C 146.14 168.75 147.75 168.24 149.32 167.59 C 150.89 166.94 152.42 166.13 153.91 165.19 C 155.39 164.26 156.84 163.18 158.22 161.99 C 159.59 160.81 160.93 159.49 162.18 158.09 C 163.44 156.69 164.63 155.17 165.74 153.59 C 166.86 152.01 167.90 150.33 168.84 148.60 C 169.79 146.87 170.66 145.07 171.42 143.23 C 172.18 141.39 172.85 139.49 173.40 137.57 C 173.95 135.66 174.41 133.70 174.74 131.74 C 175.06 129.79 175.28 127.81 175.36 125.85 C 175.44 123.88 175.39 121.91 175.21 119.98 C 175.03 118.05 174.70 116.13 174.26 114.26 C 173.82 112.39 173.25 110.55 172.57 108.79 C 171.90 107.02 171.11 105.30 170.23 103.67 C 169.34 102.04 168.35 100.47 167.29 99.02 C 166.23 97.56 165.07 96.19 163.85 94.94 C 162.63 93.69 161.32 92.54 159.97 91.54 C 158.62 90.54 157.20 89.65 155.74 88.93 C 154.29 88.21 152.77 87.62 151.24 87.21 C 149.70 86.81 148.12 86.55 146.53 86.50 C 144.94 86.44 143.31 86.57 141.69 86.89 Z M 236.85 91.86 C 235.28 91.88 233.67 92.09 232.08 92.48 C 230.49 92.86 228.87 93.45 227.29 94.17 C 225.71 94.89 224.13 95.80 222.61 96.82 C 221.09 97.84 219.58 99.02 218.16 100.29 C 216.74 101.56 215.36 102.98 214.08 104.47 C 212.79 105.95 211.58 107.56 210.48 109.22 C 209.37 110.88 208.36 112.63 207.45 114.43 C 206.55 116.22 205.74 118.09 205.04 119.98 C 204.35 121.87 203.76 123.81 203.30 125.76 C 202.84 127.71 202.49 129.69 202.27 131.66 C 202.05 133.63 201.96 135.61 202.00 137.56 C 202.03 139.51 202.20 141.46 202.48 143.35 C 202.77 145.24 203.18 147.11 203.70 148.89 C 204.22 150.68 204.86 152.43 205.60 154.07 C 206.34 155.71 207.20 157.29 208.15 158.75 C 209.10 160.21 210.17 161.58 211.31 162.81 C 212.46 164.05 213.71 165.18 215.01 166.16 C 216.31 167.15 217.70 168.01 219.13 168.73 C 220.55 169.44 222.04 170.02 223.55 170.44 C 225.06 170.86 226.61 171.13 228.17 171.23 C 229.72 171.34 231.30 171.27 232.86 171.05 C 234.42 170.82 235.99 170.42 237.53 169.89 C 239.07 169.36 240.61 168.66 242.10 167.85 C 243.59 167.04 245.06 166.08 246.47 165.02 C 247.89 163.96 249.27 162.77 250.58 161.49 C 251.89 160.22 253.15 158.82 254.33 157.36 C 255.50 155.90 256.62 154.34 257.63 152.73 C 258.65 151.11 259.59 149.41 260.42 147.68 C 261.25 145.94 261.99 144.13 262.60 142.30 C 263.22 140.47 263.73 138.59 264.10 136.70 C 264.46 134.81 264.71 132.88 264.81 130.96 C 264.92 129.04 264.87 127.10 264.70 125.18 C 264.54 123.27 264.22 121.35 263.81 119.49 C 263.39 117.63 262.84 115.78 262.19 114.00 C 261.55 112.23 260.79 110.49 259.94 108.85 C 259.09 107.21 258.14 105.62 257.11 104.15 C 256.08 102.68 254.96 101.29 253.78 100.03 C 252.59 98.78 251.33 97.62 250.01 96.62 C 248.70 95.62 247.31 94.74 245.89 94.04 C 244.47 93.34 242.99 92.78 241.48 92.41 C 239.97 92.05 238.41 91.85 236.85 91.86 Z M 300.11 162.88 C 298.53 162.98 296.90 163.29 295.28 163.76 C 293.67 164.24 292.03 164.92 290.42 165.73 C 288.82 166.53 287.22 167.52 285.68 168.62 C 284.14 169.71 282.62 170.96 281.19 172.29 C 279.76 173.62 278.37 175.07 277.10 176.59 C 275.82 178.10 274.63 179.71 273.55 181.37 C 272.46 183.03 271.48 184.76 270.60 186.53 C 269.73 188.30 268.95 190.13 268.30 191.98 C 267.64 193.83 267.09 195.73 266.66 197.63 C 266.23 199.53 265.91 201.47 265.72 203.40 C 265.53 205.32 265.46 207.27 265.51 209.19 C 265.55 211.10 265.73 213.02 266.02 214.88 C 266.31 216.73 266.72 218.57 267.25 220.32 C 267.78 222.07 268.44 223.78 269.20 225.37 C 269.97 226.97 270.86 228.50 271.86 229.90 C 272.86 231.30 273.99 232.60 275.20 233.76 C 276.41 234.92 277.73 235.97 279.10 236.87 C 280.47 237.76 281.93 238.52 283.42 239.11 C 284.91 239.71 286.47 240.16 288.03 240.42 C 289.59 240.68 291.20 240.78 292.79 240.68 C 294.38 240.59 295.99 240.31 297.57 239.87 C 299.16 239.43 300.74 238.80 302.29 238.05 C 303.83 237.30 305.36 236.38 306.84 235.34 C 308.32 234.31 309.77 233.13 311.15 231.86 C 312.54 230.59 313.88 229.19 315.13 227.71 C 316.39 226.24 317.59 224.65 318.69 223.01 C 319.79 221.37 320.83 219.64 321.74 217.86 C 322.66 216.09 323.49 214.25 324.20 212.38 C 324.90 210.52 325.51 208.60 325.97 206.68 C 326.43 204.76 326.78 202.80 326.97 200.87 C 327.17 198.93 327.21 196.97 327.13 195.05 C 327.04 193.13 326.81 191.21 326.46 189.35 C 326.11 187.50 325.63 185.66 325.04 183.90 C 324.46 182.14 323.74 180.43 322.94 178.81 C 322.14 177.20 321.23 175.65 320.24 174.22 C 319.25 172.78 318.15 171.44 317.00 170.23 C 315.84 169.02 314.59 167.92 313.29 166.98 C 311.99 166.04 310.61 165.22 309.19 164.59 C 307.77 163.96 306.29 163.47 304.78 163.18 C 303.26 162.90 301.69 162.78 300.11 162.88 Z M 67.66 149.78 C 66.01 149.74 64.31 149.93 62.63 150.28 C 60.95 150.64 59.23 151.21 57.57 151.93 C 55.91 152.64 54.25 153.55 52.67 154.58 C 51.08 155.61 49.52 156.80 48.07 158.10 C 46.62 159.40 45.22 160.84 43.95 162.36 C 42.68 163.88 41.50 165.52 40.44 167.21 C 39.39 168.91 38.44 170.70 37.63 172.52 C 36.82 174.34 36.12 176.23 35.58 178.12 C 35.03 180.02 34.61 181.97 34.35 183.89 C 34.08 185.81 33.97 187.76 34.00 189.66 C 34.04 191.56 34.23 193.46 34.56 195.30 C 34.89 197.13 35.36 198.94 35.96 200.66 C 36.55 202.37 37.29 204.04 38.14 205.60 C 38.98 207.16 39.96 208.64 41.04 209.99 C 42.12 211.34 43.32 212.59 44.60 213.69 C 45.87 214.80 47.26 215.79 48.70 216.63 C 50.13 217.47 51.65 218.19 53.19 218.75 C 54.73 219.30 56.34 219.72 57.95 219.98 C 59.55 220.23 61.20 220.33 62.83 220.27 C 64.45 220.21 66.09 219.97 67.70 219.60 C 69.31 219.24 70.92 218.70 72.47 218.05 C 74.03 217.40 75.57 216.61 77.04 215.71 C 78.51 214.81 79.95 213.77 81.31 212.65 C 82.67 211.53 83.97 210.29 85.18 208.97 C 86.39 207.65 87.53 206.24 88.55 204.76 C 89.58 203.28 90.52 201.71 91.33 200.09 C 92.15 198.48 92.86 196.79 93.42 195.07 C 93.99 193.35 94.44 191.58 94.72 189.78 C 95.01 187.98 95.15 186.14 95.14 184.30 C 95.13 182.46 94.95 180.59 94.65 178.75 C 94.35 176.92 93.90 175.07 93.33 173.29 C 92.77 171.50 92.07 169.73 91.27 168.05 C 90.47 166.36 89.54 164.72 88.53 163.18 C 87.52 161.65 86.40 160.18 85.21 158.85 C 84.02 157.52 82.73 156.27 81.38 155.19 C 80.03 154.11 78.60 153.14 77.13 152.36 C 75.65 151.58 74.10 150.94 72.53 150.51 C 70.95 150.08 69.31 149.82 67.66 149.78 Z M 161.50 32.59 C 161.03 32.39 159.99 33.01 158.97 33.81 C 157.94 34.62 156.49 36.11 155.36 37.41 C 154.23 38.71 153.14 40.22 152.19 41.60 C 151.24 42.99 150.43 44.39 149.66 45.71 C 148.88 47.04 148.20 48.29 147.53 49.56 C 146.86 50.84 146.25 52.06 145.62 53.37 C 144.99 54.68 144.39 55.98 143.74 57.42 C 143.09 58.85 142.39 60.40 141.71 61.98 C 141.04 63.56 140.29 65.29 139.68 66.87 C 139.07 68.45 138.46 70.09 138.06 71.47 C 137.67 72.84 137.31 74.25 137.30 75.13 C 137.30 76.02 137.44 76.79 138.02 76.77 C 138.60 76.76 139.69 75.79 140.80 75.04 C 141.91 74.29 143.38 72.69 144.68 72.28 C 145.98 71.86 147.38 71.93 148.60 72.55 C 149.83 73.17 150.98 75.05 152.03 76.01 C 153.07 76.97 154.05 78.08 154.87 78.30 C 155.69 78.51 156.43 78.06 156.94 77.33 C 157.45 76.60 157.73 75.30 157.92 73.91 C 158.11 72.52 158.08 70.72 158.09 69.00 C 158.11 67.28 157.99 65.31 157.99 63.57 C 157.98 61.82 158.00 60.11 158.09 58.51 C 158.19 56.91 158.36 55.46 158.55 53.95 C 158.74 52.44 158.98 51.01 159.23 49.47 C 159.47 47.92 159.74 46.30 160.01 44.66 C 160.29 43.02 160.59 41.24 160.89 39.63 C 161.18 38.03 161.68 36.20 161.78 35.03 C 161.88 33.86 161.97 32.79 161.50 32.59 Z M 84.01 98.45 C 83.35 98.50 82.38 99.18 81.44 100.00 C 80.50 100.83 79.41 102.11 78.37 103.40 C 77.34 104.69 76.23 106.29 75.25 107.74 C 74.27 109.20 73.32 110.75 72.51 112.12 C 71.70 113.50 71.04 114.73 70.40 115.98 C 69.76 117.23 69.24 118.38 68.67 119.64 C 68.10 120.91 67.60 122.14 67.00 123.57 C 66.40 124.99 65.74 126.58 65.08 128.18 C 64.43 129.79 63.67 131.62 63.08 133.21 C 62.49 134.81 61.88 136.48 61.54 137.78 C 61.20 139.07 60.95 140.28 61.03 140.97 C 61.11 141.66 61.41 142.10 62.02 141.92 C 62.63 141.75 63.58 140.81 64.69 139.89 C 65.80 138.97 67.33 136.95 68.68 136.40 C 70.04 135.86 71.53 135.89 72.80 136.61 C 74.07 137.32 75.26 139.60 76.30 140.69 C 77.34 141.79 78.27 143.09 79.04 143.19 C 79.81 143.28 80.44 142.28 80.91 141.27 C 81.38 140.27 81.65 138.67 81.85 137.16 C 82.05 135.66 82.06 133.92 82.10 132.24 C 82.13 130.57 82.05 128.77 82.06 127.13 C 82.06 125.49 82.05 123.91 82.12 122.41 C 82.19 120.90 82.31 119.55 82.48 118.12 C 82.64 116.69 82.86 115.33 83.11 113.82 C 83.36 112.32 83.68 110.73 83.99 109.08 C 84.29 107.43 84.71 105.50 84.94 103.94 C 85.17 102.38 85.53 100.64 85.37 99.73 C 85.22 98.81 84.66 98.40 84.01 98.45 Z M 245.04 38.90 C 244.59 39.12 244.33 40.16 244.05 41.32 C 243.77 42.48 243.60 44.26 243.36 45.86 C 243.12 47.47 242.86 49.29 242.61 50.94 C 242.37 52.59 242.14 54.22 241.89 55.75 C 241.64 57.29 241.43 58.70 241.13 60.16 C 240.83 61.62 240.53 63.01 240.11 64.50 C 239.69 65.99 239.18 67.52 238.62 69.11 C 238.06 70.69 237.33 72.41 236.75 74.01 C 236.16 75.60 235.50 77.26 235.10 78.68 C 234.70 80.11 234.33 81.52 234.34 82.56 C 234.34 83.61 234.48 84.71 235.14 84.95 C 235.80 85.19 237.08 84.77 238.30 84.01 C 239.52 83.25 241.14 81.30 242.46 80.38 C 243.77 79.46 245.09 78.27 246.21 78.50 C 247.34 78.73 248.29 80.56 249.20 81.76 C 250.12 82.96 250.93 85.04 251.71 85.73 C 252.49 86.42 253.33 86.36 253.90 85.89 C 254.48 85.43 254.95 84.21 255.17 82.93 C 255.39 81.65 255.31 79.92 255.21 78.22 C 255.10 76.52 254.78 74.54 254.53 72.72 C 254.29 70.91 253.97 69.01 253.76 67.35 C 253.56 65.68 253.45 64.20 253.31 62.73 C 253.17 61.26 253.11 59.95 252.92 58.50 C 252.74 57.06 252.55 55.66 252.19 54.07 C 251.83 52.47 251.32 50.65 250.75 48.94 C 250.18 47.23 249.44 45.29 248.77 43.80 C 248.10 42.31 247.33 40.81 246.71 39.99 C 246.09 39.18 245.48 38.68 245.04 38.90 Z M 307.86 112.02 C 307.36 112.22 306.96 113.14 306.60 114.27 C 306.24 115.40 305.98 117.15 305.71 118.78 C 305.44 120.41 305.24 122.40 305.00 124.07 C 304.76 125.74 304.54 127.33 304.27 128.80 C 304.00 130.27 303.72 131.54 303.36 132.88 C 303.01 134.22 302.63 135.45 302.15 136.83 C 301.67 138.21 301.08 139.64 300.48 141.16 C 299.88 142.68 299.13 144.37 298.55 145.95 C 297.97 147.53 297.33 149.19 297.00 150.61 C 296.66 152.04 296.40 153.47 296.52 154.51 C 296.63 155.56 297.03 156.59 297.70 156.91 C 298.36 157.22 299.37 157.11 300.51 156.38 C 301.64 155.66 303.17 153.50 304.50 152.54 C 305.83 151.58 307.33 150.30 308.49 150.61 C 309.65 150.91 310.63 153.05 311.48 154.37 C 312.33 155.68 313.00 157.91 313.61 158.50 C 314.22 159.09 314.74 158.63 315.15 157.90 C 315.56 157.17 315.86 155.53 316.05 154.11 C 316.25 152.69 316.29 151.01 316.32 149.38 C 316.34 147.75 316.25 146.00 316.19 144.35 C 316.13 142.71 316.01 141.03 315.93 139.49 C 315.86 137.95 315.82 136.53 315.74 135.10 C 315.65 133.67 315.59 132.35 315.42 130.91 C 315.24 129.47 315.04 128.05 314.70 126.48 C 314.35 124.90 313.88 123.12 313.36 121.48 C 312.83 119.83 312.16 118.01 311.54 116.60 C 310.91 115.20 310.20 113.81 309.59 113.05 C 308.97 112.28 308.35 111.81 307.86 112.02 Z';
+const bearcatSVG=(color)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 348 404"><path fill="${color}" d="${bearcatPathData}"/></svg>`;
+let bearcatColor='#000042';
+function updateBearcatColor(color){bearcatColor=color;pawImage.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(bearcatSVG(color));}
+updateBearcatColor(bearcatColor);
+function paw(){if(window.visibleParts && !window.visibleParts.paw)return;if(!pawImage.complete||!pawImage.naturalWidth)return;ctx.save();ctx.translate(525+state.pawX+state.pawDX,553+state.pawY+state.pawDY);ctx.rotate(state.pawAngle*Math.PI/180);ctx.scale(state.pawSize,state.pawSize);ctx.drawImage(pawImage,-211,-285,422,490);ctx.restore()}
 
 // Keep decorative elements entirely outside the planetary boundary, including
 // particles from earlier saved/generated layouts. The test uses the whole glyph.
@@ -409,8 +455,8 @@ renderSelectionControls();draw();
 window.layerOrder=['paw','circle','orbitA','orbitB','particleA','particleB'];
 window.extraElements=[];
 let extraCounter=0, history=[],future=[],favorites=[];
-const snapshot=()=>JSON.stringify({state,visibleParts,backgroundColor,layerOrder,extraElements,index});
-function restoreSnapshot(raw){const v=JSON.parse(raw);state={...defaults,...v.state};window.visibleParts={...v.visibleParts};backgroundColor=v.backgroundColor;window.layerOrder=[...v.layerOrder];window.extraElements=(v.extraElements||[]).map(x=>({...x}));index=v.index||1;selected=null;renderLibrary();renderLayers();renderExtras();draw();refreshSelectionFrame();renderSelectionControls();document.getElementById('variation').textContent='VARIATION / '+String(index).padStart(3,'0')}
+const snapshot=()=>JSON.stringify({state,visibleParts,backgroundColor,layerOrder,extraElements,index,patchSilhouette:window.patchSilhouette||null});
+function restoreSnapshot(raw){const v=JSON.parse(raw);window.patchSilhouette=v.patchSilhouette||null;state={...defaults,...v.state};window.visibleParts={...v.visibleParts};backgroundColor=v.backgroundColor;window.layerOrder=[...v.layerOrder];window.extraElements=(v.extraElements||[]).map(x=>({...x}));index=v.index||1;selected=null;renderLibrary();renderLayers();renderExtras();draw();refreshSelectionFrame();renderSelectionControls();document.getElementById('variation').textContent='VARIATION / '+String(index).padStart(3,'0')}
 function checkpoint(){const v=snapshot();if(history.at(-1)!==v){history.push(v);if(history.length>70)history.shift()}future=[];historyButtons()}
 function historyButtons(){document.getElementById('undoBtn').disabled=!history.length;document.getElementById('redoBtn').disabled=!future.length}
 function undo(){if(!history.length)return;future.push(snapshot());restoreSnapshot(history.pop());historyButtons()}
@@ -621,7 +667,7 @@ try{const saved=localStorage.getItem(storageKey);if(saved)applyProject(JSON.pars
 const svgButton=document.createElement('button');svgButton.id='v3SVG';svgButton.textContent='↓ Download Patch SVG';$('export').insertAdjacentElement('afterend',svgButton);
 function escapeXML(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
 function ellipsePath(cx,cy,rx,ry,angle,occlude){const c=Math.cos(angle*Math.PI/180),s=Math.sin(angle*Math.PI/180),N=960;let path='',active=false;for(let i=0;i<=N;i++){const t=2*Math.PI*i/N,lx=rx*Math.cos(t),ly=ry*Math.sin(t),x=cx+lx*c-ly*s,y=cy+lx*s+ly*c;const hidden=occlude&&ly<0&&Math.hypot(x-(525+state.circleDX),y-(525+state.circleDY))<390*state.circleSize+state.ringWidth*.25;if(hidden){active=false;continue}path+=(active?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)+' ';active=true}return path}
-function exportSVG(){let out=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3.5in" height="3.5in" viewBox="0 0 1050 1050"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style><rect width="1050" height="1050" fill="${escapeXML(backgroundColor)}"/>`;for(const id of layerOrder){if(visibleParts[id]===false||!decorationAllowed(id))continue;if(id==='paw'){if(pawImage.src)out+=`<image x="-245" y="-285" width="490" height="490" href="${pawImage.src}" transform="translate(${525+state.pawX+state.pawDX} ${553+state.pawY+state.pawDY}) rotate(${state.pawAngle}) scale(${state.pawSize})"/>`}
+function exportSVG(){let out=`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3.5in" height="3.5in" viewBox="0 0 1050 1050"><style>@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style><rect width="1050" height="1050" fill="${escapeXML(backgroundColor)}"/>`;if(window.patchSilhouette&&window.patchSilhouetteSVGPath){out=out.replace(/<rect width="1050" height="1050" fill="[^"]*"\/>$/,`<defs><clipPath id="patchCut">${window.patchSilhouetteSVGPath()}</clipPath></defs><g clip-path="url(#patchCut)"><rect width="1050" height="1050" fill="${escapeXML(backgroundColor)}"/>`)}for(const id of layerOrder){if(visibleParts[id]===false||!decorationAllowed(id))continue;if(id==='paw'){out+=`<path d="${bearcatPathData}" fill="${bearcatColor}" transform="translate(${525+state.pawX+state.pawDX} ${553+state.pawY+state.pawDY}) rotate(${state.pawAngle}) scale(${state.pawSize}) translate(-245 -285) scale(${490/348} ${490/404})"/>`}
 else if(id==='circle')out+=`<circle cx="${525+state.circleDX}" cy="${525+state.circleDY}" r="${390*state.circleSize}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth+8}"/>`;
 else if(id==='orbitA'||id==='orbitB'){const A=id==='orbitA',sz=state[A?'orbitASize':'orbitBSize'];out+=`<path d="${ellipsePath(525+state[A?'orbitADX':'orbitBDX'],525+state[A?'orbitADY':'orbitBDY'],(A?480:495)*sz,(A?53:58)*sz,state[A?'ringA':'ringB'],true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round" stroke-linejoin="round"/>`}
 else if(id==='particleA'||id==='particleB'){const A=id==='particleA',pt=particlePoint(A?'A':'B');out+=`<circle cx="${pt.x}" cy="${pt.y}" r="${(A?25:31)*state[A?'particleSizeA':'particleSizeB']}" fill="${orbitInk()}"/>`}
@@ -634,8 +680,8 @@ else{const e=extraElements.find(x=>x.id===id);if(!e)continue;let shape='';if(e.k
  const content=pieces.map((line,i)=>`<tspan x="0" y="${(offset+i*lineHeight).toFixed(2)}">${line}</tspan>`).join('');
  out+=`<text transform="translate(${e.x} ${e.y}) rotate(${e.angle||0})" text-anchor="${anchor}" dominant-baseline="middle" font-family="${family}" font-size="${ts.fontSize}" font-weight="${ts.weight}" letter-spacing="${ts.tracking}" fill="${escapeXML(e.color||orbitInk())}" fill-opacity="${ts.opacity}">${content}</text>`;
  continue;
- }else if(e.kind==='ring'&&e.generatedOrbitRing){out+=`<path d="${ellipsePath(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round"/>`;continue;}else if(e.kind==='ring')shape=`<ellipse rx="150" ry="15" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth/Math.max(.1,e.scale)}"/>`;else if(e.kind==='atom')shape='<ellipse rx="70" ry="24" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(60)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(120)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><circle r="12" fill="${orbitInk()}"/>';else shape='<circle r="18" fill="${orbitInk()}"/>';out+=`<g transform="translate(${e.x} ${e.y}) rotate(${e.angle}) scale(${e.scale})">${shape}</g>`}}
-out+='</svg>';download(new Blob([out],{type:'image/svg+xml'}),'baruch-mission-patch-3.5in.svg')}
+ }else if(e.kind==='secondPlanet'){const r=98*(e.scale||1),ink=escapeXML(e.color||orbitInk());out+=`<g transform="translate(${e.x} ${e.y}) rotate(${e.angle||0})"><circle r="${r}" fill="none" stroke="${ink}" stroke-width="${11*(e.strokeScale||1)}"/><ellipse rx="${r+27}" ry="${r*.28}" fill="none" stroke="${ink}" stroke-width="${9*(e.strokeScale||1)}" transform="rotate(-24)"/></g>`;continue;}else if(e.kind==='ring'&&e.generatedOrbitRing){out+=`<path d="${ellipsePath(e.x,e.y,480*(e.scale||1),53*(e.scale||1),e.angle,true)}" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth}" stroke-linecap="round"/>`;continue;}else if(e.kind==='ring')shape=`<ellipse rx="150" ry="15" fill="none" stroke="${orbitInk()}" stroke-width="${state.ringWidth/Math.max(.1,e.scale)}"/>`;else if(e.kind==='atom')shape='<ellipse rx="70" ry="24" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(60)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><ellipse rx="70" ry="24" transform="rotate(120)" fill="none" stroke="${orbitInk()}" stroke-width="9"/><circle r="12" fill="${orbitInk()}"/>';else shape='<circle r="18" fill="${orbitInk()}"/>';out+=`<g transform="translate(${e.x} ${e.y}) rotate(${e.angle}) scale(${e.scale})">${shape}</g>`}}
+if(window.patchSilhouette&&window.patchSilhouetteSVGOverlay)out+=window.patchSilhouetteSVGOverlay()+'</g>';out+='</svg>';download(new Blob([out],{type:'image/svg+xml'}),'baruch-mission-patch-3.5in.svg')}
 svgButton.onclick=exportSVG;
 // Persist groups and lock state after changes. Existing undo/redo remain available.
 const prevCheckpoint=checkpoint;checkpoint=function(){prevCheckpoint();scheduleSave()};
@@ -661,7 +707,7 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
    if(!baseNames[e.kind])return oldDrawExtra(e);
    ctx.save();ctx.translate(e.x,e.y);ctx.rotate(e.angle*Math.PI/180);ctx.scale(e.scale,e.scale);
    ctx.strokeStyle='#fff';ctx.fillStyle='#fff';ctx.lineWidth=10;ctx.lineCap='round';
-   if(e.kind==='paw' && pawImage.complete && pawImage.naturalWidth){ctx.drawImage(pawImage,-145,-155,290,310)}
+   if(e.kind==='paw' && pawImage.complete && pawImage.naturalWidth){ctx.drawImage(pawImage,-134,-155,268,310)}
    if(e.kind==='circle'){ctx.beginPath();ctx.arc(0,0,140,0,Math.PI*2);ctx.stroke()}
    if(e.kind==='orbitA'||e.kind==='orbitB'){ctx.beginPath();ctx.ellipse(0,0,170,42,0,0,Math.PI*2);ctx.stroke()}
    if(e.kind==='particleA'||e.kind==='particleB'){ctx.beginPath();ctx.arc(0,0,23,0,Math.PI*2);ctx.fill()}
@@ -2353,11 +2399,11 @@ window.addEventListener('beforeunload',()=>{try{localStorage.setItem(storageKey,
     const source=Number(e.fontSize)||20;
     return {
       role,
-      fontSize:display?Math.max(58,Math.min(80,source*3.2)):Math.max(40,Math.min(52,source*2.7)),
+      fontSize:display?Math.max(32,Math.min(43,source*1.88)):Math.max(22,Math.min(30,source*1.57)),
       family:display?'Barlow Condensed':'IBM Plex Mono',
       fallback:display?'Arial Narrow, Arial, sans-serif':'Courier New, monospace',
       weight:display?700:500,
-      tracking:display?Math.max(2,Math.min(4,(e.tracking??3)*.9)):Math.max(2,Math.min(3.5,(e.tracking??3)*.9)),
+      tracking:display?Math.max(1.2,Math.min(2.6,(e.tracking??3)*.58)):Math.max(1.4,Math.min(2.4,(e.tracking??3)*.65)),
       opacity:e.alpha??1
     };
   };
@@ -3002,9 +3048,9 @@ if(document.fonts && document.fonts.load){
 
  /* ---------- 2. Generator ---------- */
  const PAL=['#A8CCFF','#86B6EB','#536CB5','#000042','#FFFFFF','#C6D9FF'];
- const DISPLAY=['BARUCH','BEARCATS IN ORBIT','BARUCH SPACE RESEARCH','BARUCH SSEP','BEARCAT MISSION','BARUCH IN SPACE','BARUCH / ISS'];
- const TECH=['SPACE STATION','LOW EARTH ORBIT','SPACE RESEARCH','SSEP','BARUCH COLLEGE','NYC TO ISS','ALTITUDE 408 KM','16 ORBITS A DAY','FLIGHT EXPERIMENT','ASTRONAUT SCIENCE','NEW YORK CITY'];
- const PAIRS=[['BARUCH','LOW EARTH ORBIT'],['BARUCH SSEP','SPACE RESEARCH'],['BEARCATS IN ORBIT','BARUCH COLLEGE'],['BARUCH / ISS','16 ORBITS A DAY'],['BARUCH','SPACE STATION'],['BARUCH SPACE RESEARCH','NYC TO ISS']];
+ const DISPLAY=['BARUCH','BEARCATS IN ORBIT','BARUCH SPACE RESEARCH','BARUCH SSEP','BEARCAT MISSION','NEW YORK TO ORBIT','MICROGRAVITY','BARUCH IN SPACE','BARUCH / ISS'];
+ const TECH=['INTERNATIONAL SPACE STATION','LOW EARTH ORBIT','MICROGRAVITY RESEARCH','STUDENT SPACEFLIGHT EXPERIMENTS','SSEP MISSION PATCH','BARUCH COLLEGE / NYC','LAT 40.74 N   LON 73.98 W','ALTITUDE 408 KM','16 ORBITS PER DAY','ISS / ORBIT / 90 MIN','NEW YORK CITY','FROM LEXINGTON AVE TO ORBIT','FLIGHT EXPERIMENT','ASTRONAUT SCIENCE'];
+ const PAIRS=[['BARUCH','LOW EARTH ORBIT'],['BARUCH SPACE RESEARCH','INTERNATIONAL SPACE STATION'],['BEARCATS IN ORBIT','BARUCH COLLEGE / NYC'],['BARUCH SSEP','STUDENT SPACEFLIGHT EXPERIMENTS'],['MICROGRAVITY','BARUCH COLLEGE / NYC'],['NEW YORK TO ORBIT','LAT 40.74 N   LON 73.98 W'],['BARUCH / ISS','16 ORBITS PER DAY']];
  const SLOTS={
   tl:{x:64,y:88,align:'left'},tr:{x:986,y:88,align:'right'},bl:{x:64,y:962,align:'left'},br:{x:986,y:962,align:'right'},
   tc:{x:525,y:72,align:'center'},bc:{x:525,y:978,align:'center'},
@@ -3225,13 +3271,13 @@ if(document.fonts && document.fonts.load){
    const TEXT={
     headline(){headline(ALL)},
     pair(){const p=pick(PAIRS),top=chance(.5);
-      const a=put(top?['tc']:['bc'],p[0],'display',rand(19,21),1,4);
+      const a=put(top?['tc']:['bc'],p[0],'display',rand(19,21),rand(1,1.25),4);
       if(a)put(top?['bc']:['tc'],p[1],'technical',rand(14,16),1,3);
       else{headline(ALL)}},
     tech(){support(ALL)},
     corners(){headline(CORNERS);support(CORNERS)},
     block(){support(CORNERS)},
-    vertical(){put(['ml','mr'],pick(['LOW EARTH ORBIT','SPACE STATION','SPACE RESEARCH','BARUCH SPACE RESEARCH']),'technical',15,1,5)},
+    vertical(){put(['ml','mr'],pick(['MICROGRAVITY RESEARCH','LOW EARTH ORBIT','INTERNATIONAL SPACE STATION','BARUCH SPACE RESEARCH']),'technical',15,1,5)},
     none(){}
    };
    const modeMap={headline:'pair',tech:'tech',corners:'corners',block:'block',vertical:'vertical',none:'none'};
@@ -3254,6 +3300,1599 @@ if(document.fonts && document.fonts.load){
  const explanation=document.querySelector('.variation-explanation');
  if(explanation)explanation.textContent='Simple compositions: the paw and planet, 0–4 thin rings, a few accents, and short labels about Baruch, SSEP, the ISS and space research.';
  window.patchGeneratorV4={build};
+})();
+</script>
+
+<style id="v5-style">
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Rajdhani:wght@600;700&family=IBM+Plex+Mono:wght@600;700&display=swap');
+/* The patch itself has a custom outline. The square is ONLY the 3.5-inch artboard. */
+#patchWrap{background:transparent!important;}
+#patch{background:transparent!important;}
+.scale-check-previews canvas{background:#f8faff;}
+</style>
+<script id="v5-diverse-patches">
+/* True, transparent mission-patch silhouettes. No shape-selection panel. */
+(function(){
+ const generator=document.getElementById('generate'),remix=document.getElementById('shuffle');
+ const families=['seal','type','dual','diagonal','shield','hex','minimal'];
+ const silhouettes=['circle','hex','shield','diamond','rounded'];
+ let previousFamily='',previousShape='';
+ const pick=a=>a[Math.floor(Math.random()*a.length)];
+ const rand=(lo,hi)=>lo+Math.random()*(hi-lo);
+ function pathShape(kind){
+  ctx.beginPath();
+  if(kind==='hex'){
+   for(let i=0;i<6;i++){const a=(i*60-90)*Math.PI/180,x=525+468*Math.cos(a),y=525+468*Math.sin(a);i?ctx.lineTo(x,y):ctx.moveTo(x,y)}
+   ctx.closePath();
+  }else if(kind==='shield'){
+   ctx.moveTo(525,63);ctx.bezierCurveTo(685,140,860,145,955,165);
+   ctx.lineTo(929,610);ctx.bezierCurveTo(900,790,665,925,525,995);
+   ctx.bezierCurveTo(385,925,150,790,121,610);ctx.lineTo(95,165);
+   ctx.bezierCurveTo(190,145,365,140,525,63);ctx.closePath();
+  }else if(kind==='diamond'){
+   ctx.moveTo(525,65);ctx.lineTo(985,525);ctx.lineTo(525,985);ctx.lineTo(65,525);ctx.closePath();
+  }else if(kind==='rounded'){
+   ctx.roundRect(61,61,928,928,170);
+  }else if(kind==='capsule'){
+   ctx.roundRect(155,52,740,946,360);
+  }else{ctx.arc(525,525,468,0,Math.PI*2)}
+ }
+ function shapeWidthAt(kind,y){
+  const yy=Math.abs(y-525);
+  if(kind==='circle')return Math.sqrt(Math.max(0,468*468-yy*yy));
+  if(kind==='diamond')return Math.max(0,460-yy);
+  if(kind==='hex')return yy>234?Math.max(0,(468-yy)*1.732):405;
+  if(kind==='capsule')return 355;
+  if(kind==='shield')return y<180?330:y>750?Math.max(155,380-(y-750)*.75):395;
+  return 440;
+ }
+ function textOverlay(d){
+  const kind=d.shape,ink=(['#000042','#193A83','#15255C'].includes(backgroundColor.toUpperCase())?'#FFFFFF':'#000042'),family=d.family;
+  ctx.save();ctx.fillStyle=ink;ctx.textAlign='center';ctx.textBaseline='middle';
+  const isDiamond=kind==='diamond',top=['hex','shield','capsule','diamond'].includes(kind)||['seal','type','hex','minimal'].includes(family);
+  const heroY=isDiamond?310:(top?206:820);
+  const subY=isDiamond?380:(top?280:894);
+  // Text width is based on space available INSIDE the actual cut shape.
+  const maxW=Math.min(790,shapeWidthAt(kind,heroY)*1.72);
+  const detailW=Math.min(760,shapeWidthAt(kind,subY)*1.75);
+  ctx.font=`800 ${isDiamond?91:family==='type'?114:92}px "Barlow Condensed", "Arial Narrow", sans-serif`;
+  ctx.fillText('BARUCH',525,heroY,maxW);
+  ctx.font=`700 ${isDiamond?24:30}px "IBM Plex Mono",monospace`;
+  const sub=family==='dual'?'SPACE RESEARCH / TWO WORLDS':family==='shield'?'BEARCAT SPACE DIVISION':family==='minimal'?'MISSION / RESEARCH':family==='type'?'BEYOND THE ORBIT':family==='hex'?'EXPLORATION / DISCOVERY':'SPACE RESEARCH / NYC';
+  ctx.fillText(sub,525,subY,detailW);
+  if(family==='type'&&kind!=='diamond'){
+   const otherY=top?865:300;ctx.font='700 52px "Rajdhani",sans-serif';
+   ctx.fillText('ORBITAL LAB',525,otherY,Math.min(650,shapeWidthAt(kind,otherY)*1.8));
+  }
+  ctx.restore();
+ }
+ function extraOverlay(d){
+  if(d.family!=='dual')return;
+  const ink=orbitInk(),x=d.flip?720:330,y=d.shape==='diamond'?652:630,r=d.shape==='diamond'?92:112;
+  ctx.save();ctx.strokeStyle=ink;ctx.fillStyle=ink;ctx.lineWidth=12;
+  ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.translate(x,y);ctx.rotate(-.4);
+  ctx.beginPath();ctx.ellipse(0,0,r+30,24,0,0,Math.PI*2);ctx.stroke();
+  ctx.restore();
+ }
+ const priorDraw=draw;
+ draw=function(){
+  // Erase the full 1050x1050 artboard before activating the transparent silhouette.
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,1050,1050);ctx.restore();
+  const d=window.patchSilhouette;
+  if(!d){priorDraw();return;}
+  if(d.shape==='capsule')d.shape='circle';
+  ctx.save();pathShape(d.shape);ctx.clip();
+  // All existing artwork, the color background, and new elements remain within the cut shape.
+  priorDraw();
+  if(d.legacyOverlay!==false){extraOverlay(d);textOverlay(d);}
+  ctx.restore();
+ };
+ function prepare(){
+  const alternatives=families.filter(f=>f!==previousFamily);
+  const family=pick(alternatives.length?alternatives:families);
+  const shape=pick(silhouettes.filter(s=>s!==previousShape));
+  const flip=Math.random()<.5;
+  previousFamily=family;previousShape=shape;
+  const d={family,shape,flip};window.patchSilhouette=d;
+  // Different focal arrangements without adding a second patch-shaped outline.
+  const isDiamond=shape==='diamond';
+  let [x,y,r]={seal:[525,550,.7],type:[525,565,.57],dual:[flip?400:650,510,.48],diagonal:[flip?585:465,530,.66],shield:[525,540,.68],hex:[525,540,.67],minimal:[525,535,.62]}[family];
+  if(isDiamond){x=family==='dual'?(flip?405:645):525;y=610;r=family==='dual'?.43:.50}
+  else if(shape==='capsule'){x=525;r=Math.min(r,.64)}
+  if(family==='dual'&&shape!=='diamond'){x=flip?635:415;r=.45}
+  state.circleDX=x-525;state.circleDY=y-525;state.circleSize=r;
+  state.pawDX=x-525;state.pawDY=y-525;state.pawX=0;state.pawY=0;
+  state.pawSize=family==='dual'?.70:family==='type'?.80:family==='minimal'?.82:.97;
+  state.ringWidth=family==='minimal'?9:12;
+  state.ringA=family==='diagonal'?(flip?-48:48):family==='dual'?-28:rand(-37,37);
+  state.ringB=state.ringA+(Math.random()<.5?54:-58);
+  const ringScale=family==='dual'?.67:family==='type'?.74:.82;
+  state.orbitASize=isDiamond?ringScale*.78:ringScale;
+  state.orbitBSize=isDiamond?ringScale*.80:ringScale*1.03;
+  state.orbitADX=x-525;state.orbitADY=y-525;
+  state.orbitBDX=x-525;state.orbitBDY=y-525;
+  if(typeof visibleParts!=='undefined'){
+   visibleParts.paw=family!=='type'&&family!=='minimal';
+   visibleParts.circle=true;
+  }
+  if(typeof extraElements!=='undefined')for(const e of extraElements){if(e.kind==='text'&&e.generatedByVariation)visibleParts[e.id]=false}
+  try{if(typeof sync==='function')sync(true)}catch(e){}
+ }
+ function install(button){
+  const previous=button.onclick;
+  button.onclick=function(){if(typeof previous==='function')previous.call(this);prepare();draw();if(typeof renderLayers==='function')renderLayers();const tag=document.getElementById('variation');if(tag)tag.textContent=window.patchSilhouette.shape.toUpperCase()+' / '+String(index).padStart(3,'0')};
+ }
+ install(generator);install(remix);
+ const restore=document.getElementById('original'),oldRestore=restore.onclick;
+ restore.onclick=function(){window.patchSilhouette=null;if(oldRestore)oldRestore.call(this);draw()};
+ window.addEventListener('resize',()=>{if(window.patchSilhouette)draw()});
+ // SVG exports use the same cut shape, with a transparent bounding artboard.
+ window.patchSilhouetteSVGPath=function(){
+  const shape=window.patchSilhouette?.shape;
+  if(!shape)return '';
+  if(shape==='circle')return '<circle cx="525" cy="525" r="468"/>';
+  if(shape==='diamond')return '<path d="M525 65 L985 525 L525 985 L65 525 Z"/>';
+  if(shape==='hex')return '<path d="M525 57 L930.3 291 L930.3 759 L525 993 L119.7 759 L119.7 291 Z"/>';
+  if(shape==='rounded')return '<rect x="61" y="61" width="928" height="928" rx="170"/>';
+  if(shape==='capsule')return '<rect x="155" y="52" width="740" height="946" rx="360"/>';
+  return '<path d="M525 63 C685 140 860 145 955 165 L929 610 C900 790 665 925 525 995 C385 925 150 790 121 610 L95 165 C190 145 365 140 525 63 Z"/>';
+ };
+ window.patchSilhouetteSVGOverlay=function(){
+  const d=window.patchSilhouette;if(!d)return '';
+  // PNG holds the exact visual typography; SVG preserves scalable identity text.
+  const ink=(['#000042','#193A83','#15255C'].includes(backgroundColor.toUpperCase())?'#FFFFFF':'#000042'),isDiamond=d.shape==='diamond',top=['hex','shield','capsule','diamond'].includes(d.shape)||['seal','type','hex','minimal'].includes(d.family);
+  const heroY=isDiamond?310:top?206:820,subY=isDiamond?380:top?280:894;
+  const maxW=Math.round(Math.min(790,shapeWidthAt(d.shape,heroY)*1.72));
+  const subW=Math.round(Math.min(760,shapeWidthAt(d.shape,subY)*1.75));
+  const sub=d.family==='dual'?'SPACE RESEARCH / TWO WORLDS':d.family==='shield'?'BEARCAT SPACE DIVISION':d.family==='minimal'?'MISSION / RESEARCH':d.family==='type'?'BEYOND THE ORBIT':d.family==='hex'?'EXPLORATION / DISCOVERY':'SPACE RESEARCH / NYC';
+  let out=`<text x="525" y="${heroY}" text-anchor="middle" dominant-baseline="middle" fill="${ink}" font-family="Barlow Condensed,Arial,sans-serif" font-weight="800" font-size="${isDiamond?91:d.family==='type'?114:92}" textLength="${Math.min(maxW,560)}" lengthAdjust="spacingAndGlyphs">BARUCH</text>`;
+  out+=`<text x="525" y="${subY}" text-anchor="middle" dominant-baseline="middle" fill="${ink}" font-family="IBM Plex Mono,monospace" font-weight="700" font-size="${isDiamond?24:30}" textLength="${Math.min(subW,610)}" lengthAdjust="spacingAndGlyphs">${sub.replace(/&/g,'&amp;')}</text>`;
+  if(d.family==='dual'){
+   const x=d.flip?720:330,y=d.shape==='diamond'?652:630,r=d.shape==='diamond'?92:112;
+   out+=`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${ink}" stroke-width="12"/><ellipse cx="${x}" cy="${y}" rx="${r+30}" ry="24" transform="rotate(-23 ${x} ${y})" fill="none" stroke="${ink}" stroke-width="12"/>`;
+  }
+  return out;
+ };
+})();
+</script>
+<script id="reference-inspired-generation-2026">
+/* Content recipes based on the reference FAVORITES: minimalist planetary rings,
+   substantial BARUCH labels, paw-based insignia, small orbital beads, balanced
+   star clusters, corner telemetry, and occasional twin worlds.
+   Silhouette remains independently selected; no decorative patch outline added. */
+(()=>{
+ const pick=a=>a[Math.floor(Math.random()*a.length)];
+ const rand=(a,b)=>a+Math.random()*(b-a);
+ const chance=p=>Math.random()<p;
+ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+ const shapes=['circle','hex','shield','diamond','rounded'];
+ const recipes=['orbital-balance','bearcat-paw','crossed-trajectories','research-telemetry','parallel-orbits','two-worlds','star-navigation','single-ring',
+  'twin-orbit-studies','paw-spotlight','paw-axis','mission-type','orbit-diamond-minimal','offset-orbits','technical-paw'];
+ let previousRecipe=null,previousShape=null;
+ let recentRecipes=[];
+ const core=['circle','paw','orbitA','orbitB','particleA','particleB'];
+ const ringInk=()=>orbitInk();
+ const darkBg=()=>['#000042','#15255C','#193A83'].includes(backgroundColor.toUpperCase());
+ const userStrength=()=>document.querySelector('input[name="design-variation"]:checked')?.value||'balanced';
+ const bounds={
+   circle:{top:150,bottom:908},rounded:{top:133,bottom:909},
+   hex:{top:215,bottom:838},shield:{top:208,bottom:873},
+   diamond:{top:295,bottom:755}
+ };
+ function add(kind,x,y,scale=1,angle=0,attrs={}){
+   const id='extra'+(++extraCounter);
+   extraElements.push({id,kind,x,y,scale,angle,generatedByVariation:true,locked:false,...attrs});
+   layerOrder.push(id);visibleParts[id]=true;
+   return id;
+ }
+ function addText(t,x,y,size=20,role='display',opts={}){
+   const fontSize=role==='display'?22:18;
+   const scale=size/(role==='display'?41.36:28.26);
+   return add('text',x,y,scale,0,{text:t,fontRole:role,fontSize,tracking:role==='display'?1.9:1.2,
+     align:'center',color:ringInk(),weight:700,alpha:1,...opts});
+ }
+ function centerTitle(t,y,size=79){return addText(t,525,y,size,'display')}
+ function sub(t,y,size=30){return addText(t,525,y,size,'technical')}
+ function star(x,y,r=.53,kind='star'){
+   return add(kind,x,y,r,0,{color:ringInk()});
+ }
+ function upperLeftStars(scale=1){
+   // The upper-left cluster explicitly balances the technical mark on upper right
+   // in the reference third favorite (dark circular orbit-study patch).
+   star(273,270,.58*scale,'star');star(325,228,.36*scale,'spark');
+   star(222,331,.29*scale,'star');
+ }
+ function counterAccent(shape){
+   if(shape==='diamond'){
+     star(777,345,.38,'spark');star(724,302,.29,'dot');
+   }else{star(785,263,.38,'crosshair');star(830,324,.28,'dot')}
+ }
+ function mirroredSparks(kind='spark'){
+   star(235,333,.43,kind);star(818,711,.43,kind);
+ }
+ function addOrbitBeads(cx,cy,planetR,angles,count){
+   const pts=[];
+   for(let i=0;i<count;i++){
+     const a=angles[i%angles.length]*Math.PI/180;
+     const az=pick([0,Math.PI,Math.PI*.04,Math.PI*.96]);
+     const RX=planetR+rand(55,73),RY=rand(31,48);
+     const x=cx+RX*Math.cos(az)*Math.cos(a)-RY*Math.sin(az)*Math.sin(a),
+           y=cy+RX*Math.cos(az)*Math.sin(a)+RY*Math.sin(az)*Math.cos(a);
+     if(Math.hypot(x-525,y-525)>440)continue;
+     add('dot',x,y,rand(.59,.93),0,{generatedOrbitParticle:true});pts.push({x,y});
+   }
+   return pts;
+ }
+ function smallStarsNear(x,y){
+   star(x,y,.40,'star');star(x+52,y-37,.26,'spark');
+ }
+ function clearPrevious(){
+   for(let i=extraElements.length-1;i>=0;i--){
+     const e=extraElements[i];
+     if(e.generatedByVariation&&!locked(e.id)){
+       extraElements.splice(i,1);delete visibleParts[e.id];
+       layerOrder=layerOrder.filter(id=>id!==e.id);
+     }
+   }
+ }
+ // Support a true small second planet, instead of a second patch-shaped border.
+ const previousAllowed=decorationAllowed;
+ decorationAllowed=function(id){
+   const e=extraElements.find(v=>v.id===id);
+   // Text uses precise glyph bounds in the generator, not the base decoration
+   // radius rule, which hid the large BARUCH headline at the bottom.
+   if(e?.kind==='text'&&e.generatedByVariation)return true;
+   return previousAllowed(id);
+ };
+ const prevDrawExtra=drawExtra;
+ drawExtra=function(e){
+   if(e.kind!=='secondPlanet')return prevDrawExtra(e);
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate((e.angle||0)*Math.PI/180);
+   const r=98*(e.scale||1);
+   ctx.strokeStyle=e.color||ringInk();ctx.fillStyle=e.color||ringInk();ctx.lineWidth=12;
+   ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.stroke();
+   ctx.lineWidth=9;ctx.save();ctx.rotate(-24*Math.PI/180);
+   ctx.beginPath();ctx.ellipse(0,0,r+27,r*.28,0,0,Math.PI*2);ctx.stroke();ctx.restore();
+   ctx.beginPath();ctx.arc(r+15,0,11,0,Math.PI*2);ctx.fill();ctx.restore();
+ };
+ const prevBounds=window.patchExtraBounds;
+ window.patchExtraBounds=function(e){
+   if(e&&e.kind==='secondPlanet')return{cx:e.x,cy:e.y,w:260*(e.scale||1),h:260*(e.scale||1),angle:e.angle||0};
+   return prevBounds?.(e)||null;
+ };
+ const prevHit=hit;
+ hit=function(x,y){
+   for(const e of [...extraElements].reverse()){
+     if(e.kind==='secondPlanet'&&visibleParts[e.id]!==false&&Math.hypot(x-e.x,y-e.y)<130*(e.scale||1))return e.id;
+   }
+   return prevHit(x,y);
+ };
+ // Existing site exports other generated content as vector paths. The type and star
+ // content here use that same system; no rasterized replacements are required.
+ const oldSVG=window.patchSilhouetteSVGOverlay;
+ window.patchSilhouetteSVGOverlay=function(){
+   if(window.patchSilhouette?.legacyOverlay===false)return '';
+   return typeof oldSVG==='function'?oldSVG():'';
+ };
+ const preferNoPaw=['orbital-balance','crossed-trajectories','single-ring','orbit-diamond-minimal'];
+ const inkForBg=bg=>['#000042','#193A83','#15255C','#536CB5'].includes(bg.toUpperCase())?'#FFFFFF':'#000042';
+ function generate(forceDifferent=false,requestedRecipe=null){
+   try{
+     if(typeof checkpoint==='function')checkpoint();
+     clearPrevious();
+     let pool=recipes.filter(r=>!recentRecipes.includes(r));
+     if(forceDifferent)pool=pool.filter(r=>r!==previousRecipe);
+     if(!pool.length)pool=recipes.filter(r=>r!==previousRecipe);
+     const recipe=requestedRecipe&&recipes.includes(requestedRecipe)?requestedRecipe:pick(pool);
+     recentRecipes.push(recipe);recentRecipes=recentRecipes.slice(-4);previousRecipe=recipe;
+     // Outer silhouette is independent of the reference's interior recipes.
+     const shp=pick(shapes.filter(s=>s!==previousShape));previousShape=shp;
+     window.patchSilhouette={family:'reference',shape:shp,flip:chance(.5),legacyOverlay:false,recipe};
+     const palette=['#000042','#A8CCFF','#86B6EB','#C6D9FF','#536CB5','#FFFFFF','#7FA7E5'];
+     backgroundColor=pick(palette.filter(c=>c!==backgroundColor));
+     const fg=inkForBg(backgroundColor);
+     // All the core art is cleared, and every recipe decides which pieces it uses.
+     core.forEach(id=>{if(!locked(id))visibleParts[id]=false});
+     layerOrder=[...core.filter(id=>layerOrder.includes(id)),...layerOrder.filter(id=>!core.includes(id))];
+     let cx=525,cy=525,cs=.71;
+     if(shp==='diamond')cs=.50;
+     if(shp==='hex')cs=.60;
+     if(shp==='shield')cs=.66;
+     if(shp==='circle')cs=.72;
+     if(shp==='rounded')cs=.70;
+     if(recipe==='two-worlds')cs*=.70;
+     if(recipe==='orbital-balance')cs*=.90;
+     if(recipe==='single-ring')cs*=1.06;
+     if(recipe==='star-navigation')cs*=.9;
+     if(recipe==='research-telemetry')cs*=.95;
+     if(recipe==='parallel-orbits')cs*=1.04;
+     // Reference set 2: deliberately different visual scale, not just different ring angles.
+     if(recipe==='twin-orbit-studies')cs*=.56;
+     if(recipe==='paw-spotlight')cs*=.90;
+     if(recipe==='paw-axis')cs*=.82;
+     if(recipe==='mission-type')cs*=.91;
+     if(recipe==='orbit-diamond-minimal')cs*=.91;
+     if(recipe==='offset-orbits')cs*=.91;
+     if(recipe==='technical-paw')cs*=.88;
+     const jitter=userStrength()==='subtle'?7:18;
+     cx+=rand(-jitter,jitter);cy+=rand(-jitter,jitter);
+     if(recipe==='two-worlds')cx+=(window.patchSilhouette.flip?118:-118);
+     if(recipe==='star-navigation')cx+=25;
+     if(recipe==='twin-orbit-studies'){cx-=shp==='diamond'?90:115;cy+=45;}
+     if(recipe==='paw-spotlight'){cy-=12;}
+     if(recipe==='paw-axis'){cy+=15;}
+     if(recipe==='mission-type'){cy-=45;}
+     if(recipe==='orbit-diamond-minimal'){cy-=shp==='diamond'?10:35;}
+     if(recipe==='technical-paw'){cy-=35;}
+     state.circleSize=cs;state.circleDX=cx-525;state.circleDY=cy-525;
+     state.ringWidth=rand(10,13);
+     if(!locked('circle'))visibleParts.circle=true;
+     // Keep paw around 70-80% of its orbit circle, never distorted.
+     if(!locked('paw')){
+       visibleParts.paw=!preferNoPaw.includes(recipe);
+       if(recipe==='two-worlds')visibleParts.paw=chance(.65);
+       if(recipe==='star-navigation')visibleParts.paw=chance(.5);
+       if(['twin-orbit-studies','paw-spotlight','paw-axis','mission-type','technical-paw'].includes(recipe))visibleParts.paw=true;
+       if(recipe==='offset-orbits')visibleParts.paw=chance(.45);
+       state.pawSize=clamp(cs*1.00,.32,.81);
+       if(recipe==='twin-orbit-studies')state.pawSize=Math.max(.27,cs*.96);
+       if(recipe==='paw-spotlight')state.pawSize=cs*.9;
+       if(recipe==='paw-axis')state.pawSize=cs*.96;
+       state.pawAngle=rand(-10,10);
+       state.pawX=cx-525;state.pawY=cy-553;state.pawDX=0;state.pawDY=0;
+     }
+     // The paw is recolored only if it would blend into the current background.
+     if(visibleParts.paw){
+       const newPaw=darkBg()?'#FFFFFF':'#000042';
+       if(bearcatColor.toUpperCase()===backgroundColor.toUpperCase()||
+          (darkBg()&&bearcatColor==='#000042')||(!darkBg()&&bearcatColor==='#FFFFFF')){
+         updateBearcatColor(newPaw);
+         const picker=document.getElementById('bearcatColor');if(picker)picker.value=newPaw;
+       }
+     }
+     let angles=[];
+     switch(recipe){
+       case 'orbital-balance':angles=[-31,34];break;
+       case 'bearcat-paw':angles=[rand(-7,8),rand(22,33)];break;
+       case 'crossed-trajectories':angles=[rand(-37,-24),rand(24,38)];break;
+       case 'research-telemetry':angles=[rand(-22,-10),rand(12,25)];break;
+       case 'parallel-orbits':angles=[rand(-6,4),rand(11,19)];break;
+       case 'two-worlds':angles=[rand(-25,-10)];break;
+       case 'star-navigation':angles=[rand(-28,-10),rand(12,32)];break;
+       case 'single-ring':angles=[rand(-48,-23)];break;
+       case 'twin-orbit-studies':angles=[rand(-29,-15)];break;
+       case 'paw-spotlight':angles=[rand(62,78),rand(-38,-18)];break;
+       case 'paw-axis':angles=[rand(-35,-20)];break;
+       case 'mission-type':angles=[rand(-6,8),rand(22,35)];break;
+       case 'orbit-diamond-minimal':angles=[rand(-35,-18)];break;
+       case 'offset-orbits':angles=[rand(-42,-20),rand(14,34)];break;
+       case 'technical-paw':angles=[rand(-5,8),rand(14,25)];break;
+     }
+     if(chance(.5))angles=angles.map(a=>-a);
+     const R=390*cs,rx=R+rand(53,77),scale=rx/480;
+     const secondScale=rx/495;
+     if(!locked('orbitA')){
+       visibleParts.orbitA=true;state.ringA=angles[0];state.orbitASize=scale;
+       state.orbitADX=cx-525;state.orbitADY=cy-525;
+     }
+     if(!locked('orbitB')){
+       visibleParts.orbitB=angles.length>1;state.ringB=angles[1]||0;
+       state.orbitBSize=secondScale*rand(.985,1.025);
+       state.orbitBDX=cx-525;state.orbitBDY=cy-525;
+     }
+     // Avoid the existing random beads, which sometimes appear on top of type.
+     if(!locked('particleA'))visibleParts.particleA=false;
+     if(!locked('particleB'))visibleParts.particleB=false;
+     // Set a few deliberate orbital beads, not a spray of small dots.
+     if(recipe==='parallel-orbits'||recipe==='bearcat-paw')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='crossed-trajectories')addOrbitBeads(cx,cy,R,angles,2);
+     if(recipe==='orbital-balance')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='star-navigation')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='two-worlds')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='twin-orbit-studies')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='paw-spotlight')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='paw-axis')addOrbitBeads(cx,cy,R,angles,1);
+     if(recipe==='technical-paw')addOrbitBeads(cx,cy,R,angles,1);
+     const B=bounds[shp];
+     // Reference-informed visual families, with deliberate opposite-side accents.
+     if(recipe==='orbital-balance'){
+       // The navy third favorite: a compact crossing-orbits focal point,
+       // small detail upper-right, and balancing stars UPPER LEFT.
+       upperLeftStars(shp==='diamond'?.58:1);
+       counterAccent(shp);
+       centerTitle('BARUCH',B.bottom-44,shp==='diamond'?60:79);
+       sub('SPACE RESEARCH / TWO WORLDS',B.bottom+11,shp==='diamond'?20:25);
+     }else if(recipe==='bearcat-paw'){
+       centerTitle('BARUCH',B.top,shp==='diamond'?59:82);
+       sub('BEARCAT SPACE DIVISION',B.top+61,shp==='diamond'?19:28);
+       mirroredSparks('star');
+       if(shp!=='diamond')star(768,329,.30,'dot');
+     }else if(recipe==='crossed-trajectories'){
+       // Deliberate 2-ring X, broad negative space, a top heading and a bottom lab ID.
+       centerTitle('BARUCH',B.top,shp==='diamond'?57:82);
+       sub('BEYOND THE ORBIT',B.top+61,shp==='diamond'?20:28);
+       sub('ORBITAL LAB',B.bottom,shp==='diamond'?23:36);
+       smallStarsNear(shp==='diamond'?300:268,shp==='diamond'?375:322);
+     }else if(recipe==='research-telemetry'){
+       addText('ALTITUDE 408 KM',237,208,26,'technical',{align:'left'});
+       addText('LOW EARTH ORBIT',816,814,28,'technical',{align:'right'});
+       smallStarsNear(785,280);
+       star(255,785,.37,'dot');
+       centerTitle('BARUCH',B.bottom-20,shp==='diamond'?53:68);
+     }else if(recipe==='parallel-orbits'){
+       centerTitle('BARUCH',B.top,shp==='diamond'?55:81);
+       sub('16 ORBITS A DAY',B.top+59,shp==='diamond'?20:27);
+       mirroredSparks('spark');
+       sub('BARUCH SPACE RESEARCH',B.bottom,shp==='diamond'?21:30);
+     }else if(recipe==='two-worlds'){
+       const flip=window.patchSilhouette.flip;
+       let x=flip?292:758,y=shp==='diamond'?575:618;
+       // Keep the additional planet outside the primary planet, inside the mask.
+       const t=shp==='diamond'?.48:shp==='hex'?.72:.75;
+       add('secondPlanet',x,y,t,flip?20:-20,{color:ringInk()});
+       smallStarsNear(flip?717:271,327);
+       centerTitle('BARUCH',B.top,shp==='diamond'?54:80);
+       sub('TWO WORLDS / ONE MISSION',B.bottom,shp==='diamond'?20:28);
+     }else if(recipe==='star-navigation'){
+       // Scientific tracking markers without a cluttered background.
+       star(265,313,.46,'constellation');
+       star(800,303,.45,'crosshair');
+       star(266,765,.32,'star');star(790,765,.28,'spark');
+       centerTitle('BARUCH SSEP',B.top,shp==='diamond'?48:72);
+       sub('RESEARCH / ORBIT / NYC',B.bottom,shp==='diamond'?19:27);
+     }else if(recipe==='single-ring'){
+       centerTitle('BARUCH',B.bottom-34,shp==='diamond'?56:76);
+       sub('SPACE RESEARCH',B.bottom+21,shp==='diamond'?20:27);
+       star(270,309,.52,'star');
+       star(785,295,.52,'star');
+       star(785,752,.28,'dot');
+     }
+     // The second reference set contributes seven fully distinct *interior* compositions.
+     // These styles work with every outer silhouette, which remains independently chosen.
+     if(recipe==='twin-orbit-studies'){
+       // Small Bearcat world plus a second mostly separate orbital world, with clear negative space.
+       const sx=shp==='diamond'?724:745,sy=shp==='diamond'?625:635;
+       add('secondPlanet',sx,sy,shp==='diamond'?.82:1.04,-29,{color:fg});
+       centerTitle('BARUCH',B.top+8,shp==='diamond'?50:81);
+       sub('SPACE RESEARCH / TWO WORLDS',B.top+60,shp==='diamond'?16:24);
+       star(shp==='diamond'?290:264,shp==='diamond'?370:334,.33,'star');
+       star(shp==='diamond'?766:795,shp==='diamond'?370:347,.25,'spark');
+     }else if(recipe==='paw-spotlight'){
+       // Larger centered paw with one near-vertical and one shallow ring, like the sky-blue reference.
+       centerTitle('BARUCH',B.bottom-41,shp==='diamond'?49:83);
+       if(shp!=='diamond')sub('BEARCAT SPACE DIVISION',B.bottom+12,24);
+       star(shp==='diamond'?305:273,shp==='diamond'?370:312,.38,'star');
+       star(shp==='diamond'?738:779,shp==='diamond'?360:334,.27,'dot');
+     }else if(recipe==='paw-axis'){
+       // White / pale field: paw, bold planet perimeter, one sweeping orbit, sparse tracking marks.
+       centerTitle('BARUCH',B.top,shp==='diamond'?52:86);
+       sub('SPACE RESEARCH / NYC',B.top+58,shp==='diamond'?16:23);
+       star(shp==='diamond'?284:246,shp==='diamond'?493:465,.24,'spark');
+       star(shp==='diamond'?751:798,shp==='diamond'?550:548,.24,'dot');
+     }else if(recipe==='mission-type'){
+       // Angular NASA/collegiate type and micro mission telemetry, avoiding tiny illegible copy.
+       if(shp==='diamond'){
+         addText('BARUCH',525,762,63,'display',{angle:-24});
+         sub('LOW EARTH ORBIT',B.top+35,21);
+       }else{
+         addText('BARUCH',525,824,82,'display',{angle:-19});
+         addText('ALTITUDE 408 KM',280,236,22,'technical',{angle:-22,align:'left'});
+         addText('LOW EARTH ORBIT',780,742,21,'technical',{angle:-18,align:'right'});
+       }
+       star(766,320,.31,'star');star(309,737,.26,'spark');
+     }else if(recipe==='orbit-diamond-minimal'){
+       // Intentionally pared-down planetary silhouette: still has an orbital bead and space symbol.
+       centerTitle('BARUCH',B.bottom-32,shp==='diamond'?49:77);
+       sub('SPACE RESEARCH',B.bottom+20,shp==='diamond'?17:24);
+       star(shp==='diamond'?744:780,shp==='diamond'?400:340,.29,'star');
+       star(shp==='diamond'?298:270,shp==='diamond'?630:680,.23,'crosshair');
+       addOrbitBeads(cx,cy,R,angles,1);
+     }else if(recipe==='offset-orbits'){
+       // A second orbit is offset from the main planet; no additional patch-shaped outline.
+       const flip=window.patchSilhouette.flip;
+       add('secondPlanet',flip?324:732,shp==='diamond'?631:645,shp==='diamond'?.69:.87,flip?22:-29,{color:fg});
+       centerTitle('BARUCH',B.top,shp==='diamond'?49:79);
+       sub('MISSION / TWO WORLDS',B.top+54,shp==='diamond'?17:24);
+       star(flip?788:239,340,.36,'spark');
+     }else if(recipe==='technical-paw'){
+       // Tiny scientific annotations balance an oversized, recognizable paw inside the planet.
+       centerTitle('BARUCH',B.bottom-30,shp==='diamond'?50:79);
+       addText('16 ORBITS A DAY',shp==='diamond'?330:295,B.top+37,21,'technical',{align:'left'});
+       star(shp==='diamond'?751:797,B.top+42,.31,'star');
+       star(shp==='diamond'?320:248,724,.28,'dot');
+     }
+     // Optional extra counterweight in more experimental designs, not decoration overload.
+     if(userStrength()==='experimental'&&chance(.4)&&!['orbital-balance','two-worlds'].includes(recipe)){
+       star(258,735,.26,'spark');star(792,332,.26,'spark');
+     }
+     if(shp==='diamond'){
+       // Diamond has a tighter outer outline; hide decorations beyond its visual silhouette,
+       // the canvas clip already handles this safely.
+     }
+     layerOrder=[...new Set(layerOrder)];
+     index++;
+     document.getElementById('variation').textContent=recipe.replace(/-/g,' ').toUpperCase()+' / '+String(index).padStart(3,'0');
+     select(null);renderLibrary();renderExtras();renderLayers();draw();
+     if(typeof scheduleSave==='function')scheduleSave();
+   }catch(error){console.error('Reference-inspired generation:',error);draw()}
+ }
+ document.getElementById('generate').onclick=()=>generate(false);
+ document.getElementById('shuffle').onclick=()=>generate(true);
+ window.referencePatchRecipes={generate,recipes,generateNamed:name=>{generate(false,name);window.patchBorderFeatures?.refineGeneration?.()}};
+ // Apply the requested star correction to the *saved* third favorite as well
+ // when that dark circular design exists in this browser's saved variations.
+ function improveThirdFavorite(){
+   if(!Array.isArray(favorites)||favorites.length<3)return;
+   const favorite=favorites[2];if(!favorite||!favorite.data)return;
+   let data;
+   try{data=typeof favorite.data==='string'?JSON.parse(favorite.data):favorite.data}catch(_){return}
+   if(data.referenceUpperLeftStars)return;
+   if(data.patchSilhouette?.shape!=='circle'||
+      !['#000042','#15255C','#193A83'].includes((data.backgroundColor||'').toUpperCase()))return;
+   const existing=new Set((data.extraElements||[]).map(e=>e.id));
+   let next=Math.max(0,...(data.extraElements||[]).map(e=>Number((e.id||'').replace('extra',''))||0));
+   const newStars=[[273,270,.54,'star'],[324,231,.35,'spark'],[225,327,.31,'star']];
+   for(const [x,y,scale,kind] of newStars){
+     let id='extra'+(++next);while(existing.has(id))id='extra'+(++next);
+     existing.add(id);
+     const e={id,kind,x,y,scale,angle:0,color:'#FFFFFF',generatedByVariation:false,referenceStar:true,locked:false};
+     (data.extraElements||(data.extraElements=[])).push(e);
+     (data.layerOrder||(data.layerOrder=[])).push(id);
+     (data.visibleParts||(data.visibleParts={}))[id]=true;
+   }
+   data.referenceUpperLeftStars=true;
+   const original=snapshot();
+   try{
+     favorite.data=JSON.stringify(data);
+     extraCounter=Math.max(extraCounter,next);
+     restoreSnapshot(favorite.data);
+     favorite.preview=canvas.toDataURL('image/png');
+   }catch(err){console.warn('Could not update third favorite preview',err)}
+   finally{restoreSnapshot(original);renderFavorites()}
+   try{if(typeof scheduleSave==='function')scheduleSave()}catch(_){}
+ }
+ // Browser restores its favorites at startup, so enhance only after that load.
+ improveThirdFavorite();
+ window.referencePatchRecipes.improveThirdFavorite=improveThirdFavorite;
+})();
+</script>
+
+<style id="border-design-upgrades-css">
+#borderStylePanel{margin:18px 0 12px;padding:14px 12px;border:1px solid #cbd9f0;border-radius:12px;background:#f6f9ff}
+#borderStylePanel h2{margin:2px 0 10px;font-size:13px;letter-spacing:.08em;color:#172653}
+#borderStylePanel .border-style-intro{margin:3px 0 11px;font-size:11px;line-height:1.5;color:#627293}
+#borderStylePanel label{display:block;font-size:12px;font-weight:700;margin-bottom:8px}
+#borderStylePanel select{width:100%;padding:10px 9px;font-family:inherit;font-size:12px;border:1px solid #c5d3ee;border-radius:8px;background:white;color:#142353}
+#borderStylePanel .border-small-note{font-size:10px;line-height:1.55;margin:10px 0 0;color:#617395}
+</style>
+<script id="border-balance-selectable-upgrades">
+/* Four editable inner-border styles, generation collision checks, proportional paw/twin planets.
+   Separate from the outer mask: border traces the silhouette, never replaces or draws a new silhouette. */
+(()=>{
+ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+ const random=(a,b)=>a+Math.random()*(b-a);
+ const choose=a=>a[Math.floor(Math.random()*a.length)];
+ const styles=['double','telemetry','ticks','constellation'];
+ const names={double:'Double-line insignia',telemetry:'Telemetry dash border',ticks:'Orbital tick marks',constellation:'Constellation rim'};
+ const host=document.createElement('section');host.id='borderStylePanel';
+ host.innerHTML='<h2>Patch Border</h2><p class="border-style-intro">Four aerospace border styles, each following the actual patch silhouette.</p><label for="borderStyleSelect">Border style</label><select id="borderStyleSelect"><option value="auto">Surprise me · vary each design</option><option value="double">01 · Double-line insignia</option><option value="telemetry">02 · Telemetry dash border</option><option value="ticks">03 · Orbital tick marks</option><option value="constellation">04 · Constellation rim</option></select><p class="border-small-note">Select a border in the list to resize or rotate it with the sliders above.</p>';
+ document.getElementById('leftPalette').insertAdjacentElement('afterend',host);
+ const selectStyle=document.getElementById('borderStyleSelect');
+ const borderEl=()=>extraElements.find(e=>e.kind==='patchBorder'&&visibleParts[e.id]!==false);
+ const rimStyles=new Set(styles);
+ // Follow exactly the *current* silhouette. Coordinates are 1050x1050 for 3.5in square artboard.
+ function tracePath(c,shape){
+   c.beginPath();
+   if(shape==='hex'){
+     for(let i=0;i<6;i++){const a=(i*60-90)*Math.PI/180,x=525+468*Math.cos(a),y=525+468*Math.sin(a);i?c.lineTo(x,y):c.moveTo(x,y)}c.closePath();
+   }else if(shape==='shield'){
+     c.moveTo(525,63);c.bezierCurveTo(685,140,860,145,955,165);
+     c.lineTo(929,610);c.bezierCurveTo(900,790,665,925,525,995);
+     c.bezierCurveTo(385,925,150,790,121,610);c.lineTo(95,165);
+     c.bezierCurveTo(190,145,365,140,525,63);c.closePath();
+   }else if(shape==='diamond'){
+     c.moveTo(525,65);c.lineTo(985,525);c.lineTo(525,985);c.lineTo(65,525);c.closePath();
+   }else if(shape==='rounded')c.roundRect(61,61,928,928,170);
+   else c.arc(525,525,468,0,Math.PI*2);
+ }
+ function glyphStar(c,x,y,r){
+   c.beginPath();
+   for(let j=0;j<8;j++){
+     const a=j*Math.PI/4-Math.PI/2,rr=j%2?r*.18:r;
+     j?c.lineTo(x+rr*Math.cos(a),y+rr*Math.sin(a)):c.moveTo(x+rr*Math.cos(a),y+rr*Math.sin(a));
+   }
+   c.closePath();c.fill();
+ }
+ function borderSVGShape(shape){
+   if(shape==='circle')return '<circle cx="525" cy="525" r="468"/>';
+   if(shape==='diamond')return '<path d="M525 65 L985 525 L525 985 L65 525 Z"/>';
+   if(shape==='hex')return '<path d="M525 57 L930.3 291 L930.3 759 L525 993 L119.7 759 L119.7 291 Z"/>';
+   if(shape==='rounded')return '<rect x="61" y="61" width="928" height="928" rx="170"/>';
+   return '<path d="M525 63 C685 140 860 145 955 165 L929 610 C900 790 665 925 525 995 C385 925 150 790 121 610 L95 165 C190 145 365 140 525 63 Z"/>';
+ }
+ function borderStroke(e){
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate((e.angle||0)*Math.PI/180);
+   ctx.scale(e.scale||.9,e.scale||.9);ctx.translate(-525,-525);
+   ctx.strokeStyle=e.color||orbitInk();ctx.fillStyle=e.color||orbitInk();
+   ctx.lineCap='round';ctx.lineJoin='round';ctx.globalAlpha=e.alpha??.95;
+   const shape=window.patchSilhouette?.shape||'circle';
+   if(e.style==='double'){
+     ctx.lineWidth=12;tracePath(ctx,shape);ctx.stroke();
+     ctx.save();ctx.translate(525,525);ctx.scale(.956,.956);ctx.translate(-525,-525);
+     ctx.lineWidth=4;tracePath(ctx,shape);ctx.stroke();ctx.restore();
+   }else if(e.style==='telemetry'){
+     ctx.lineWidth=10;ctx.setLineDash([35,18,9,18]);tracePath(ctx,shape);ctx.stroke();ctx.setLineDash([]);
+     ctx.lineWidth=3;ctx.globalAlpha=(e.alpha??.95)*.7;
+     ctx.save();ctx.translate(525,525);ctx.scale(.967,.967);ctx.translate(-525,-525);
+     tracePath(ctx,shape);ctx.stroke();ctx.restore();
+   }else if(e.style==='ticks'){
+     ctx.lineWidth=5;tracePath(ctx,shape);ctx.stroke();
+     ctx.lineWidth=17;ctx.setLineDash([3,30]);tracePath(ctx,shape);ctx.stroke();ctx.setLineDash([]);
+   }else{
+     ctx.lineWidth=4;ctx.setLineDash([4,23]);tracePath(ctx,shape);ctx.stroke();ctx.setLineDash([]);
+     // Navigation stars are small enough to sit within the rim without dominating the artwork.
+     for(const [x,y,r] of [[525,77,13],[835,230,11],[845,805,9],[525,977,13],[205,805,10],[205,240,9]])glyphStar(ctx,x,y,r);
+   }
+   ctx.restore();
+ }
+ function borderSVG(e){
+   if(!e||visibleParts[e.id]===false)return '';
+   const k=borderSVGShape(window.patchSilhouette?.shape||'circle');
+   const ink=String(e.color||orbitInk()).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+   const group=`translate(${e.x} ${e.y}) rotate(${e.angle||0}) scale(${e.scale||.9}) translate(-525 -525)`;
+   let strokes='';
+   const mk=(width,dash='',opacity=1,transform='')=>`<g ${transform?`transform="${transform}"`:''} fill="none" stroke="${ink}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round" opacity="${opacity}" ${dash?`stroke-dasharray="${dash}"`:''}>${k}</g>`;
+   if(e.style==='double')strokes=mk(12)+mk(4,'',1,'translate(525 525) scale(.956) translate(-525 -525)');
+   else if(e.style==='telemetry')strokes=mk(10,'35 18 9 18')+mk(3,'',.7,'translate(525 525) scale(.967) translate(-525 -525)');
+   else if(e.style==='ticks')strokes=mk(5)+mk(17,'3 30');
+   else{
+     strokes=mk(4,'4 23');
+     strokes+='<g fill="'+ink+'">'+[[525,77,13],[835,230,11],[845,805,9],[525,977,13],[205,805,10],[205,240,9]].map(([x,y,r])=>{
+       const pts=Array.from({length:8},(_,j)=>{const a=j*Math.PI/4-Math.PI/2,rr=j%2?r*.18:r;return (x+rr*Math.cos(a)).toFixed(2)+','+(y+rr*Math.sin(a)).toFixed(2)}).join(' ');
+       return '<polygon points="'+pts+'"/>';
+     }).join('')+'</g>';
+   }
+   return `<g transform="${group}" opacity="${e.alpha??.95}">${strokes}</g>`;
+ }
+ const formerAllowed=decorationAllowed;
+ decorationAllowed=function(id){
+   if(extraElements.find(e=>e.id===id)?.kind==='patchBorder')return true;
+   return formerAllowed(id);
+ };
+ const formerExtra=drawExtra;
+ drawExtra=function(e){
+   if(e.kind==='patchBorder')return borderStroke(e);
+   if(e.kind==='text'&&e.generatedByVariation){
+     // A clean knockout under type removes coincident planet/ring strokes of the same ink.
+     const b=window.patchExtraBounds(e);
+     if(b){
+       ctx.save();ctx.translate(b.cx,b.cy);ctx.rotate((b.angle||0)*Math.PI/180);
+       ctx.fillStyle=backgroundColor;ctx.fillRect(-b.w/2-11,-b.h/2-9,b.w+22,b.h+18);ctx.restore();
+     }
+   }
+   return formerExtra(e);
+ };
+ const formerBounds=window.patchExtraBounds;
+ window.patchExtraBounds=function(e){
+   if(e?.kind==='patchBorder')return {cx:e.x,cy:e.y,w:936*(e.scale||.9),h:936*(e.scale||.9),angle:e.angle||0};
+   return formerBounds?.(e)||null;
+ };
+ // The published SVG exporter uses this callback inside the silhouette clip. Append borders as vector paths.
+ const previousOverlay=window.patchSilhouetteSVGOverlay;
+ window.patchSilhouetteSVGOverlay=function(){
+   const previous=typeof previousOverlay==='function'?previousOverlay():'';
+   return previous+(borderEl()?borderSVG(borderEl()):'');
+ };
+ function borderHit(x,y,e){
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate((e.angle||0)*Math.PI/180);
+   ctx.scale(e.scale||.9,e.scale||.9);ctx.translate(-525,-525);ctx.lineWidth=35;
+   tracePath(ctx,window.patchSilhouette?.shape||'circle');
+   const found=ctx.isPointInStroke(x,y);ctx.restore();return found;
+ }
+ const beforeHit=hit;
+ hit=function(x,y){
+   // Text hit-testing takes priority over large transparent orbit selections.
+   for(const e of [...extraElements].reverse()){
+     if(e.kind!=='text'||visibleParts[e.id]===false)continue;
+     const b=window.patchExtraBounds(e);if(!b)continue;
+     const r=(b.angle||0)*Math.PI/180,dx=x-b.cx,dy=y-b.cy;
+     if(Math.abs(dx*Math.cos(r)+dy*Math.sin(r))<=b.w/2+10&&Math.abs(-dx*Math.sin(r)+dy*Math.cos(r))<=b.h/2+10)return e.id;
+   }
+   const other=beforeHit(x,y);
+   if(other){const e=extraElements.find(v=>v.id===other);if(!e||e.kind!=='patchBorder')return other;}
+   for(const e of [...extraElements].reverse())if(e.kind==='patchBorder'&&visibleParts[e.id]!==false&&borderHit(x,y,e))return e.id;
+   return other;
+ };
+ function createBorder(style){
+   for(let i=extraElements.length-1;i>=0;i--){
+     const e=extraElements[i];if(e.kind!=='patchBorder')continue;
+     if(e.locked)continue;
+     extraElements.splice(i,1);layerOrder=layerOrder.filter(id=>id!==e.id);delete visibleParts[e.id];
+   }
+   let e=borderEl();
+   if(!e){
+     e={id:'extra'+(++extraCounter),kind:'patchBorder',x:525,y:525,scale:.91,angle:0,style,color:orbitInk(),alpha:.94,locked:false,generatedByVariation:true};
+     extraElements.push(e);visibleParts[e.id]=true;layerOrder.push(e.id);
+   }else e.style=style;
+   return e;
+ }
+ function pawFit(){
+   if(visibleParts.paw===false||visibleParts.circle===false)return;
+   // The vector paws's real bounding box, expressed relative to the center of the planet.
+   const cx=525+(state.circleDX||0),cy=525+(state.circleDY||0);
+   const circleR=390*state.circleSize;
+   // Source-vector artwork spans 422x490 and is drawn at (-211,-285).
+   // Its farthest possible point is about 355 units from its origin.
+   const px=525+state.pawX+state.pawDX,py=553+state.pawY+state.pawDY;
+   const radialOffset=Math.hypot(px-cx,py-cy);
+   const maxSize=clamp((circleR*.88-radialOffset)/355,.20,2.2);
+   if(state.pawSize>maxSize)state.pawSize=maxSize;
+ }
+ function placeSecondPlanet(){
+   const second=extraElements.find(e=>e.kind==='secondPlanet'&&visibleParts[e.id]!==false);
+   if(!second||visibleParts.circle===false)return;
+   const cx=525+state.circleDX,cy=525+state.circleDY;
+   const R=390*state.circleSize,smallR=98*(second.scale||1);
+   const dx=second.x-cx,dy=second.y-cy,dist=Math.max(1,Math.hypot(dx,dy));
+   // A small overlap is allowed; never swallow the smaller planet within the big one.
+   const minimum=R+smallR*.65;
+   if(dist<minimum){
+     const dirX=dx/dist,dirY=dy/dist;
+     second.x=clamp(cx+dirX*minimum,138,915);
+     second.y=clamp(cy+dirY*minimum,155,900);
+   }
+ }
+ function rectangle(b,pad=0){
+   const rad=(b.angle||0)*Math.PI/180,c=Math.abs(Math.cos(rad)),s=Math.abs(Math.sin(rad));
+   const hx=(b.w*c+b.h*s)/2+pad,hy=(b.w*s+b.h*c)/2+pad;
+   return {x0:b.cx-hx,x1:b.cx+hx,y0:b.cy-hy,y1:b.cy+hy};
+ }
+ function withinPatch(x,y,shape,gap=32){
+   // Test against the real polygon/curve rather than a coarse rectangular proxy.
+   ctx.save();ctx.translate(525,525);const scale=(468-gap)/468;
+   ctx.scale(scale,scale);ctx.translate(-525,-525);tracePath(ctx,shape);
+   const inside=ctx.isPointInPath(x,y);ctx.restore();return inside;
+ }
+ function strokePointConflict(e,b,margin=14){
+   const r=(b.angle||0)*Math.PI/180,c=Math.cos(r),s=Math.sin(r);
+   const dx=e.x-b.cx,dy=e.y-b.cy;
+   const lx=dx*c+dy*s,ly=-dx*s+dy*c;
+   return Math.abs(lx)<b.w/2+margin&&Math.abs(ly)<b.h/2+margin;
+ }
+ function orbitSamples(){
+   const pts=[];
+   const circleVisible=visibleParts.circle!==false,pi=Math.PI;
+   if(circleVisible){
+     const cx=525+state.circleDX,cy=525+state.circleDY,R=390*state.circleSize;
+     for(let j=0;j<100;j++){const t=j*2*pi/100;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)})}
+   }
+   for(const id of ['orbitA','orbitB']){
+     if(visibleParts[id]===false)continue;
+     const A=id==='orbitA',a=state[A?'ringA':'ringB']*pi/180;
+     const cx=525+state[A?'orbitADX':'orbitBDX'],cy=525+state[A?'orbitADY':'orbitBDY'];
+     const rx=(A?480:495)*state[A?'orbitASize':'orbitBSize'],ry=(A?53:58)*state[A?'orbitASize':'orbitBSize'];
+     for(let j=0;j<110;j++){
+       const t=2*pi*j/110,x=rx*Math.cos(t),y=ry*Math.sin(t);
+       pts.push({x:cx+x*Math.cos(a)-y*Math.sin(a),y:cy+x*Math.sin(a)+y*Math.cos(a)})
+     }
+   }
+   for(const e of extraElements){
+     if(visibleParts[e.id]===false)continue;
+     if(e.kind==='secondPlanet'){
+       const R=98*e.scale;
+       for(let j=0;j<80;j++){const a=j*2*pi/80;pts.push({x:e.x+R*Math.cos(a),y:e.y+R*Math.sin(a)})}
+     }
+   }
+   return pts;
+ }
+ function placeTextSafely(){
+   const texts=extraElements.filter(e=>e.kind==='text'&&visibleParts[e.id]!==false);
+   const strokes=orbitSamples();
+   const placed=[];
+   const shape=window.patchSilhouette?.shape||'circle';
+   const paw=visibleParts.paw!==false?window.selectionGeometry?.('paw'):null;
+   const pawBox=paw?rectangle(paw,20):null;
+   for(const e of texts){
+     // Text follows the design, but never crosses same-color rings, planets, paw, or another label.
+     const center={x:e.x,y:e.y,scale:e.scale};
+     const settings=[];
+     for(const dy of [0,-30,30,-70,70,-110,110])for(const dx of [0,-45,45,-90,90]){
+       settings.push({x:clamp(center.x+dx,115,935),y:clamp(center.y+dy,123,925),scale:center.scale,dist:Math.abs(dx)+Math.abs(dy)*1.3});
+     }
+     let best=null,bestCost=Infinity;
+     for(const option of settings){
+       e.x=option.x;e.y=option.y;e.scale=option.scale;
+       const bounds=window.patchExtraBounds(e);if(!bounds)continue;
+       const box=rectangle(bounds,12);
+       const corners=[[box.x0,box.y0],[box.x0,box.y1],[box.x1,box.y0],[box.x1,box.y1]];
+       const outside=corners.filter(p=>!withinPatch(p[0],p[1],shape,38)).length;
+       if(outside>0)continue;
+       let collisions=0;
+       for(const p of strokes)if(strokePointConflict(p,bounds,10)){collisions++;if(collisions>8)break}
+       if(pawBox&&!(box.x1<pawBox.x0||box.x0>pawBox.x1||box.y1<pawBox.y0||box.y0>pawBox.y1))collisions+=8;
+       for(const b of placed){const a=rectangle(b,14);if(!(box.x1<a.x0||box.x0>a.x1||box.y1<a.y0||box.y0>a.y1))collisions+=15}
+       const cost=collisions*250+option.dist;
+       if(cost<bestCost){best={...option,bounds};bestCost=cost}
+       if(collisions===0&&option.dist<15)break;
+     }
+     // If no clean position exists, reduce the label slightly and retry fewer orientations.
+     if(!best){
+       e.x=center.x;e.y=center.y;e.scale=center.scale*.83;
+       const b=window.patchExtraBounds(e);
+       best={x:e.x,y:e.y,scale:e.scale,bounds:b};
+     }
+     e.x=best.x;e.y=best.y;e.scale=best.scale;
+     if(best.bounds)placed.push(best.bounds);
+   }
+ }
+ function ensureResearchIdentity(){
+   const prominentText=extraElements.some(e=>e.kind==='text'&&visibleParts[e.id]!==false);
+   const hasOtherMotif=visibleParts.paw!==false||extraElements.some(e=>['secondPlanet','star','spark','crosshair','constellation','atom'].includes(e.kind)&&visibleParts[e.id]!==false);
+   // A ring-only planet is too empty: ensure a clearly identifiable space accent.
+   if(!hasOtherMotif){
+     const e={id:'extra'+(++extraCounter),kind:'star',x:260,y:280,scale:.52,angle:0,generatedByVariation:true,locked:false,color:orbitInk()};
+     extraElements.push(e);layerOrder.push(e.id);visibleParts[e.id]=true;
+   }
+   if(!prominentText){
+     const e={id:'extra'+(++extraCounter),kind:'text',x:525,y:165,scale:1.7,angle:0,generatedByVariation:true,locked:false,text:'BARUCH',fontRole:'display',fontSize:24,color:orbitInk(),tracking:2,align:'center',weight:700};
+     extraElements.push(e);layerOrder.push(e.id);visibleParts[e.id]=true;
+   }
+ }
+ function refineGeneration(){
+   try{
+     pawFit();placeSecondPlanet();ensureResearchIdentity();
+     const requested=selectStyle.value;
+     const border=createBorder(requested==='auto'?choose(styles):requested);
+     // Keep the visual hierarchy: thin border first, graphic elements next, readable typography last.
+     layerOrder=layerOrder.filter(id=>id!==border.id);
+     layerOrder.unshift(border.id);
+     const textIDs=layerOrder.filter(id=>extraElements.some(e=>e.id===id&&e.kind==='text'));
+     layerOrder=layerOrder.filter(id=>!textIDs.includes(id)).concat(textIDs);
+     placeTextSafely();select(null);renderLayers();draw();
+     if(typeof scheduleSave==='function')scheduleSave();
+   }catch(err){console.warn('Could not finish generated spacing',err);draw()}
+ }
+ const gen=document.getElementById('generate'),shuffle=document.getElementById('shuffle');
+ const oldGenerate=gen.onclick,oldShuffle=shuffle.onclick;
+ gen.onclick=function(){if(typeof oldGenerate==='function')oldGenerate.apply(this,arguments);refineGeneration()};
+ shuffle.onclick=function(){if(typeof oldShuffle==='function')oldShuffle.apply(this,arguments);refineGeneration()};
+ selectStyle.addEventListener('change',()=>{
+   if(typeof checkpoint==='function')checkpoint();
+   createBorder(selectStyle.value==='auto'?choose(styles):selectStyle.value);
+   renderLayers();draw();if(typeof scheduleSave==='function')scheduleSave();
+ });
+ // For the first load, show a border without generating away the user's original design.
+ if(!borderEl()){createBorder('double');renderLayers();draw()}
+ window.patchBorderFeatures={styles,names,refineGeneration,placeTextSafely,pawFit,placeSecondPlanet};
+})();
+</script>
+<script>
+/* Orbit Studio v6 — direct sidebar editing, unrestricted add/remove, graphic border picker,
+   containment and text safety. Keeps the existing generation recipes and silhouette renderer. */
+(()=>{
+ 'use strict';
+ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+ const $=s=>document.querySelector(s);
+ const editor=$('#editingPanel'),library=$('#elementLibrary'),borderPanel=$('#borderStylePanel');
+ const description=Array.from(editor.querySelectorAll('p')).find(p=>p.textContent.includes('Select an element in the library'));
+ if(!description)return;
+ const baseKinds=[
+  ['pawCopy','Bearcat paw','🐾'],['planetCopy','Planet','◯'],['orbitCopy','Orbit ring','⟲'],
+  ['secondPlanet','Small ringed planet','♄'],['text','Text label','T'],
+  ['star','Four-point star','✦'],['spark','Sparkle','✧'],['dot','Orbital dot','●'],
+  ['atom','Atomic accent','◎'],['crosshair','Tracking target','⊕'],['constellation','Constellation','✧']
+ ];
+ const names=Object.fromEntries(baseKinds.map(([k,n])=>[k,n]));
+ const baseNames={paw:'Bearcat paw',circle:'Planet outline',orbitA:'Orbit 1',orbitB:'Orbit 2',particleA:'Orbit bead 1',particleB:'Orbit bead 2',patchBorder:'Patch border',ring:'Orbit ring',bracket:'Technical bracket',scan:'Scan lines'};
+ const kit=document.createElement('section');kit.id='studioElementManager';
+ kit.innerHTML=`<div class="studio-add-heading"><strong>Add elements</strong><span>Click + to add copies</span></div>
+ <div class="studio-add-grid" id="studioAddGrid"></div>
+ <div class="studio-editor-heading"><strong>Your elements · select or delete</strong><span id="studioElementCount"></span></div>
+ <div class="studio-current" id="studioCurrent"></div>
+ <div class="studio-inspector" id="studioInspector" aria-live="polite">
+  <div class="studio-inspector-title"><span id="studioSelectedName">Select an element to edit</span></div>
+  <div class="studio-quick-actions" aria-label="Selected element actions">
+    <button type="button" id="studioDuplicateSelected" class="studio-action-add" title="Add another copy of the selected element" aria-label="Add another copy" disabled><span aria-hidden="true">＋</span> Add</button>
+    <button type="button" id="studioDeleteSelected" class="studio-action-delete" title="Delete the selected element" aria-label="Delete selected element" disabled><span aria-hidden="true">−</span> Delete</button>
+  </div>
+  <p id="studioSelectionHint">Select an item above or click it on the patch. Drag the artwork to reposition it.</p>
+  <label id="studioTextRow" class="studio-text-row" hidden>Label text<input type="text" id="studioTextInput" maxlength="64" placeholder="BARUCH SPACE RESEARCH" /></label>
+  <div class="studio-slider"><label for="studioScale">Scale <output id="studioScaleOutput">100%</output></label><input type="range" id="studioScale" min="20" max="350" value="100" step="1" disabled /></div>
+  <div class="studio-slider"><label for="studioRotation">Rotation <output id="studioRotationOutput">0°</output></label><input type="range" id="studioRotation" min="-180" max="180" value="0" step="1" disabled /></div>
+  <button type="button" id="studioResetTransform" disabled>Reset size and rotation</button>
+ </div>`;
+ // Place the scale and rotation sliders first so they are visible immediately
+ // beneath the Elements instructions, not buried beneath the entire add library.
+ kit.insertBefore(kit.querySelector('#studioInspector'),kit.firstChild);
+ description.insertAdjacentElement('afterend',kit);
+ const addGrid=$('#studioAddGrid'),current=$('#studioCurrent');
+ const scaleSlider=$('#studioScale'),angleSlider=$('#studioRotation');
+ const deleteBtn=$('#studioDeleteSelected'),duplicateBtn=$('#studioDuplicateSelected'),resetBtn=$('#studioResetTransform');
+ const textRow=$('#studioTextRow'),textInput=$('#studioTextInput');
+ // Hide the old one-copy-per-kind palette, but keep its DOM and scripts intact for
+ // existing save/load, colors, generation, and layers dependencies.
+ library.classList.add('studio-original-library-hidden');
+ library.setAttribute('aria-hidden','true');
+ // Do not hide the new manager: it sits immediately before the legacy library.
+ const groups=[
+  ['Space & Planets',['planetCopy','orbitCopy','secondPlanet','dot','atom']],
+  ['Baruch & Text',['pawCopy','text']],
+  ['Stars & Details',['star','spark','crosshair','constellation']]
+ ];
+ addGrid.style.display='block';
+ const groupHosts={};
+ for(const [title,kinds] of groups){
+   const details=document.createElement('details');details.className='studio-category';details.open=(title==='Space & Planets'||title==='Baruch & Text');
+   const summary=document.createElement('summary');summary.textContent=title;details.appendChild(summary);
+   const grid=document.createElement('div');grid.className='studio-category-grid';details.appendChild(grid);
+   addGrid.appendChild(details);
+   for(const kind of kinds)groupHosts[kind]=grid;
+ }
+ for(const [kind,name,symbol] of baseKinds){
+  const button=document.createElement('button');button.type='button';button.className='studio-add-card';
+  button.dataset.kind=kind;button.title='Add another '+name;button.setAttribute('aria-label','Add '+name);
+  button.innerHTML=`<span class="studio-icon">${symbol}</span><span class="studio-label">${name}</span><span class="studio-plus">+</span>`;
+  button.addEventListener('click',()=>addElement(kind));(groupHosts[kind]||addGrid).appendChild(button);
+ }
+ const extraFor=id=>extraElements.find(e=>e.id===id);
+ function idLabel(id){const e=extraFor(id);if(e){if(e.kind==='text')return e.text?.trim().slice(0,32)||'Text label';return names[e.kind]||baseNames[e.kind]||'Element';}return baseNames[id]||id;}
+ function getScale(id){const e=extraFor(id);if(e)return e.scale??1;
+  return ({paw:state.pawSize,circle:state.circleSize,orbitA:state.orbitASize,orbitB:state.orbitBSize,particleA:state.particleSizeA,particleB:state.particleSizeB})[id]??1;}
+ function getAngle(id){const e=extraFor(id);if(e)return e.angle??0;
+  return ({paw:state.pawAngle,orbitA:state.ringA,orbitB:state.ringB,particleA:(state.particleA||0)*360,particleB:(state.particleB||0)*360})[id]||0;}
+ function setTransform(id,type,value){const e=extraFor(id),v=Number(value);if(e){if(type==='scale')e.scale=v;else e.angle=v;return;}
+  const scaleKeys={paw:'pawSize',circle:'circleSize',orbitA:'orbitASize',orbitB:'orbitBSize',particleA:'particleSizeA',particleB:'particleSizeB'};
+  const angleKeys={paw:'pawAngle',orbitA:'ringA',orbitB:'ringB'};
+  if(type==='scale'&&scaleKeys[id])state[scaleKeys[id]]=v;
+  else if(type==='rotation'){
+   if(angleKeys[id])state[angleKeys[id]]=v;
+   else if(id==='particleA'||id==='particleB')state[id]=((v/360)%1+1)%1;
+  }
+ }
+ function makeElement(kind){
+  let x=525,y=525,scale=1,angle=0,extra={};
+  const ink=orbitInk();
+  if(kind==='pawCopy'){scale=.65;extra={color:typeof bearcatColor==='string'?bearcatColor:'#000042'};}
+  if(kind==='planetCopy'){scale=.85;extra={color:ink};}
+  if(kind==='orbitCopy'){scale=.9;angle=-22;extra={color:ink};}
+  if(kind==='secondPlanet'){x=710;y=665;scale=.72;extra={color:ink};}
+  if(kind==='text'){y=180;scale=1.2;extra={text:'BARUCH',fontRole:'display',fontSize:24,tracking:1.8,color:ink,align:'center',weight:700};}
+  if(kind==='star'||kind==='spark'){x=270;y=275;scale=.55;extra={color:ink};}
+  if(kind==='dot'){x=760;y=605;scale=.8;extra={color:ink};}
+  if(kind==='atom'){x=735;y=345;scale=.8;extra={color:ink};}
+  if(kind==='crosshair'){x=750;y=305;scale=.65;extra={color:ink};}
+  if(kind==='constellation'){x=295;y=340;scale=.78;extra={color:ink,points:[[-42,-28],[-10,-50],[34,-16],[12,26],[-36,38]]};}
+  // Move each new instance to a different free region, rather than stacking them.
+  const related=extraElements.filter(e=>e.kind===kind);
+  if(related.length){const a=related.length*2.399963229728653;
+   x=clamp(525+Math.cos(a)*Math.min(260,95+20*related.length),215,835);
+   y=clamp(525+Math.sin(a)*Math.min(260,95+20*related.length),215,835);
+  }
+  return {id:'extra'+(++extraCounter),kind,x,y,scale,angle,locked:false,manualAdded:true,...extra};
+ }
+ function addElement(kind){
+  if(typeof checkpoint==='function')checkpoint();
+  const item=makeElement(kind);extraElements.push(item);visibleParts[item.id]=true;
+  layerOrder.push(item.id);
+  select(item.id);renderLayers();draw();updateManager(true);
+  if(typeof scheduleSave==='function')scheduleSave();
+ }
+ function removeElement(id){if(!id)return;
+  if(typeof checkpoint==='function')checkpoint();
+  const e=extraFor(id);
+  if(e){const i=extraElements.indexOf(e);if(i>=0)extraElements.splice(i,1);layerOrder=layerOrder.filter(k=>k!==id);delete visibleParts[id];}
+  else visibleParts[id]=false;
+  if(selected===id)select(null);
+  renderLibrary();renderLayers();draw();updateManager(true);
+  if(typeof scheduleSave==='function')scheduleSave();
+ }
+ function updateManager(force=false){
+  const ids=layerOrder.filter(id=>visibleParts[id]!==false&&(!!extraFor(id)||['paw','circle','orbitA','orbitB','particleA','particleB'].includes(id)));
+  const signature=ids.join('|')+'|'+ids.map(id=>idLabel(id)).join('|');
+  if(force||updateManager.signature!==signature){
+   updateManager.signature=signature;
+   current.replaceChildren();
+   for(const id of [...ids].reverse()){
+    const row=document.createElement('div');row.className='studio-item';row.dataset.id=id;
+    const choose=document.createElement('button');choose.type='button';choose.className='studio-item-select';
+    choose.textContent=idLabel(id);choose.title='Select '+idLabel(id);
+    choose.addEventListener('click',()=>{select(id);draw();});
+    const del=document.createElement('button');del.type='button';del.className='studio-item-delete';
+    del.textContent='×';del.title='Delete '+idLabel(id);del.setAttribute('aria-label','Delete '+idLabel(id));
+    del.addEventListener('click',()=>removeElement(id));row.append(choose,del);current.appendChild(row);
+   }
+   $('#studioElementCount').textContent=ids.length+' elements';
+  }
+  current.querySelectorAll('.studio-item').forEach(row=>row.classList.toggle('active',row.dataset.id===selected));
+  const enabled=!!selected&&visibleParts[selected]!==false&&!locked(selected);
+  $('#studioSelectedName').textContent=selected?idLabel(selected):'Select an element to edit';
+  scaleSlider.disabled=!enabled;angleSlider.disabled=!enabled;deleteBtn.disabled=!selected;duplicateBtn.disabled=!selected;resetBtn.disabled=!enabled;
+  // Use CSS scale percentages; some generated typography intentionally starts larger than 100%.
+  if(!scaleSlider.matches(':active')){scaleSlider.value=String(clamp(Math.round(getScale(selected)*100),20,350));}
+  if(!angleSlider.matches(':active')){const r=getAngle(selected);angleSlider.value=String(clamp(Math.round(((r+180)%360+360)%360-180),-180,180));}
+  $('#studioScaleOutput').textContent=Math.round(getScale(selected)*100)+'%';
+  $('#studioRotationOutput').textContent=Math.round(getAngle(selected))+'°';
+  const e=extraFor(selected);textRow.hidden=!(e&&e.kind==='text');
+  if(e&&e.kind==='text'&&document.activeElement!==textInput)textInput.value=e.text||'';
+  $('#studioSelectionHint').textContent=selected?'Use the sliders below. Drag the selected item on the patch to move it.':'Choose an item above or click it on the patch.';
+ }
+ let sliderStart=null;
+ for(const [input,type] of [[scaleSlider,'scale'],[angleSlider,'rotation']]){
+  input.addEventListener('pointerdown',()=>{sliderStart=selected;if(typeof checkpoint==='function')checkpoint()});
+  input.addEventListener('input',()=>{
+   if(!selected||locked(selected))return;
+   const v=type==='scale'?Number(input.value)/100:Number(input.value);
+   setTransform(selected,type,v);draw();updateManager();
+   if(typeof scheduleSave==='function')scheduleSave();
+  });
+  input.addEventListener('change',()=>{sliderStart=null;updateManager()});
+ }
+ duplicateBtn.addEventListener('click',()=>{
+  if(!selected)return;
+  const original=extraFor(selected);
+  const kind=original?.kind || ({paw:'pawCopy',circle:'planetCopy',orbitA:'orbitCopy',orbitB:'orbitCopy',particleA:'dot',particleB:'dot'})[selected];
+  if(!kind)return;
+  addElement(kind);
+  // Preserve the source element's visual properties when creating a copy.
+  if(original){
+   const copy=extraFor(selected);
+   if(copy){for(const key of ['scale','angle','color','text','fontRole','fontSize','tracking','align','weight','alpha'])
+     if(original[key]!==undefined)copy[key]=original[key];
+    copy.x=Math.min(810,Math.max(240,original.x+44));
+    copy.y=Math.min(810,Math.max(240,original.y+44));
+    draw();updateManager(true);}
+  }
+ });
+ deleteBtn.addEventListener('click',()=>removeElement(selected));
+ resetBtn.addEventListener('click',()=>{
+  if(!selected||locked(selected))return;
+  if(typeof checkpoint==='function')checkpoint();
+  setTransform(selected,'scale',1);setTransform(selected,'rotation',0);draw();updateManager();
+ });
+ textInput.addEventListener('change',()=>{
+  const e=extraFor(selected);if(!e||e.kind!=='text')return;
+  if(typeof checkpoint==='function')checkpoint();
+  e.text=textInput.value.trim()||'BARUCH';keepTextSafe(e);draw();updateManager(true);
+ });
+ // Keep red dotted bounding boxes, hide all rotate/resize hotspots including their focus target.
+ const rotate=$('#rotateHandle'),resize=$('#resizeHandle');
+ for(const h of [rotate,resize]){h.style.setProperty('display','none','important');h.tabIndex=-1;h.setAttribute('aria-hidden','true');}
+ const style=document.createElement('style');style.id='studioEditorUpgradeCSS';style.textContent=`
+  #elementLibrary.studio-original-library-hidden,.studio-legacy-library-instruction{display:none!important}
+  #rotateHandle,#resizeHandle{display:none!important;pointer-events:none!important}
+  #selectionFrame{background:transparent!important;outline:none!important;pointer-events:none!important}
+  #selectionFrame svg rect{stroke:#ED4068!important;stroke-width:1.8!important;stroke-dasharray:4 4!important}
+  #studioElementManager{margin:12px 0 22px;display:block!important}
+  #studioElementManager .studio-inspector{margin:0 0 13px;background:#eaf1ff;border:2px solid #9bb5e3}
+  #studioElementManager #studioScale,#studioElementManager #studioRotation{display:block!important;width:100%;height:20px;cursor:pointer}
+  #studioElementManager .studio-add-heading{margin-top:12px}
+  #studioElementManager .studio-inspector-title:before{content:'EDIT';font:800 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#456394;align-self:center}
+
+  .studio-add-heading,.studio-editor-heading{display:flex;justify-content:space-between;align-items:center;margin:19px 0 10px;gap:12px}
+  .studio-add-heading strong,.studio-editor-heading strong{font-size:13px;color:#14265b}
+  .studio-add-heading span,.studio-editor-heading span{font:10px 'IBM Plex Mono',monospace;color:#7182a6}
+  .studio-add-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .studio-add-card{min-width:0;padding:8px 4px;min-height:88px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:3px;background:#f8faff;border:1px solid #dbe3f3;border-radius:10px;position:relative}
+  .studio-add-card:hover,.studio-add-card:focus-visible{background:#e8f0ff;border-color:#7e9ddd}
+  .studio-icon{height:29px;font-size:23px;color:#193a83;display:flex;align-items:center;justify-content:center}
+  .studio-label{font-size:10px;line-height:1.15;font-weight:650;text-align:center;color:#233969;overflow-wrap:anywhere}
+  .studio-plus{position:absolute;right:3px;top:2px;font-size:15px;color:#5274aa}
+  .studio-current{max-height:194px;overflow-y:auto;display:grid;gap:5px;padding-right:2px}
+  .studio-item{display:grid;grid-template-columns:minmax(0,1fr) 30px;gap:4px;align-items:center;border-radius:8px;border:1px solid #e1e8f5;background:white}
+  .studio-item.active{border-color:#ed4068;background:#fff4f7;box-shadow:inset 3px 0 #ed4068}
+  .studio-item-select{min-width:0;text-align:left;border:0;background:transparent;padding:8px 10px;border-radius:8px;font-weight:600;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .studio-item-delete{border:0;background:transparent;padding:0;font-size:19px;line-height:1;color:#a74358}
+  .studio-item-delete:hover{color:#ea2851;background:#ffe6ec}
+  .studio-inspector{margin-top:14px;padding:13px;border:1px solid #cbdaf4;border-radius:11px;background:#eef3ff}
+  .studio-inspector-title{display:flex;gap:8px;justify-content:space-between;align-items:center;font-size:12px;font-weight:750}
+  .studio-inspector-title span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #studioSelectionHint{font-size:11px;line-height:1.5;margin:9px 0}
+  .studio-danger{color:#ae3f58;border-color:#e6b9c4;padding:6px 9px}
+  .studio-slider{margin-top:14px}
+  .studio-slider label{display:flex;justify-content:space-between;gap:6px;font-size:12px;font-weight:650;margin-bottom:7px;color:#1b305f}
+  .studio-slider output{font:11px 'IBM Plex Mono',monospace;color:#4e648e}
+  .studio-slider input{width:100%;accent-color:#193a83}
+  #studioResetTransform{width:100%;margin-top:14px;padding:9px}
+  .studio-text-row{display:flex;flex-direction:column;gap:5px;font-size:11px;color:#1d376b;font-weight:600;margin:12px 0}
+  .studio-text-row[hidden]{display:none!important}
+  .studio-text-row input{width:100%;padding:9px;border:1px solid #c6d4ee;border-radius:7px;background:white;font-size:13px;color:#14265b}
+  #borderStylePanel #borderStyleSelect,#borderStylePanel>label[for="borderStyleSelect"]{display:none!important}
+  #studioBorderGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+  #studioBorderGrid button{min-width:0;padding:8px 6px 9px;display:flex;align-items:center;flex-direction:column;gap:5px;border:1px solid #dce4f5;border-radius:10px;background:white;color:#263a68;text-align:center}
+  #studioBorderGrid button:hover{border-color:#6085c3;background:#f3f7ff}
+  #studioBorderGrid button[aria-pressed="true"]{border-color:#193a83;background:#e6eeff;box-shadow:0 0 0 2px #6d93df55}
+  #studioBorderGrid svg{width:100%;max-width:120px;height:83px}
+  #studioBorderGrid small{font-size:10px;line-height:1.2;font-weight:650}
+  #studioBorderGrid button:first-child{grid-column:span 2;flex-direction:row;justify-content:center;padding:8px}
+  #studioBorderGrid button:first-child svg{width:60px;height:45px}
+  #studioBorderGrid button:first-child small{font-size:11px}
+  #borderStylePanel .border-small-note{font-size:10px}
+ `;
+ document.head.appendChild(style);
+ const selector=$('#borderStyleSelect');
+ if(selector&&borderPanel){
+  const grid=document.createElement('div');grid.id='studioBorderGrid';
+  const borderChoices=[['auto','Surprise me'],['double','Double line'],['telemetry','Telemetry dash'],['ticks','Orbital ticks'],['constellation','Constellation rim']];
+  function preview(type){
+   let marks='';
+   if(type==='auto')marks='<circle cx="55" cy="47" r="35" stroke-dasharray="5 8"/><circle cx="55" cy="47" r="22" stroke-width="2.5"/><path d="M28 69 L81 26"/>';
+   if(type==='double')marks='<circle cx="55" cy="47" r="36" stroke-width="3"/><circle cx="55" cy="47" r="30" stroke-width="1.5"/>';
+   if(type==='telemetry')marks='<circle cx="55" cy="47" r="36" stroke-width="3.5" stroke-dasharray="12 6 3 6"/><circle cx="55" cy="47" r="30" stroke-width="1"/>';
+   if(type==='ticks'){marks='<circle cx="55" cy="47" r="36" stroke-width="1.5"/><circle cx="55" cy="47" r="33" stroke-width="7" stroke-dasharray="1 7"/>'}
+   if(type==='constellation')marks='<circle cx="55" cy="47" r="36" stroke-width="1.5" stroke-dasharray="2 7"/><path d="M23 38 L35 19 L78 23 L87 56 L64 80 L32 69 L23 38" stroke-width="1"/><circle cx="35" cy="19" r="2" fill="currentColor"/><circle cx="87" cy="56" r="2.5" fill="currentColor"/>';
+   return `<svg viewBox="0 0 110 94" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" color="#193a83">${marks}</svg>`;
+  }
+  for(const [id,name] of borderChoices){const b=document.createElement('button');b.type='button';b.dataset.style=id;b.innerHTML=preview(id)+'<small>'+name+'</small>';b.addEventListener('click',()=>{selector.value=id;selector.dispatchEvent(new Event('change',{bubbles:true}));refreshBorders();});grid.appendChild(b);}
+  function refreshBorders(){grid.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.style===selector.value)));}
+  borderPanel.insertBefore(grid,$('.border-small-note'));
+  selector.addEventListener('change',refreshBorders);refreshBorders();
+  const intro=borderPanel.querySelector('.border-style-intro');if(intro)intro.textContent='Choose a border by its visual style; it follows the outer patch silhouette.';
+ }
+ // Make additional copies first-class canvas/SVG objects with accurate selection bounds.
+ const previousDrawExtra=drawExtra,previousBounds=window.patchExtraBounds,previousAllowed=decorationAllowed;
+ decorationAllowed=function(id){const e=extraFor(id);if(e?.manualAdded)return true;return previousAllowed(id);};
+ drawExtra=function(e){
+  if(e.kind==='pawCopy'){
+   if(!pawImage.complete||!pawImage.naturalWidth)return;
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate((e.angle||0)*Math.PI/180);ctx.scale(e.scale||1,e.scale||1);
+   ctx.drawImage(pawImage,-245,-285,490,490);ctx.restore();return;
+  }
+  if(e.kind==='planetCopy'||e.kind==='orbitCopy'){
+   ctx.save();ctx.translate(e.x,e.y);ctx.rotate((e.angle||0)*Math.PI/180);ctx.scale(e.scale||1,e.scale||1);
+   ctx.strokeStyle=e.color||orbitInk();ctx.lineWidth=12;ctx.lineCap='round';ctx.lineJoin='round';
+   ctx.beginPath();if(e.kind==='planetCopy')ctx.arc(0,0,150,0,Math.PI*2);else ctx.ellipse(0,0,184,28,0,0,Math.PI*2);ctx.stroke();ctx.restore();return;
+  }
+  return previousDrawExtra(e);
+ };
+ window.patchExtraBounds=function(e){
+  if(e&&e.kind==='pawCopy')return {cx:e.x,cy:e.y,w:410*(e.scale||1),h:468*(e.scale||1),angle:e.angle||0};
+  if(e&&e.kind==='planetCopy')return {cx:e.x,cy:e.y,w:320*(e.scale||1),h:320*(e.scale||1),angle:e.angle||0};
+  if(e&&e.kind==='orbitCopy')return {cx:e.x,cy:e.y,w:380*(e.scale||1),h:70*(e.scale||1),angle:e.angle||0};
+  if(e&&['star','spark','dot','atom','ring'].includes(e.kind)){
+   const radii={star:46,spark:36,dot:22,atom:70,ring:160};const sc=e.scale||1;
+   return {cx:e.x,cy:e.y,w:e.kind==='ring'?320*sc:2*radii[e.kind]*sc,h:e.kind==='ring'?42*sc:2*radii[e.kind]*sc,angle:e.angle||0};
+  }
+  return previousBounds?.(e)||null;
+ };
+ // Existing geometry handler handles the first copy bounds only if we delegate it explicitly.
+ const priorGeometry=window.selectionGeometry;
+ window.selectionGeometry=function(id){
+  const e=extraFor(id);
+  if(e?.manualAdded){const b=window.patchExtraBounds(e);if(b)return b;}
+  return priorGeometry?.(id)||null;
+ };
+ const prevHit=hit;
+ hit=function(x,y){
+  for(const e of [...extraElements].reverse()){
+   if(visibleParts[e.id]===false||!e.manualAdded)continue;
+   const b=window.patchExtraBounds(e);if(!b)continue;
+   const a=(b.angle||0)*Math.PI/180,c=Math.cos(a),s=Math.sin(a),dx=x-b.cx,dy=y-b.cy;
+   if(Math.abs(dx*c+dy*s)<=b.w/2+5&&Math.abs(-dx*s+dy*c)<=b.h/2+5)return e.id;
+  }
+  return prevHit(x,y);
+ };
+ const oldSVGOverlay=window.patchSilhouetteSVGOverlay;
+ window.patchSilhouetteSVGOverlay=function(){
+  let svg=typeof oldSVGOverlay==='function'?oldSVGOverlay():'';
+  for(const e of extraElements){if(visibleParts[e.id]===false||!e.manualAdded)continue;
+   const color=(e.color||orbitInk()).replace(/"/g,'&quot;');
+   const tr=`translate(${e.x} ${e.y}) rotate(${e.angle||0}) scale(${e.scale||1})`;
+   if(e.kind==='planetCopy')svg+=`<circle cx="0" cy="0" r="150" transform="${tr}" fill="none" stroke="${color}" stroke-width="12"/>`;
+   if(e.kind==='orbitCopy')svg+=`<ellipse cx="0" cy="0" rx="184" ry="28" transform="${tr}" fill="none" stroke="${color}" stroke-width="12"/>`;
+   if(e.kind==='pawCopy')svg+=`<path d="${bearcatPathData}" fill="${bearcatColor}" transform="${tr} translate(-245 -285) scale(${490/348} ${490/404})"/>`;
+  }
+  return svg;
+ };
+ // The 3.5-inch clipping shape is also an editable safety region. Generate with
+ // contained borders, planets and labels, leaving a visual margin around the rim.
+ function makePatchPath(context,shape){
+  context.beginPath();
+  if(shape==='hex'){for(let j=0;j<6;j++){const a=(j*60-90)*Math.PI/180,x=525+468*Math.cos(a),y=525+468*Math.sin(a);j?context.lineTo(x,y):context.moveTo(x,y);}context.closePath();}
+  else if(shape==='diamond'){context.moveTo(525,65);context.lineTo(985,525);context.lineTo(525,985);context.lineTo(65,525);context.closePath();}
+  else if(shape==='shield'){context.moveTo(525,63);context.bezierCurveTo(685,140,860,145,955,165);context.lineTo(929,610);context.bezierCurveTo(900,790,665,925,525,995);context.bezierCurveTo(385,925,150,790,121,610);context.lineTo(95,165);context.bezierCurveTo(190,145,365,140,525,63);context.closePath();}
+  else if(shape==='rounded'){context.roundRect(61,61,928,928,170);}
+  else context.arc(525,525,468,0,2*Math.PI);
+ }
+ function inside(x,y,padding=35){
+  const shape=window.patchSilhouette?.shape||'circle';
+  ctx.save();ctx.translate(525,525);const sc=(468-padding)/468;ctx.scale(sc,sc);ctx.translate(-525,-525);makePatchPath(ctx,shape);
+  const ok=ctx.isPointInPath(x,y);ctx.restore();return ok;
+ }
+ const rectCorners=b=>{const a=(b.angle||0)*Math.PI/180,c=Math.cos(a),s=Math.sin(a),w=b.w/2,h=b.h/2;
+  return [[-w,-h],[w,-h],[w,h],[-w,h]].map(([dx,dy])=>[b.cx+dx*c-dy*s,b.cy+dx*s+dy*c]);};
+ function safeBounds(e){return window.patchExtraBounds(e);}
+ function boundsSafe(b,padding=42){return !!b&&rectCorners(b).every(([x,y])=>inside(x,y,padding));}
+ function intersect(a,b,pad=10){
+  function aabb(z){const r=(z.angle||0)*Math.PI/180,c=Math.abs(Math.cos(r)),s=Math.abs(Math.sin(r));let w=(z.w*c+z.h*s)/2,h=(z.w*s+z.h*c)/2;return [z.cx-w,z.cy-h,z.cx+w,z.cy+h];}
+  const x=aabb(a),y=aabb(b);return x[0]<y[2]+pad&&x[2]>y[0]-pad&&x[1]<y[3]+pad&&x[3]>y[1]-pad;
+ }
+ function keepTextSafe(e,other=[]){
+  if(e.kind!=='text')return;
+  const original={x:e.x,y:e.y,scale:e.scale,angle:e.angle};
+  const options=[];const offsets=[[0,0],[0,-35],[0,35],[0,-70],[0,70],[-45,0],[45,0],[-90,0],[90,0],[-120,-40],[120,-40],[0,-135],[0,135]];
+  for(const sc of [1,.91,.81,.7,.62,.53,.46])for(const ang of [original.angle,0,(original.angle<0?-12:12)]){
+   for(const [dx,dy] of offsets){options.push({x:original.x+dx,y:original.y+dy,scale:original.scale*sc,angle:ang,cost:(1-sc)*250+Math.hypot(dx,dy)*.65+Math.abs(ang-original.angle)*.17});}
+  }
+  // If the current slot is bad, try alternate natural reading positions.
+  for(const pos of [[525,165],[525,245],[525,810],[525,870],[525,915],[525,350],[525,700],[330,265],[730,265],[355,760],[695,760]])
+   for(const sc of [.9,.7,.55,.4])options.push({x:pos[0],y:pos[1],scale:Math.min(original.scale,2.2)*sc,angle:0,cost:130+Math.hypot(pos[0]-original.x,pos[1]-original.y)*.13+(1-sc)*75});
+  options.sort((a,b)=>a.cost-b.cost);
+  let best=null,score=Infinity;
+  for(const p of options){e.x=p.x;e.y=p.y;e.scale=p.scale;e.angle=p.angle;let b=safeBounds(e);if(!b||!boundsSafe(b,43))continue;
+   let conflicts=0;
+   for(const q of other)if(intersect(b,q,16))conflicts++;
+   const cost=p.cost+conflicts*10000;
+   if(cost<score){best={...p};score=cost;if(!conflicts)break;}
+  }
+  if(best){Object.assign(e,best);return;}
+  Object.assign(e,{...original,x:525,y:525,angle:0,scale:Math.max(.28,original.scale*.4)});
+ }
+ function fixTextCollisions(){
+  const text=extraElements.filter(e=>e.kind==='text'&&visibleParts[e.id]!==false);
+  const accepted=[];
+  // Large labels are placed first so a small technical label never displaces BARUCH.
+  text.sort((a,b)=>(b.fontRole==='display'?1:0)-(a.fontRole==='display'?1:0)||((b.scale||1)-(a.scale||1)));
+  for(const e of text){keepTextSafe(e,accepted);const b=safeBounds(e);if(b)accepted.push(b);}
+  // For text layers, always paint after ring/planet strokes. With a tiny background
+  // knockout, this preserves legibility over a light orbit line.
+  const ids=text.map(e=>e.id);layerOrder=layerOrder.filter(id=>!ids.includes(id)).concat(ids);
+ }
+ function keepGraphicInside(e){if(e.kind==='patchBorder'||e.kind==='text')return;
+  const movableKinds=new Set(['secondPlanet','star','spark','dot','atom','crosshair','constellation','scan','bracket','pawCopy','planetCopy','orbitCopy']);
+  if(!movableKinds.has(e.kind))return;
+  for(let tries=0;tries<18;tries++){
+   const b=safeBounds(e);if(boundsSafe(b,32))return;
+   e.x+=(525-e.x)*.25;e.y+=(525-e.y)*.25;e.scale=Math.max(.2,(e.scale||1)*.92);
+  }
+ }
+ function containCore(){
+  if(visibleParts.circle!==false){
+   for(let i=0;i<20;i++){
+    const r=390*state.circleSize+state.ringWidth/2;
+    const cx=525+(state.circleDX||0),cy=525+(state.circleDY||0);
+    let good=true;
+    for(let j=0;j<32;j++){const a=j*Math.PI/16;if(!inside(cx+r*Math.cos(a),cy+r*Math.sin(a),28)){good=false;break;}}
+    if(good)break;
+    state.circleSize=Math.max(.29,state.circleSize*.955);
+    state.circleDX*=.90;state.circleDY*=.90;
+   }
+  }
+  // Orbit rendering never extends beyond the main patch mask, but its major tips
+  // should be contained so the visible ring reads as a full motif.
+  for(const [id,A] of [['orbitA',true],['orbitB',false]]){
+   if(visibleParts[id]===false)continue;
+   const suffix=A?'A':'B',scaleKey=A?'orbitASize':'orbitBSize',deg=state[A?'ringA':'ringB'];
+   for(let tries=0;tries<22;tries++){
+    const rx=(A?480:495)*state[scaleKey],ry=(A?53:58)*state[scaleKey],rad=deg*Math.PI/180;
+    const cx=525+(state['orbit'+suffix+'DX']||0),cy=525+(state['orbit'+suffix+'DY']||0);
+    let fits=true;
+    for(let k=0;k<40;k++){const t=k*Math.PI/20,x=rx*Math.cos(t),y=ry*Math.sin(t),px=cx+x*Math.cos(rad)-y*Math.sin(rad),py=cy+x*Math.sin(rad)+y*Math.cos(rad);
+     if(!inside(px,py,26)){fits=false;break;}
+    }
+    if(fits)break;
+    state[scaleKey]=Math.max(.23,state[scaleKey]*.955);
+    state['orbit'+suffix+'DX']*=.91;state['orbit'+suffix+'DY']*=.91;
+   }
+  }
+  if(typeof window.patchBorderFeatures?.pawFit==='function')window.patchBorderFeatures.pawFit();
+  if(typeof window.patchBorderFeatures?.placeSecondPlanet==='function')window.patchBorderFeatures.placeSecondPlanet();
+ }
+ function refineAll(){
+  try{containCore();for(const e of extraElements)if(visibleParts[e.id]!==false)keepGraphicInside(e);fixTextCollisions();
+   renderLayers();draw();updateManager(true);
+   if(typeof scheduleSave==='function')scheduleSave();
+  }catch(err){console.warn('Layout refinement skipped:',err);draw();updateManager(true);}
+ }
+ // Our final wrappers run after earlier generator refinements and favorites restores.
+ for(const id of ['generate','shuffle']){
+  const btn=$('#'+id);const former=btn.onclick;
+  btn.onclick=function(){if(typeof former==='function')former.apply(this,arguments);refineAll();};
+ }
+ // Restore a saved favorite using the same side panel controls.
+ const originalRestore=restoreSnapshot;
+ restoreSnapshot=function(raw){originalRestore(raw);updateManager(true);};
+ const formerSelect=select;
+ select=function(id){formerSelect(id);updateManager();};
+ const formerDraw=draw;
+ draw=function(){formerDraw();updateManager();};
+ // Red frame remains as visible selection feedback, but all edit handles stay hidden.
+ const hint=$('.stage .mini');if(hint)hint.textContent='Click any element to show its red dashed selection grid. Drag to position it; use the editing sliders for size and rotation.';
+ // The old right-hand edit controls remain visually hidden; only our panel is interactive.
+ requestAnimationFrame(()=>{
+  updateManager(true);refineAll();
+  // An initial selection makes the live scale/rotation controls usable immediately.
+  if(!selected){const first=['paw','circle','orbitA','orbitB'].find(id=>visibleParts[id]!==false);if(first)select(first);}
+  updateManager(true);
+ });
+ window.studioEditorV6={addElement,removeElement,refineAll,keepTextSafe,updateManager};
+})();
+
+</script>
+
+<style id="animation-studio-css">
+#animationStudio{width:min(100%,560px);max-width:560px;flex-shrink:0;align-self:center;margin:14px 0 10px;padding:16px 17px;background:#fff;border:1px solid #cfddf4;border-radius:13px;box-shadow:0 3px 12px #1c32650a}
+#animationStudio .anim-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:13px}
+#animationStudio .anim-head strong{font:700 15px 'Barlow Condensed',Arial,sans-serif;letter-spacing:.08em;color:#14265b}
+#animationStudio .anim-head span{font:10px 'IBM Plex Mono',monospace;color:#6a7ca1}
+#animationStudio .anim-grid{display:grid;grid-template-columns:1fr 125px;gap:10px;align-items:end}
+#animationStudio button{border-radius:8px;padding:10px 11px}
+#animationStudio #animPlay{font-size:13px;min-width:145px}
+#animationStudio select{width:100%;padding:9px;border:1px solid #c8d6ef;border-radius:8px;background:#f9fbff;color:#182959;font-weight:700}
+#animationStudio label{font-size:11px;color:#415985;font-weight:700}
+#animationStudio .anim-options{display:flex;flex-wrap:wrap;gap:13px 16px;margin:14px 0}
+#animationStudio .anim-options label{display:flex;align-items:center;gap:6px;cursor:pointer}
+#animationStudio .anim-options input{accent-color:#193a83}
+#animationStudio .anim-progress{height:5px;border-radius:99px;background:#e3eafb;overflow:hidden;margin:11px 0}
+#animationStudio #animProgressFill{height:100%;width:0%;background:#345db3;transition:width .09s linear}
+#animationStudio .anim-export{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+#animationStudio .anim-export button{font-size:11px}
+#animationStudio #animStatus{min-height:17px;margin:10px 0 0;color:#647698;font:10px 'IBM Plex Mono',monospace;line-height:1.5}
+#animationOverlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+@media(max-width:650px){#animationStudio{padding:13px}#animationStudio .anim-grid{grid-template-columns:1fr 115px}}
+</style>
+<script id="animation-studio-v1">
+(()=>{
+ 'use strict';
+ const patch=document.getElementById('patch'),wrap=document.getElementById('patchWrap');
+ if(!patch||!wrap||!document.querySelector('.stage'))return;
+ const overlay=document.createElement('canvas');overlay.id='animationOverlay';overlay.width=1050;overlay.height=1050;
+ // Particles hide naturally behind the main planet outline during animation.
+ overlay.setAttribute('aria-hidden','true');overlay.style.display='none';wrap.appendChild(overlay);
+ const octx=overlay.getContext('2d');
+ const panel=document.createElement('section');panel.id='animationStudio';panel.setAttribute('aria-label','Animation studio');
+ panel.innerHTML=`<div class="anim-head"><strong>✧ ANIMATION STUDIO</strong><span>SEAMLESS / LOOP</span></div>
+ <div class="anim-grid"><button type="button" id="animPlay" class="primary">▶ Play animation</button>
+ <label for="animDuration">Loop duration<select id="animDuration"><option value="4">4 seconds</option><option value="6" selected>6 seconds</option><option value="8">8 seconds</option><option value="12">12 seconds</option></select></label></div>
+ <div class="anim-options"><label><input id="animOrbit" type="checkbox" checked> Ring particles (right → left)</label><label><input id="animStars" type="checkbox" checked> Soft star fade</label><label><input id="animPulse" type="checkbox" checked> Planet pulse</label></div>
+ <div class="anim-timing"><div><label for="animParticleSpeed">Particle speed <output id="animParticleSpeedValue">1 revolution / loop</output></label><input id="animParticleSpeed" type="range" min="1" max="4" step="1" value="1"/><span class="anim-help">Moves clockwise or counterclockwise visually from the right side toward the left, following each ring.</span></div><div><label for="animStarBrighten">Star brightening time <output id="animStarBrightenValue">1.5 seconds</output></label><input id="animStarBrighten" type="range" min="0.5" max="3" step="0.5" value="1.5"/><span class="anim-help">Time for stars to gently brighten; they fade out smoothly before the loop restarts.</span></div></div>
+ <div class="anim-progress"><div id="animProgressFill"></div></div>
+ <div class="anim-export"><button id="animGIF" type="button">↓ Export GIF</button><button id="animWebM" type="button">↓ Export video (WebM)</button></div>
+ <p id="animStatus" role="status" aria-live="polite">6-second loop · 300px GIF / 1050px WebM</p>`;
+ const favorites=document.querySelector('.stage-favorites');if(favorites)favorites.before(panel);else wrap.after(panel);
+ const $=id=>document.getElementById(id);
+ const elPlay=$('animPlay'),elDur=$('animDuration'),elStatus=$('animStatus'),fill=$('animProgressFill');
+ const opts=()=>({orbit:$('animOrbit').checked,stars:$('animStars').checked,pulse:$('animPulse').checked});
+ const cycles=()=>Number($('animParticleSpeed').value);
+ const brightenSeconds=()=>Number($('animStarBrighten').value);
+ const updateTimingLabels=()=>{
+  $('animParticleSpeedValue').textContent=cycles()+' revolution'+(cycles()===1?'':'s')+' / loop';
+  const actual=Math.min(brightenSeconds(),Number(elDur.value)/2);
+  $('animStarBrightenValue').textContent=actual.toFixed(1)+' seconds';
+ };
+ for(const id of ['animParticleSpeed','animStarBrighten'])$(id).addEventListener('input',()=>{updateTimingLabels();if(mode)show(timePhase());});
+ updateTimingLabels();
+ let mode=false,playing=false,raf=0,offsetMs=0,startMs=0,busy=false;
+ const duration=()=>Number(elDur.value)*1000;
+ const timePhase=()=>((offsetMs%duration())/duration()+1)%1;
+ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+ const ink=()=>typeof orbitInk==='function'?orbitInk():'#FFFFFF';
+ const previousDraw=draw;
+ // Hide moving primitives from the static base. Only the animated overlay paints
+ // those shapes while the animation is active, so there are no ghost particles.
+ const suppressed=()=>{
+  let ids=[];
+  if($('animOrbit').checked){
+   for(const which of ['A','B'])if(visibleParts['orbit'+which]!==false&&visibleParts['particle'+which]!==false)ids.push('particle'+which);
+  }
+  if($('animStars').checked)for(const e of extraElements||[])if(['star','spark'].includes(e.kind))ids.push(e.id);
+  return ids;
+ };
+ function staticBase(){
+  const hide=mode?suppressed():[];
+  const saved=hide.map(id=>[id,visibleParts[id]]);
+  for(const [id] of saved)visibleParts[id]=false;
+  try{return previousDraw();}finally{for(const [id,value] of saved)visibleParts[id]=value;}
+ }
+ draw=function(){return staticBase();};
+ function pathFor(c,shape){
+  c.beginPath();
+  if(shape==='circle'||!shape)c.arc(525,525,468,0,Math.PI*2);
+  else if(shape==='hex'){for(let j=0;j<6;j++){const a=(j*60-90)*Math.PI/180,x=525+468*Math.cos(a),y=525+468*Math.sin(a);j?c.lineTo(x,y):c.moveTo(x,y);}c.closePath();}
+  else if(shape==='diamond'){c.moveTo(525,65);c.lineTo(985,525);c.lineTo(525,985);c.lineTo(65,525);c.closePath();}
+  else if(shape==='shield'){c.moveTo(525,63);c.bezierCurveTo(685,140,860,145,955,165);c.lineTo(929,610);c.bezierCurveTo(900,790,665,925,525,995);c.bezierCurveTo(385,925,150,790,121,610);c.lineTo(95,165);c.bezierCurveTo(190,145,365,140,525,63);c.closePath();}
+  else if(shape==='rounded')c.roundRect(61,61,928,928,170);
+  else c.arc(525,525,468,0,2*Math.PI);
+ }
+ const onScreen=(x,y,pad=18)=>x>pad&&x<1050-pad&&y>pad&&y<1050-pad;
+ function dot(c,x,y,r,color){if(!onScreen(x,y,r))return;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=color;c.fill();}
+ function paint(c,t){
+  const options=opts();
+  c.save();pathFor(c,window.patchSilhouette?.shape);c.clip();
+  if(options.pulse){
+   const r=390*state.circleSize,cx=525+(state.circleDX||0),cy=525+(state.circleDY||0);
+   if(visibleParts.circle!==false){
+    const glow=(1+Math.sin(t*Math.PI*4-Math.PI/2))*.5;
+    c.save();c.strokeStyle=ink();c.globalAlpha=.055+.16*glow;c.lineWidth=5+glow*11;
+    c.beginPath();c.arc(cx,cy,Math.max(8,r+7),0,2*Math.PI);c.stroke();c.restore();
+   }
+   for(const e of extraElements)if(e.kind==='secondPlanet'&&visibleParts[e.id]!==false){
+    const v=(1+Math.sin(t*Math.PI*4+.4))*.5,r2=98*(e.scale||1);
+    c.save();c.strokeStyle=e.color||ink();c.globalAlpha=.06+.12*v;c.lineWidth=4+v*6;c.beginPath();c.arc(e.x,e.y,r2+7,0,Math.PI*2);c.stroke();c.restore();
+   }
+  }
+  if(options.orbit){
+   for(const which of ['A','B']){
+    const id='particle'+which;
+    if(visibleParts['orbit'+which]===false||visibleParts[id]===false)continue;
+    const first=which==='A',radiusX=(first?480:495)*state['orbit'+which+'Size'];
+    const radiusY=(first?53:58)*state['orbit'+which+'Size'];
+    const rot=state[first?'ringA':'ringB']*Math.PI/180;
+    // Start on the right, progress toward the left across the top of each tilted ring.
+    // An integer number of revolutions makes every exported loop seamless.
+    const phase=(-cycles()*t)*Math.PI*2;
+    const localX=radiusX*Math.cos(phase),localY=radiusY*Math.sin(phase);
+    const centerX=525+(state['orbit'+which+'DX']||0)+(state['particle'+which+'DX']||0);
+    const centerY=525+(state['orbit'+which+'DY']||0)+(state['particle'+which+'DY']||0);
+    const x=centerX+localX*Math.cos(rot)-localY*Math.sin(rot);
+    const y=centerY+localX*Math.sin(rot)+localY*Math.cos(rot);
+    const r=(first?25:31)*(state['particleSize'+which]||1);
+    const planetX=525+(state.circleDX||0),planetY=525+(state.circleDY||0);
+    const planetR=390*(state.circleSize||1);
+    const outlineHalf=((state.ringWidth||11)+8)*0.5;
+    const distance=Math.hypot(x-planetX,y-planetY);
+    // Match orbitArc's near/far test: localY < 0 is the far side of this ring.
+    // Occlude the entire moving bead as soon as that far-side bead touches the
+    // planet silhouette, including its visible outline stroke. On the near side,
+    // the bead can cross in front of the planet without disappearing.
+    const behindRing=localY < -0.0001;
+    const occludedByPlanet=visibleParts.circle!==false && behindRing &&
+      distance < planetR + outlineHalf + r;
+    if(!occludedByPlanet){c.save();c.globalAlpha=1;dot(c,x,y,r,ink());c.restore();}
+   }
+   // Do not create a moving particle merely because an extra ring exists.
+   // Only artwork containing its own ring particle receives this animation.
+  }
+  if(options.stars){
+   let n=0;
+   for(const e of extraElements){
+    if(!['star','spark'].includes(e.kind)||visibleParts[e.id]===false)continue;
+    const seconds=Number(elDur.value),riseSeconds=Math.min(brightenSeconds(),seconds/2);
+    // Each star gets a gentle, slightly staggered fade cycle with no abrupt jumps.
+    const localSeconds=((t*seconds - n*.18)%seconds+seconds)%seconds;
+    const fadeIn=Math.min(1,localSeconds/riseSeconds);
+    const fadeOut=Math.min(1,(seconds-localSeconds)/riseSeconds);
+    const smooth=v=>v*v*(3-2*v);
+    const shimmer=smooth(Math.max(0,Math.min(fadeIn,fadeOut)));
+    c.save();c.globalAlpha=.12+.88*shimmer;
+    c.translate(e.x,e.y);c.rotate((e.angle||0)*Math.PI/180);
+    c.scale(e.scale||1,e.scale||1);
+    const r=e.kind==='star'?44:29;
+    c.beginPath();for(let j=0;j<8;j++){const a=j*Math.PI/4-Math.PI/2,rr=j%2?r*.18:r;
+     j?c.lineTo(rr*Math.cos(a),rr*Math.sin(a)):c.moveTo(rr*Math.cos(a),rr*Math.sin(a));}
+    c.closePath();c.fillStyle=e.color||ink();c.strokeStyle=e.color||ink();c.lineWidth=7;
+    if(e.kind==='spark')c.stroke();else c.fill();c.restore();n++;
+   }
+  }
+  c.restore();
+ }
+ function show(t){octx.clearRect(0,0,1050,1050);paint(octx,t);fill.style.width=(t*100).toFixed(1)+'%';}
+ function frame(now){
+  if(!playing)return;
+  offsetMs=(now-startMs)%duration();show(timePhase());
+  raf=requestAnimationFrame(frame);
+ }
+ function play(){
+  if(busy)return;
+  if(!mode){mode=true;draw();overlay.style.display='block';}
+  if(playing)return;
+  playing=true;startMs=performance.now()-offsetMs;
+  elPlay.textContent='Ⅱ Pause animation';elStatus.textContent=`Playing a ${elDur.value}-second seamless loop`;
+  raf=requestAnimationFrame(frame);
+ }
+ function pause(){if(!playing)return;playing=false;cancelAnimationFrame(raf);elPlay.textContent='▶ Resume animation';elStatus.textContent='Animation paused · resume or export';}
+ function stop(){pause();mode=false;offsetMs=0;overlay.style.display='none';octx.clearRect(0,0,1050,1050);fill.style.width='0%';draw();elPlay.textContent='▶ Play animation';}
+ elPlay.onclick=()=>playing?pause():play();
+ elDur.onchange=()=>{updateTimingLabels();offsetMs=0;if(playing)startMs=performance.now();show(0);elStatus.textContent=`${elDur.value}-second loop · 300px GIF / 1050px WebM`;};
+ for(const id of ['animOrbit','animStars','animPulse'])$(id).onchange=()=>{
+  if(mode){draw();show(timePhase());}
+ };
+ for(const id of ['generate','shuffle','original'])document.getElementById(id)?.addEventListener('click',()=>{
+  if(mode){stop();elStatus.textContent='New design ready · press Play animation';}
+ });
+ function takeBase(){
+  const wasMode=mode;
+  if(!mode){mode=true;draw();}
+  const base=document.createElement('canvas');base.width=1050;base.height=1050;
+  base.getContext('2d').drawImage(patch,0,0);
+  if(!wasMode){mode=false;draw();}
+  return base;
+ }
+ function compose(c,base,t,outSize){
+  c.clearRect(0,0,outSize,outSize);c.drawImage(base,0,0,outSize,outSize);
+  c.save();c.scale(outSize/1050,outSize/1050);paint(c,t);c.restore();
+ }
+ const saveBlob=(blob,name)=>{const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);};
+ const busyMode=(v)=>{busy=v;$('animGIF').disabled=v;$('animWebM').disabled=v;elDur.disabled=v;};
+ const idle=()=>new Promise(r=>setTimeout(r,0));
+ // GIF89a encoder with a fixed RGB332 palette. A clear code is inserted every
+ // 160 raw pixel codes to keep the LZW code width at 9 bits. This trades a little
+ // file size for a small, reliable, dependency-free, offline GIF exporter.
+ function gifFramePixels(image){
+  const a=image.data,indices=new Uint8Array(a.length/4);
+  for(let i=0,p=0;i<a.length;i+=4,p++){
+   if(a[i+3]<100){indices[p]=0;continue;}
+   let value=(a[i]&224)|((a[i+1]&224)>>3)|(a[i+2]>>6);
+   indices[p]=value||1;
+  }
+  return indices;
+ }
+ function lzwRaw(indices){
+  const codes=[];let bitbuf=0,bits=0;
+  function pushCode(code){bitbuf|=code<<bits;bits+=9;while(bits>=8){codes.push(bitbuf&255);bitbuf>>>=8;bits-=8;}}
+  pushCode(256);let count=0;
+  for(let i=0;i<indices.length;i++){
+   if(count===160){pushCode(256);count=0;}
+   pushCode(indices[i]);count++;
+  }
+  pushCode(257);if(bits)codes.push(bitbuf&255);
+  return new Uint8Array(codes);
+ }
+ function gifChunks(base,durationSecs){
+  const size=300,fps=10,frames=durationSecs*fps,delay=10;
+  const head=[71,73,70,56,57,97,size&255,size>>8,size&255,size>>8,0xF7,0,0];
+  const palette=[];
+  for(let n=0;n<256;n++)palette.push(((n>>5)&7)*255/7|0,((n>>2)&7)*255/7|0,(n&3)*85);
+  const output=[new Uint8Array(head),new Uint8Array(palette),new Uint8Array([33,255,11,78,69,84,83,67,65,80,69,50,46,48,3,1,0,0,0])];
+  return {output,size,fps,frames,delay};
+ }
+ $('animGIF').onclick=async()=>{
+  if(busy)return;busyMode(true);let initialMode=mode;
+  const wasPlaying=playing;if(playing)pause();
+  try{
+   elStatus.textContent='Preparing GIF frames…';
+   const base=takeBase(),{output,size,frames,delay}=gifChunks(base,Number(elDur.value));
+   const frameCanvas=document.createElement('canvas');frameCanvas.width=size;frameCanvas.height=size;
+   const fc=frameCanvas.getContext('2d',{willReadFrequently:true});
+   for(let f=0;f<frames;f++){
+    compose(fc,base,f/frames,size);
+    const indices=gifFramePixels(fc.getImageData(0,0,size,size));
+    const bytes=lzwRaw(indices);
+    output.push(new Uint8Array([33,249,4,9,delay&255,delay>>8,0,0,44,0,0,0,0,size&255,size>>8,size&255,size>>8,0,8]));
+    for(let i=0;i<bytes.length;i+=255){const part=bytes.subarray(i,Math.min(i+255,bytes.length));output.push(new Uint8Array([part.length]),part);}
+    output.push(new Uint8Array([0]));
+    if(f%4===0){elStatus.textContent=`Encoding GIF · ${Math.round((f+1)/frames*100)}%`;await idle();}
+   }
+   output.push(new Uint8Array([59]));
+   const blob=new Blob(output,{type:'image/gif'});saveBlob(blob,`baruch-mission-patch-${elDur.value}s.gif`);
+   elStatus.textContent=`GIF exported · ${elDur.value}s loop · ${(blob.size/1048576).toFixed(1)} MB`;
+  }catch(err){console.error('GIF export',err);elStatus.textContent='GIF export failed: '+err.message;}
+  finally{busyMode(false);if(wasPlaying)play();else if(!initialMode){mode=false;overlay.style.display='none';draw();}}
+ };
+ $('animWebM').onclick=async()=>{
+  if(busy)return;
+  if(typeof MediaRecorder==='undefined'||typeof HTMLCanvasElement.prototype.captureStream!=='function'){
+   elStatus.textContent='WebM recording is not available in this browser. Use Chrome or Firefox.';return;
+  }
+  busyMode(true);const wasPlaying=playing,initialMode=mode;if(playing)pause();
+  try{
+   const base=takeBase(),rec=document.createElement('canvas');rec.width=1050;rec.height=1050;
+   const rc=rec.getContext('2d');compose(rc,base,0,1050);
+   const stream=rec.captureStream(30);
+   const variants=['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
+   const mime=variants.find(v=>MediaRecorder.isTypeSupported(v));
+   if(!mime)throw new Error('WebM encoder unavailable in this browser');
+   const recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:3200000});
+   const chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+   const done=new Promise((resolve,reject)=>{recorder.onstop=resolve;recorder.onerror=e=>reject(e.error||new Error('Recording error'));});
+   const ms=duration();elStatus.textContent=`Recording ${elDur.value}-second WebM…`;
+   recorder.start(500);const started=performance.now();
+   // The recording uses the same phase renderer as GIF and live preview.
+   // Capture its actual duration in real time so playback speed is correct.
+   while(performance.now()-started<ms){
+    const t=clamp((performance.now()-started)/ms,0,.999999);
+    compose(rc,base,t,1050);
+    fill.style.width=(t*100).toFixed(1)+'%';
+    await new Promise(r=>requestAnimationFrame(r));
+   }
+   recorder.stop();await done;stream.getTracks().forEach(track=>track.stop());
+   const blob=new Blob(chunks,{type:mime});if(blob.size<1000)throw new Error('Empty recording');
+   saveBlob(blob,`baruch-mission-patch-${elDur.value}s.webm`);
+   elStatus.textContent=`WebM video exported · ${elDur.value}s · ${(blob.size/1048576).toFixed(1)} MB`;
+  }catch(err){console.error('WebM export',err);elStatus.textContent='WebM export failed: '+err.message;}
+  finally{busyMode(false);fill.style.width='0%';if(wasPlaying)play();else if(!initialMode){mode=false;overlay.style.display='none';draw();}}
+ };
+ window.patchAnimationStudio={play,pause,stop,paint,compose,duration,makeBase:takeBase,renderAt:t=>show(t),get playing(){return playing;}};
 })();
 </script>
 </body></html>

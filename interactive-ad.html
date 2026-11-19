@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#f6f0e9" name="theme-color"/>
+<meta content="Discover Brooklyn Bloom — an interactive fragrance cabinet from Les Essences de New York, Spring 2027." name="description"/>
+<title>Discover Brooklyn Bloom | Les Essences de New York</title>
+<style>
+    :root {
+      --paper: #f6f1e9;
+      --paper-light: #fffcf8;
+      --paper-warm: #eee5da;
+      --blush: #e7c8c7;
+      --dusty: #b67e83;
+      --rose-ink: #8f575e;
+      --ink: #3a302d;
+      --muted: #83736d;
+      --brass: #ad9061;
+      --brass-light: #d9c5a0;
+      --line: #ded1c3;
+      --font-display: 'Bodoni MT', 'Didot', 'Baskerville', 'Times New Roman', Georgia, serif;
+      --font-editorial: 'Baskerville', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+      --font-ui: 'Avenir Next', Avenir, 'Helvetica Neue', Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 50% -10%, rgba(242, 210, 207, .65), transparent 46%),
+        radial-gradient(ellipse at 96% 64%, rgba(236, 217, 202, .52), transparent 40%),
+        var(--paper);
+      font-family: var(--font-ui);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .20;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.73' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+    }
+    button { font: inherit; -webkit-tap-highlight-color: transparent; }
+    button:focus-visible { outline: 2px solid var(--rose-ink); outline-offset: 5px; }
+    .shell { width: min(100% - 70px, 1210px); margin-inline: auto; }
+    .brandbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      min-height: 100px;
+      border-bottom: 1px solid rgba(157, 128, 104, .30);
+    }
+    .brand-signature { display: flex; align-items: center; gap: 15px; }
+    .seal { width: 45px; height: 45px; color: var(--rose-ink); flex: 0 0 auto; }
+    .brand-line { display: block; font-family: var(--font-display); font-size: 17px; letter-spacing: .025em; line-height: 1.04; text-transform: uppercase; }
+    .brand-line em { font-weight: 400; font-size: .8em; text-transform: lowercase; }
+    .brand-season { display: block; margin-top: 6px; font-size: 9px; letter-spacing: .24em; color: var(--rose-ink); }
+    .brand-right { color: var(--muted); text-align: right; text-transform: uppercase; letter-spacing: .22em; font-size: 9px; line-height: 1.9; }
+    .brand-right strong { display: block; color: var(--rose-ink); font-weight: 500; letter-spacing: .16em; }
+    .intro { text-align: center; padding: 37px 0 37px; }
+    .eyebrow { display: flex; gap: 15px; justify-content: center; align-items: center; color: var(--rose-ink); font-size: 10px; font-weight: 600; letter-spacing: .29em; text-transform: uppercase; margin: 0 0 14px; }
+    .eyebrow::before, .eyebrow::after { content: ''; display: block; width: 41px; height: 1px; background: var(--brass-light); }
+    .intro h1 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(42px, 4.6vw, 67px); letter-spacing: -.05em; line-height: 1.1; }
+    .intro h1 em { font-weight: 400; color: var(--rose-ink); }
+    .intro .deck { color: var(--muted); font: italic 18px/1.5 var(--font-editorial); margin: 13px 0 0; }
+    .experience {
+      display: grid;
+      grid-template-columns: minmax(0, 1.03fr) minmax(375px, .92fr);
+      align-items: start;
+      column-gap: clamp(30px, 5vw, 73px);
+      padding-bottom: 40px;
+    }
+    .portrait-column { min-width: 0; }
+    .portrait-mat {
+      padding: 9px;
+      border: 1px solid #cbb394;
+      background: linear-gradient(125deg, #fffaf3, #e7d7c5 52%, #fffaf4);
+      box-shadow: 0 24px 65px rgba(89, 63, 48, .10), 0 3px 8px rgba(89, 63, 48, .08);
+      position: relative;
+    }
+    .portrait-mat::after { content: ''; position: absolute; inset: 4px; border: 1px solid rgba(255, 255, 255, .8); pointer-events: none; }
+    .portrait {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+      overflow: hidden;
+      background: #f8efea;
+      isolation: isolate;
+    }
+    .original-art { width: 100%; height: auto; display: block; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+    .hotspot {
+      --ball: 40px;
+      position: absolute;
+      z-index: 2;
+      left: var(--x);
+      top: var(--y);
+      width: var(--ball);
+      height: var(--ball);
+      display: grid;
+      place-items: center;
+      transform: translate(-50%, -50%);
+      padding: 0;
+      appearance: none;
+      cursor: pointer;
+      border: 1px solid rgba(255, 253, 247, .9);
+      border-radius: 50%;
+      background: rgba(250, 244, 233, .93);
+      color: #795249;
+      box-shadow: 0 1px 3px rgba(41, 29, 25, .25), 0 0 0 5px rgba(249, 243, 235, .24);
+      transition: background .24s ease, box-shadow .24s ease, color .24s ease;
+    }
+    .hotspot::before {
+      content: '';
+      position: absolute;
+      inset: -9px;
+      border: 1px solid rgba(255, 248, 241, .65);
+      border-radius: 50%;
+      transition: inset .24s ease, border-color .24s ease;
+    }
+    .hotspot::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(151, 111, 83, .38);
+      border-radius: 50%;
+    }
+    .hotspot:hover, .hotspot:focus-visible, .hotspot.is-active {
+      background: #fffdf6;
+      color: var(--rose-ink);
+      box-shadow: 0 4px 18px rgba(72, 40, 39, .24), 0 0 0 6px rgba(232, 193, 190, .38);
+    }
+    .hotspot:hover::before, .hotspot.is-active::before { inset: -12px; border-color: rgba(255, 248, 241, .9); }
+    .hotspot svg { position: relative; width: 16px; height: 16px; z-index: 1; stroke: currentColor; fill: none; stroke-width: 1.2px; }
+    .hotspot.is-active svg { transform: rotate(45deg); }
+    .hotspot__tooltip {
+      display: none; /* The artwork stays unobstructed, even during interaction. */
+      pointer-events: none;
+      position: absolute;
+      z-index: 4;
+      top: 50%;
+      left: calc(100% + 14px);
+      transform: translate(0, -50%) translateY(4px);
+      white-space: nowrap;
+      opacity: 0;
+      color: #58453d;
+      font: 600 10px var(--font-ui);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      background: rgba(255, 252, 246, .96);
+      padding: 11px 12px;
+      border: 1px solid #d3bbaa;
+      box-shadow: 0 7px 20px rgba(60, 43, 34, .12);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .hotspot--left .hotspot__tooltip { left: auto; right: calc(100% + 14px); }
+    .hotspot:hover .hotspot__tooltip, .hotspot:focus-visible .hotspot__tooltip {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+    .art-caption { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 16px 4px 0; color: var(--rose-ink); text-transform: uppercase; letter-spacing: .17em; font-size: 9px; }
+    .art-caption span:last-child { text-align: right; color: var(--muted); letter-spacing: .12em; }
+    .discovery-area { min-width: 0; padding-top: 2px; }
+    .rail-heading { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 13px; font-size: 10px; text-transform: uppercase; letter-spacing: .19em; color: var(--rose-ink); }
+    .rail-heading .counter { color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .1em; }
+    .detail-shell {
+      position: relative;
+      min-height: 325px;
+      padding: 29px 33px 27px;
+      border: 1px solid #d6bea8;
+      background:
+        radial-gradient(ellipse at 92% 0%, rgba(231, 198, 188, .24), transparent 47%),
+        linear-gradient(120deg, #fffdf9, #f7efe6 100%);
+      box-shadow: 0 12px 32px rgba(116, 84, 72, .10), 7px 7px 0 -2px #f8f2e9, 7px 7px 0 -1px #dac7b6;
+    }
+    .detail-shell::before, .detail-shell::after { position: absolute; content: ''; width: 26px; height: 26px; pointer-events: none; }
+    .detail-shell::before { top: 9px; left: 9px; border-top: 1px solid var(--brass-light); border-left: 1px solid var(--brass-light); }
+    .detail-shell::after { bottom: 9px; right: 9px; border-bottom: 1px solid var(--brass-light); border-right: 1px solid var(--brass-light); }
+    .detail-inner { min-height: 265px; }
+    .detail-shell.entering .detail-inner { animation: reveal .3s ease both; }
+    @keyframes reveal { from { opacity: .78; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .detail-overline { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px; color: var(--rose-ink); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+    .detail-overline .n { white-space: nowrap; font-family: var(--font-editorial); font-size: 16px; letter-spacing: 0; color: var(--brass); }
+    .detail-inner h2 { font: normal clamp(33px, 3vw, 43px)/1.09 var(--font-display); letter-spacing: -.03em; margin: 0 0 10px; }
+    .detail-subtitle { font: italic 20px/1.25 var(--font-editorial); color: var(--rose-ink); margin: 0 0 17px; }
+    .detail-copy { font: 16px/1.69 var(--font-editorial); color: #62514a; margin: 0; max-width: 39ch; }
+    .delicate-rule { display: flex; align-items: center; gap: 14px; margin: 22px 0 17px; color: var(--brass); }
+    .delicate-rule::before, .delicate-rule::after { content: ''; flex: 1; height: 1px; background: #e2d4c6; }
+    .delicate-rule svg { width: 22px; height: 17px; }
+    .detail-tail { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--rose-ink); line-height: 1.65; }
+    .detail-tail span { color: var(--muted); letter-spacing: .05em; font: italic 15px/1.4 var(--font-editorial); text-transform: none; }
+    .detail-close {
+      position: absolute; right: 20px; top: 17px; padding: 5px; border: 0; background: transparent; color: var(--muted); cursor: pointer; line-height: 0;
+    }
+    .detail-close svg { width: 17px; height: 17px; }
+    .detail-overline.has-close { padding-right: 34px; }
+    .welcome { height: 265px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .welcome-mark { display: block; width: 67px; height: 66px; margin: 0 auto 9px; color: var(--rose-ink); }
+    .welcome .detail-overline { justify-content: center; margin: 0 0 10px; }
+    .welcome h2 { font: normal 35px/1.1 var(--font-display); margin: 0 0 10px; }
+    .welcome .detail-copy { font-style: italic; font-size: 17px; line-height: 1.52; max-width: 32ch; margin: 0 auto 18px; }
+    .text-action { color: var(--rose-ink); background: none; border: 0; border-bottom: 1px solid var(--brass-light); padding: 0 1px 6px; cursor: pointer; font-size: 10px; text-transform: uppercase; letter-spacing: .18em; }
+    .text-action:hover { color: #663d43; border-bottom-color: #663d43; }
+    .notes-section { margin-top: 31px; }
+    .section-label { color: var(--rose-ink); text-transform: uppercase; letter-spacing: .19em; font-size: 10px; margin: 0 0 6px; }
+    .notes-title { font: italic 27px/1.2 var(--font-editorial); color: var(--ink); margin: 0 0 16px; font-weight: normal; }
+    .note-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .note-card {
+      min-width: 0; min-height: 130px; padding: 13px 6px 11px;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 7px;
+      border: 1px solid #e0cfc1;
+      background: rgba(255, 252, 248, .72);
+      color: var(--ink); cursor: pointer;
+      transition: box-shadow .25s ease, background .25s ease, transform .25s ease, border-color .25s ease;
+    }
+    .note-card:hover, .note-card:focus-visible, .note-card.is-active { transform: translateY(-3px); border-color: var(--brass); background: #fffdf8; box-shadow: 0 9px 20px rgba(111, 77, 66, .1); }
+    .note-card.is-active { background: #f7eae5; }
+    .note-art { color: var(--rose-ink); width: 46px; height: 43px; flex: 0 0 auto; }
+    .note-name { color: var(--ink); font: normal 14px/1.1 var(--font-editorial); white-space: nowrap; }
+    .note-hint { color: var(--muted); font-size: 8px; text-transform: uppercase; letter-spacing: .13em; }
+    .controls { display: flex; align-items: stretch; gap: 9px; margin-top: 25px; }
+    .control { min-height: 43px; border: 1px solid #d5c0af; background: rgba(253, 249, 243, .85); color: #66544d; padding: 0 12px; cursor: pointer; font-size: 10px; font-weight: 600; letter-spacing: .075em; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .control:hover:not(:disabled), .control:focus-visible { border-color: var(--brass); background: white; color: var(--rose-ink); }
+    .control.primary { background: #96716f; color: #fffdf7; border-color: #96716f; flex: 1; }
+    .control.primary:hover { background: #7b5456; border-color: #7b5456; color: white; }
+    .control:disabled { opacity: .4; cursor: not-allowed; }
+    .control svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    .keyboard-tip { color: var(--muted); margin: 12px 0 0; font-size: 10px; letter-spacing: .07em; line-height: 1.55; }
+    kbd { font: inherit; font-weight: bold; color: var(--rose-ink); }
+    .bottomline { border-top: 1px solid rgba(157, 128, 104, .30); padding: 21px 0 35px; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+    .bottomline p { margin: 0; color: var(--muted); text-transform: uppercase; font-size: 9px; letter-spacing: .21em; }
+    .bottomline .script { font: italic 18px var(--font-editorial); text-transform: none; letter-spacing: .01em; color: var(--rose-ink); }
+    @media (max-width: 950px) {
+      .shell { width: min(100% - 40px, 700px); }
+      .brandbar { min-height: 89px; }
+      .experience { grid-template-columns: 1fr; row-gap: 39px; }
+      .portrait-column { width: min(100%, 580px); margin-inline: auto; }
+      .discovery-area { width: min(100%, 580px); margin-inline: auto; scroll-margin-top: 25px; }
+      .intro { padding: 30px 0 31px; }
+      .detail-shell { min-height: 290px; }
+      .detail-inner { min-height: 230px; }
+      .welcome { min-height: 230px; height: auto; }
+    }
+    @media (max-width: 540px) {
+      .shell { width: min(100% - 28px, 500px); }
+      .brandbar { min-height: 80px; }
+      .seal { width: 37px; height: 37px; }
+      .brand-signature { gap: 9px; }
+      .brand-line { font-size: 13px; }
+      .brand-season { font-size: 8px; }
+      .brand-right { font-size: 7px; letter-spacing: .08em; }
+      .brand-right strong { letter-spacing: .08em; }
+      .intro { padding-top: 29px; padding-bottom: 25px; }
+      .intro h1 { font-size: clamp(35px, 8.8vw, 51px); }
+      .intro .deck { font-size: 15px; margin-top: 10px; }
+      .eyebrow { font-size: 8px; gap: 8px; letter-spacing: .18em; }
+      .eyebrow::before, .eyebrow::after { width: 25px; }
+      .portrait-mat { padding: 5px; }
+      .hotspot { --ball: 34px; }
+      .hotspot::before { inset: -5px; }
+      .hotspot::after { inset: 5px; }
+      .hotspot__tooltip { display: none; }
+      .art-caption { font-size: 8px; padding-top: 12px; }
+      .art-caption span:last-child { max-width: 170px; }
+      .experience { row-gap: 30px; }
+      .detail-shell { padding: 27px 23px 25px; min-height: 310px; }
+      .detail-copy { font-size: 16px; }
+      .detail-inner { min-height: 260px; }
+      .welcome { min-height: 260px; }
+      .detail-inner h2 { font-size: 36px; }
+      .notes-section { margin-top: 28px; }
+      .notes-title { font-size: 24px; }
+      .note-grid { gap: 6px; }
+      .note-card { min-height: 118px; padding: 11px 4px; }
+      .note-name { font-size: 13px; }
+      .note-hint { font-size: 7px; letter-spacing: .06em; }
+      .note-art { width: 39px; height: 38px; }
+      .controls { flex-wrap: wrap; gap: 7px; }
+      .control { flex: 1 1 auto; padding: 0 10px; }
+      .control.primary { flex-grow: 1.25; }
+      .bottomline { align-items: flex-start; }
+      .bottomline p { font-size: 8px; letter-spacing: .08em; }
+      .bottomline .script { font-size: 16px; white-space: nowrap; }
+    }
+    @media (max-width: 360px) {
+      .brand-right { display: none; }
+      .note-name { font-size: 12px; }
+      .control { font-size: 9px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  
+
+    /* IN-ART CABINET — original uploaded image untouched. */
+    [hidden] { display: none !important; }
+    .shell { width: min(100% - 32px, 1050px); }
+    .brandbar { min-height: 77px; }
+    .intro { padding: 23px 0 25px; }
+    .intro h1 { font-size: clamp(36px, 4.5vw, 59px); }
+    .intro .deck { font-size: 15px; }
+    .experience { display: flex; justify-content: center; align-items: start; padding-bottom: 28px; }
+    .portrait-column { width: min(100%, 632px); margin-inline: auto; }
+    .portrait-mat { padding: 7px; }
+    .portrait { overflow: hidden; }
+    .hotspot { --ball: clamp(29px, 3.1vw, 37px); z-index: 5; }
+    .hotspot::before { inset: -5px; }
+    .hotspot::after { inset: 5px; }
+    .hotspot__tooltip { display: none; }
+    .art-caption { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 9px; padding: 12px 3px 0; font-size: 9px; }
+    .art-caption span:nth-child(2) { text-align: center; letter-spacing: .10em; }
+    .art-caption span:last-child { text-align: right; }
+    .in-art-panel {
+      position: absolute;
+      left: 2.6%;
+      top: 16%;
+      width: 47%;
+      max-height: 29.5%;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #bd9f88 transparent;
+      z-index: 7;
+      border: 1px solid rgba(171, 136, 112, .78);
+      background: rgba(255, 252, 247, .965);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 28px rgba(70, 39, 38, .23), 4px 4px 0 rgba(236, 211, 195, .68);
+      line-height: normal;
+      animation: inArtReveal .3s cubic-bezier(.16,1,.3,1) both;
+      transition: left .26s cubic-bezier(.22,1,.36,1), top .26s cubic-bezier(.22,1,.36,1), width .26s cubic-bezier(.22,1,.36,1);
+    }
+    @keyframes inArtReveal {
+      from { opacity: 0; transform: translateY(12px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .in-art-panel .detail-shell {
+      min-height: 0;
+      padding: 18px 17px 16px;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .in-art-panel .detail-inner { min-height: 0; }
+    .in-art-panel .detail-shell::before { top: 7px; left: 7px; width: 18px; height: 18px; }
+    .in-art-panel .detail-shell::after { right: 7px; bottom: 7px; width: 18px; height: 18px; }
+    .in-art-panel .detail-overline { margin-bottom: 7px; font-size: 8px; line-height: 1.55; letter-spacing: .11em; }
+    .in-art-panel .detail-overline .n { font-size: 12px; }
+    .in-art-panel .detail-overline.has-close { padding-right: 16px; }
+    .in-art-panel .detail-inner h2 { font: normal clamp(25px, 3.25vw, 34px)/1.06 var(--font-display); margin: 0 0 5px; }
+    .in-art-panel .detail-subtitle { font: italic 14px/1.3 var(--font-editorial); margin: 0 0 10px; }
+    .in-art-panel .detail-copy { font: 13px/1.46 var(--font-editorial); margin: 0; }
+    .in-art-panel .delicate-rule { margin: 10px 0 8px; gap: 8px; }
+    .in-art-panel .delicate-rule svg { width: 18px; height: 13px; }
+    .in-art-panel .detail-tail { display: block; font-size: 8px; line-height: 1.35; }
+    .in-art-panel .detail-tail span { margin-left: 5px; font: italic 12px/1.3 var(--font-editorial); }
+    .in-art-panel .detail-close { position: absolute; z-index: 9; top: 5px; right: 7px; min-height: 28px; min-width: 28px; display: grid; place-items: center; padding: 5px; background: rgba(255,252,247,.75); }
+    .in-art-panel .detail-close svg { width: 16px; height: 16px; }
+    .in-art-panel .detail-shell.entering .detail-inner { animation: inArtText .2s ease-out both; }
+    @keyframes inArtText { from { opacity: .7; } to {opacity: 1;} }
+    .notes-section {
+      position: absolute;
+      z-index: 6;
+      left: 1.7%; right: 1.7%; bottom: 1.25%;
+      margin: 0;
+      line-height: normal;
+    }
+    .notes-section .section-label, .notes-section .notes-title { position: absolute; width: 1px; height: 1px; overflow: hidden; padding: 0; margin: -1px; border: 0; clip: rect(0,0,0,0); white-space: nowrap; }
+    .notes-section .note-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .notes-section .note-card {
+      min-height: 43px;
+      padding: 3px 4px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(185, 147, 129, .8);
+      background: rgba(255, 250, 244, .9);
+      box-shadow: 0 3px 10px rgba(77, 51, 45, .10);
+      -webkit-backdrop-filter: blur(9px);
+      backdrop-filter: blur(9px);
+    }
+    .notes-section .note-art { width: 20px; height: 22px; flex: 0 0 20px; }
+    .notes-section .note-name { font-size: 13px; line-height: 1.15; }
+    .notes-section .note-hint { display: none; }
+    .notes-section .note-card.is-active { background: #fff2e9; }
+    .controls { margin-top: 16px; display: grid; grid-template-columns: 1fr 1.5fr .8fr .8fr; gap: 7px; }
+    .control { min-height: 43px; padding: 0 10px; }
+    .keyboard-tip { text-align: center; margin-top: 10px; }
+    .bottomline { padding-top: 17px; padding-bottom: 26px; }
+    @media (max-width: 950px) {
+      .shell { width: min(100% - 28px, 720px); }
+      .experience { display: flex; row-gap: 0; }
+      .portrait-column { width: min(100%, 632px); }
+    }
+    @media (max-width: 540px) {
+      .shell { width: min(100% - 20px, 480px); }
+      .brandbar { min-height: 73px; }
+      .brand-right { max-width: 118px; line-height: 1.45; }
+      .intro { padding: 22px 0 20px; }
+      .intro .deck { font-size: 13px; line-height: 1.4; }
+      .portrait-mat { padding: 4px; }
+      .hotspot { --ball: 32px; }
+      .art-caption { grid-template-columns: 1fr 1fr; row-gap: 5px; font-size: 8px; }
+      .art-caption span:nth-child(2) { text-align: right; }
+      .art-caption span:last-child { grid-column: 1 / -1; text-align: center; }
+      .in-art-panel {
+        left: 2%;
+        width: 70%;
+        top: 15.5%;
+        max-height: 28.5%;
+        border-color: rgba(174, 136, 114, .9);
+      }
+      .in-art-panel .detail-shell { padding: 10px 12px 10px; }
+      .in-art-panel .detail-overline { font-size: 7px; margin: 0 0 4px; }
+      .in-art-panel .detail-inner h2 { font-size: 25px; margin: 0 0 3px; }
+      .in-art-panel .detail-subtitle { font-size: 13px; margin-bottom: 5px; }
+      .in-art-panel .detail-copy { font-size: 12px; line-height: 1.38; }
+      .in-art-panel .detail-tail { font-size: 8px; }
+      .in-art-panel .detail-tail span { font-size: 11px; }
+      .in-art-panel .delicate-rule { margin: 7px 0 5px; }
+      .notes-section { left: 1.2%; right: 1.2%; bottom: 1%; }
+      .notes-section .note-grid { gap: 3px; }
+      .notes-section .note-card { min-height: 40px; padding: 2px 2px; gap: 3px; }
+      .notes-section .note-art { width: 15px; height: 16px; flex-basis: 15px; }
+      .notes-section .note-name { font-size: 11px; }
+      .controls { grid-template-columns: 1fr 1.35fr .7fr .7fr; gap: 4px; margin-top: 12px; }
+      .control { min-height: 40px; font-size: 9px; padding: 0 5px; }
+      .control svg { display: none; }
+      .control.primary { min-width: 0; }
+      .keyboard-tip { font-size: 9px; }
+      .bottomline { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .in-art-panel, .in-art-panel .detail-shell.entering .detail-inner { animation: none !important; }
+    }
+
+    .in-art-scroll-cue {
+      position: absolute;
+      z-index: 8;
+      top: calc(45.5% - 19px);
+      left: 2.6%;
+      width: 47%;
+      height: 19px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(255, 252, 247, .4), rgba(255, 251, 244, 1) 66%);
+      color: var(--rose-ink);
+      font: 600 8px/1 var(--font-ui);
+      letter-spacing: .12em;
+      pointer-events: none;
+      transition: left .26s cubic-bezier(.22,1,.36,1), top .26s cubic-bezier(.22,1,.36,1), width .26s cubic-bezier(.22,1,.36,1);
+    }
+    @media (max-width: 540px) {
+      .in-art-scroll-cue { top: calc(44% - 19px); left: 2%; width: 81%; }
+    }
+</style>
+
+<!-- Exhibition presentation mode: original application untouched unless ?embed=1 is requested. -->
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('campaign-embed');</script>
+<style id="campaign-embed-styles">html.campaign-embed,html.campaign-embed body{min-width:0!important;min-height:0!important;background:transparent!important}html.campaign-embed .brandbar,html.campaign-embed .intro,html.campaign-embed .bottomline{display:none!important}html.campaign-embed .shell{width:min(100% - 34px,1210px)}html.campaign-embed main.shell{padding-top:24px}html.campaign-embed body::before{display:none!important}@media (max-width:540px){html.campaign-embed .shell{width:calc(100% - 18px)}html.campaign-embed main.shell{padding-top:12px}}</style>
+</head>
+<body>
+<header class="shell brandbar">
+<div class="brand-signature">
+<svg aria-hidden="true" class="seal" fill="none" viewbox="0 0 64 64">
+<ellipse cx="32" cy="32" rx="28" ry="30" stroke="currentColor" stroke-width=".9"></ellipse>
+<ellipse cx="32" cy="32" opacity=".75" rx="24" ry="26" stroke="currentColor" stroke-width=".45"></ellipse>
+<path d="M31 50V27m0 11c-13-2-14-13-10-18 9-1 16 9 10 18Zm1-9c3-15 14-17 17-12-1 10-10 16-17 12Zm-1-2c-10-9-6-19 1-23 8 8 9 15-1 23Z" stroke="currentColor" stroke-linejoin="round" stroke-width=".85"></path>
+<path d="M26 48c-7-2-10-8-11-13m16 9c9-4 12-10 13-14" stroke="currentColor" stroke-width=".8"></path>
+</svg>
+<div>
+<span class="brand-line">Les Essences <em>de</em><br/>New York</span>
+<span class="brand-season">SPRING MMXXVII</span>
+</div>
+</div>
+<div class="brand-right">
+      The interactive fragrance cabinet
+      <strong>Edition No. 01   ·   Brooklyn</strong>
+</div>
+</header>
+<main class="shell">
+<section aria-labelledby="pageTitle" class="intro">
+<p class="eyebrow">A City of a Thousand Scents</p>
+<h1 id="pageTitle">Discover <em>Brooklyn Bloom</em></h1>
+<p class="deck">Select a pearl to discover each ritual, or explore its floral notes.</p>
+</section>
+<section aria-label="Interactive Brooklyn Bloom advertisement" class="experience">
+<div class="portrait-column">
+<div class="portrait-mat">
+<div aria-label="Original Brooklyn Bloom campaign artwork with three interactive product markers" class="portrait" role="group">
+<img alt="Original Brooklyn Bloom composition: pink agate, a pink candle, botanical-illustrated packaging, an oval perfume bottle with a black cap, a pink reed diffuser, magnolia and peony blossoms, and the Brooklyn Bloom title." class="original-art" draggable="false" height="1402" src="../assets/images/discovery-01.png" width="1122"/>
+<button aria-controls="detailPanel" aria-expanded="false" aria-label="Explore Brooklyn Bloom scented candle" class="hotspot" data-discover="candle" style="--x:24%; --y:68%" type="button">
+<svg aria-hidden="true" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12"></path></svg>
+<span aria-hidden="true" class="hotspot__tooltip">02 · Scented Candle</span>
+</button>
+<button aria-controls="detailPanel" aria-expanded="false" aria-label="Explore Brooklyn Bloom eau de parfum" class="hotspot hotspot--left" data-discover="perfume" style="--x:68%; --y:71%" type="button">
+<svg aria-hidden="true" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12"></path></svg>
+<span aria-hidden="true" class="hotspot__tooltip">01 · Eau de Parfum</span>
+</button>
+<button aria-controls="detailPanel" aria-expanded="false" aria-label="Explore Brooklyn Bloom reed diffuser" class="hotspot hotspot--left" data-discover="diffuser" style="--x:90%; --y:51%" type="button">
+<svg aria-hidden="true" viewbox="0 0 18 18"><path d="M9 3v12M3 9h12"></path></svg>
+<span aria-hidden="true" class="hotspot__tooltip">03 · Reed Diffuser</span>
+</button>
+<div aria-label="In-image fragrance information" class="in-art-panel" hidden="" id="discoveryArea"><div class="detail-shell" id="detailShell">
+<div aria-atomic="true" aria-label="Selected fragrance details" aria-live="polite" class="detail-inner" id="detailPanel" role="region">
+<!-- The welcome state also works if JavaScript is blocked. -->
+<div class="welcome">
+<svg aria-hidden="true" class="welcome-mark" fill="none" viewbox="0 0 72 72">
+<ellipse cx="36" cy="37" rx="29" ry="33" stroke="currentColor" stroke-width=".8"></ellipse>
+<path d="M36 55V30m0 13c-15-6-17-15-12-21 12 1 16 14 12 21Zm0-8c2-13 12-18 19-15 1 9-9 16-19 15Zm0-2c-11-11-6-21 0-26 8 7 10 15 0 26Z" stroke="currentColor" stroke-width=".9"></path>
+</svg>
+<p class="detail-overline">An Invitation to Discover</p>
+<h2>Step into spring.</h2>
+<p class="detail-copy">Select a pearl marker beside a product, or turn to the scent notes below.</p>
+<button class="text-action" data-discover="perfume" type="button">Begin with the perfume   ↗</button>
+</div>
+</div>
+</div></div><span aria-hidden="true" class="in-art-scroll-cue" hidden="" id="overlayScrollCue">SCROLL TO READ ↓</span><section aria-labelledby="noteHeading" class="notes-section">
+<p class="section-label">The olfactory palette</p>
+<h3 class="notes-title" id="noteHeading">Discover the notes</h3>
+<div aria-label="Interactive scent notes" class="note-grid" role="group">
+<button aria-controls="detailPanel" aria-pressed="false" class="note-card" data-discover="magnolia" type="button">
+<svg aria-hidden="true" class="note-art" fill="none" viewbox="0 0 64 64">
+<path d="M32 53V30m0 13C18 44 14 34 18 24c13-3 19 8 14 19Zm1-10c3-16 14-20 21-16 2 11-9 20-21 16Zm-1 1C23 28 22 18 31 11c9 9 13 20 1 33Zm-1 8c-12-2-16-9-18-14m20 12c12-5 17-9 18-15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.15"></path>
+</svg>
+<span class="note-name">Magnolia</span>
+<span class="note-hint">Soft blossom</span>
+</button>
+<button aria-controls="detailPanel" aria-pressed="false" class="note-card" data-discover="peony" type="button">
+<svg aria-hidden="true" class="note-art" fill="none" viewbox="0 0 64 64">
+<path d="M33 53v-13m-1 1c-17 0-25-10-21-21 4-5 10-5 17-2m4 23c13 0 24-7 22-21-5-6-12-7-18-3m-4 23C18 31 18 19 27 13c7 0 9 8 5 15m0 12c14-12 16-21 8-28-7-1-11 9-8 16m0 12c-10-8-8-19-1-22 6 3 9 13 1 22Zm-1 10-13-7m16 8 13-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1"></path>
+</svg>
+<span class="note-name">Peony</span>
+<span class="note-hint">Tender bouquet</span>
+</button>
+<button aria-controls="detailPanel" aria-pressed="false" class="note-card" data-discover="musk" type="button">
+<svg aria-hidden="true" class="note-art" fill="none" viewbox="0 0 64 64">
+<path d="M11 42c12-7 19 8 31 0s10-4 13-4M9 32c13-9 18 6 32-2 8-5 12-5 15-4M15 22c8-4 17 4 24-2 5-4 11-5 15-4" stroke="currentColor" stroke-linecap="round" stroke-width="1.15"></path>
+<path d="M32 14v2m-1 34v2m22-18h2" stroke="currentColor" stroke-width=".8"></path>
+</svg>
+<span class="note-name">White Musk</span>
+<span class="note-hint">Silken warmth</span>
+</button>
+</div>
+</section></div>
+</div>
+<div class="art-caption"><span>01 / BROOKLYN BLOOM</span><span>Tap a pearl or select a fragrance note</span><span aria-live="polite" class="counter" id="discoveryCount">00 / 06 DISCOVERED</span></div>
+<nav aria-label="Fragrance exploration controls" class="controls">
+<button class="control" id="prevBtn" title="Previous discovery (left arrow)" type="button">
+<svg aria-hidden="true" viewbox="0 0 20 20"><path d="m12.5 4-6 6 6 6"></path></svg><span>Previous</span>
+</button>
+<button class="control primary" id="nextBtn" title="Next discovery (right arrow)" type="button">
+<span>Next discovery</span><svg aria-hidden="true" viewbox="0 0 20 20"><path d="m7.5 4 6 6-6 6"></path></svg>
+</button>
+<button class="control" disabled="" id="closeBtn" title="Close the open information card (Escape)" type="button">Close</button>
+<button class="control" id="resetBtn" title="Return to the starting state" type="button">Reset</button>
+</nav><p class="keyboard-tip">Keyboard: <kbd>←</kbd> <kbd>→</kbd> to browse · <kbd>1–6</kbd> to choose · <kbd>Esc</kbd> to close · <kbd>R</kbd> to reset</p></div>
+</section>
+</main>
+<footer class="shell bottomline">
+<p>A scented journey through New York   ·   Spring 2027</p>
+<p class="script">A City of a Thousand Scents</p>
+</footer>
+<script>
+    (() => {
+      'use strict';
+      const sequence = ['perfume', 'candle', 'diffuser', 'magnolia', 'peony', 'musk'];
+      const discoveries = {
+        perfume: {
+          no: '01', category: 'The Collection · Personal Fragrance',
+          title: 'Eau de Parfum', subtitle: 'A little Brooklyn spring, wherever you go.',
+          description: 'A fragrant walk past flowering Brooklyn brownstones. Magnolia and peony unfold in soft spring light, settling into a graceful veil of white musk.',
+          tailLabel: 'The ritual', tail: 'A floral signature to carry through the city.'
+        },
+        candle: {
+          no: '02', category: 'The Collection · Home Fragrance',
+          title: 'Scented Candle', subtitle: 'The warmth of a sunlit brownstone.',
+          description: 'Bring the feeling of an open Brooklyn window into the room: fresh magnolia blossoms, romantic peony petals, and the comforting softness of white musk.',
+          tailLabel: 'The ritual', tail: 'A small moment of spring, made luminous.'
+        },
+        diffuser: {
+          no: '03', category: 'The Collection · Home Fragrance',
+          title: 'Reed Diffuser', subtitle: 'Let the city bloom quietly around you.',
+          description: 'An unhurried expression of Brooklyn Bloom. Its floral character evokes a morning stroll through magnolia-lined streets and peony-filled gardens.',
+          tailLabel: 'The ritual', tail: 'A gentle floral presence for the everyday.'
+        },
+        magnolia: {
+          no: '04', category: 'Inside the Scent · Botanical Note',
+          title: 'Magnolia', subtitle: 'The first light of spring.',
+          description: 'Airy, delicate, and luminous. Magnolia brings the impression of freshly opened blossoms and flowering branches against historic Brooklyn facades.',
+          tailLabel: 'Its character', tail: 'Soft petals · Fresh floral light'
+        },
+        peony: {
+          no: '05', category: 'Inside the Scent · Botanical Note',
+          title: 'Peony', subtitle: 'Romance in full bloom.',
+          description: 'Gentle, expressive, and tenderly floral. Peony lends Brooklyn Bloom the feeling of a bouquet gathered on a bright spring afternoon.',
+          tailLabel: 'Its character', tail: 'Fresh bouquet · Petal softness'
+        },
+        musk: {
+          no: '06', category: 'Inside the Scent · Fragrance Note',
+          title: 'White Musk', subtitle: 'A quiet, lasting embrace.',
+          description: 'Velvety and understated, white musk lends an enveloping softness to the floral composition, like the lingering warmth of sunlight on stone.',
+          tailLabel: 'Its character', tail: 'Subtle warmth · Silken softness'
+        }
+      };
+      const ornament = '<svg viewBox="0 0 24 18" fill="none" aria-hidden="true"><path d="M12 16V3m0 7C5 11 3 6 5 3c5 0 8 4 7 7Zm0-3c3-6 7-6 9-4-1 5-5 7-9 4Z" stroke="currentColor" stroke-width=".9" stroke-linejoin="round" /></svg>';
+      const closeIcon = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 4 12 12M16 4 4 16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" /></svg>';
+      const panel = document.getElementById('detailPanel');
+      const panelShell = document.getElementById('detailShell');
+      const counter = document.getElementById('discoveryCount');
+      const closeBtn = document.getElementById('closeBtn');
+      const area = document.getElementById('discoveryArea');
+      const scrollCue = document.getElementById('overlayScrollCue');
+      const art = document.querySelector('.portrait');
+      const hotspotButtons = [...document.querySelectorAll('.hotspot[data-discover]')];
+      const noteButtons = [...document.querySelectorAll('.note-card[data-discover]')];
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const visited = new Set();
+      let active = null;
+      let activeTrigger = null;
+      const welcomeHTML = panel.innerHTML;
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+      function getTriggerFor(id) {
+        return document.querySelector(`button[data-discover="${id}"]`);
+      }
+      function positionOverlay(trigger = activeTrigger) {
+        if (area.hidden || !trigger) {
+          scrollCue.hidden = true;
+          return;
+        }
+        const artRect = art.getBoundingClientRect();
+        const triggerRect = trigger.getBoundingClientRect();
+        const isMobile = window.innerWidth <= 540;
+        const isNote = trigger.classList.contains('note-card');
+        const margin = artRect.width * (isMobile ? 0.02 : 0.018);
+        const gap = artRect.width * (isMobile ? 0.014 : 0.018);
+
+        area.style.width = isMobile ? (isNote ? '72%' : '68%') : (isNote ? '42%' : '39%');
+        area.style.maxHeight = isMobile ? '28.5%' : '29.5%';
+        area.style.right = 'auto';
+
+        const panelWidth = area.offsetWidth;
+        const panelHeight = area.offsetHeight;
+        const xCenter = (triggerRect.left - artRect.left) + (triggerRect.width / 2);
+        const yCenter = (triggerRect.top - artRect.top) + (triggerRect.height / 2);
+        let left;
+        let top;
+
+        if (isNote || isMobile) {
+          left = xCenter - (panelWidth / 2);
+          top = yCenter - panelHeight - gap - (isNote ? 10 : 4);
+          if (top < margin) top = yCenter + gap + 4;
+        } else {
+          const preferredRight = xCenter < artRect.width * 0.52;
+          left = preferredRight ? xCenter + gap : xCenter - panelWidth - gap;
+          if (left + panelWidth > artRect.width - margin) {
+            left = xCenter - panelWidth - gap;
+          }
+          if (left < margin) {
+            left = xCenter + gap;
+          }
+          top = yCenter - panelHeight * 0.5;
+        }
+
+        left = clamp(left, margin, artRect.width - panelWidth - margin);
+        const bottomLimit = artRect.height - panelHeight - Math.max(margin, 52);
+        top = clamp(top, margin, Math.max(margin, bottomLimit));
+
+        area.style.left = `${left}px`;
+        area.style.top = `${top}px`;
+        scrollCue.style.left = `${left}px`;
+        scrollCue.style.top = `${top + panelHeight - scrollCue.offsetHeight}px`;
+        scrollCue.style.width = `${panelWidth}px`;
+        updateScrollCue();
+      }
+      function updateScrollCue() {
+        const shouldShow = !area.hidden && area.scrollHeight > area.clientHeight + 3 &&
+          area.scrollTop + area.clientHeight < area.scrollHeight - 5;
+        scrollCue.hidden = !shouldShow;
+      }
+      function render() {
+        const d = discoveries[active];
+        area.hidden = !d;
+        if (d) {
+          panel.innerHTML = `
+            <button type="button" class="detail-close" data-action="close" aria-label="Close ${d.title} details" title="Close details">${closeIcon}</button>
+            <div class="detail-overline has-close"><span>${d.category}</span><span class="n">${d.no} / 06</span></div>
+            <h2>${d.title}</h2>
+            <p class="detail-subtitle">${d.subtitle}</p>
+            <p class="detail-copy">${d.description}</p>
+            <div class="delicate-rule">${ornament}</div>
+            <div class="detail-tail">${d.tailLabel}<span>${d.tail}</span></div>`;
+        } else {
+          panel.innerHTML = welcomeHTML;
+          area.removeAttribute('style');
+          scrollCue.removeAttribute('style');
+        }
+        panelShell.classList.remove('entering');
+        // Reflow starts the short paper-card transition without altering the original artwork.
+        void panelShell.offsetWidth;
+        panelShell.classList.add('entering');
+        counter.textContent = `${String(visited.size).padStart(2, '0')} / 06 DISCOVERED`;
+        closeBtn.disabled = !active;
+        area.scrollTop = 0;
+        hotspotButtons.forEach(button => {
+          const selected = button.dataset.discover === active;
+          button.classList.toggle('is-active', selected);
+          button.setAttribute('aria-expanded', String(selected));
+        });
+        noteButtons.forEach(button => {
+          const selected = button.dataset.discover === active;
+          button.classList.toggle('is-active', selected);
+          button.setAttribute('aria-pressed', String(selected));
+        });
+        if (d) positionOverlay();
+        else updateScrollCue();
+      }
+      function showOverlayIfNeeded() {
+        // Keep the selected information in the image viewport on small touch displays.
+        const rect = art.getBoundingClientRect();
+        if (rect.top < -12 || rect.top > window.innerHeight - 145) {
+          art.scrollIntoView({ behavior: motionQuery.matches ? 'instant' : 'smooth', block: 'start' });
+        }
+      }
+      function select(id, adjustViewport = true, sourceEl = null) {
+        if (!Object.prototype.hasOwnProperty.call(discoveries, id)) return;
+        active = id;
+        activeTrigger = sourceEl || getTriggerFor(id);
+        visited.add(id);
+        render();
+        if (adjustViewport) showOverlayIfNeeded();
+      }
+      function step(direction) {
+        const at = sequence.indexOf(active);
+        const next = at === -1
+          ? (direction > 0 ? 0 : sequence.length - 1)
+          : (at + direction + sequence.length) % sequence.length;
+        select(sequence[next], true, getTriggerFor(sequence[next]));
+      }
+      function closeDetails() { active = null; activeTrigger = null; render(); }
+      function resetAll() {
+        active = null;
+        activeTrigger = null;
+        visited.clear();
+        render();
+      }
+      document.addEventListener('click', event => {
+        const button = event.target.closest('button[data-discover]');
+        if (button) select(button.dataset.discover, true, button);
+        const actionButton = event.target.closest('button[data-action="close"]');
+        if (actionButton) closeDetails();
+      });
+      area.addEventListener('scroll', updateScrollCue, { passive: true });
+      window.addEventListener('resize', () => {
+        if (active) positionOverlay();
+        else updateScrollCue();
+      });
+      document.getElementById('prevBtn').addEventListener('click', () => step(-1));
+      document.getElementById('nextBtn').addEventListener('click', () => step(1));
+      closeBtn.addEventListener('click', closeDetails);
+      document.getElementById('resetBtn').addEventListener('click', resetAll);
+      document.addEventListener('keydown', event => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName) || event.target.isContentEditable) return;
+        if (event.key === 'ArrowRight') { event.preventDefault(); step(1); }
+        else if (event.key === 'ArrowLeft') { event.preventDefault(); step(-1); }
+        else if (event.key === 'Escape' && active) { event.preventDefault(); closeDetails(); }
+        else if (/^[1-6]$/.test(event.key)) { select(sequence[Number(event.key) - 1]); }
+        else if (event.key.toLowerCase() === 'r') { resetAll(); }
+      });
+    })();
+  </script>
+
+<script id="campaign-exhibition-bridge">
+(()=>{
+  if(!document.documentElement.classList.contains('campaign-embed'))return;
+  const kind="discovery";
+  const send=(data)=>{try{window.parent.postMessage({source:'les-essences-component',kind,...data},'*')}catch(_){}};
+  let lastHeight=0,pending=false;
+  const measure=()=>{
+    pending=false;
+    const bodyHeight=document.body?.getBoundingClientRect().height||0;
+    const naturalRoot=document.querySelector('.page')?.getBoundingClientRect().height||0;
+    const height=Math.ceil(Math.max(bodyHeight,naturalRoot))+2;
+    if(height&&Math.abs(height-lastHeight)>1){lastHeight=height;send({type:'resize',height})}
+  };
+  const schedule=()=>{if(!pending){pending=true;requestAnimationFrame(measure)}};
+  window.addEventListener('load',()=>{schedule();setTimeout(schedule,120);setTimeout(schedule,800)});
+  window.addEventListener('resize',schedule);
+  if('ResizeObserver' in window){const observer=new ResizeObserver(schedule);observer.observe(document.documentElement);observer.observe(document.body)}
+  if('MutationObserver' in window){new MutationObserver(schedule).observe(document.body,{attributes:true,childList:true,subtree:true,attributeFilter:['hidden','style','class','src']})}
+  for(const im of document.images){if(!im.complete)im.addEventListener('load',schedule,{once:true})}
+  const kindIsQuiz=kind==='quiz';
+  if(kindIsQuiz){
+    const loc=(el)=>{if(!el)return;const y=el.getBoundingClientRect().top+window.scrollY;send({type:'focus',offset:Math.round(y)})};
+    ['resultView','studioView'].forEach(id=>{const el=document.getElementById(id);if(el){new MutationObserver(()=>{if(!el.hidden)setTimeout(()=>{schedule();loc(el)},90)}).observe(el,{attributes:true,attributeFilter:['hidden']})}});
+    document.getElementById('beginQuiz')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('quizView')),90));
+    document.getElementById('retakeQuiz')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('quizView')),90));
+    document.getElementById('backResult')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('resultView')),90));
+  }
+  let pausedByGallery=false;
+  window.addEventListener('message',event=>{
+    if(event.source!==window.parent||!event.data||event.data.source!=='les-essences-parent')return;
+    if(event.data.type==='visibility'&&kind==='reel'){
+      const video=document.getElementById('reelVideo');if(!video)return;
+      if(!event.data.visible){if(!video.paused){pausedByGallery=true;video.pause()}}
+      else if(pausedByGallery&&!document.hidden&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){pausedByGallery=false;video.play().catch(()=>{})}
+    }
+  });
+  schedule();
+})();
+</script>
+</body>
+</html>

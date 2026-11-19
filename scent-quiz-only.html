@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="light" name="color-scheme"/><title>Which New York Scent Are You? — Les Essences de New York</title>
+<style>
+:root{--ink:#292923;--muted:#776d63;--paper:#f8f3eb;--ivory:#fffdf7;--line:#cabcaa;--blush:#ead9d2;--gold:#ad8c63;--theme:#a87a80;--theme-light:#eddcde;--theme-dark:#654652;--serif:'Bodoni MT','Didot','Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif;--sans:'Avenir Next','Gill Sans',Optima,'Trebuchet MS',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.4}button:focus-visible,input:focus-visible{outline:2px solid var(--theme-dark);outline-offset:3px}a{color:inherit}img{display:block;max-width:100%}h1,h2,h3,p{margin-top:0}h1,h2,h3,.serif{font-family:var(--serif);font-weight:400}.hidden,[hidden]{display:none!important}.sr-only{position:absolute!important;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:#897764}.smallcaps{text-transform:uppercase;letter-spacing:.18em;font-size:11px}.hairline{height:1px;background:var(--line)}
+body:before{content:'';position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.74' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E")}
+.site-header{height:88px;border-bottom:1px solid #d7cdbd;background:rgba(251,247,239,.95);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(18px,4vw,70px);position:relative;z-index:10}.header-left{display:flex;align-items:center;gap:10px;color:#67574c}.mark{font:italic 29px var(--serif);height:39px;width:39px;border:1px solid #af9984;border-radius:50%;display:grid;place-items:center}.header-center{text-align:center;line-height:1.15}.header-center strong{font:italic 21px var(--serif);display:block}.header-center span{display:block;letter-spacing:.22em;text-transform:uppercase;font-size:8px;color:#887360;margin-top:5px}.header-right{justify-self:end}.header-right button,.header-left button{background:transparent;border:0;color:#6c5b4c;letter-spacing:.14em;text-transform:uppercase;font-size:10px;padding:11px 9px}.header-right button:hover{text-decoration:underline;text-underline-offset:6px}
+.page-main{min-height:calc(100vh - 150px)}.view{animation:appear .55s ease both}.view:not(.active){display:none}.outer{max-width:1440px;margin:auto;padding:0 clamp(20px,5vw,80px)}
+.masthead{border-bottom:1px solid var(--line);padding:14px clamp(20px,5vw,80px);display:flex;gap:15px;justify-content:space-between;align-items:center;background:#f6efe6}.masthead span{font-size:9px;letter-spacing:.23em;text-transform:uppercase;color:#796958}.ornament{display:flex;align-items:center;gap:14px}.ornament:before,.ornament:after{content:'';height:1px;width:40px;background:#bca58b}.ornament i{font:20px var(--serif);color:#a38d72}
+/* Landing */
+.welcome-grid{display:grid;grid-template-columns:.86fr 1.14fr;min-height:min(720px,calc(100vh - 200px));align-items:stretch}.welcome-copy{padding:clamp(50px,7vw,105px) 4vw 70px 0;display:flex;flex-direction:column;justify-content:center;max-width:620px}.welcome-copy .line-top{display:flex;align-items:center;gap:12px;color:#88705a;margin-bottom:26px}.welcome-copy .line-top:after{content:'';height:1px;width:80px;background:#a68d77}.welcome-copy h1{font-size:clamp(64px,7.1vw,116px);line-height:.9;letter-spacing:-.056em;margin:0 0 29px}.welcome-copy h1 em{font-weight:400;color:#9d7180}.welcome-copy .intro{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.45;max-width:460px;color:#756257}.welcome-copy .secondary{font-size:13px;line-height:1.85;max-width:410px;color:#827267;margin:8px 0 30px}.landing-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.btn{display:inline-flex;justify-content:center;align-items:center;gap:12px;border:1px solid var(--ink);padding:16px 23px;text-align:center;background:transparent;color:var(--ink);letter-spacing:.14em;text-transform:uppercase;font-size:10px;font-weight:600;min-height:48px;transition:background .2s,color .2s,border-color .2s,transform .2s}.btn:hover:not(:disabled){transform:translateY(-2px)}.btn-primary{background:#34342e;color:#fffef6;border-color:#34342e}.btn-primary:hover:not(:disabled){background:#676055}.btn-rose{background:var(--theme-dark);color:white;border-color:var(--theme-dark)}.btn-rose:hover:not(:disabled){background:var(--theme)}.btn-link{border:0;background:transparent;padding-left:4px;padding-right:4px}.btn-link:after{content:'↗';font:19px var(--serif)}.fineprint{font-size:10px;line-height:1.6;color:#908171;margin-top:38px}.welcome-art{padding:42px 0 42px 15px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:11px;min-height:630px}.art-tile{position:relative;overflow:hidden;background:#eee1d5;border:5px solid #f8f1e7;outline:1px solid #bcaea0;box-shadow:0 8px 30px #5e422417;cursor:pointer;padding:0}.art-tile img{width:100%;height:100%;object-fit:cover;object-position:center 52%;filter:saturate(.83);transition:transform .65s,filter .4s}.art-tile:hover img,.art-tile:focus-visible img{transform:scale(1.055);filter:saturate(1)}.art-tile .tile-label{position:absolute;bottom:13px;left:13px;right:13px;background:rgba(253,249,242,.95);border:1px solid #bdad9a;padding:10px 8px;font:italic 18px var(--serif);text-align:center;color:#463b34}.art-tile .tile-label small{display:block;font:8px var(--sans);letter-spacing:.18em;text-transform:uppercase;margin-top:4px;color:#8a7161}.welcome-bottom{padding:26px 0 38px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px;color:#8d7b6b;font:italic 15px var(--serif)}
+/* Quiz */
+.section-heading{text-align:center;padding:49px 12px 27px}.section-heading h2{font-size:clamp(38px,4.7vw,67px);margin:11px 0 12px;letter-spacing:-.04em}.section-heading p{font:italic 19px var(--serif);color:#796e65;margin:0}.quiz-layout{display:grid;grid-template-columns:minmax(0,1.36fr) minmax(300px,.68fr);gap:43px;padding:25px 0 65px;align-items:stretch}.quiz-panel{background:var(--ivory);border:1px solid #d8c8b4;padding:clamp(20px,3vw,44px);box-shadow:0 17px 36px #3d29100c}.progress-top{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8d7563}.progress-track{height:2px;background:#e1d4c3;margin:17px 0 31px}.progress-fill{height:2px;background:var(--theme-dark);width:25%;transition:width .3s}.question-number{font:italic 17px var(--serif);color:#a58b74}.question-title{font:clamp(30px,3.3vw,49px)/1.07 var(--serif);letter-spacing:-.03em;margin:14px 0 9px}.question-description{font-size:12px;line-height:1.7;color:#89776b;margin-bottom:30px}.answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{appearance:none;background:#f9f5ee;border:1px solid #ded0c1;color:#413931;padding:22px 18px;min-height:152px;display:flex;align-items:flex-start;gap:15px;text-align:left;position:relative;transition:.2s}.answer:hover{background:#f2eae0;border-color:#b9a18e;transform:translateY(-2px)}.answer.selected{background:var(--theme-light);border-color:var(--theme-dark);box-shadow:inset 0 0 0 1px var(--theme-dark)}.answer.selected:after{content:'✓';position:absolute;top:13px;right:14px;font-size:13px;color:var(--theme-dark)}.answer-art{flex:0 0 48px;height:48px;border:1px solid #baa993;border-radius:50%;display:grid;place-items:center;color:#8c745f}.answer-art svg{height:30px;width:30px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}.answer-text strong{display:block;font:italic 22px/1.2 var(--serif);font-weight:400;margin:2px 0 6px}.answer-text small{font-size:11px;line-height:1.55;color:#87796d;display:block}.quiz-controls{display:flex;justify-content:space-between;gap:15px;margin-top:30px}.quiz-controls .btn{min-width:133px}.quiz-art-panel{background:#e8e0d4;overflow:hidden;border:1px solid #ccbcaa;position:relative;min-height:520px}.quiz-art-panel img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;filter:saturate(.76)}.quiz-art-panel:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 43%,rgba(38,25,16,.67))}.quiz-art-caption{position:absolute;bottom:30px;left:23px;right:23px;z-index:1;color:#fffaf0;text-align:center}.quiz-art-caption .eyebrow{color:#ecdecf;font-size:9px}.quiz-art-caption h3{font:italic 34px var(--serif);margin:8px 0}.quiz-art-caption span{font:10px var(--sans);letter-spacing:.2em;text-transform:uppercase}
+/* result */
+.result-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,90px);padding:44px 0 65px;align-items:center}.result-art{padding:19px;border:1px solid #cab6a4;outline:5px solid #eee5d8;background:#fdfaf4;position:relative;box-shadow:0 18px 32px #46321b1f;max-width:610px}.result-art img{width:100%;height:auto;object-fit:contain}.result-art .art-marker{position:absolute;background:#fffbf3;bottom:40px;left:40px;border:1px solid #bbaa96;padding:8px 12px;font-size:9px;letter-spacing:.14em;text-transform:uppercase}.result-copy{padding:20px 0}.result-copy .result-prefix{font:italic 22px var(--serif);color:#9b806b}.result-copy h2{font-size:clamp(60px,6.5vw,105px);letter-spacing:-.06em;line-height:.98;margin:20px 0 20px;color:var(--theme-dark)}.result-copy .result-body{font:italic clamp(20px,2.15vw,30px)/1.38 var(--serif);max-width:550px;color:#5c4c43}.result-meta{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-block:1px solid #cebba9;padding:22px 0;margin:26px 0 26px}.result-meta dt{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#917c68;margin-bottom:9px}.result-meta dd{margin:0;font:18px var(--serif)}.result-actions{display:flex;gap:10px;flex-wrap:wrap}.result-details{margin-top:27px;background:#f5ebdf;border:1px solid #d1bdaa;padding:25px 28px;animation:appear .3s}.result-details .note-list{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0}.note-pill{border:1px solid #c9ae95;background:#fffaf1;padding:9px 13px;font:italic 17px var(--serif)}.result-details p{font:15px/1.7 var(--serif);color:#766459;margin-bottom:0}.bottom-quote{text-align:center;background:#ede2d6;border-block:1px solid #d2c0ad;padding:29px 16px;font:italic 25px var(--serif);color:#756351}
+/* photo booth */
+.studio-intro{text-align:center;padding:38px 12px 28px}.studio-intro h2{font:clamp(40px,4.5vw,64px)/1.1 var(--serif);letter-spacing:-.04em;margin:8px 0 10px}.studio-intro h2 em{color:var(--theme-dark)}.studio-intro p{font:italic 17px var(--serif);color:#7d6d61}.studio{display:grid;grid-template-columns:minmax(270px,310px) minmax(310px,1fr) minmax(220px,275px);align-items:start;gap:18px;padding-bottom:65px}.studio-controls,.preview-panel,.strip-panel{background:#fcf9f3;border:1px solid #d1c0ac;box-shadow:0 14px 31px #60462012}.studio-controls{padding:24px 22px}.studio-controls h3{font:italic 27px var(--serif);margin:0 0 5px}.studio-controls .helper{color:#8c7768;font:12px/1.6 var(--sans)}.control-group{border-top:1px solid #d9c9b6;padding-top:17px;margin-top:18px}.control-group .control-head{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#6e5b4d;margin-bottom:12px;display:flex;justify-content:space-between}.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.option-button{min-height:42px;border:1px solid #cdbba7;background:#fdf9f2;color:#5e5146;font-size:11px;line-height:1.2;padding:10px 7px}.option-button:hover{background:#f2eae0}.option-button.selected{border-color:var(--theme-dark);color:var(--theme-dark);background:var(--theme-light);box-shadow:inset 0 0 0 1px var(--theme-dark)}.scent-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.scent-swatch{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:8px 1px;font-size:9px;line-height:1.3;color:#685b51;background:#fffaf4;border:1px solid #d8c7b7}.scent-swatch.selected{border:2px solid var(--theme-dark);background:var(--theme-light)}.swatch-dot{display:block;width:21px;height:21px;border-radius:50%;border:2px solid #fff;outline:1px solid #c8b2a2}.studio-controls label.file-button{min-height:43px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:1px solid #b7a38e;color:#51463e;font-size:11px;letter-spacing:.09em;padding:11px;background:#f8f1e8;text-align:center}.studio-controls label.file-button:hover{background:#eee4d9}.upload-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.upload-row .btn{font-size:10px;padding:10px 7px;min-height:43px}.status{margin:10px 0 0;font-size:11px;line-height:1.55;color:#897262;min-height:16px}.frame-range{width:100%;accent-color:#79595a}.range-head{display:flex;justify-content:space-between;font-size:10px;color:#88796c}.hint{font:11px/1.5 var(--sans);color:#968371}.preview-panel{padding:17px 17px 20px;position:relative}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}.panel-top strong{font:italic 23px var(--serif);font-weight:400}.panel-top .eyebrow{letter-spacing:.15em}#portraitCanvas{background:#efe4d9;width:100%;height:auto;aspect-ratio:3/4;display:block;touch-action:none;cursor:grab;border:1px solid #cebba8}#portraitCanvas:active{cursor:grabbing}.portrait-wrap{position:relative;overflow:hidden}.countdown{position:absolute;inset:0;display:grid;place-items:center;background:rgba(30,26,22,.19);color:#fff9ee;font:140px var(--serif);text-shadow:0 6px 28px #0007;z-index:2;pointer-events:none}.flash{position:absolute;inset:0;z-index:4;background:#fffdf6;opacity:0;pointer-events:none}.flash.pop{animation:shutter .42s both}.preview-helper{margin:11px 0 15px;font-size:11px;line-height:1.6;color:#817369}.capture-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.capture-buttons .btn{padding:13px 8px;min-height:45px;font-size:9px}.capture-buttons .btn:first-child{grid-column:span 2}.strip-panel{padding:17px 17px 20px}.strip-display{background:#e8ddd0;border:1px solid #c9b8a3;max-height:690px;overflow:auto;scrollbar-width:thin}.strip-display canvas{width:100%;height:auto;display:block}#stripCounter{font-size:10px;color:#8d7764;text-align:center;letter-spacing:.14em;text-transform:uppercase;margin:13px 0 15px}.strip-actions{display:flex;flex-direction:column;gap:8px}.strip-actions .btn{font-size:10px;min-height:42px;padding:11px}.studio-back{margin:10px auto 0;text-align:center}.privacy{background:#efe6d9;border-top:1px solid #d3c4b2;padding:16px 25px;text-align:center;font-size:11px;line-height:1.7;color:#7c6c60;display:flex;align-items:center;justify-content:center;gap:10px}.privacy svg{width:18px;height:18px;flex:none}
+footer{border-top:1px solid #cdb9a4;padding:27px clamp(20px,5vw,80px);display:flex;justify-content:space-between;align-items:center;gap:12px;background:#f4ebdf;color:#8a7767}.footer-logo{font:italic 20px var(--serif);color:#544537}.footer-note{font-size:9px;letter-spacing:.13em;text-transform:uppercase;text-align:right}.divider-flower{text-align:center;color:#b28f77;font:25px var(--serif);margin:23px 0}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes shutter{0%{opacity:0}20%{opacity:.96}100%{opacity:0}}
+@media(max-width:1150px){.studio{grid-template-columns:260px minmax(290px,1fr)}.strip-panel{grid-column:1/-1}.strip-display{max-height:410px;max-width:220px;margin:auto}.strip-panel{display:grid;grid-template-columns:260px 1fr;gap:6px 24px;align-items:start}.strip-panel>.panel-top{grid-column:1/-1}.strip-panel>.strip-display{grid-row:2 /span 3}.strip-panel>#stripCounter,.strip-panel>.strip-actions{grid-column:2}.strip-panel>#stripCounter{margin-top:0}.studio-intro{padding-top:32px}}
+@media(max-width:780px){.site-header{grid-template-columns:1fr auto;height:73px;padding:0 20px}.header-left{display:none}.header-center{text-align:left}.header-right button{padding-right:0}.masthead span:last-child{display:none}.welcome-grid{grid-template-columns:1fr;min-height:auto}.welcome-copy{padding:58px 0 34px;max-width:none}.welcome-copy h1{font-size:clamp(60px,11vw,89px);max-width:550px}.welcome-art{padding:10px 0 38px;min-height:540px;height:540px}.welcome-bottom{flex-direction:column;text-align:center;font-size:14px}.quiz-layout{grid-template-columns:1fr;gap:17px}.quiz-art-panel{min-height:260px;max-height:320px}.quiz-art-panel img{object-position:center 50%}.result-layout{grid-template-columns:1fr;gap:22px}.result-art{max-width:490px;width:100%;margin:auto}.result-copy h2{font-size:clamp(60px,12vw,86px)}.studio{grid-template-columns:1fr 1fr}.studio-controls{grid-column:1/-1}.preview-panel{grid-column:1}.strip-panel{grid-column:2;display:block;padding:14px}.strip-display{max-height:560px;max-width:100%}.strip-panel>#stripCounter{margin:10px 0}.privacy{align-items:flex-start}.studio-controls .option-grid{grid-template-columns:repeat(4,1fr)}.studio-controls .control-groups-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+@media(max-width:560px){.site-header{height:77px}.header-center strong{font-size:17px;white-space:nowrap}.header-center span{font-size:7px;letter-spacing:.1em}.header-right button{font-size:8px;max-width:118px;text-align:right;line-height:1.4}.outer{padding:0 18px}.masthead{padding:13px 18px}.masthead .ornament:before,.masthead .ornament:after{width:22px}.welcome-copy{padding:45px 0 28px}.welcome-copy h1{font-size:clamp(62px,13vw,82px)}.welcome-copy .intro{font-size:22px}.welcome-art{height:430px;min-height:430px;gap:8px}.art-tile .tile-label{font-size:14px;left:6px;right:6px;bottom:7px;padding:9px 4px}.art-tile .tile-label small{font-size:7px}.landing-actions{align-items:stretch}.landing-actions .btn{flex:1 1 180px}.section-heading{padding:38px 4px 10px}.section-heading h2{font-size:38px}.section-heading p{font-size:17px}.quiz-layout{padding:19px 0 48px}.quiz-panel{padding:21px 16px}.question-title{font-size:33px}.answer{min-height:132px;padding:15px 10px;display:block}.answer-art{width:38px;height:38px;margin-bottom:10px}.answer-art svg{width:24px;height:24px}.answer-text strong{font-size:18px}.answer-text small{font-size:10px}.quiz-controls .btn{min-width:0;flex:1;padding:13px 9px;font-size:9px}.quiz-art-panel{min-height:250px}.result-layout{padding:25px 0 35px}.result-art{padding:12px}.result-art .art-marker{bottom:22px;left:22px}.result-copy h2{font-size:64px}.result-meta{gap:14px}.result-actions .btn{width:100%}.studio{grid-template-columns:1fr;gap:13px}.studio-intro h2{font-size:40px}.studio-controls,.preview-panel,.strip-panel{grid-column:1}.studio-controls{padding:20px}.studio-controls .option-grid{grid-template-columns:repeat(2,1fr)}.strip-panel{display:block}.strip-display{width:min(100%,300px);max-height:510px}.strip-actions{max-width:410px;margin:auto}.capture-buttons .btn{font-size:9px}.privacy{font-size:10px}.footer-logo{font-size:17px}.footer-note{font-size:8px}}
+
+/* v2 — One-page in-place fragrance discovery and photo studio. Campaign artwork stays concealed until the result. */
+html{scroll-padding-top:18px}
+.welcome-grid{grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,70px);min-height:0;align-items:start}
+.welcome-copy{padding:clamp(56px,8vw,116px) 0 55px;max-width:570px;position:sticky;top:0}
+.welcome-copy h1{font-size:clamp(66px,7vw,111px)}
+.welcome-flourish{display:flex;align-items:center;gap:13px;margin-top:38px;width:165px;color:#b59c88}
+.welcome-flourish i{height:1px;background:#c9b8a8;flex:1}
+.welcome-flourish span{font:14px var(--serif)}
+.fineprint{margin-top:19px}
+.experience-column{padding:43px 0 50px;min-width:0;scroll-margin-top:22px}
+.experience-card{background:#fcf9f3;border:1px solid #cfbda8;box-shadow:0 16px 40px #50361c12;position:relative;animation:appear .5s ease both}
+.experience-card:before{content:'';position:absolute;inset:6px;pointer-events:none;border:1px solid #e8ddcf}
+.experience-heading{position:relative;padding:34px 34px 0;text-align:center}
+.experience-heading h2{font:italic clamp(37px,3.35vw,55px)/1.01 var(--serif);letter-spacing:-.047em;margin:12px 0 12px}
+.experience-heading p{font:italic 17px/1.3 var(--serif);color:#8a776a;margin:0}
+.quiz-card .quiz-panel{padding:24px clamp(20px,2.6vw,36px) 30px;background:transparent;border:0;box-shadow:none;position:relative}
+.quiz-card .progress-track{margin:15px 0 25px}
+.quiz-card .question-title{font-size:clamp(30px,3vw,43px);margin:13px 0 9px}
+.quiz-card .question-description{margin-bottom:21px}
+.quiz-card .answer{min-height:122px;padding:17px 13px;gap:10px}
+.quiz-card .answer-art{flex-basis:39px;height:39px}
+.quiz-card .answer-art svg{width:26px;height:26px}
+.quiz-card .answer-text strong{font-size:20px}
+.quiz-card .answer-text small{font-size:10px}
+.quiz-card .quiz-controls{margin-top:22px}
+.quiz-card-foot{position:relative;border-top:1px solid #e1d5c6;margin:0 28px;padding:15px 4px 17px;display:flex;align-items:center;justify-content:space-between;color:#a28a78;font:italic 15px var(--serif)}
+.quiz-card-foot span:last-child{font-size:23px}
+.result-card{padding-bottom:28px}
+.result-card .result-heading{padding-top:32px}
+.result-card .result-heading h2{font-size:clamp(36px,3vw,46px)}
+.result-image-wrap{text-align:center;padding:23px clamp(23px,3vw,42px) 0;position:relative}
+.result-image-wrap .result-prefix{font:italic 18px var(--serif);color:#a17e72}
+.result-image-wrap h3{font:italic clamp(38px,4vw,54px)/1.08 var(--serif);letter-spacing:-.035em;color:var(--theme-dark);margin:7px 0 20px}
+.result-card .result-art{margin:0 auto;max-width:350px;width:min(100%,350px);padding:9px;outline:0;background:#fdfaf5;border:1px solid #d3c0ad;box-shadow:0 12px 33px #57402b23}
+.result-card .result-art img{aspect-ratio: .80;object-fit:cover;object-position:center}
+.result-card .result-art .art-marker{font-size:7px;letter-spacing:.11em;bottom:20px;left:18px;right:18px;padding:6px 4px;background:#fffaf2e8}
+.result-booth-link{display:flex;width:min(100%,350px);margin:18px auto 0;justify-content:space-between;padding:14px 20px}
+.result-hint{font:italic 13px var(--serif);color:#917e70;margin:12px 0 0}
+.result-card .result-copy{padding:14px clamp(23px,3vw,42px) 0;position:relative}
+.result-card .result-copy .result-body{font-size:clamp(19px,2vw,23px);text-align:center;margin:0 auto 13px;max-width:520px}
+.result-card .result-meta{margin:18px 0 20px;gap:10px}
+.result-card .result-meta dd{font-size:16px;line-height:1.35}
+.result-card .retake-row{text-align:center;margin:18px 0 0}
+.result-card #exploreResult{width:100%}
+.welcome-bottom{margin-top:0}
+.atelier-section{border-top:1px solid #cdb8a4;background:linear-gradient(180deg,#f3eae0,#f9f4ec 350px);scroll-margin-top:8px}
+.atelier-divider{text-align:center;padding:28px 0 0;color:#9b816d;letter-spacing:.21em;font-size:9px}
+.atelier-divider span:first-child,.atelier-divider span:last-child{font-size:15px}
+@media(max-width:1100px){.welcome-grid{grid-template-columns:minmax(260px,.83fr) minmax(0,1.17fr);gap:25px}.welcome-copy h1{font-size:clamp(61px,6.4vw,89px)}.experience-column{padding-top:28px}.quiz-card .answer{display:block;min-height:137px}.quiz-card .answer-art{width:37px;height:37px;margin-bottom:7px}.quiz-card .answer-text strong{font-size:18px}.experience-heading{padding:28px 22px 0}}
+@media(max-width:780px){.welcome-grid{grid-template-columns:minmax(0,1fr);gap:0}.welcome-copy{position:static;padding:52px 0 24px;max-width:none}.welcome-copy h1{font-size:clamp(58px,10.7vw,84px)}.welcome-copy .secondary{max-width:610px}.welcome-flourish{margin-top:22px}.experience-column{padding:0 0 38px;scroll-margin-top:18px}.experience-heading h2{font-size:clamp(38px,6vw,55px)}.quiz-card .answer{display:flex;min-height:112px;gap:14px;padding:17px}.quiz-card .answer-art{flex-basis:45px;height:45px;margin:0}.quiz-card .answer-text strong{font-size:21px}.quiz-card .answer-text small{font-size:11px}.result-card .result-art{max-width:400px;width:min(100%,400px)}.result-card .result-booth-link{max-width:400px;width:100%}}
+@media(max-width:560px){.welcome-copy{padding:39px 0 24px}.welcome-copy h1{font-size:clamp(61px,13vw,81px)}.welcome-copy .intro{font-size:21px}.experience-heading{padding:25px 16px 0}.experience-heading h2{font-size:38px}.experience-heading p{font-size:16px}.quiz-card .quiz-panel{padding:21px 14px 24px}.quiz-card .question-title{font-size:31px}.quiz-card .answers-grid{gap:9px}.quiz-card .answer{display:block;min-height:145px;padding:13px 9px}.quiz-card .answer-art{width:37px;height:37px;margin:0 0 7px}.quiz-card .answer-text strong{font-size:17px}.quiz-card .answer-text small{font-size:10px}.quiz-card .quiz-controls{gap:8px}.quiz-card-foot{margin:0 17px}.result-image-wrap{padding:19px 17px 0}.result-card .result-copy{padding:17px 17px 0}.result-card .result-meta{grid-template-columns:1fr 1fr}.result-card .result-meta dd{font-size:15px}.result-card .result-image-wrap h3{font-size:41px}.result-card .result-copy .result-body{font-size:21px}}
+
+/* Compact quiz card refinement — preserves the full-size fragrance reveal and photo booth. */
+@media(min-width:781px){
+  .quiz-card{width:min(100%,525px);margin-inline:auto}
+  .quiz-card .experience-heading{padding:24px 22px 0}
+  .quiz-card .experience-heading h2{font-size:clamp(31px,2.7vw,40px);margin:9px 0 9px}
+  .quiz-card .experience-heading p{font-size:15px}
+  .quiz-card .quiz-panel{padding:18px 23px 20px}
+  .quiz-card .progress-top{font-size:9px}
+  .quiz-card .progress-track{margin:11px 0 17px}
+  .quiz-card .question-number{font-size:15px}
+  .quiz-card .question-title{font-size:clamp(28px,2.6vw,35px);margin:8px 0 7px}
+  .quiz-card .question-description{font-size:11px;margin-bottom:15px}
+  .quiz-card .answers-grid{gap:10px}
+  .quiz-card .answer{display:flex;min-height:99px;padding:13px 10px;gap:10px}
+  .quiz-card .answer-art{flex:0 0 32px;width:32px;height:32px;margin:0}
+  .quiz-card .answer-art svg{width:22px;height:22px}
+  .quiz-card .answer-text strong{font-size:17px}
+  .quiz-card .answer-text small{font-size:9px;line-height:1.45}
+  .quiz-card .quiz-controls{margin-top:16px}
+  .quiz-card .quiz-controls .btn{min-height:42px;padding:11px 15px}
+  .quiz-card .quiz-card-foot{margin:0 22px;padding:11px 4px 13px;font-size:13px}
+}
+@media (min-width:561px) and (max-width:780px){
+  .quiz-card{width:min(100%,525px);margin-inline:auto}
+  .quiz-card .experience-heading h2{font-size:clamp(34px,5.5vw,43px)}
+  .quiz-card .quiz-panel{padding:19px 20px 21px}
+  .quiz-card .answer{min-height:108px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Same campaign quiz, adapted as an isolated inline exhibit. No studio UI. */
+html,body{background:transparent!important;overflow-x:hidden}
+body::before{z-index:-1;opacity:.09}
+.page-main{min-height:0}
+.welcome-grid{max-width:1190px;grid-template-columns:minmax(230px,.76fr) minmax(0,1.24fr);gap:clamp(25px,4vw,56px);align-items:start}
+.welcome-copy{position:static;padding:clamp(24px,3vw,42px) 0 15px}
+.welcome-copy h1{font-size:clamp(53px,6vw,86px)}
+.welcome-copy .secondary{max-width:35ch}
+.experience-column{padding:16px 0 25px}
+.quiz-card{max-width:610px;width:100%}
+.quiz-card .answer{min-height:108px}
+.result-card{max-width:680px;margin-inline:auto}
+@media(max-width:850px){.welcome-grid{grid-template-columns:1fr}.welcome-copy{padding:10px 0 15px;text-align:center}.welcome-copy h1{font-size:clamp(46px,9vw,70px)}.welcome-copy .intro,.welcome-copy .secondary{margin-inline:auto}.welcome-copy .line-top{justify-content:center}.welcome-copy .line-top:after{display:none}.welcome-flourish{margin-inline:auto}.welcome-copy .landing-actions{justify-content:center}.experience-column{padding-top:0}.quiz-card{max-width:660px}}
+@media(max-width:560px){.outer{padding:0 10px}.welcome-copy{padding:12px 8px 19px}.welcome-copy h1{font-size:clamp(46px,12vw,65px)}.welcome-copy .intro{font-size:19px}.welcome-copy .secondary{font-size:12px}.quiz-card .answer{min-height:137px}.experience-heading h2{font-size:35px}.experience-column{padding:0 0 12px}.result-card .result-heading h2{font-size:34px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head><body><svg aria-hidden="true" class="sr-only" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="i-morning" viewbox="0 0 48 48"><path d="M5 33h38M9 28h30M24 10v5m-14-1 4 4m20-4-4 4M11 29a13 13 0 0 1 26 0M5 39h38"></path></symbol>
+<symbol id="i-coffee" viewbox="0 0 48 48"><path d="M10 15h25v14a11 11 0 0 1-11 11h-3a11 11 0 0 1-11-11Zm25 3h4c8 0 6 12-4 12M9 41h32M19 7c-4 4 3 4-1 8m11-8c-4 4 3 4-1 8"></path></symbol>
+<symbol id="i-bridge" viewbox="0 0 48 48"><path d="M4 38h40M7 33h34M9 10v23m30-23v23M7 17c9 5 25 5 34 0M10 20v13m6-11v11m8-10v10m8-11v11m6-13v13M4 8h7m26 0h7"></path></symbol>
+<symbol id="i-rain" viewbox="0 0 48 48"><path d="M8 24a13 13 0 0 1 24-8c10-1 12 15 1 15H9c-10 0-11-11-1-14m5 21-2 4m13-4-2 4m13-4-2 4"></path></symbol>
+<symbol id="i-flower" viewbox="0 0 48 48"><path d="M24 23c-12-16-19-6-10 1-16-2-11 14 0 10-3 13 13 13 11 0 11 9 19-4 6-9 12-10-3-20-7-2Z"></path><circle cx="24" cy="27" r="4"></circle><path d="M24 37v9m0-5c-8-9-13-3-3 3m3-3c8-8 12-2 3 3"></path></symbol>
+<symbol id="i-leaf" viewbox="0 0 48 48"><path d="M10 38C4 17 18 4 42 6c2 23-10 39-32 32Zm2 0C21 26 28 19 38 10M20 28l-9-8m15 1 1-10"></path></symbol>
+<symbol id="i-tree" viewbox="0 0 48 48"><path d="M24 43V7M24 14l-10 9m10-4 11 9m-11 1-14 9m14-5 13 6M24 9c-8 0-15 7-15 15m15-15c9 0 16 8 16 18M8 39c9 3 22 3 33 0"></path></symbol>
+<symbol id="i-city" viewbox="0 0 48 48"><path d="M5 43V21h11v22m0-15h12v15m0-30h14v30M8 26h4m-4 6h4m-4 6h4m12-5h4m-4 5h4m11-20h3m-3 7h3m-3 7h3M5 43h40"></path></symbol>
+<symbol id="i-book" viewbox="0 0 48 48"><path d="M24 41c-6-5-13-6-20-4V10c8-3 16-1 20 4m0 27c6-5 13-6 20-4V10c-8-3-16-1-20 4Zm0-27v27M9 17c5-1 8 0 11 2m8 0c3-2 7-3 11-2M9 24c5-1 8 0 11 2m8 0c3-2 7-3 11-2"></path></symbol>
+<symbol id="i-spark" viewbox="0 0 48 48"><path d="m24 4 4 16 16 4-16 4-4 16-4-16-16-4 16-4 4-16ZM10 9l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z"></path></symbol>
+<symbol id="i-heart" viewbox="0 0 48 48"><path d="M24 41 8 26C-3 14 12 1 24 14 36 1 51 14 40 26Z"></path></symbol>
+<symbol id="i-wave" viewbox="0 0 48 48"><path d="M3 20c7-11 15-11 22 0s15 11 20 0M3 30c7-11 15-11 22 0s15 11 20 0M3 40c7-11 15-11 22 0s15 11 20 0"></path></symbol>
+<symbol id="i-umbrella" viewbox="0 0 48 48"><path d="M24 6v31c0 9-12 7-12 0M4 23c2-19 38-19 40 0-5-4-9-4-13 0-4-4-10-4-14 0-4-4-8-4-13 0Z"></path></symbol>
+
+<symbol id="i-sun" viewbox="0 0 48 48"><circle cx="24" cy="24" r="9"></circle><path d="M24 2v8m0 28v8M2 24h8m28 0h8M8 8l6 6m20 20 6 6M40 8l-6 6M14 34l-6 6"></path></symbol>
+<symbol id="i-pen" viewbox="0 0 48 48"><path d="M7 41c9-18 20-30 33-34-3 15-13 26-33 34ZM19 31l22-22M6 42h35"></path></symbol>
+</defs></svg><main class="page-main"><section aria-labelledby="welcomeTitle" class="welcome-section" id="welcomeView">
+<div class="outer welcome-grid">
+<div class="welcome-copy">
+<div class="line-top eyebrow">An olfactory portrait of the city</div>
+<h1 id="welcomeTitle">Your<br/><em>New York</em><br/>Scent<br/>Portrait.</h1>
+<p class="intro">Every city has a fragrance. Every soul has its own New York story.</p>
+<p class="secondary">Discover the neighborhood, botanical notes, and atmosphere that feel most like you. Seven thoughtful questions will help you discover your New York fragrance.</p>
+<div class="landing-actions"><button class="btn btn-primary" id="beginQuiz" type="button">Take the scent quiz <span aria-hidden="true">↗</span></button></div>
+<div aria-hidden="true" class="welcome-flourish"><span>✦</span><i></i><span>✦</span></div>
+<p class="fineprint">04 signature scents · 07 questions · One personal fragrance match</p>
+</div>
+<div class="experience-column" id="experienceColumn">
+<section aria-labelledby="quizTitle" class="experience-card quiz-card" id="quizView">
+<div class="experience-heading"><span class="eyebrow">Part I · The fragrance discovery</span><h2 id="quizTitle">Which New York Scent Are You?</h2><p>Discover the fragrance that captures your New York story.</p></div>
+<div class="quiz-panel">
+<div class="progress-top"><span id="questionCounter">Question 01 of 07</span><span id="questionPercent">0% answered</span></div>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<span class="question-number" id="questionNumber">01 / 07</span>
+<h3 class="question-title" id="questionTitle"></h3>
+<p class="question-description" id="questionDescription"></p>
+<div aria-label="Choose one answer" class="answers-grid" id="answersGrid" role="group"></div>
+<div class="quiz-controls"><button class="btn" id="prevQuestion" type="button">← Previous</button><button class="btn btn-primary" disabled="" id="nextQuestion" type="button">Next question ↗</button></div>
+</div>
+<div class="quiz-card-foot"><span>Follow the notes. Trust your senses.</span><span aria-hidden="true">❦</span></div>
+</section>
+<section aria-labelledby="resultName" class="experience-card result-card" hidden="" id="resultView">
+<div class="experience-heading result-heading"><span class="eyebrow">Part II · Your fragrance revealed</span><h2>We found your New York.</h2><p>A fragrance inspired by your seven scent preferences.</p></div>
+<div class="result-image-wrap">
+<div class="result-prefix">Votre parfum · Your scent is</div>
+<h3 id="resultName">Brooklyn Bloom</h3>
+<figure class="result-art"><img alt="Your matching original perfume campaign artwork" id="resultImage"/><figcaption class="art-marker">Les Essences de New York · Spring 2027</figcaption></figure>
+</div>
+<div class="result-copy">
+<p class="result-body" id="resultDescription"></p>
+<dl class="result-meta"><div><dt>Notes de parfum</dt><dd id="resultNotes"></dd></div><div><dt>New York neighborhood</dt><dd id="resultNeighborhood"></dd></div></dl>
+<button aria-controls="resultDetails" aria-expanded="false" class="btn" id="exploreResult" type="button">Explore your fragrance ↗</button>
+<div class="result-details hidden" id="resultDetails"><span class="eyebrow">Inside the fragrance</span><div class="note-list" id="resultNotePills"></div><p id="resultStory"></p></div>
+<div class="retake-row"><button class="btn btn-link" id="retakeQuiz" type="button">↺ Take the quiz again</button></div>
+</div>
+</section>
+</div>
+</div>
+</section></main><script defer="" src="../js/quiz-only.js"></script></body></html>

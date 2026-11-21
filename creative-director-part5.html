@@ -1564,7 +1564,14 @@ body{background:var(--maison-paper);color:var(--maison-ink)}
   .welcome-invitation__action {transition: none;}
 }
 
-</style></head>
+</style>
+<style id="quiz-visibility-fix">
+/* Keep the fragrance finder in the page flow, independent of the navigation tabs. */
+#quiz {display:block !important;visibility:visible !important;opacity:1 !important;}
+#quiz .quiz-embedded-shell, #quiz .quiz-editorial-layout {visibility:visible !important;opacity:1 !important;}
+#quizFrame {display:block !important;width:100%;min-height:480px;visibility:visible !important;}
+</style>
+</head>
 <body>
 <a class="skip-link" href="#main">Skip to campaign content</a>
 <div aria-label="Campaign announcement" class="maison-season-ribbon"><span>SPRING 2027  ·  A CITY OF A THOUSAND SCENTS</span><span>SPRING 2027</span></div><header class="site-nav" id="top"><div class="nav-inner">
@@ -1698,7 +1705,369 @@ body{background:var(--maison-paper);color:var(--maison-ink)}
     <div class="chapter-heading reveal compact-panel-heading"><h2 id="quiz-panel-title">Which New York <em>scent are you?</em></h2><p>Seven questions · Your scent</p></div>
   </div>
   <div class="quiz-embedded-shell">
-    <iframe class="ad-frame quiz-embedded-frame" data-kind="quiz" id="quizFrame" loading="lazy" scrolling="no" data-embedded-ad="ads/scent-quiz-only.html" style="height:680px" title="Seven-question fragrance finder with four original scent results, without a photo booth"></iframe>
+    <iframe class="ad-frame quiz-embedded-frame" data-kind="quiz" id="quizFrame" loading="eager" scrolling="no" data-embedded-ad="ads/scent-quiz-only.html" style="height:680px" title="Seven-question fragrance finder with four original scent results, without a photo booth" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html class=&quot;campaign-embed&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;&lt;meta content=&quot;light&quot; name=&quot;color-scheme&quot;/&gt;&lt;title&gt;Which New York Scent Are You? — Les Essences de New York&lt;/title&gt;
+&lt;style&gt;
+:root{--ink:#292923;--muted:#776d63;--paper:#f8f3eb;--ivory:#fffdf7;--line:#cabcaa;--blush:#ead9d2;--gold:#ad8c63;--theme:#a87a80;--theme-light:#eddcde;--theme-dark:#654652;--serif:&#x27;Bodoni MT&#x27;,&#x27;Didot&#x27;,&#x27;Iowan Old Style&#x27;,&#x27;Palatino Linotype&#x27;,&#x27;Book Antiqua&#x27;,Georgia,serif;--sans:&#x27;Avenir Next&#x27;,&#x27;Gill Sans&#x27;,Optima,&#x27;Trebuchet MS&#x27;,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.4}button:focus-visible,input:focus-visible{outline:2px solid var(--theme-dark);outline-offset:3px}a{color:inherit}img{display:block;max-width:100%}h1,h2,h3,p{margin-top:0}h1,h2,h3,.serif{font-family:var(--serif);font-weight:400}.hidden,[hidden]{display:none!important}.sr-only{position:absolute!important;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:#897764}.smallcaps{text-transform:uppercase;letter-spacing:.18em;font-size:11px}.hairline{height:1px;background:var(--line)}
+body:before{content:&#x27;&#x27;;position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.17;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox=&#x27;0 0 150 150&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%3E%3Cfilter id=&#x27;n&#x27;%3E%3CfeTurbulence type=&#x27;fractalNoise&#x27; baseFrequency=&#x27;.74&#x27; numOctaves=&#x27;3&#x27; stitchTiles=&#x27;stitch&#x27;/%3E%3C/filter%3E%3Crect width=&#x27;150&#x27; height=&#x27;150&#x27; filter=&#x27;url(%23n)&#x27; opacity=&#x27;.14&#x27;/%3E%3C/svg%3E&quot;)}
+.site-header{height:88px;border-bottom:1px solid #d7cdbd;background:rgba(251,247,239,.95);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 clamp(18px,4vw,70px);position:relative;z-index:10}.header-left{display:flex;align-items:center;gap:10px;color:#67574c}.mark{font:italic 29px var(--serif);height:39px;width:39px;border:1px solid #af9984;border-radius:50%;display:grid;place-items:center}.header-center{text-align:center;line-height:1.15}.header-center strong{font:italic 21px var(--serif);display:block}.header-center span{display:block;letter-spacing:.22em;text-transform:uppercase;font-size:8px;color:#887360;margin-top:5px}.header-right{justify-self:end}.header-right button,.header-left button{background:transparent;border:0;color:#6c5b4c;letter-spacing:.14em;text-transform:uppercase;font-size:10px;padding:11px 9px}.header-right button:hover{text-decoration:underline;text-underline-offset:6px}
+.page-main{min-height:calc(100vh - 150px)}.view{animation:appear .55s ease both}.view:not(.active){display:none}.outer{max-width:1440px;margin:auto;padding:0 clamp(20px,5vw,80px)}
+.masthead{border-bottom:1px solid var(--line);padding:14px clamp(20px,5vw,80px);display:flex;gap:15px;justify-content:space-between;align-items:center;background:#f6efe6}.masthead span{font-size:9px;letter-spacing:.23em;text-transform:uppercase;color:#796958}.ornament{display:flex;align-items:center;gap:14px}.ornament:before,.ornament:after{content:&#x27;&#x27;;height:1px;width:40px;background:#bca58b}.ornament i{font:20px var(--serif);color:#a38d72}
+/* Landing */
+.welcome-grid{display:grid;grid-template-columns:.86fr 1.14fr;min-height:min(720px,calc(100vh - 200px));align-items:stretch}.welcome-copy{padding:clamp(50px,7vw,105px) 4vw 70px 0;display:flex;flex-direction:column;justify-content:center;max-width:620px}.welcome-copy .line-top{display:flex;align-items:center;gap:12px;color:#88705a;margin-bottom:26px}.welcome-copy .line-top:after{content:&#x27;&#x27;;height:1px;width:80px;background:#a68d77}.welcome-copy h1{font-size:clamp(64px,7.1vw,116px);line-height:.9;letter-spacing:-.056em;margin:0 0 29px}.welcome-copy h1 em{font-weight:400;color:#9d7180}.welcome-copy .intro{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,26px);line-height:1.45;max-width:460px;color:#756257}.welcome-copy .secondary{font-size:13px;line-height:1.85;max-width:410px;color:#827267;margin:8px 0 30px}.landing-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.btn{display:inline-flex;justify-content:center;align-items:center;gap:12px;border:1px solid var(--ink);padding:16px 23px;text-align:center;background:transparent;color:var(--ink);letter-spacing:.14em;text-transform:uppercase;font-size:10px;font-weight:600;min-height:48px;transition:background .2s,color .2s,border-color .2s,transform .2s}.btn:hover:not(:disabled){transform:translateY(-2px)}.btn-primary{background:#34342e;color:#fffef6;border-color:#34342e}.btn-primary:hover:not(:disabled){background:#676055}.btn-rose{background:var(--theme-dark);color:white;border-color:var(--theme-dark)}.btn-rose:hover:not(:disabled){background:var(--theme)}.btn-link{border:0;background:transparent;padding-left:4px;padding-right:4px}.btn-link:after{content:&#x27;↗&#x27;;font:19px var(--serif)}.fineprint{font-size:10px;line-height:1.6;color:#908171;margin-top:38px}.welcome-art{padding:42px 0 42px 15px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:11px;min-height:630px}.art-tile{position:relative;overflow:hidden;background:#eee1d5;border:5px solid #f8f1e7;outline:1px solid #bcaea0;box-shadow:0 8px 30px #5e422417;cursor:pointer;padding:0}.art-tile img{width:100%;height:100%;object-fit:cover;object-position:center 52%;filter:saturate(.83);transition:transform .65s,filter .4s}.art-tile:hover img,.art-tile:focus-visible img{transform:scale(1.055);filter:saturate(1)}.art-tile .tile-label{position:absolute;bottom:13px;left:13px;right:13px;background:rgba(253,249,242,.95);border:1px solid #bdad9a;padding:10px 8px;font:italic 18px var(--serif);text-align:center;color:#463b34}.art-tile .tile-label small{display:block;font:8px var(--sans);letter-spacing:.18em;text-transform:uppercase;margin-top:4px;color:#8a7161}.welcome-bottom{padding:26px 0 38px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px;color:#8d7b6b;font:italic 15px var(--serif)}
+/* Quiz */
+.section-heading{text-align:center;padding:49px 12px 27px}.section-heading h2{font-size:clamp(38px,4.7vw,67px);margin:11px 0 12px;letter-spacing:-.04em}.section-heading p{font:italic 19px var(--serif);color:#796e65;margin:0}.quiz-layout{display:grid;grid-template-columns:minmax(0,1.36fr) minmax(300px,.68fr);gap:43px;padding:25px 0 65px;align-items:stretch}.quiz-panel{background:var(--ivory);border:1px solid #d8c8b4;padding:clamp(20px,3vw,44px);box-shadow:0 17px 36px #3d29100c}.progress-top{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8d7563}.progress-track{height:2px;background:#e1d4c3;margin:17px 0 31px}.progress-fill{height:2px;background:var(--theme-dark);width:25%;transition:width .3s}.question-number{font:italic 17px var(--serif);color:#a58b74}.question-title{font:clamp(30px,3.3vw,49px)/1.07 var(--serif);letter-spacing:-.03em;margin:14px 0 9px}.question-description{font-size:12px;line-height:1.7;color:#89776b;margin-bottom:30px}.answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{appearance:none;background:#f9f5ee;border:1px solid #ded0c1;color:#413931;padding:22px 18px;min-height:152px;display:flex;align-items:flex-start;gap:15px;text-align:left;position:relative;transition:.2s}.answer:hover{background:#f2eae0;border-color:#b9a18e;transform:translateY(-2px)}.answer.selected{background:var(--theme-light);border-color:var(--theme-dark);box-shadow:inset 0 0 0 1px var(--theme-dark)}.answer.selected:after{content:&#x27;✓&#x27;;position:absolute;top:13px;right:14px;font-size:13px;color:var(--theme-dark)}.answer-art{flex:0 0 48px;height:48px;border:1px solid #baa993;border-radius:50%;display:grid;place-items:center;color:#8c745f}.answer-art svg{height:30px;width:30px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}.answer-text strong{display:block;font:italic 22px/1.2 var(--serif);font-weight:400;margin:2px 0 6px}.answer-text small{font-size:11px;line-height:1.55;color:#87796d;display:block}.quiz-controls{display:flex;justify-content:space-between;gap:15px;margin-top:30px}.quiz-controls .btn{min-width:133px}.quiz-art-panel{background:#e8e0d4;overflow:hidden;border:1px solid #ccbcaa;position:relative;min-height:520px}.quiz-art-panel img{width:100%;height:100%;object-fit:cover;object-position:center;position:absolute;inset:0;filter:saturate(.76)}.quiz-art-panel:after{content:&#x27;&#x27;;position:absolute;inset:0;background:linear-gradient(180deg,transparent 43%,rgba(38,25,16,.67))}.quiz-art-caption{position:absolute;bottom:30px;left:23px;right:23px;z-index:1;color:#fffaf0;text-align:center}.quiz-art-caption .eyebrow{color:#ecdecf;font-size:9px}.quiz-art-caption h3{font:italic 34px var(--serif);margin:8px 0}.quiz-art-caption span{font:10px var(--sans);letter-spacing:.2em;text-transform:uppercase}
+/* result */
+.result-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,90px);padding:44px 0 65px;align-items:center}.result-art{padding:19px;border:1px solid #cab6a4;outline:5px solid #eee5d8;background:#fdfaf4;position:relative;box-shadow:0 18px 32px #46321b1f;max-width:610px}.result-art img{width:100%;height:auto;object-fit:contain}.result-art .art-marker{position:absolute;background:#fffbf3;bottom:40px;left:40px;border:1px solid #bbaa96;padding:8px 12px;font-size:9px;letter-spacing:.14em;text-transform:uppercase}.result-copy{padding:20px 0}.result-copy .result-prefix{font:italic 22px var(--serif);color:#9b806b}.result-copy h2{font-size:clamp(60px,6.5vw,105px);letter-spacing:-.06em;line-height:.98;margin:20px 0 20px;color:var(--theme-dark)}.result-copy .result-body{font:italic clamp(20px,2.15vw,30px)/1.38 var(--serif);max-width:550px;color:#5c4c43}.result-meta{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-block:1px solid #cebba9;padding:22px 0;margin:26px 0 26px}.result-meta dt{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#917c68;margin-bottom:9px}.result-meta dd{margin:0;font:18px var(--serif)}.result-actions{display:flex;gap:10px;flex-wrap:wrap}.result-details{margin-top:27px;background:#f5ebdf;border:1px solid #d1bdaa;padding:25px 28px;animation:appear .3s}.result-details .note-list{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0}.note-pill{border:1px solid #c9ae95;background:#fffaf1;padding:9px 13px;font:italic 17px var(--serif)}.result-details p{font:15px/1.7 var(--serif);color:#766459;margin-bottom:0}.bottom-quote{text-align:center;background:#ede2d6;border-block:1px solid #d2c0ad;padding:29px 16px;font:italic 25px var(--serif);color:#756351}
+/* photo booth */
+.studio-intro{text-align:center;padding:38px 12px 28px}.studio-intro h2{font:clamp(40px,4.5vw,64px)/1.1 var(--serif);letter-spacing:-.04em;margin:8px 0 10px}.studio-intro h2 em{color:var(--theme-dark)}.studio-intro p{font:italic 17px var(--serif);color:#7d6d61}.studio{display:grid;grid-template-columns:minmax(270px,310px) minmax(310px,1fr) minmax(220px,275px);align-items:start;gap:18px;padding-bottom:65px}.studio-controls,.preview-panel,.strip-panel{background:#fcf9f3;border:1px solid #d1c0ac;box-shadow:0 14px 31px #60462012}.studio-controls{padding:24px 22px}.studio-controls h3{font:italic 27px var(--serif);margin:0 0 5px}.studio-controls .helper{color:#8c7768;font:12px/1.6 var(--sans)}.control-group{border-top:1px solid #d9c9b6;padding-top:17px;margin-top:18px}.control-group .control-head{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#6e5b4d;margin-bottom:12px;display:flex;justify-content:space-between}.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.option-button{min-height:42px;border:1px solid #cdbba7;background:#fdf9f2;color:#5e5146;font-size:11px;line-height:1.2;padding:10px 7px}.option-button:hover{background:#f2eae0}.option-button.selected{border-color:var(--theme-dark);color:var(--theme-dark);background:var(--theme-light);box-shadow:inset 0 0 0 1px var(--theme-dark)}.scent-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.scent-swatch{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:8px 1px;font-size:9px;line-height:1.3;color:#685b51;background:#fffaf4;border:1px solid #d8c7b7}.scent-swatch.selected{border:2px solid var(--theme-dark);background:var(--theme-light)}.swatch-dot{display:block;width:21px;height:21px;border-radius:50%;border:2px solid #fff;outline:1px solid #c8b2a2}.studio-controls label.file-button{min-height:43px;cursor:pointer;display:flex;align-items:center;justify-content:center;border:1px solid #b7a38e;color:#51463e;font-size:11px;letter-spacing:.09em;padding:11px;background:#f8f1e8;text-align:center}.studio-controls label.file-button:hover{background:#eee4d9}.upload-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.upload-row .btn{font-size:10px;padding:10px 7px;min-height:43px}.status{margin:10px 0 0;font-size:11px;line-height:1.55;color:#897262;min-height:16px}.frame-range{width:100%;accent-color:#79595a}.range-head{display:flex;justify-content:space-between;font-size:10px;color:#88796c}.hint{font:11px/1.5 var(--sans);color:#968371}.preview-panel{padding:17px 17px 20px;position:relative}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}.panel-top strong{font:italic 23px var(--serif);font-weight:400}.panel-top .eyebrow{letter-spacing:.15em}#portraitCanvas{background:#efe4d9;width:100%;height:auto;aspect-ratio:3/4;display:block;touch-action:none;cursor:grab;border:1px solid #cebba8}#portraitCanvas:active{cursor:grabbing}.portrait-wrap{position:relative;overflow:hidden}.countdown{position:absolute;inset:0;display:grid;place-items:center;background:rgba(30,26,22,.19);color:#fff9ee;font:140px var(--serif);text-shadow:0 6px 28px #0007;z-index:2;pointer-events:none}.flash{position:absolute;inset:0;z-index:4;background:#fffdf6;opacity:0;pointer-events:none}.flash.pop{animation:shutter .42s both}.preview-helper{margin:11px 0 15px;font-size:11px;line-height:1.6;color:#817369}.capture-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.capture-buttons .btn{padding:13px 8px;min-height:45px;font-size:9px}.capture-buttons .btn:first-child{grid-column:span 2}.strip-panel{padding:17px 17px 20px}.strip-display{background:#e8ddd0;border:1px solid #c9b8a3;max-height:690px;overflow:auto;scrollbar-width:thin}.strip-display canvas{width:100%;height:auto;display:block}#stripCounter{font-size:10px;color:#8d7764;text-align:center;letter-spacing:.14em;text-transform:uppercase;margin:13px 0 15px}.strip-actions{display:flex;flex-direction:column;gap:8px}.strip-actions .btn{font-size:10px;min-height:42px;padding:11px}.studio-back{margin:10px auto 0;text-align:center}.privacy{background:#efe6d9;border-top:1px solid #d3c4b2;padding:16px 25px;text-align:center;font-size:11px;line-height:1.7;color:#7c6c60;display:flex;align-items:center;justify-content:center;gap:10px}.privacy svg{width:18px;height:18px;flex:none}
+footer{border-top:1px solid #cdb9a4;padding:27px clamp(20px,5vw,80px);display:flex;justify-content:space-between;align-items:center;gap:12px;background:#f4ebdf;color:#8a7767}.footer-logo{font:italic 20px var(--serif);color:#544537}.footer-note{font-size:9px;letter-spacing:.13em;text-transform:uppercase;text-align:right}.divider-flower{text-align:center;color:#b28f77;font:25px var(--serif);margin:23px 0}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@keyframes shutter{0%{opacity:0}20%{opacity:.96}100%{opacity:0}}
+@media(max-width:1150px){.studio{grid-template-columns:260px minmax(290px,1fr)}.strip-panel{grid-column:1/-1}.strip-display{max-height:410px;max-width:220px;margin:auto}.strip-panel{display:grid;grid-template-columns:260px 1fr;gap:6px 24px;align-items:start}.strip-panel&gt;.panel-top{grid-column:1/-1}.strip-panel&gt;.strip-display{grid-row:2 /span 3}.strip-panel&gt;#stripCounter,.strip-panel&gt;.strip-actions{grid-column:2}.strip-panel&gt;#stripCounter{margin-top:0}.studio-intro{padding-top:32px}}
+@media(max-width:780px){.site-header{grid-template-columns:1fr auto;height:73px;padding:0 20px}.header-left{display:none}.header-center{text-align:left}.header-right button{padding-right:0}.masthead span:last-child{display:none}.welcome-grid{grid-template-columns:1fr;min-height:auto}.welcome-copy{padding:58px 0 34px;max-width:none}.welcome-copy h1{font-size:clamp(60px,11vw,89px);max-width:550px}.welcome-art{padding:10px 0 38px;min-height:540px;height:540px}.welcome-bottom{flex-direction:column;text-align:center;font-size:14px}.quiz-layout{grid-template-columns:1fr;gap:17px}.quiz-art-panel{min-height:260px;max-height:320px}.quiz-art-panel img{object-position:center 50%}.result-layout{grid-template-columns:1fr;gap:22px}.result-art{max-width:490px;width:100%;margin:auto}.result-copy h2{font-size:clamp(60px,12vw,86px)}.studio{grid-template-columns:1fr 1fr}.studio-controls{grid-column:1/-1}.preview-panel{grid-column:1}.strip-panel{grid-column:2;display:block;padding:14px}.strip-display{max-height:560px;max-width:100%}.strip-panel&gt;#stripCounter{margin:10px 0}.privacy{align-items:flex-start}.studio-controls .option-grid{grid-template-columns:repeat(4,1fr)}.studio-controls .control-groups-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+@media(max-width:560px){.site-header{height:77px}.header-center strong{font-size:17px;white-space:nowrap}.header-center span{font-size:7px;letter-spacing:.1em}.header-right button{font-size:8px;max-width:118px;text-align:right;line-height:1.4}.outer{padding:0 18px}.masthead{padding:13px 18px}.masthead .ornament:before,.masthead .ornament:after{width:22px}.welcome-copy{padding:45px 0 28px}.welcome-copy h1{font-size:clamp(62px,13vw,82px)}.welcome-copy .intro{font-size:22px}.welcome-art{height:430px;min-height:430px;gap:8px}.art-tile .tile-label{font-size:14px;left:6px;right:6px;bottom:7px;padding:9px 4px}.art-tile .tile-label small{font-size:7px}.landing-actions{align-items:stretch}.landing-actions .btn{flex:1 1 180px}.section-heading{padding:38px 4px 10px}.section-heading h2{font-size:38px}.section-heading p{font-size:17px}.quiz-layout{padding:19px 0 48px}.quiz-panel{padding:21px 16px}.question-title{font-size:33px}.answer{min-height:132px;padding:15px 10px;display:block}.answer-art{width:38px;height:38px;margin-bottom:10px}.answer-art svg{width:24px;height:24px}.answer-text strong{font-size:18px}.answer-text small{font-size:10px}.quiz-controls .btn{min-width:0;flex:1;padding:13px 9px;font-size:9px}.quiz-art-panel{min-height:250px}.result-layout{padding:25px 0 35px}.result-art{padding:12px}.result-art .art-marker{bottom:22px;left:22px}.result-copy h2{font-size:64px}.result-meta{gap:14px}.result-actions .btn{width:100%}.studio{grid-template-columns:1fr;gap:13px}.studio-intro h2{font-size:40px}.studio-controls,.preview-panel,.strip-panel{grid-column:1}.studio-controls{padding:20px}.studio-controls .option-grid{grid-template-columns:repeat(2,1fr)}.strip-panel{display:block}.strip-display{width:min(100%,300px);max-height:510px}.strip-actions{max-width:410px;margin:auto}.capture-buttons .btn{font-size:9px}.privacy{font-size:10px}.footer-logo{font-size:17px}.footer-note{font-size:8px}}
+
+/* v2 — One-page in-place fragrance discovery and photo studio. Campaign artwork stays concealed until the result. */
+html{scroll-padding-top:18px}
+.welcome-grid{grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,70px);min-height:0;align-items:start}
+.welcome-copy{padding:clamp(56px,8vw,116px) 0 55px;max-width:570px;position:sticky;top:0}
+.welcome-copy h1{font-size:clamp(66px,7vw,111px)}
+.welcome-flourish{display:flex;align-items:center;gap:13px;margin-top:38px;width:165px;color:#b59c88}
+.welcome-flourish i{height:1px;background:#c9b8a8;flex:1}
+.welcome-flourish span{font:14px var(--serif)}
+.fineprint{margin-top:19px}
+.experience-column{padding:43px 0 50px;min-width:0;scroll-margin-top:22px}
+.experience-card{background:#fcf9f3;border:1px solid #cfbda8;box-shadow:0 16px 40px #50361c12;position:relative;animation:appear .5s ease both}
+.experience-card:before{content:&#x27;&#x27;;position:absolute;inset:6px;pointer-events:none;border:1px solid #e8ddcf}
+.experience-heading{position:relative;padding:34px 34px 0;text-align:center}
+.experience-heading h2{font:italic clamp(37px,3.35vw,55px)/1.01 var(--serif);letter-spacing:-.047em;margin:12px 0 12px}
+.experience-heading p{font:italic 17px/1.3 var(--serif);color:#8a776a;margin:0}
+.quiz-card .quiz-panel{padding:24px clamp(20px,2.6vw,36px) 30px;background:transparent;border:0;box-shadow:none;position:relative}
+.quiz-card .progress-track{margin:15px 0 25px}
+.quiz-card .question-title{font-size:clamp(30px,3vw,43px);margin:13px 0 9px}
+.quiz-card .question-description{margin-bottom:21px}
+.quiz-card .answer{min-height:122px;padding:17px 13px;gap:10px}
+.quiz-card .answer-art{flex-basis:39px;height:39px}
+.quiz-card .answer-art svg{width:26px;height:26px}
+.quiz-card .answer-text strong{font-size:20px}
+.quiz-card .answer-text small{font-size:10px}
+.quiz-card .quiz-controls{margin-top:22px}
+.quiz-card-foot{position:relative;border-top:1px solid #e1d5c6;margin:0 28px;padding:15px 4px 17px;display:flex;align-items:center;justify-content:space-between;color:#a28a78;font:italic 15px var(--serif)}
+.quiz-card-foot span:last-child{font-size:23px}
+.result-card{padding-bottom:28px}
+.result-card .result-heading{padding-top:32px}
+.result-card .result-heading h2{font-size:clamp(36px,3vw,46px)}
+.result-image-wrap{text-align:center;padding:23px clamp(23px,3vw,42px) 0;position:relative}
+.result-image-wrap .result-prefix{font:italic 18px var(--serif);color:#a17e72}
+.result-image-wrap h3{font:italic clamp(38px,4vw,54px)/1.08 var(--serif);letter-spacing:-.035em;color:var(--theme-dark);margin:7px 0 20px}
+.result-card .result-art{margin:0 auto;max-width:350px;width:min(100%,350px);padding:9px;outline:0;background:#fdfaf5;border:1px solid #d3c0ad;box-shadow:0 12px 33px #57402b23}
+.result-card .result-art img{aspect-ratio: .80;object-fit:cover;object-position:center}
+.result-card .result-art .art-marker{font-size:7px;letter-spacing:.11em;bottom:20px;left:18px;right:18px;padding:6px 4px;background:#fffaf2e8}
+.result-booth-link{display:flex;width:min(100%,350px);margin:18px auto 0;justify-content:space-between;padding:14px 20px}
+.result-hint{font:italic 13px var(--serif);color:#917e70;margin:12px 0 0}
+.result-card .result-copy{padding:14px clamp(23px,3vw,42px) 0;position:relative}
+.result-card .result-copy .result-body{font-size:clamp(19px,2vw,23px);text-align:center;margin:0 auto 13px;max-width:520px}
+.result-card .result-meta{margin:18px 0 20px;gap:10px}
+.result-card .result-meta dd{font-size:16px;line-height:1.35}
+.result-card .retake-row{text-align:center;margin:18px 0 0}
+.result-card #exploreResult{width:100%}
+.welcome-bottom{margin-top:0}
+.atelier-section{border-top:1px solid #cdb8a4;background:linear-gradient(180deg,#f3eae0,#f9f4ec 350px);scroll-margin-top:8px}
+.atelier-divider{text-align:center;padding:28px 0 0;color:#9b816d;letter-spacing:.21em;font-size:9px}
+.atelier-divider span:first-child,.atelier-divider span:last-child{font-size:15px}
+@media(max-width:1100px){.welcome-grid{grid-template-columns:minmax(260px,.83fr) minmax(0,1.17fr);gap:25px}.welcome-copy h1{font-size:clamp(61px,6.4vw,89px)}.experience-column{padding-top:28px}.quiz-card .answer{display:block;min-height:137px}.quiz-card .answer-art{width:37px;height:37px;margin-bottom:7px}.quiz-card .answer-text strong{font-size:18px}.experience-heading{padding:28px 22px 0}}
+@media(max-width:780px){.welcome-grid{grid-template-columns:minmax(0,1fr);gap:0}.welcome-copy{position:static;padding:52px 0 24px;max-width:none}.welcome-copy h1{font-size:clamp(58px,10.7vw,84px)}.welcome-copy .secondary{max-width:610px}.welcome-flourish{margin-top:22px}.experience-column{padding:0 0 38px;scroll-margin-top:18px}.experience-heading h2{font-size:clamp(38px,6vw,55px)}.quiz-card .answer{display:flex;min-height:112px;gap:14px;padding:17px}.quiz-card .answer-art{flex-basis:45px;height:45px;margin:0}.quiz-card .answer-text strong{font-size:21px}.quiz-card .answer-text small{font-size:11px}.result-card .result-art{max-width:400px;width:min(100%,400px)}.result-card .result-booth-link{max-width:400px;width:100%}}
+@media(max-width:560px){.welcome-copy{padding:39px 0 24px}.welcome-copy h1{font-size:clamp(61px,13vw,81px)}.welcome-copy .intro{font-size:21px}.experience-heading{padding:25px 16px 0}.experience-heading h2{font-size:38px}.experience-heading p{font-size:16px}.quiz-card .quiz-panel{padding:21px 14px 24px}.quiz-card .question-title{font-size:31px}.quiz-card .answers-grid{gap:9px}.quiz-card .answer{display:block;min-height:145px;padding:13px 9px}.quiz-card .answer-art{width:37px;height:37px;margin:0 0 7px}.quiz-card .answer-text strong{font-size:17px}.quiz-card .answer-text small{font-size:10px}.quiz-card .quiz-controls{gap:8px}.quiz-card-foot{margin:0 17px}.result-image-wrap{padding:19px 17px 0}.result-card .result-copy{padding:17px 17px 0}.result-card .result-meta{grid-template-columns:1fr 1fr}.result-card .result-meta dd{font-size:15px}.result-card .result-image-wrap h3{font-size:41px}.result-card .result-copy .result-body{font-size:21px}}
+
+/* Compact quiz card refinement — preserves the full-size fragrance reveal and photo booth. */
+@media(min-width:781px){
+  .quiz-card{width:min(100%,525px);margin-inline:auto}
+  .quiz-card .experience-heading{padding:24px 22px 0}
+  .quiz-card .experience-heading h2{font-size:clamp(31px,2.7vw,40px);margin:9px 0 9px}
+  .quiz-card .experience-heading p{font-size:15px}
+  .quiz-card .quiz-panel{padding:18px 23px 20px}
+  .quiz-card .progress-top{font-size:9px}
+  .quiz-card .progress-track{margin:11px 0 17px}
+  .quiz-card .question-number{font-size:15px}
+  .quiz-card .question-title{font-size:clamp(28px,2.6vw,35px);margin:8px 0 7px}
+  .quiz-card .question-description{font-size:11px;margin-bottom:15px}
+  .quiz-card .answers-grid{gap:10px}
+  .quiz-card .answer{display:flex;min-height:99px;padding:13px 10px;gap:10px}
+  .quiz-card .answer-art{flex:0 0 32px;width:32px;height:32px;margin:0}
+  .quiz-card .answer-art svg{width:22px;height:22px}
+  .quiz-card .answer-text strong{font-size:17px}
+  .quiz-card .answer-text small{font-size:9px;line-height:1.45}
+  .quiz-card .quiz-controls{margin-top:16px}
+  .quiz-card .quiz-controls .btn{min-height:42px;padding:11px 15px}
+  .quiz-card .quiz-card-foot{margin:0 22px;padding:11px 4px 13px;font-size:13px}
+}
+@media (min-width:561px) and (max-width:780px){
+  .quiz-card{width:min(100%,525px);margin-inline:auto}
+  .quiz-card .experience-heading h2{font-size:clamp(34px,5.5vw,43px)}
+  .quiz-card .quiz-panel{padding:19px 20px 21px}
+  .quiz-card .answer{min-height:108px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Same campaign quiz, adapted as an isolated inline exhibit. No studio UI. */
+html,body{background:transparent!important;overflow-x:hidden}
+body::before{z-index:-1;opacity:.09}
+.page-main{min-height:0}
+.welcome-grid{max-width:1190px;grid-template-columns:minmax(230px,.76fr) minmax(0,1.24fr);gap:clamp(25px,4vw,56px);align-items:start}
+.welcome-copy{position:static;padding:clamp(24px,3vw,42px) 0 15px}
+.welcome-copy h1{font-size:clamp(53px,6vw,86px)}
+.welcome-copy .secondary{max-width:35ch}
+.experience-column{padding:16px 0 25px}
+.quiz-card{max-width:610px;width:100%}
+.quiz-card .answer{min-height:108px}
+.result-card{max-width:680px;margin-inline:auto}
+@media(max-width:850px){.welcome-grid{grid-template-columns:1fr}.welcome-copy{padding:10px 0 15px;text-align:center}.welcome-copy h1{font-size:clamp(46px,9vw,70px)}.welcome-copy .intro,.welcome-copy .secondary{margin-inline:auto}.welcome-copy .line-top{justify-content:center}.welcome-copy .line-top:after{display:none}.welcome-flourish{margin-inline:auto}.welcome-copy .landing-actions{justify-content:center}.experience-column{padding-top:0}.quiz-card{max-width:660px}}
+@media(max-width:560px){.outer{padding:0 10px}.welcome-copy{padding:12px 8px 19px}.welcome-copy h1{font-size:clamp(46px,12vw,65px)}.welcome-copy .intro{font-size:19px}.welcome-copy .secondary{font-size:12px}.quiz-card .answer{min-height:137px}.experience-heading h2{font-size:35px}.experience-column{padding:0 0 12px}.result-card .result-heading h2{font-size:34px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+&lt;/style&gt;
+&lt;style id=&quot;compact-scent-quiz-embedded&quot;&gt;
+/* The campaign already introduces the quiz. Remove redundant landing copy in this embedded view. */
+html,body{min-height:0!important;height:auto!important;overflow-x:hidden!important;}
+.page-main{min-height:0!important;padding:0!important;margin:0!important;}
+.welcome-section{margin:0!important;padding:0!important;min-height:0!important;}
+.welcome-grid{display:block!important;max-width:780px!important;margin:0 auto!important;padding:0 clamp(7px,1.5vw,18px)!important;}
+.welcome-copy{display:none!important;}
+.experience-column{padding:0 0 6px!important;margin:0!important;max-width:780px!important;}
+.quiz-card{max-width:680px!important;width:100%!important;margin:0 auto!important;}
+.quiz-card .experience-heading{padding:18px 17px 0!important;}
+.quiz-card .experience-heading h2{font-size:clamp(29px,3.2vw,41px)!important;margin:7px 0 5px!important;}
+.quiz-card .experience-heading p{font-size:14px!important;margin:0!important;}
+.quiz-card .quiz-panel{padding:14px clamp(12px,2vw,22px) 12px!important;}
+.quiz-card .answer{min-height:0!important;padding:10px 11px!important;}
+.quiz-card .answer-art{flex-basis:30px!important;width:30px!important;height:30px!important;margin:0!important;}
+.quiz-card .question-title{font-size:clamp(25px,3vw,33px)!important;}
+.quiz-card .quiz-card-foot{padding:8px 6px!important;margin:0 16px!important;}
+.result-card{max-width:680px!important;}
+@media(max-width:560px){.welcome-grid{padding:0 4px!important}.quiz-card .answer{min-height:0!important;display:flex!important;gap:11px!important}.quiz-card .answer-text strong{font-size:16px!important}.quiz-card .answer-text small{font-size:10px!important}.quiz-card .experience-heading{padding:15px 12px 0!important}}
+&lt;/style&gt;
+&lt;/head&gt;&lt;body&gt;&lt;svg aria-hidden=&quot;true&quot; class=&quot;sr-only&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+&lt;defs&gt;
+&lt;symbol id=&quot;i-morning&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M5 33h38M9 28h30M24 10v5m-14-1 4 4m20-4-4 4M11 29a13 13 0 0 1 26 0M5 39h38&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-coffee&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M10 15h25v14a11 11 0 0 1-11 11h-3a11 11 0 0 1-11-11Zm25 3h4c8 0 6 12-4 12M9 41h32M19 7c-4 4 3 4-1 8m11-8c-4 4 3 4-1 8&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-bridge&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M4 38h40M7 33h34M9 10v23m30-23v23M7 17c9 5 25 5 34 0M10 20v13m6-11v11m8-10v10m8-11v11m6-13v13M4 8h7m26 0h7&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-rain&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M8 24a13 13 0 0 1 24-8c10-1 12 15 1 15H9c-10 0-11-11-1-14m5 21-2 4m13-4-2 4m13-4-2 4&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-flower&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M24 23c-12-16-19-6-10 1-16-2-11 14 0 10-3 13 13 13 11 0 11 9 19-4 6-9 12-10-3-20-7-2Z&quot;&gt;&lt;/path&gt;&lt;circle cx=&quot;24&quot; cy=&quot;27&quot; r=&quot;4&quot;&gt;&lt;/circle&gt;&lt;path d=&quot;M24 37v9m0-5c-8-9-13-3-3 3m3-3c8-8 12-2 3 3&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-leaf&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M10 38C4 17 18 4 42 6c2 23-10 39-32 32Zm2 0C21 26 28 19 38 10M20 28l-9-8m15 1 1-10&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-tree&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M24 43V7M24 14l-10 9m10-4 11 9m-11 1-14 9m14-5 13 6M24 9c-8 0-15 7-15 15m15-15c9 0 16 8 16 18M8 39c9 3 22 3 33 0&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-city&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M5 43V21h11v22m0-15h12v15m0-30h14v30M8 26h4m-4 6h4m-4 6h4m12-5h4m-4 5h4m11-20h3m-3 7h3m-3 7h3M5 43h40&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-book&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M24 41c-6-5-13-6-20-4V10c8-3 16-1 20 4m0 27c6-5 13-6 20-4V10c-8-3-16-1-20 4Zm0-27v27M9 17c5-1 8 0 11 2m8 0c3-2 7-3 11-2M9 24c5-1 8 0 11 2m8 0c3-2 7-3 11-2&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-spark&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;m24 4 4 16 16 4-16 4-4 16-4-16-16-4 16-4 4-16ZM10 9l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-heart&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M24 41 8 26C-3 14 12 1 24 14 36 1 51 14 40 26Z&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-wave&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M3 20c7-11 15-11 22 0s15 11 20 0M3 30c7-11 15-11 22 0s15 11 20 0M3 40c7-11 15-11 22 0s15 11 20 0&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-umbrella&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M24 6v31c0 9-12 7-12 0M4 23c2-19 38-19 40 0-5-4-9-4-13 0-4-4-10-4-14 0-4-4-8-4-13 0Z&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+
+&lt;symbol id=&quot;i-sun&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;circle cx=&quot;24&quot; cy=&quot;24&quot; r=&quot;9&quot;&gt;&lt;/circle&gt;&lt;path d=&quot;M24 2v8m0 28v8M2 24h8m28 0h8M8 8l6 6m20 20 6 6M40 8l-6 6M14 34l-6 6&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;symbol id=&quot;i-pen&quot; viewbox=&quot;0 0 48 48&quot;&gt;&lt;path d=&quot;M7 41c9-18 20-30 33-34-3 15-13 26-33 34ZM19 31l22-22M6 42h35&quot;&gt;&lt;/path&gt;&lt;/symbol&gt;
+&lt;/defs&gt;&lt;/svg&gt;&lt;main class=&quot;page-main&quot;&gt;&lt;section aria-labelledby=&quot;welcomeTitle&quot; class=&quot;welcome-section&quot; id=&quot;welcomeView&quot;&gt;
+&lt;div class=&quot;outer welcome-grid&quot;&gt;
+&lt;div class=&quot;welcome-copy&quot;&gt;
+&lt;div class=&quot;line-top eyebrow&quot;&gt;An olfactory portrait of the city&lt;/div&gt;
+&lt;h1 id=&quot;welcomeTitle&quot;&gt;Your&lt;br/&gt;&lt;em&gt;New York&lt;/em&gt;&lt;br/&gt;Scent&lt;br/&gt;Portrait.&lt;/h1&gt;
+&lt;p class=&quot;intro&quot;&gt;Every city has a fragrance. Every soul has its own New York story.&lt;/p&gt;
+&lt;p class=&quot;secondary&quot;&gt;Discover the neighborhood, botanical notes, and atmosphere that feel most like you. Seven thoughtful questions will help you discover your New York fragrance.&lt;/p&gt;
+&lt;div class=&quot;landing-actions&quot;&gt;&lt;button class=&quot;btn btn-primary&quot; id=&quot;beginQuiz&quot; type=&quot;button&quot;&gt;Take the scent quiz &lt;span aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;div aria-hidden=&quot;true&quot; class=&quot;welcome-flourish&quot;&gt;&lt;span&gt;✦&lt;/span&gt;&lt;i&gt;&lt;/i&gt;&lt;span&gt;✦&lt;/span&gt;&lt;/div&gt;
+&lt;p class=&quot;fineprint&quot;&gt;04 signature scents · 07 questions · One personal fragrance match&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;experience-column&quot; id=&quot;experienceColumn&quot;&gt;
+&lt;section aria-labelledby=&quot;quizTitle&quot; class=&quot;experience-card quiz-card&quot; id=&quot;quizView&quot;&gt;
+&lt;div class=&quot;experience-heading&quot;&gt;&lt;span class=&quot;eyebrow&quot;&gt;Part I · The fragrance discovery&lt;/span&gt;&lt;h2 id=&quot;quizTitle&quot;&gt;Which New York Scent Are You?&lt;/h2&gt;&lt;p&gt;Discover the fragrance that captures your New York story.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;quiz-panel&quot;&gt;
+&lt;div class=&quot;progress-top&quot;&gt;&lt;span id=&quot;questionCounter&quot;&gt;Question 01 of 07&lt;/span&gt;&lt;span id=&quot;questionPercent&quot;&gt;0% answered&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;progress-track&quot;&gt;&lt;div class=&quot;progress-fill&quot; id=&quot;progressFill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;span class=&quot;question-number&quot; id=&quot;questionNumber&quot;&gt;01 / 07&lt;/span&gt;
+&lt;h3 class=&quot;question-title&quot; id=&quot;questionTitle&quot;&gt;&lt;/h3&gt;
+&lt;p class=&quot;question-description&quot; id=&quot;questionDescription&quot;&gt;&lt;/p&gt;
+&lt;div aria-label=&quot;Choose one answer&quot; class=&quot;answers-grid&quot; id=&quot;answersGrid&quot; role=&quot;group&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;quiz-controls&quot;&gt;&lt;button class=&quot;btn&quot; id=&quot;prevQuestion&quot; type=&quot;button&quot;&gt;← Previous&lt;/button&gt;&lt;button class=&quot;btn btn-primary&quot; disabled=&quot;&quot; id=&quot;nextQuestion&quot; type=&quot;button&quot;&gt;Next question ↗&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quiz-card-foot&quot;&gt;&lt;span&gt;Follow the notes. Trust your senses.&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot;&gt;❦&lt;/span&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-labelledby=&quot;resultName&quot; class=&quot;experience-card result-card&quot; hidden=&quot;&quot; id=&quot;resultView&quot;&gt;
+&lt;div class=&quot;experience-heading result-heading&quot;&gt;&lt;span class=&quot;eyebrow&quot;&gt;Part II · Your fragrance revealed&lt;/span&gt;&lt;h2&gt;We found your New York.&lt;/h2&gt;&lt;p&gt;A fragrance inspired by your seven scent preferences.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;result-image-wrap&quot;&gt;
+&lt;div class=&quot;result-prefix&quot;&gt;Votre parfum · Your scent is&lt;/div&gt;
+&lt;h3 id=&quot;resultName&quot;&gt;Brooklyn Bloom&lt;/h3&gt;
+&lt;figure class=&quot;result-art&quot;&gt;&lt;img alt=&quot;Your matching original perfume campaign artwork&quot; id=&quot;resultImage&quot;/&gt;&lt;figcaption class=&quot;art-marker&quot;&gt;Les Essences de New York · Spring 2027&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div class=&quot;result-copy&quot;&gt;
+&lt;p class=&quot;result-body&quot; id=&quot;resultDescription&quot;&gt;&lt;/p&gt;
+&lt;dl class=&quot;result-meta&quot;&gt;&lt;div&gt;&lt;dt&gt;Notes de parfum&lt;/dt&gt;&lt;dd id=&quot;resultNotes&quot;&gt;&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;New York neighborhood&lt;/dt&gt;&lt;dd id=&quot;resultNeighborhood&quot;&gt;&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;
+&lt;button aria-controls=&quot;resultDetails&quot; aria-expanded=&quot;false&quot; class=&quot;btn&quot; id=&quot;exploreResult&quot; type=&quot;button&quot;&gt;Explore your fragrance ↗&lt;/button&gt;
+&lt;div class=&quot;result-details hidden&quot; id=&quot;resultDetails&quot;&gt;&lt;span class=&quot;eyebrow&quot;&gt;Inside the fragrance&lt;/span&gt;&lt;div class=&quot;note-list&quot; id=&quot;resultNotePills&quot;&gt;&lt;/div&gt;&lt;p id=&quot;resultStory&quot;&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;retake-row&quot;&gt;&lt;button class=&quot;btn btn-link&quot; id=&quot;retakeQuiz&quot; type=&quot;button&quot;&gt;↺ Take the quiz again&lt;/button&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;&lt;/main&gt;&lt;script&gt;
+&#x27;use strict&#x27;;
+/* Seven-question olfactive discovery; original four scent identities and supplied images preserved. No photo booth. */
+const ART={
+ brooklyn:&#x27;collection-01.png&#x27;,
+ greenwich:&#x27;collection-02.png&#x27;,
+ riverside:&#x27;collection-03.png&#x27;,
+ rain:&#x27;collection-04.png&#x27;
+};
+const SCENTS = {
+ brooklyn:{name:&#x27;Brooklyn Bloom&#x27;,short:&#x27;Bloom&#x27;,locale:&#x27;Brooklyn Heights&#x27;,notes:[&#x27;Magnolia&#x27;,&#x27;Peony&#x27;,&#x27;White Musk&#x27;],personality:&#x27;Romantic · Creative · Expressive&#x27;,accent:&#x27;#ac798b&#x27;,light:&#x27;#f0dee2&#x27;,dark:&#x27;#81556a&#x27;,deep:&#x27;#654754&#x27;,description:&#x27;You find beauty in little moments: a flower in a window, an unexpected conversation, a familiar street seen in new light. Your New York is warm, expressive, and forever in bloom.&#x27;,story:&#x27;Inspired by the poetry of Brooklyn brownstones in spring, Brooklyn Bloom pairs the softness of magnolia and peony with the lasting warmth of white musk. For the one who turns everyday life into art.&#x27;},
+ greenwich:{name:&#x27;Greenwich Morning&#x27;,short:&#x27;Morning&#x27;,locale:&#x27;Greenwich Village&#x27;,notes:[&#x27;Bergamot&#x27;,&#x27;Green Tea&#x27;,&#x27;Basil&#x27;],personality:&#x27;Calm · Thoughtful · Fresh&#x27;,accent:&#x27;#8c9978&#x27;,light:&#x27;#e5eadb&#x27;,dark:&#x27;#5d6951&#x27;,deep:&#x27;#454f41&#x27;,description:&#x27;Your favorite New York is found in unhurried mornings, pages of a book, and sunlit cafés. You bring quiet clarity and a refreshing sense of possibility wherever you go.&#x27;,story:&#x27;A peaceful Village morning distilled into fragrance: the sparkling brightness of bergamot, the delicate freshness of green tea, and the herbal charm of basil.&#x27;},
+ riverside:{name:&#x27;Riverside&#x27;,short:&#x27;River&#x27;,locale:&#x27;Hudson River Waterfront&#x27;,notes:[&#x27;Cedarwood&#x27;,&#x27;Vetiver&#x27;,&#x27;Green Leaves&#x27;],personality:&#x27;Grounded · Peaceful · Reflective&#x27;,accent:&#x27;#9a8170&#x27;,light:&#x27;#ebe0d5&#x27;,dark:&#x27;#665444&#x27;,deep:&#x27;#514638&#x27;,description:&#x27;You are drawn to the open horizon, the rhythm of the water, and the places that make a busy city feel still. Grounded and observant, you carry your own sense of peace.&#x27;,story:&#x27;Inspired by riverside walks at the edge of Manhattan, Riverside blends cedarwood and earthy vetiver with the freshness of green leaves — a quiet refuge amid the city.&#x27;},
+ rain:{name:&#x27;Fifth Avenue Rain&#x27;,short:&#x27;Rain&#x27;,locale:&#x27;Fifth Avenue, Manhattan&#x27;,notes:[&#x27;Iris&#x27;,&#x27;Violet Leaf&#x27;,&#x27;White Musk&#x27;,&#x27;Rain Accord&#x27;],personality:&#x27;Dreamy · Atmospheric · Sophisticated&#x27;,accent:&#x27;#8b9cad&#x27;,light:&#x27;#e2e9ef&#x27;,dark:&#x27;#536b7c&#x27;,deep:&#x27;#404e60&#x27;,description:&#x27;You notice the magic in shifting light, silver sidewalks, and quiet city streets after the rain. Thoughtful and a little mysterious, you find elegance in every atmosphere.&#x27;,story:&#x27;The city after a spring shower: delicate iris and violet leaf mingle with soft musk and a clear rain accord. An atmospheric portrait of Manhattan in blue-grey.&#x27;}
+};
+const QUESTIONS = [
+  {title:&#x27;Which fragrance family appeals to you most?&#x27;,desc:&#x27;Begin with the scents you naturally gravitate toward.&#x27;,opts:[
+    {title:&#x27;Delicate florals&#x27;,desc:&#x27;Soft magnolia petals, peony and airy musk.&#x27;,icon:&#x27;flower&#x27;,weights:{brooklyn:4,rain:1}},
+    {title:&#x27;Citrus &amp; aromatic greens&#x27;,desc:&#x27;Bright bergamot, green tea and fresh herbs.&#x27;,icon:&#x27;leaf&#x27;,weights:{greenwich:4,riverside:1}},
+    {title:&#x27;Earthy, green woods&#x27;,desc:&#x27;Cedarwood, vetiver and leafy depth.&#x27;,icon:&#x27;tree&#x27;,weights:{riverside:4,greenwich:1}},
+    {title:&#x27;Airy, powdery freshness&#x27;,desc:&#x27;Iris, violet leaf and an ozonic breeze.&#x27;,icon:&#x27;rain&#x27;,weights:{rain:4,brooklyn:1}}]},
+  {title:&#x27;What should you notice in the first few seconds?&#x27;,desc:&#x27;Choose the opening impression you would most enjoy.&#x27;,opts:[
+    {title:&#x27;A bouquet just opening&#x27;,desc:&#x27;Tender petals with a soft floral lift.&#x27;,icon:&#x27;flower&#x27;,weights:{brooklyn:3,rain:1}},
+    {title:&#x27;Sparkling citrus zest&#x27;,desc:&#x27;Lively, bright and clean.&#x27;,icon:&#x27;sun&#x27;,weights:{greenwich:3,rain:1}},
+    {title:&#x27;Crushed green foliage&#x27;,desc:&#x27;Botanical freshness with a natural edge.&#x27;,icon:&#x27;leaf&#x27;,weights:{riverside:3,greenwich:1}},
+    {title:&#x27;Cool, rain-touched violet&#x27;,desc:&#x27;Dewy, airy and gently mysterious.&#x27;,icon:&#x27;umbrella&#x27;,weights:{rain:3,brooklyn:1}}]},
+  {title:&#x27;How would you like your fragrance to wear?&#x27;,desc:&#x27;Imagine the scent settling on your skin over the day.&#x27;,opts:[
+    {title:&#x27;Softly, close to my skin&#x27;,desc:&#x27;A personal, delicate impression.&#x27;,icon:&#x27;heart&#x27;,weights:{brooklyn:2,rain:2}},
+    {title:&#x27;Light and uplifting&#x27;,desc:&#x27;Refreshing without feeling overpowering.&#x27;,icon:&#x27;sun&#x27;,weights:{greenwich:3,rain:1}},
+    {title:&#x27;Quiet, with natural depth&#x27;,desc:&#x27;An understated yet comforting presence.&#x27;,icon:&#x27;tree&#x27;,weights:{riverside:3,brooklyn:1}},
+    {title:&#x27;Sheer but memorable&#x27;,desc:&#x27;A polished trail that slowly unfolds.&#x27;,icon:&#x27;spark&#x27;,weights:{rain:3,brooklyn:1}}]},
+  {title:&#x27;Which notes would you love in the dry-down?&#x27;,desc:&#x27;The dry-down is the softer impression that lingers after the opening.&#x27;,opts:[
+    {title:&#x27;Peony &amp; white musk&#x27;,desc:&#x27;A gentle floral, skin-like softness.&#x27;,icon:&#x27;flower&#x27;,weights:{brooklyn:4,rain:1}},
+    {title:&#x27;Green tea &amp; basil&#x27;,desc:&#x27;A clean, leafy, softly aromatic finish.&#x27;,icon:&#x27;leaf&#x27;,weights:{greenwich:4,riverside:1}},
+    {title:&#x27;Cedarwood &amp; vetiver&#x27;,desc:&#x27;A smooth, earthy warmth.&#x27;,icon:&#x27;tree&#x27;,weights:{riverside:4,greenwich:1}},
+    {title:&#x27;Iris &amp; white musk&#x27;,desc:&#x27;An airy, powdery elegance.&#x27;,icon:&#x27;rain&#x27;,weights:{rain:4,brooklyn:1}}]},
+  {title:&#x27;When would you reach for this fragrance?&#x27;,desc:&#x27;Select the moment that feels most like your routine.&#x27;,opts:[
+    {title:&#x27;A gallery date or spring outing&#x27;,desc:&#x27;Something expressive for memorable moments.&#x27;,icon:&#x27;heart&#x27;,weights:{brooklyn:2,greenwich:1}},
+    {title:&#x27;My everyday morning ritual&#x27;,desc:&#x27;A fresh start that goes with everything.&#x27;,icon:&#x27;coffee&#x27;,weights:{greenwich:2,riverside:1}},
+    {title:&#x27;A quiet weekend outdoors&#x27;,desc:&#x27;Grounding, effortless and peaceful.&#x27;,icon:&#x27;wave&#x27;,weights:{riverside:2,greenwich:1}},
+    {title:&#x27;An evening in the city&#x27;,desc:&#x27;Refined, understated and a little cinematic.&#x27;,icon:&#x27;city&#x27;,weights:{rain:2,brooklyn:1}}]},
+  {title:&#x27;Which scent memory would you bottle?&#x27;,desc:&#x27;Fragrance has a way of bringing a place back to life.&#x27;,opts:[
+    {title:&#x27;Flowers at a Brooklyn market&#x27;,desc:&#x27;Fresh petals on a sun-warmed sidewalk.&#x27;,icon:&#x27;flower&#x27;,weights:{brooklyn:2,greenwich:1}},
+    {title:&#x27;An herb garden after sunrise&#x27;,desc:&#x27;Green leaves and citrus in the morning air.&#x27;,icon:&#x27;leaf&#x27;,weights:{greenwich:2,riverside:1}},
+    {title:&#x27;A cedar-lined river path&#x27;,desc:&#x27;Earth, foliage and the Hudson breeze.&#x27;,icon:&#x27;wave&#x27;,weights:{riverside:2,rain:1}},
+    {title:&#x27;Manhattan just after the rain&#x27;,desc:&#x27;Wet stone, violet leaves and silver light.&#x27;,icon:&#x27;umbrella&#x27;,weights:{rain:2,riverside:1}}]},
+  {title:&#x27;What feeling should your scent leave behind?&#x27;,desc:&#x27;Your final impression completes your fragrance profile.&#x27;,opts:[
+    {title:&#x27;A soft sense of romance&#x27;,desc:&#x27;Floral, personal and quietly expressive.&#x27;,icon:&#x27;heart&#x27;,weights:{brooklyn:2,rain:1}},
+    {title:&#x27;Clarity and lightness&#x27;,desc:&#x27;Fresh, luminous and easy to return to.&#x27;,icon:&#x27;sun&#x27;,weights:{greenwich:2,rain:1}},
+    {title:&#x27;Comfort and calm&#x27;,desc:&#x27;Grounded, natural and softly enveloping.&#x27;,icon:&#x27;tree&#x27;,weights:{riverside:2,brooklyn:1}},
+    {title:&#x27;A touch of intrigue&#x27;,desc:&#x27;Airy, elegant and atmospheric.&#x27;,icon:&#x27;spark&#x27;,weights:{rain:2,brooklyn:1}}]}
+];
+const QUESTION_COUNT=QUESTIONS.length;
+const SCENT_KEYS=[&#x27;brooklyn&#x27;,&#x27;greenwich&#x27;,&#x27;riverside&#x27;,&#x27;rain&#x27;];
+const $=id=&gt;document.getElementById(id);
+const state={question:0,answers:Array(QUESTION_COUNT).fill(null),match:&#x27;brooklyn&#x27;};
+let resizedFrame;
+function postResize(){
+ if(window.parent===window)return;
+ const height=Math.ceil(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+ window.parent.postMessage({source:&#x27;les-essences-component&#x27;,type:&#x27;resize&#x27;,kind:&#x27;quiz&#x27;,height},&#x27;*&#x27;);
+}
+function scrollToSection(element,focusTarget){
+ const target=focusTarget?$(focusTarget):element;
+ if(target){target.setAttribute(&#x27;tabindex&#x27;,&#x27;-1&#x27;);target.focus({preventScroll:true})}
+ if(window.parent!==window){
+  const offset=element.getBoundingClientRect().top+window.scrollY;
+  window.parent.postMessage({source:&#x27;les-essences-component&#x27;,type:&#x27;focus&#x27;,kind:&#x27;quiz&#x27;,offset},&#x27;*&#x27;);
+ }else{
+  element.scrollIntoView({behavior:window.matchMedia(&#x27;(prefers-reduced-motion: reduce)&#x27;).matches?&#x27;auto&#x27;:&#x27;smooth&#x27;,block:&#x27;start&#x27;});
+ }
+}
+function applyTheme(id){
+ const s=SCENTS[id],r=document.documentElement.style;
+ r.setProperty(&#x27;--theme&#x27;,s.accent);r.setProperty(&#x27;--theme-light&#x27;,s.light);r.setProperty(&#x27;--theme-dark&#x27;,s.dark);
+}
+function openQuiz(reset=false,scroll=true){
+ if(reset){state.question=0;state.answers=Array(QUESTION_COUNT).fill(null);state.match=&#x27;brooklyn&#x27;;}
+ $(&#x27;quizView&#x27;).hidden=false;$(&#x27;resultView&#x27;).hidden=true;
+ applyTheme(&#x27;brooklyn&#x27;);renderQuestion();postResize();
+ if(scroll)scrollToSection($(&#x27;quizView&#x27;),&#x27;quizTitle&#x27;);
+}
+function renderQuestion(){
+ const q=QUESTIONS[state.question],n=state.question;
+ $(&#x27;questionCounter&#x27;).textContent=`Question ${String(n+1).padStart(2,&#x27;0&#x27;)} of ${String(QUESTION_COUNT).padStart(2,&#x27;0&#x27;)}`;
+ $(&#x27;questionPercent&#x27;).textContent=`${Math.round(state.answers.filter(a=&gt;a!==null).length/QUESTION_COUNT*100)}% answered`;
+ $(&#x27;progressFill&#x27;).style.width=`${(n+1)/QUESTION_COUNT*100}%`;
+ $(&#x27;questionNumber&#x27;).textContent=`${String(n+1).padStart(2,&#x27;0&#x27;)} / ${String(QUESTION_COUNT).padStart(2,&#x27;0&#x27;)}`;
+ $(&#x27;questionTitle&#x27;).textContent=q.title;
+ $(&#x27;questionDescription&#x27;).textContent=q.desc;
+ const grid=$(&#x27;answersGrid&#x27;);grid.replaceChildren();
+ q.opts.forEach((opt,idx)=&gt;{
+  const btn=document.createElement(&#x27;button&#x27;);btn.type=&#x27;button&#x27;;
+  btn.className=&#x27;answer&#x27;+(state.answers[n]===idx?&#x27; selected&#x27;:&#x27;&#x27;);
+  btn.setAttribute(&#x27;aria-pressed&#x27;,state.answers[n]===idx?&#x27;true&#x27;:&#x27;false&#x27;);
+  btn.innerHTML=`&lt;span class=&quot;answer-art&quot; aria-hidden=&quot;true&quot;&gt;&lt;svg viewBox=&quot;0 0 48 48&quot;&gt;&lt;use href=&quot;#i-${opt.icon}&quot;/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class=&quot;answer-text&quot;&gt;&lt;strong&gt;${opt.title}&lt;/strong&gt;&lt;small&gt;${opt.desc}&lt;/small&gt;&lt;/span&gt;`;
+  btn.addEventListener(&#x27;click&#x27;,()=&gt;{state.answers[n]=idx;renderQuestion();$(&#x27;nextQuestion&#x27;).focus()});
+  grid.append(btn);
+ });
+ $(&#x27;nextQuestion&#x27;).disabled=state.answers[n]===null;
+ $(&#x27;prevQuestion&#x27;).disabled=n===0;
+ $(&#x27;nextQuestion&#x27;).textContent=n===QUESTION_COUNT-1?&#x27;Reveal my scent ↗&#x27;:&#x27;Next question ↗&#x27;;
+}
+function calculateMatch(){
+ // Olfactive family, opening and base notes weigh more heavily than setting and occasion.
+ const score=Object.fromEntries(SCENT_KEYS.map(k=&gt;[k,0]));
+ QUESTIONS.forEach((q,i)=&gt;{const a=state.answers[i];if(a===null)return;Object.entries(q.opts[a].weights).forEach(([k,pts])=&gt;{score[k]+=pts})});
+ const best=Math.max(...Object.values(score));
+ const ties=SCENT_KEYS.filter(k=&gt;score[k]===best);
+ if(ties.length===1)return ties[0];
+ // Tie-break in favor of fragrance-family/dry-down preferences, then opening notes.
+ for(const qIndex of [0,3,1,2,6,5,4]){
+   const option=QUESTIONS[qIndex].opts[state.answers[qIndex]];if(!option)continue;const weights=option.weights;
+   const maxInTie=Math.max(...ties.map(k=&gt;weights[k]||0));
+   const leaders=ties.filter(k=&gt;(weights[k]||0)===maxInTie);
+   if(leaders.length===1)return leaders[0];
+ }
+ return ties[0];
+}
+function revealResult(scent){
+ state.match=scent;state.theme=scent;state.view=&#x27;result&#x27;;
+ const s=SCENTS[scent];applyTheme(scent);
+ $(&#x27;resultName&#x27;).textContent=s.name;
+ $(&#x27;resultDescription&#x27;).textContent=s.description;
+ $(&#x27;resultNotes&#x27;).textContent=s.notes.join(&#x27; · &#x27;);
+ $(&#x27;resultNeighborhood&#x27;).textContent=s.locale;
+ $(&#x27;resultImage&#x27;).src=ART[scent];
+ $(&#x27;resultImage&#x27;).alt=s.name+&#x27; — original supplied perfume campaign artwork&#x27;;
+ $(&#x27;resultNotePills&#x27;).replaceChildren();
+ s.notes.forEach(n=&gt;{const el=document.createElement(&#x27;span&#x27;);el.className=&#x27;note-pill&#x27;;el.textContent=n;$(&#x27;resultNotePills&#x27;).append(el)});
+ $(&#x27;resultStory&#x27;).textContent=s.story;
+ $(&#x27;resultDetails&#x27;).classList.add(&#x27;hidden&#x27;);
+ $(&#x27;exploreResult&#x27;).setAttribute(&#x27;aria-expanded&#x27;,&#x27;false&#x27;);
+ $(&#x27;exploreResult&#x27;).textContent=&#x27;Explore your fragrance ↗&#x27;;
+ $(&#x27;quizView&#x27;).hidden=true;$(&#x27;resultView&#x27;).hidden=false;
+ postResize();
+ scrollToSection($(&#x27;resultView&#x27;),&#x27;resultName&#x27;);
+}
+
+function wire(){
+ $(&#x27;beginQuiz&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;scrollToSection($(&#x27;quizView&#x27;),&#x27;quizTitle&#x27;));
+ $(&#x27;prevQuestion&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{if(state.question&gt;0){state.question--;renderQuestion();postResize();scrollToSection($(&#x27;quizView&#x27;),&#x27;questionTitle&#x27;)}});
+ $(&#x27;nextQuestion&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{
+  if(state.answers[state.question]===null)return;
+  if(state.question&lt;QUESTION_COUNT-1){state.question++;renderQuestion();postResize();scrollToSection($(&#x27;quizView&#x27;),&#x27;questionTitle&#x27;)}
+  else revealResult(calculateMatch());
+ });
+ $(&#x27;exploreResult&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{
+  const el=$(&#x27;resultDetails&#x27;),opening=el.classList.contains(&#x27;hidden&#x27;);el.classList.toggle(&#x27;hidden&#x27;);
+  $(&#x27;exploreResult&#x27;).setAttribute(&#x27;aria-expanded&#x27;,String(opening));
+  $(&#x27;exploreResult&#x27;).textContent=opening?&#x27;Close fragrance notes ↑&#x27;:&#x27;Explore your fragrance ↗&#x27;;postResize();
+ });
+ $(&#x27;retakeQuiz&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;openQuiz(true));
+ applyTheme(&#x27;brooklyn&#x27;);renderQuestion();
+ if(&#x27;ResizeObserver&#x27; in window){new ResizeObserver(()=&gt;requestAnimationFrame(postResize)).observe(document.body)}
+ window.addEventListener(&#x27;load&#x27;,postResize);
+ setTimeout(postResize,80);
+}
+document.addEventListener(&#x27;DOMContentLoaded&#x27;,wire);
+
+&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
   </div>
 </div>
 </div><div class="panel-continue container"><a class="panel-next" href="#closing">VIEW THE FOUR FRAGRANCES  ↗</a></div></section></section><section aria-labelledby="closing-title" class="chapter closing-chapter" id="closing"><div class="container"><div class="chapter-heading reveal"><span class="chapter-count">THE COLLECTION <span class="rule-inline"></span> THE COLLECTION</span><h2 id="closing-title">Four scents. <em>One New York.</em></h2></div>
@@ -2077,6 +2446,7 @@ window.addEventListener('message',e=>{
     const key = frame.dataset.embeddedAd;
     if (!key) return;
     const source = library[key];
+    if (frame.hasAttribute('srcdoc')) return;
     if (!source) { console.error('Bundled campaign application not found:', key); return; }
     // srcdoc retains a separate CSS and JS document while inheriting this page's base URL.
     // Media filenames are relative to the main HTML file (including on GitHub Pages).

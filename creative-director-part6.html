@@ -638,6 +638,41 @@ body:before{
   .postcard-workspace .ritual-visual:has(.custom-5oz-case){min-height:310px!important;}
 }
 </style>
+
+<style id="button-contrast-fix">
+/* Restore contrast lost when the neutral-background theme overrode active buttons. */
+.postcard-workspace .pill-choices button {
+  background:#f8f5f0 !important;
+  color:#453d34 !important;
+  border-color:rgba(37,39,43,.25) !important;
+}
+.postcard-workspace .pill-choices button:hover:not([aria-pressed="true"]) {
+  background:#efe7db !important;
+}
+.postcard-workspace .pill-choices button[aria-pressed="true"],
+.postcard-workspace .pill-choices button[aria-pressed="true"]:hover,
+.postcard-workspace .pill-choices button[aria-pressed="true"]:focus-visible {
+  background:#283b32 !important;
+  color:#fffaf0 !important;
+  border-color:#283b32 !important;
+}
+.seal-actions button.seal-action,
+.seal-actions button.seal-action:focus-visible {
+  background:#283b32 !important;
+  color:#fffaf0 !important;
+  border-color:#283b32 !important;
+}
+.seal-actions button.seal-action:hover {
+  background:#3d594b !important;
+  color:#fffaf0 !important;
+  border-color:#3d594b !important;
+}
+.seal-actions button.seal-download,
+.seal-actions button.seal-download:hover,
+.seal-actions button.seal-download:focus-visible {
+  color:#453d34 !important;
+}
+</style>
 </head>
 <body>
 <div class="shell">

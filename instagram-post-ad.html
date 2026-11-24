@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html class="campaign-embed" lang="en">
 <head>
+<base href="./">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f6f3eb">
@@ -374,7 +375,7 @@
             </div>
             <div class="insta-header">
               <div class="profile">
-                <span class="avatar diptyque-avatar"><img src="../assets/images/post-01.png" alt="Diptyque Instagram profile picture" width="330" height="330" decoding="async"></span>
+                <span class="avatar diptyque-avatar"><img src="post-01.png" alt="Diptyque Instagram profile picture" width="330" height="330" decoding="async"></span>
                 <div>
                   <div class="profile-name">diptyque <span class="verified-check" aria-label="Verified Instagram account">✓</span></div>
                   <div class="profile-sub">Sponsored</div>
@@ -384,7 +385,7 @@
             </div>
             <!-- The original uploaded image remains byte-for-byte identical to the supplied PNG. -->
             <div class="post-media" id="post-media" role="button" tabindex="0" aria-label="Open advertisement. Double tap to like; use two fingers to zoom in the viewer." title="Tap to enlarge · Double tap to like">
-            <img id="campaign-image" class="post-image" src="../assets/images/post-02.png" width="1122" height="1402" alt="Unaltered original Greenwich Morning candle advertisement: sage-green glass candle and flame, basil, bergamot, green tea, vintage Greenwich Village illustration, handwritten botanical cards, and title." decoding="sync">
+            <img id="campaign-image" class="post-image" src="post-02.png" width="1122" height="1402" alt="Unaltered original Greenwich Morning candle advertisement: sage-green glass candle and flame, basil, bergamot, green tea, vintage Greenwich Village illustration, handwritten botanical cards, and title." decoding="sync">
               <div class="like-burst" id="like-burst" aria-hidden="true"><svg viewBox="0 0 120 120" fill="currentColor"><path d="M60 105S12 72 12 39c0-16 11-27 26-27 10 0 18 5 22 14 5-9 13-14 23-14 15 0 25 11 25 27 0 33-48 66-48 66Z"/></svg></div>
             </div>
             <button class="post-cta" type="button" id="explore-fragrance"><span>Discover Greenwich Morning</span><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></button>
@@ -691,5 +692,8 @@
   schedule();
 })();
 </script>
-</body>
+<script>/* One-finger sideways swipe to next/previous post; two-finger zoom stays native. */
+(()=>{const media=document.getElementById('post-media');let x,y;
+media.addEventListener('touchstart',e=>{if(e.touches.length===1){x=e.touches[0].clientX;y=e.touches[0].clientY;}},{passive:true});
+media.addEventListener('touchend',e=>{if(x==null)return;let dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;x=null;y=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.35){parent.postMessage({source:'les-essences-deck',type:'post-swipe',direction:dx<0?1:-1},'*');}},{passive:true});})();</script></body>
 </html>

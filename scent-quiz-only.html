@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="light" name="color-scheme"/><title>Which New York Scent Are You? — Les Essences de New York</title>
+<html class="campaign-embed" lang="en"><head>
+<base href="./"><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="light" name="color-scheme"/><title>Which New York Scent Are You? — Les Essences de New York</title>
 <style>
 :root{--ink:#292923;--muted:#776d63;--paper:#f8f3eb;--ivory:#fffdf7;--line:#cabcaa;--blush:#ead9d2;--gold:#ad8c63;--theme:#a87a80;--theme-light:#eddcde;--theme-dark:#654652;--serif:'Bodoni MT','Didot','Iowan Old Style','Palatino Linotype','Book Antiqua',Georgia,serif;--sans:'Avenir Next','Gill Sans',Optima,'Trebuchet MS',sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.4}button:focus-visible,input:focus-visible{outline:2px solid var(--theme-dark);outline-offset:3px}a{color:inherit}img{display:block;max-width:100%}h1,h2,h3,p{margin-top:0}h1,h2,h3,.serif{font-family:var(--serif);font-weight:400}.hidden,[hidden]{display:none!important}.sr-only{position:absolute!important;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:#897764}.smallcaps{text-transform:uppercase;letter-spacing:.18em;font-size:11px}.hairline{height:1px;background:var(--line)}
@@ -119,7 +120,28 @@ body::before{z-index:-1;opacity:.09}
 @media(max-width:850px){.welcome-grid{grid-template-columns:1fr}.welcome-copy{padding:10px 0 15px;text-align:center}.welcome-copy h1{font-size:clamp(46px,9vw,70px)}.welcome-copy .intro,.welcome-copy .secondary{margin-inline:auto}.welcome-copy .line-top{justify-content:center}.welcome-copy .line-top:after{display:none}.welcome-flourish{margin-inline:auto}.welcome-copy .landing-actions{justify-content:center}.experience-column{padding-top:0}.quiz-card{max-width:660px}}
 @media(max-width:560px){.outer{padding:0 10px}.welcome-copy{padding:12px 8px 19px}.welcome-copy h1{font-size:clamp(46px,12vw,65px)}.welcome-copy .intro{font-size:19px}.welcome-copy .secondary{font-size:12px}.quiz-card .answer{min-height:137px}.experience-heading h2{font-size:35px}.experience-column{padding:0 0 12px}.result-card .result-heading h2{font-size:34px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
-</style></head><body><svg aria-hidden="true" class="sr-only" xmlns="http://www.w3.org/2000/svg">
+</style>
+<style id="compact-scent-quiz-embedded">
+/* The campaign already introduces the quiz. Remove redundant landing copy in this embedded view. */
+html,body{min-height:0!important;height:auto!important;overflow-x:hidden!important;}
+.page-main{min-height:0!important;padding:0!important;margin:0!important;}
+.welcome-section{margin:0!important;padding:0!important;min-height:0!important;}
+.welcome-grid{display:block!important;max-width:780px!important;margin:0 auto!important;padding:0 clamp(7px,1.5vw,18px)!important;}
+.welcome-copy{display:none!important;}
+.experience-column{padding:0 0 6px!important;margin:0!important;max-width:780px!important;}
+.quiz-card{max-width:680px!important;width:100%!important;margin:0 auto!important;}
+.quiz-card .experience-heading{padding:18px 17px 0!important;}
+.quiz-card .experience-heading h2{font-size:clamp(29px,3.2vw,41px)!important;margin:7px 0 5px!important;}
+.quiz-card .experience-heading p{font-size:14px!important;margin:0!important;}
+.quiz-card .quiz-panel{padding:14px clamp(12px,2vw,22px) 12px!important;}
+.quiz-card .answer{min-height:0!important;padding:10px 11px!important;}
+.quiz-card .answer-art{flex-basis:30px!important;width:30px!important;height:30px!important;margin:0!important;}
+.quiz-card .question-title{font-size:clamp(25px,3vw,33px)!important;}
+.quiz-card .quiz-card-foot{padding:8px 6px!important;margin:0 16px!important;}
+.result-card{max-width:680px!important;}
+@media(max-width:560px){.welcome-grid{padding:0 4px!important}.quiz-card .answer{min-height:0!important;display:flex!important;gap:11px!important}.quiz-card .answer-text strong{font-size:16px!important}.quiz-card .answer-text small{font-size:10px!important}.quiz-card .experience-heading{padding:15px 12px 0!important}}
+</style>
+</head><body><svg aria-hidden="true" class="sr-only" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <symbol id="i-morning" viewbox="0 0 48 48"><path d="M5 33h38M9 28h30M24 10v5m-14-1 4 4m20-4-4 4M11 29a13 13 0 0 1 26 0M5 39h38"></path></symbol>
 <symbol id="i-coffee" viewbox="0 0 48 48"><path d="M10 15h25v14a11 11 0 0 1-11 11h-3a11 11 0 0 1-11-11Zm25 3h4c8 0 6 12-4 12M9 41h32M19 7c-4 4 3 4-1 8m11-8c-4 4 3 4-1 8"></path></symbol>
@@ -179,4 +201,164 @@ body::before{z-index:-1;opacity:.09}
 </section>
 </div>
 </div>
-</section></main><script defer="" src="../js/quiz-only.js"></script></body></html>
+</section></main><script>
+'use strict';
+/* Seven-question olfactive discovery; original four scent identities and supplied images preserved. No photo booth. */
+const ART={
+ brooklyn:'collection-01.png',
+ greenwich:'collection-02.png',
+ riverside:'collection-03.png',
+ rain:'collection-04.png'
+};
+const SCENTS = {
+ brooklyn:{name:'Brooklyn Bloom',short:'Bloom',locale:'Brooklyn Heights',notes:['Magnolia','Peony','White Musk'],personality:'Romantic · Creative · Expressive',accent:'#ac798b',light:'#f0dee2',dark:'#81556a',deep:'#654754',description:'You find beauty in little moments: a flower in a window, an unexpected conversation, a familiar street seen in new light. Your New York is warm, expressive, and forever in bloom.',story:'Inspired by the poetry of Brooklyn brownstones in spring, Brooklyn Bloom pairs the softness of magnolia and peony with the lasting warmth of white musk. For the one who turns everyday life into art.'},
+ greenwich:{name:'Greenwich Morning',short:'Morning',locale:'Greenwich Village',notes:['Bergamot','Green Tea','Basil'],personality:'Calm · Thoughtful · Fresh',accent:'#8c9978',light:'#e5eadb',dark:'#5d6951',deep:'#454f41',description:'Your favorite New York is found in unhurried mornings, pages of a book, and sunlit cafés. You bring quiet clarity and a refreshing sense of possibility wherever you go.',story:'A peaceful Village morning distilled into fragrance: the sparkling brightness of bergamot, the delicate freshness of green tea, and the herbal charm of basil.'},
+ riverside:{name:'Riverside',short:'River',locale:'Hudson River Waterfront',notes:['Cedarwood','Vetiver','Green Leaves'],personality:'Grounded · Peaceful · Reflective',accent:'#9a8170',light:'#ebe0d5',dark:'#665444',deep:'#514638',description:'You are drawn to the open horizon, the rhythm of the water, and the places that make a busy city feel still. Grounded and observant, you carry your own sense of peace.',story:'Inspired by riverside walks at the edge of Manhattan, Riverside blends cedarwood and earthy vetiver with the freshness of green leaves — a quiet refuge amid the city.'},
+ rain:{name:'Fifth Avenue Rain',short:'Rain',locale:'Fifth Avenue, Manhattan',notes:['Iris','Violet Leaf','White Musk','Rain Accord'],personality:'Dreamy · Atmospheric · Sophisticated',accent:'#8b9cad',light:'#e2e9ef',dark:'#536b7c',deep:'#404e60',description:'You notice the magic in shifting light, silver sidewalks, and quiet city streets after the rain. Thoughtful and a little mysterious, you find elegance in every atmosphere.',story:'The city after a spring shower: delicate iris and violet leaf mingle with soft musk and a clear rain accord. An atmospheric portrait of Manhattan in blue-grey.'}
+};
+const QUESTIONS = [
+  {title:'Which fragrance family appeals to you most?',desc:'Begin with the scents you naturally gravitate toward.',opts:[
+    {title:'Delicate florals',desc:'Soft magnolia petals, peony and airy musk.',icon:'flower',weights:{brooklyn:4,rain:1}},
+    {title:'Citrus & aromatic greens',desc:'Bright bergamot, green tea and fresh herbs.',icon:'leaf',weights:{greenwich:4,riverside:1}},
+    {title:'Earthy, green woods',desc:'Cedarwood, vetiver and leafy depth.',icon:'tree',weights:{riverside:4,greenwich:1}},
+    {title:'Airy, powdery freshness',desc:'Iris, violet leaf and an ozonic breeze.',icon:'rain',weights:{rain:4,brooklyn:1}}]},
+  {title:'What should you notice in the first few seconds?',desc:'Choose the opening impression you would most enjoy.',opts:[
+    {title:'A bouquet just opening',desc:'Tender petals with a soft floral lift.',icon:'flower',weights:{brooklyn:3,rain:1}},
+    {title:'Sparkling citrus zest',desc:'Lively, bright and clean.',icon:'sun',weights:{greenwich:3,rain:1}},
+    {title:'Crushed green foliage',desc:'Botanical freshness with a natural edge.',icon:'leaf',weights:{riverside:3,greenwich:1}},
+    {title:'Cool, rain-touched violet',desc:'Dewy, airy and gently mysterious.',icon:'umbrella',weights:{rain:3,brooklyn:1}}]},
+  {title:'How would you like your fragrance to wear?',desc:'Imagine the scent settling on your skin over the day.',opts:[
+    {title:'Softly, close to my skin',desc:'A personal, delicate impression.',icon:'heart',weights:{brooklyn:2,rain:2}},
+    {title:'Light and uplifting',desc:'Refreshing without feeling overpowering.',icon:'sun',weights:{greenwich:3,rain:1}},
+    {title:'Quiet, with natural depth',desc:'An understated yet comforting presence.',icon:'tree',weights:{riverside:3,brooklyn:1}},
+    {title:'Sheer but memorable',desc:'A polished trail that slowly unfolds.',icon:'spark',weights:{rain:3,brooklyn:1}}]},
+  {title:'Which notes would you love in the dry-down?',desc:'The dry-down is the softer impression that lingers after the opening.',opts:[
+    {title:'Peony & white musk',desc:'A gentle floral, skin-like softness.',icon:'flower',weights:{brooklyn:4,rain:1}},
+    {title:'Green tea & basil',desc:'A clean, leafy, softly aromatic finish.',icon:'leaf',weights:{greenwich:4,riverside:1}},
+    {title:'Cedarwood & vetiver',desc:'A smooth, earthy warmth.',icon:'tree',weights:{riverside:4,greenwich:1}},
+    {title:'Iris & white musk',desc:'An airy, powdery elegance.',icon:'rain',weights:{rain:4,brooklyn:1}}]},
+  {title:'When would you reach for this fragrance?',desc:'Select the moment that feels most like your routine.',opts:[
+    {title:'A gallery date or spring outing',desc:'Something expressive for memorable moments.',icon:'heart',weights:{brooklyn:2,greenwich:1}},
+    {title:'My everyday morning ritual',desc:'A fresh start that goes with everything.',icon:'coffee',weights:{greenwich:2,riverside:1}},
+    {title:'A quiet weekend outdoors',desc:'Grounding, effortless and peaceful.',icon:'wave',weights:{riverside:2,greenwich:1}},
+    {title:'An evening in the city',desc:'Refined, understated and a little cinematic.',icon:'city',weights:{rain:2,brooklyn:1}}]},
+  {title:'Which scent memory would you bottle?',desc:'Fragrance has a way of bringing a place back to life.',opts:[
+    {title:'Flowers at a Brooklyn market',desc:'Fresh petals on a sun-warmed sidewalk.',icon:'flower',weights:{brooklyn:2,greenwich:1}},
+    {title:'An herb garden after sunrise',desc:'Green leaves and citrus in the morning air.',icon:'leaf',weights:{greenwich:2,riverside:1}},
+    {title:'A cedar-lined river path',desc:'Earth, foliage and the Hudson breeze.',icon:'wave',weights:{riverside:2,rain:1}},
+    {title:'Manhattan just after the rain',desc:'Wet stone, violet leaves and silver light.',icon:'umbrella',weights:{rain:2,riverside:1}}]},
+  {title:'What feeling should your scent leave behind?',desc:'Your final impression completes your fragrance profile.',opts:[
+    {title:'A soft sense of romance',desc:'Floral, personal and quietly expressive.',icon:'heart',weights:{brooklyn:2,rain:1}},
+    {title:'Clarity and lightness',desc:'Fresh, luminous and easy to return to.',icon:'sun',weights:{greenwich:2,rain:1}},
+    {title:'Comfort and calm',desc:'Grounded, natural and softly enveloping.',icon:'tree',weights:{riverside:2,brooklyn:1}},
+    {title:'A touch of intrigue',desc:'Airy, elegant and atmospheric.',icon:'spark',weights:{rain:2,brooklyn:1}}]}
+];
+const QUESTION_COUNT=QUESTIONS.length;
+const SCENT_KEYS=['brooklyn','greenwich','riverside','rain'];
+const $=id=>document.getElementById(id);
+const state={question:0,answers:Array(QUESTION_COUNT).fill(null),match:'brooklyn'};
+let resizedFrame;
+function postResize(){
+ if(window.parent===window)return;
+ const height=Math.ceil(Math.max(document.body.scrollHeight,document.documentElement.scrollHeight));
+ window.parent.postMessage({source:'les-essences-component',type:'resize',kind:'quiz',height},'*');
+}
+function scrollToSection(element,focusTarget){
+ const target=focusTarget?$(focusTarget):element;
+ if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}
+ if(window.parent!==window){
+  const offset=element.getBoundingClientRect().top+window.scrollY;
+  window.parent.postMessage({source:'les-essences-component',type:'focus',kind:'quiz',offset},'*');
+ }else{
+  element.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+ }
+}
+function applyTheme(id){
+ const s=SCENTS[id],r=document.documentElement.style;
+ r.setProperty('--theme',s.accent);r.setProperty('--theme-light',s.light);r.setProperty('--theme-dark',s.dark);
+}
+function openQuiz(reset=false,scroll=true){
+ if(reset){state.question=0;state.answers=Array(QUESTION_COUNT).fill(null);state.match='brooklyn';}
+ $('quizView').hidden=false;$('resultView').hidden=true;
+ applyTheme('brooklyn');renderQuestion();postResize();
+ if(scroll)scrollToSection($('quizView'),'quizTitle');
+}
+function renderQuestion(){
+ const q=QUESTIONS[state.question],n=state.question;
+ $('questionCounter').textContent=`Question ${String(n+1).padStart(2,'0')} of ${String(QUESTION_COUNT).padStart(2,'0')}`;
+ $('questionPercent').textContent=`${Math.round(state.answers.filter(a=>a!==null).length/QUESTION_COUNT*100)}% answered`;
+ $('progressFill').style.width=`${(n+1)/QUESTION_COUNT*100}%`;
+ $('questionNumber').textContent=`${String(n+1).padStart(2,'0')} / ${String(QUESTION_COUNT).padStart(2,'0')}`;
+ $('questionTitle').textContent=q.title;
+ $('questionDescription').textContent=q.desc;
+ const grid=$('answersGrid');grid.replaceChildren();
+ q.opts.forEach((opt,idx)=>{
+  const btn=document.createElement('button');btn.type='button';
+  btn.className='answer'+(state.answers[n]===idx?' selected':'');
+  btn.setAttribute('aria-pressed',state.answers[n]===idx?'true':'false');
+  btn.innerHTML=`<span class="answer-art" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#i-${opt.icon}"/></svg></span><span class="answer-text"><strong>${opt.title}</strong><small>${opt.desc}</small></span>`;
+  btn.addEventListener('click',()=>{state.answers[n]=idx;renderQuestion();$('nextQuestion').focus()});
+  grid.append(btn);
+ });
+ $('nextQuestion').disabled=state.answers[n]===null;
+ $('prevQuestion').disabled=n===0;
+ $('nextQuestion').textContent=n===QUESTION_COUNT-1?'Reveal my scent ↗':'Next question ↗';
+}
+function calculateMatch(){
+ // Olfactive family, opening and base notes weigh more heavily than setting and occasion.
+ const score=Object.fromEntries(SCENT_KEYS.map(k=>[k,0]));
+ QUESTIONS.forEach((q,i)=>{const a=state.answers[i];if(a===null)return;Object.entries(q.opts[a].weights).forEach(([k,pts])=>{score[k]+=pts})});
+ const best=Math.max(...Object.values(score));
+ const ties=SCENT_KEYS.filter(k=>score[k]===best);
+ if(ties.length===1)return ties[0];
+ // Tie-break in favor of fragrance-family/dry-down preferences, then opening notes.
+ for(const qIndex of [0,3,1,2,6,5,4]){
+   const option=QUESTIONS[qIndex].opts[state.answers[qIndex]];if(!option)continue;const weights=option.weights;
+   const maxInTie=Math.max(...ties.map(k=>weights[k]||0));
+   const leaders=ties.filter(k=>(weights[k]||0)===maxInTie);
+   if(leaders.length===1)return leaders[0];
+ }
+ return ties[0];
+}
+function revealResult(scent){
+ state.match=scent;state.theme=scent;state.view='result';
+ const s=SCENTS[scent];applyTheme(scent);
+ $('resultName').textContent=s.name;
+ $('resultDescription').textContent=s.description;
+ $('resultNotes').textContent=s.notes.join(' · ');
+ $('resultNeighborhood').textContent=s.locale;
+ $('resultImage').src=ART[scent];
+ $('resultImage').alt=s.name+' — original supplied perfume campaign artwork';
+ $('resultNotePills').replaceChildren();
+ s.notes.forEach(n=>{const el=document.createElement('span');el.className='note-pill';el.textContent=n;$('resultNotePills').append(el)});
+ $('resultStory').textContent=s.story;
+ $('resultDetails').classList.add('hidden');
+ $('exploreResult').setAttribute('aria-expanded','false');
+ $('exploreResult').textContent='Explore your fragrance ↗';
+ $('quizView').hidden=true;$('resultView').hidden=false;
+ postResize();
+ scrollToSection($('resultView'),'resultName');
+}
+
+function wire(){
+ $('beginQuiz').addEventListener('click',()=>scrollToSection($('quizView'),'quizTitle'));
+ $('prevQuestion').addEventListener('click',()=>{if(state.question>0){state.question--;renderQuestion();postResize();scrollToSection($('quizView'),'questionTitle')}});
+ $('nextQuestion').addEventListener('click',()=>{
+  if(state.answers[state.question]===null)return;
+  if(state.question<QUESTION_COUNT-1){state.question++;renderQuestion();postResize();scrollToSection($('quizView'),'questionTitle')}
+  else revealResult(calculateMatch());
+ });
+ $('exploreResult').addEventListener('click',()=>{
+  const el=$('resultDetails'),opening=el.classList.contains('hidden');el.classList.toggle('hidden');
+  $('exploreResult').setAttribute('aria-expanded',String(opening));
+  $('exploreResult').textContent=opening?'Close fragrance notes ↑':'Explore your fragrance ↗';postResize();
+ });
+ $('retakeQuiz').addEventListener('click',()=>openQuiz(true));
+ applyTheme('brooklyn');renderQuestion();
+ if('ResizeObserver' in window){new ResizeObserver(()=>requestAnimationFrame(postResize)).observe(document.body)}
+ window.addEventListener('load',postResize);
+ setTimeout(postResize,80);
+}
+document.addEventListener('DOMContentLoaded',wire);
+
+</script></body></html>

@@ -1,0 +1,583 @@
+<!doctype html>
+<html class="campaign-embed" lang="en">
+<head>
+<base href="./">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f0e8">
+  <meta name="description" content="A fictional Instagram Reel presentation for the Les Essences de New York candle collection, part of Spring 2027.">
+  <title>Les Essences Candles | iPhone 17 Taller Edition</title>
+  <!-- Version: iPhone17-FRAME-FIX-20261118-02. Phone screen aspect ratio 1206/2622. -->
+  <style>
+    :root {
+      --paper: #f7f1e9;
+      --paper-deep: #ede3d9;
+      --rose: #9c6273;
+      --rose-dark: #784656;
+      --ink: #443539;
+      --muted: #927d7f;
+      --champagne: #c6a987;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --serif: "Bodoni MT", "Didot", "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { min-width: 300px; background: var(--paper); overflow-x: clip; }
+    body {
+      min-height: 100svh; margin: 0; overflow-x: clip;
+      color: var(--ink);
+      font-family: var(--sans);
+      background: radial-gradient(ellipse 46% 29% at 50% 48%, #fffaf5 0%, transparent 100%),
+                  radial-gradient(ellipse 70% 46% at 5% 0%, #fcf7f2 0%, transparent 83%),
+                  linear-gradient(155deg, #f8f2ea 0%, #f3e9e1 78%, #f5ede6 100%);
+      overflow-x: hidden;
+    }
+    button, textarea, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, input:focus-visible, .tap-target:focus-visible, .progress-track:focus-visible { outline: 2px solid #efb7c5; outline-offset: 3px; }
+    .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .icon { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .page { position: relative; min-height: 100svh; isolation: isolate; overflow-x: clip; }
+    .page::before {
+      content: ""; pointer-events: none; position: absolute; inset: 0;
+      z-index: -2; opacity: .13;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    }
+    .botanical { position: absolute; z-index: -1; width: min(26vw, 285px); height: auto; color: #bd8b92; opacity: .23; pointer-events: none; }
+    .botanical-left { left: max(-42px, calc(50vw - 675px)); top: 22%; transform: rotate(-12deg); }
+    .botanical-right { right: max(-54px, calc(50vw - 680px)); bottom: 11%; transform: rotate(165deg) scaleX(-1); }
+    .top-rule { width: min(440px, calc(100% - 68px)); height: 1px; background: linear-gradient(90deg, transparent, #dac1b7 25%, #dac1b7 75%, transparent); margin: 0 auto; }
+    .presentation { max-width: 1000px; padding: clamp(24px, 4vh, 40px) 18px 29px; margin: 0 auto; display: grid; justify-items: center; }
+    .intro { position: relative; text-align: center; width: 100%; }
+    .kicker { margin: 12px 0 8px; text-transform: uppercase; letter-spacing: .3em; font-size: 9px; color: #987b7c; font-weight: 650; }
+    .small-flourish { color: #b18a7f; width: 40px; height: 18px; margin: 0 auto 2px; }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(37px, 5.5vw, 53px); line-height: 1; letter-spacing: -.047em; margin: 0; color: #80545f; }
+    .subheading { margin: 9px 0 16px; font-family: var(--serif); font-size: clamp(14px, 2vw, 17px); font-style: italic; letter-spacing: .055em; color: #775f61; }
+    .phone-area { position: relative; display: grid; place-items: center; width: 100%; }
+    .phone-area::before { content: ""; position: absolute; width: min(590px, 97vw); height: min(660px, 70vh); z-index: -1; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse, rgba(186,139,144,.14), transparent 67%); }
+    .phone-outline {
+      /* VERIFIED iPhone 17 height correction – 1206×2622 display; no max-height. */
+      width: min(412px, calc(100vw - 38px));
+      padding: 8px;
+      height: auto; max-height: none;
+      position: relative;
+      background: linear-gradient(105deg, #17171b 0%, #474449 5%, #08080c 12%, #111014 84%, #49464b 96%, #161517 100%);
+      border: 1px solid #655d5f;
+      border-radius: clamp(36px, 9vw, 51px);
+      box-shadow: 0 28px 64px rgba(74,43,43,.26), 0 8px 20px rgba(47,29,34,.19), inset 0 0 0 1px #171316, inset 0 0 0 2px #5d565b;
+      transform: translateZ(0);
+    }
+    .phone-outline::before, .phone-outline::after { content: ""; position: absolute; width: 2px; background: linear-gradient(#626068, #151419, #625a61); border-radius: 2px; z-index: -1; }
+    .phone-outline::before { height: 67px; left: -3px; top: 22%; }
+    .phone-outline::after { height: 77px; right: -3px; top: 30%; }
+    .screen { position: relative; width: 100%; aspect-ratio: 1206 / 2622; overflow: hidden; isolation: isolate; border-radius: clamp(28px, 8vw, 43px); background: #211b22; color: #fff; font-family: var(--sans); }
+    .reel-video { width: 100%; height: 100%; display: block; object-fit: contain; position: absolute; inset: 0; z-index: 0; background: #241f25; }
+    .tap-target { position: absolute; z-index: 1; inset: 0; border: 0; width: 100%; background: transparent; cursor: pointer; touch-action: manipulation; }
+    .top-scrim, .bottom-scrim { pointer-events: none; position: absolute; inset-inline: 0; z-index: 2; }
+    .top-scrim { height: 23%; top: 0; background: linear-gradient(to bottom, rgba(0,0,0,.48), transparent); }
+    .bottom-scrim { height: 53%; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,.73) 0%, rgba(0,0,0,.35) 40%, transparent 100%); }
+    .statusbar { position: absolute; top: 12px; left: 25px; right: 24px; height: 21px; z-index: 5; display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 750; letter-spacing: -.01em; text-shadow: 0 1px 2px #0006; pointer-events: none; }
+    .status-icons { display: flex; align-items: center; gap: 4px; }
+    .status-icons .icon { width: 15px; height: 15px; stroke-width: 2.5; }
+    .battery { width: 22px; height: 11px; border: 1.5px solid #fff; border-radius: 3px; padding: 1.5px; position: relative; margin-left: 1px; }
+    .battery:before { content: ""; position: absolute; height: 4px; width: 2px; right: -4px; top: 2px; border-radius: 0 2px 2px 0; background: white; }
+    .battery:after { content: ""; display: block; background: white; width: 78%; height: 100%; border-radius: 1px; }
+    .dynamic-island { position: absolute; z-index: 7; top: 9px; left: 50%; transform: translateX(-50%); width: 29%; max-width: 112px; height: 27px; background: #030304; border: 1px solid #17171b; box-shadow: 0 1px 4px #0009; border-radius: 40px; pointer-events: none; }
+    .dynamic-island::after { content: ""; width: 7px; height: 7px; border-radius: 50%; position: absolute; right: 14px; top: 8px; background: radial-gradient(circle at 40% 40%, #1d283a, #080910 74%); }
+    .reel-topbar { position: absolute; top: 47px; left: 18px; right: 16px; z-index: 4; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+    .reel-topbar .reels-word { font-size: 16px; font-weight: 720; letter-spacing: -.06em; text-shadow: 0 1px 5px #0007; }
+    .reel-topbar .reels-word .chevron { font-size: 11px; margin-left: 5px; opacity: .9; }
+    .reel-topbar .icon { width: 21px; height: 21px; }
+    .reel-actions { position: absolute; z-index: 4; right: 10px; bottom: 100px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .action { width: 46px; min-height: 36px; border: 0; padding: 0; background: transparent; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; filter: drop-shadow(0 2px 2px #0007); transition: transform .18s ease; }
+    .action:hover { transform: scale(1.09); }
+    .action .icon { width: 27px; height: 27px; stroke-width: 2.05; }
+    .action .action-count { font-size: 11px; font-weight: 660; line-height: 1; }
+    .action.is-liked .icon { color: #ff4566; fill: #ff4566; stroke: #ff4566; }
+    .action.is-saved .icon { fill: #fff; }
+    .action.audio-action .icon { width: 24px; height: 24px; }
+    .reel-bottom { position: absolute; z-index: 4; bottom: 22px; left: 14px; right: 63px; text-shadow: 0 1px 4px #000a; }
+    .profile-row { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; }
+    .avatar { width: 31px; height: 31px; background: #f8f1e8; border: 1.4px solid #fff; border-radius: 50%; color: #433a33; flex: none; display: grid; place-items: center; box-shadow: 0 1px 6px #0003; }
+    .avatar .avatar-oval { width: 18px; height: 23px; border-radius: 50%; border: 1px solid #655149; display: grid; place-items: center; font-family: var(--serif); font-size: 19px; font-style: italic; line-height: 1; transform: rotate(-6deg); }
+    .username { font-size: 12px; font-weight: 760; letter-spacing: -.01em; }
+    .follow-button { background: #ffffff18; color: #fff; border: 1px solid #fff9; border-radius: 7px; font-size: 10px; font-weight: 700; padding: 5px 8px; cursor: pointer; margin-left: 3px; }
+    .follow-button.following { background: #fff; color: #333; }
+    .caption-main { font-size: 12px; line-height: 1.38; font-weight: 550; margin: 0 0 5px; }
+    .caption-sub { font-size: 10px; font-weight: 550; opacity: .91; margin: 0 0 7px; }
+    .original-audio { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 620; opacity: .94; max-width: 100%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+    .original-audio .icon { width: 12px; height: 12px; flex: none; }
+    .progress-track { position: absolute; z-index: 6; bottom: 0; left: 0; width: 100%; height: 8px; background: transparent; cursor: pointer; border: 0; padding: 0; }
+    .progress-track::before { content: ""; position: absolute; height: 2px; background: #ffffff55; bottom: 0; left: 0; right: 0; }
+    .progress-fill { position: absolute; height: 2px; background: #fff; width: 0%; bottom: 0; left: 0; transition: none; }
+    .paused-indicator { position: absolute; z-index: 3; top: 48%; left: 50%; transform: translate(-50%, -50%); opacity: 0; pointer-events: none; background: #0007; padding: 16px; border-radius: 50%; transition: opacity .18s; }
+    .paused-indicator.show { opacity: 1; }
+    .paused-indicator .icon { width: 27px; height: 27px; fill: #fff; }
+    .heart-burst { position: absolute; z-index: 8; pointer-events: none; left: 50%; top: 48%; transform: translate(-50%, -50%) scale(.4); width: 115px; height: 115px; color: #fff; filter: drop-shadow(0 5px 14px #0008); opacity: 0; }
+    .heart-burst .icon { width: 100%; height: 100%; fill: #fff; stroke: #fff; stroke-width: 1; }
+    .heart-burst.animate { animation: heart-pop 760ms ease-out both; }
+    @keyframes heart-pop { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.45) rotate(-16deg); } 29% { opacity: 1; transform: translate(-50%,-50%) scale(1.22) rotate(5deg); } 52% { opacity: 1; transform: translate(-50%,-50%) scale(1.0) rotate(0); } 82% { opacity: .94; } 100% { opacity: 0; transform: translate(-50%,-65%) scale(1.2); } }
+    .toast { position: absolute; z-index: 30; left: 50%; top: 88px; transform: translateX(-50%); max-width: 82%; padding: 9px 12px; border-radius: 12px; color: #fff; background: #242027d9; text-align: center; font-size: 11px; line-height: 1.4; box-shadow: 0 5px 18px #0003; opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .toast.visible { opacity: 1; }
+    .sheet-scrim { position: absolute; inset: 0; background: #0007; z-index: 9; opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s; }
+    .sheet-scrim.open { opacity: 1; visibility: visible; }
+    .sheet { position: absolute; z-index: 10; bottom: 0; left: 0; right: 0; background: #fff; color: #161616; border-radius: 18px 18px 0 0; height: 77%; transform: translateY(104%); visibility: hidden; transition: transform .32s cubic-bezier(.2,.8,.2,1), visibility .32s; display: flex; flex-direction: column; box-shadow: 0 -7px 25px #0003; }
+    .sheet.open { transform: translateY(0); visibility: visible; }
+    .sheet-handle { display: block; width: 78px; height: 20px; position: relative; margin: 0 auto 0; flex: none; touch-action: none; cursor: grab; }
+    .sheet-handle::before { content: ""; position: absolute; width: 37px; height: 4px; top: 8px; left: 50%; transform: translateX(-50%); border-radius: 8px; background: #d2d2d2; }
+    .sheet-header { display: grid; grid-template-columns: 32px 1fr 32px; align-items: center; padding: 1px 14px 11px; border-bottom: 1px solid #e9e9e9; text-align: center; flex: none; }
+    .sheet-header strong { font-size: 13px; font-weight: 720; }
+    .close-sheet { width: 29px; height: 29px; display: grid; place-items: center; cursor: pointer; border: 0; background: transparent; color: #1f1f1f; border-radius: 50%; }
+    .close-sheet .icon { width: 21px; height: 21px; }
+    .comments-list { flex: 1; overflow: auto; min-height: 0; overscroll-behavior: contain; padding: 18px 14px 8px; scrollbar-width: thin; }
+    .comment { display: grid; grid-template-columns: 32px 1fr 22px; gap: 9px; align-items: start; margin: 0 0 22px; }
+    .comment-avatar { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: #f3ccd5; color: #7b4654; font-family: var(--serif); font-weight: 650; font-size: 15px; text-transform: uppercase; }
+    .comment:nth-child(3n+2) .comment-avatar { background: #e3e9dc; color: #60765d; }
+    .comment:nth-child(3n+3) .comment-avatar { background: #e8d8c8; color: #85684e; }
+    .comment-content { min-width: 0; overflow-wrap: anywhere; font-size: 11px; line-height: 1.5; color: #2b2929; }
+    .comment-name { font-weight: 780; margin-right: 5px; }
+    .comment-meta { display: block; color: #999; font-size: 10px; margin-top: 5px; }
+    .comment-heart { border: 0; background: transparent; padding: 5px 0; cursor: pointer; color: #8b8b8b; }
+    .comment-heart .icon { width: 15px; height: 15px; stroke-width: 2; }
+    .comment-heart.liked { color: #f23b57; }
+    .comment-heart.liked .icon { fill: currentColor; }
+    .comment-form { display: flex; align-items: center; gap: 9px; flex: none; border-top: 1px solid #eee; padding: 10px 12px 13px; background: #fff; }
+    .you-avatar { width: 30px; height: 30px; background: #e8d6db; color: #7a5260; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 750; flex: none; }
+    .comment-input { color: #1d1d1d; background: #f4f4f4; border: 1px solid #e8e8e8; border-radius: 22px; height: 36px; padding: 0 11px; flex: 1; min-width: 0; outline: none; font-size: 11px; }
+    .comment-input:focus { border-color: #e8a8b7; background: #fff; }
+    .post-button { border: 0; color: #0095f6; background: transparent; padding: 7px 2px; font-weight: 720; font-size: 11px; cursor: pointer; }
+    .post-button:disabled { opacity: .37; cursor: default; }
+    .share-sheet { height: 54%; }
+    .share-content { padding: 18px 18px 20px; flex: 1; overflow: auto; }
+    .share-content p { font-size: 11px; line-height: 1.55; color: #717171; margin: 0 0 19px; }
+    .share-option { display: flex; align-items: center; gap: 12px; padding: 11px 4px; width: 100%; border: 0; background: #fff; color: #282828; cursor: pointer; text-align: left; border-bottom: 1px solid #f0f0f0; font-weight: 620; font-size: 12px; }
+    .share-option .share-circle { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #e9e2e5; border-radius: 50%; background: #fdf7f9; color: var(--rose); }
+    .share-option .icon { width: 20px; height: 20px; }
+    .share-option:disabled { color: #a8a8a8; cursor: not-allowed; }
+    .share-option:disabled .share-circle { color: #b5b5b5; }
+    .editorial-footer { margin: 17px 0 0; display: flex; align-items: center; gap: 13px; text-align: center; color: #9d8585; font-size: 9px; font-weight: 550; letter-spacing: .08em; text-transform: uppercase; }
+    .editorial-footer::before, .editorial-footer::after { content: ""; display: inline-block; height: 1px; width: 27px; background: #c9aaab; }
+    .disclaimer { margin: 9px 0 0; text-align: center; color: #a48c8d; font-size: 10px; line-height: 1.5; max-width: 340px; }
+    @media (min-width: 850px) {
+      .ambient-caption { display: block; position: absolute; left: calc(50% + 235px); top: 48%; transform: translateY(-50%); color: #977d7d; width: 155px; }
+      .ambient-caption .line { display: block; width: 39px; height: 1px; background: #c7aaac; margin-bottom: 17px; }
+      .ambient-caption strong { display: block; font: normal 24px/1.06 var(--serif); color: #8e6871; margin-bottom: 12px; }
+      .ambient-caption span { font-size: 9px; line-height: 1.8; letter-spacing: .13em; text-transform: uppercase; }
+    }
+    @media (max-width: 849px) { .ambient-caption { display: none; } }
+    @media (max-width: 480px) {
+      .presentation { padding-top: 18px; padding-bottom: 23px; }
+      .intro .kicker { font-size: 8px; margin-top: 8px; }
+      h1 { font-size: 36px; }
+      .subheading { font-size: 15px; margin-bottom: 14px; }
+      .phone-outline { width: min(412px, calc(100vw - 22px)); }
+      .botanical { opacity: .15; }
+      .editorial-footer { margin-top: 14px; }
+      .disclaimer { max-width: 310px; }
+    }
+    @media (max-height: 730px) and (min-width: 480px) {
+      .presentation { padding-top: 13px; }
+      .kicker { margin-top: 6px; }
+      h1 { font-size: 37px; }
+      .subheading { margin: 5px 0 11px; }
+      .phone-outline { width: min(380px, calc(100vw - 42px)); }
+      .editorial-footer { margin-top: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+
+    /* Diptyque Instagram avatar from the existing Greenwich Morning campaign mockup. */
+    .avatar.diptyque-avatar { overflow: hidden; background: #fff; border: 0; color: inherit; }
+    .avatar.diptyque-avatar img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: contain; }
+  </style>
+
+<!-- Exhibition presentation mode: original application untouched unless ?embed=1 is requested. -->
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('campaign-embed');</script>
+<style id="campaign-embed-styles">html.campaign-embed,html.campaign-embed body{min-width:0!important;min-height:0!important;background:transparent!important;overflow-x:clip!important}html.campaign-embed .page{min-height:0!important;overflow:visible!important;background:transparent!important}html.campaign-embed .page::before,html.campaign-embed .botanical,html.campaign-embed .intro,html.campaign-embed .editorial-footer,html.campaign-embed .disclaimer,html.campaign-embed .ambient-caption{display:none!important}html.campaign-embed .presentation{width:100%;max-width:100%;padding:10px 8px 25px;margin:0;display:grid;justify-items:center}html.campaign-embed .phone-area{width:100%;display:grid;place-items:center}html.campaign-embed .phone-area::before{width:100%;max-width:500px;height:90%;}html.campaign-embed .phone-outline{width:min(100%,412px)!important;max-height:none!important;height:auto!important}</style>
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.8a5.4 5.4 0 0 0-7.6 0L12 6.05l-1.2-1.25a5.4 5.4 0 0 0-7.6 7.65l1.15 1.15L12 21l7.65-7.4 1.15-1.15a5.4 5.4 0 0 0 0-7.65Z"/></symbol>
+    <symbol id="i-comment" viewBox="0 0 24 24"><path d="M21 11.5c0 4.8-4.1 8.7-9.2 8.7-1.5 0-2.9-.34-4.2-.93L3 20.6l1.4-4.1a8.2 8.2 0 0 1-1.6-5C2.8 6.6 6.9 2.7 12 2.7s9 3.9 9 8.8Z"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="m22 2-7.7 20-3.9-8.35L2 10l20-8Z"/><path d="M22 2 10.4 13.65"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M5 3.8A1.8 1.8 0 0 1 6.8 2h10.4A1.8 1.8 0 0 1 19 3.8V22l-7-5.2L5 22V3.8Z"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5c1.9 2.2 1.9 4.8 0 7"/><path d="M18.5 5c4 4.1 4 9.9 0 14"/></symbol>
+    <symbol id="i-muted" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6m0-6-5 6"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M8 5 9 3h6l1 2"/><circle cx="12" cy="12.5" r="4"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><ellipse cx="6" cy="19" rx="3" ry="2"/><ellipse cx="18" cy="17" rx="3" ry="2"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13.5a5 5 0 0 0 7 .2l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7"/><path d="M14 10.5a5 5 0 0 0-7-.2l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 12 7-12 7V5Z"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8c5.7-5.2 14.3-5.2 20 0M5 12c4-3.5 10-3.5 14 0M9 16c1.8-1.5 4.2-1.5 6 0"/><circle cx="12" cy="20" r=".8" fill="currentColor" stroke="none"/></symbol>
+  </svg>
+  <div class="page">
+    <svg class="botanical botanical-left" viewBox="0 0 250 380" fill="none" stroke="currentColor" stroke-width="1.05" aria-hidden="true">
+      <path d="M100 375C121 295 127 228 108 155 96 113 74 90 55 55"/><path d="M109 218C68 208 35 190 22 141M109 204C147 174 173 150 187 104M110 157C143 121 148 96 145 59M92 127C64 118 48 106 27 85"/>
+      <path d="M22 141C45 127 61 134 64 157c-17 5-31 1-42-16ZM22 141C12 164 20 180 39 189c10-20 3-34-17-48ZM187 104c-24-11-42-5-45 19 20 5 36 0 45-19ZM187 104c18 17 17 34-1 47-12-14-13-30 1-47ZM145 59c-21 5-30 22-20 41 18-7 25-23 20-41ZM55 55C37 56 20 48 19 27c22-5 33 5 36 28Z"/>
+      <path d="M57 64C37 50 29 31 42 13c19 8 21 28 15 51ZM57 64C74 44 93 40 107 54 99 72 81 77 57 64ZM57 64C42 83 42 103 58 114c16-15 16-31-1-50ZM57 64c18 2 35 18 32 38-20-2-32-14-32-38Z"/><circle cx="58" cy="64" r="9"/><circle cx="58" cy="64" r="3"/>
+    </svg>
+    <svg class="botanical botanical-right" viewBox="0 0 250 380" fill="none" stroke="currentColor" stroke-width="1.05" aria-hidden="true"><path d="M100 375C121 295 127 228 108 155 96 113 74 90 55 55"/><path d="M109 218C68 208 35 190 22 141M109 204C147 174 173 150 187 104M110 157C143 121 148 96 145 59M92 127C64 118 48 106 27 85"/><path d="M22 141C45 127 61 134 64 157c-17 5-31 1-42-16ZM22 141C12 164 20 180 39 189c10-20 3-34-17-48ZM187 104c-24-11-42-5-45 19 20 5 36 0 45-19ZM187 104c18 17 17 34-1 47-12-14-13-30 1-47ZM145 59c-21 5-30 22-20 41 18-7 25-23 20-41ZM55 55C37 56 20 48 19 27c22-5 33 5 36 28Z"/><path d="M57 64C37 50 29 31 42 13c19 8 21 28 15 51ZM57 64C74 44 93 40 107 54 99 72 81 77 57 64ZM57 64C42 83 42 103 58 114c16-15 16-31-1-50ZM57 64c18 2 35 18 32 38-20-2-32-14-32-38Z"/><circle cx="58" cy="64" r="9"/><circle cx="58" cy="64" r="3"/></svg>
+
+    <main class="presentation">
+      <header class="intro">
+        <div class="top-rule" aria-hidden="true"></div>
+        <p class="kicker">Les Essences de New York &nbsp;·&nbsp; Spring 2027</p>
+        <svg class="small-flourish" viewBox="0 0 50 20" fill="none" stroke="currentColor" stroke-width=".9" aria-hidden="true"><path d="M1 10h17m14 0h17M25 10c-8-6-9-9-5-10 5-1 6 5 5 10Zm0 0c8-6 9-9 5-10-5-1-6 5-5 10Zm0 0c-8 6-9 9-5 10 5 1 6-5 5-10Zm0 0c8 6 9 9 5 10-5 1-6-5-5-10Z"/></svg>
+        <h1>Les Essences Candles</h1>
+        <p class="subheading">A Candle Reel Experience</p>
+      </header>
+
+      <section class="phone-area" aria-label="Interactive Instagram-style Reel mockup">
+        <div class="phone-outline">
+          <div class="screen" id="screen">
+            <video class="reel-video" id="reelVideo" src="reel-02.mp4" poster="reel-04.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" aria-label="Original Les Essences candle campaign animation; tap to pause or resume playback">
+              Your browser does not support HTML5 video. View the included MP4 file instead.
+            </video>
+            <button class="tap-target" id="mediaTap" type="button" aria-label="Pause or resume Reel; double-tap to like" title="Tap to pause · Double-tap to like"></button>
+            <div class="top-scrim"></div><div class="bottom-scrim"></div>
+            <div class="dynamic-island" aria-hidden="true"></div>
+            <div class="statusbar" aria-hidden="true"><span>9:41</span><div class="status-icons"><svg class="icon"><use href="#i-wifi"/></svg><span class="battery"></span></div></div>
+            <div class="reel-topbar" aria-hidden="true"><span class="reels-word">Reels<span class="chevron">⌄</span></span><svg class="icon"><use href="#i-camera"/></svg></div>
+
+            <div class="paused-indicator" id="pauseIndicator" aria-hidden="true"><svg class="icon"><use href="#i-play"/></svg></div>
+            <div class="heart-burst" id="heartBurst" aria-hidden="true"><svg class="icon"><use href="#i-heart"/></svg></div>
+
+            <div class="reel-actions" aria-label="Reel actions">
+              <button class="action" id="likeButton" type="button" aria-label="Like this Reel" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><span class="action-count" id="likeCount">2,418</span></button>
+              <button class="action" id="commentButton" type="button" aria-label="Open comments"><svg class="icon" aria-hidden="true"><use href="#i-comment"/></svg><span class="action-count" id="commentCount">134</span></button>
+              <button class="action" id="shareButton" type="button" aria-label="Share this Reel"><svg class="icon" aria-hidden="true"><use href="#i-share"/></svg><span class="action-count">Share</span></button>
+              <button class="action" id="saveButton" type="button" aria-label="Save this Reel" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-bookmark"/></svg><span class="action-count" id="saveLabel">Save</span></button>
+              <button class="action audio-action" id="audioButton" type="button" aria-label="Unmute Reel" aria-pressed="false"><svg class="icon" aria-hidden="true"><use id="audioUse" href="#i-muted"/></svg><span class="action-count" id="audioLabel">Muted</span></button>
+            </div>
+
+            <div class="reel-bottom">
+              <div class="profile-row"><span class="avatar diptyque-avatar" role="img" aria-label="Diptyque Instagram profile picture"><img src="reel-03.png" alt="" width="330" height="330" draggable="false"></span><strong class="username">@diptyque</strong><button class="follow-button" id="followButton" type="button" aria-pressed="false">Follow</button></div>
+              <p class="caption-main">Les Essences Candles — A City of a Thousand Scents.</p>
+              <p class="caption-sub">Les Essences de New York · Spring 2027</p>
+              <span class="original-audio"><svg class="icon" aria-hidden="true"><use href="#i-music"/></svg> Original audio · Les Essences Candles</span>
+            </div>
+            <button class="progress-track" id="progressTrack" type="button" aria-label="Seek within Reel"><span class="progress-fill" id="progressFill"></span></button>
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+            <div class="sheet-scrim" id="sheetScrim" aria-hidden="true"></div>
+            <section class="sheet comments-sheet" id="commentsSheet" role="dialog" aria-modal="true" aria-labelledby="commentsHeading" aria-hidden="true">
+              <div class="sheet-handle" data-drag-handle="true" aria-hidden="true"></div>
+              <div class="sheet-header"><span></span><strong id="commentsHeading">Comments</strong><button type="button" class="close-sheet" data-close-sheet aria-label="Close comments"><svg class="icon"><use href="#i-x"/></svg></button></div>
+              <div class="comments-list" id="commentsList" aria-label="Fictional comments"></div>
+              <form class="comment-form" id="commentForm"><span class="you-avatar" aria-hidden="true">Y</span><input class="comment-input" id="commentInput" type="text" placeholder="Add a comment..." aria-label="Write a comment" maxlength="350" autocomplete="off"><button class="post-button" id="postButton" type="submit" disabled>Post</button></form>
+            </section>
+            <section class="sheet share-sheet" id="shareSheet" role="dialog" aria-modal="true" aria-labelledby="shareHeading" aria-hidden="true">
+              <div class="sheet-handle" data-drag-handle="true" aria-hidden="true"></div>
+              <div class="sheet-header"><span></span><strong id="shareHeading">Share Reel</strong><button type="button" class="close-sheet" data-close-sheet aria-label="Close share panel"><svg class="icon"><use href="#i-x"/></svg></button></div>
+              <div class="share-content">
+                <p>This is a fictional local presentation. For a working video on another device, send the website package with its MP4.</p>
+                <button class="share-option" id="copyCaption" type="button"><span class="share-circle"><svg class="icon"><use href="#i-copy"/></svg></span>Copy campaign caption</button>
+                <button class="share-option" id="copyLink" type="button"><span class="share-circle"><svg class="icon"><use href="#i-link"/></svg></span>Copy website preview link</button>
+                <button class="share-option" id="nativeShare" type="button" hidden><span class="share-circle"><svg class="icon"><use href="#i-share"/></svg></span>Share preview…</button>
+              </div>
+            </section>
+          </div>
+        </div>
+        <aside class="ambient-caption" aria-hidden="true"><span class="line"></span><strong>A city of a thousand scents.</strong><span>Brooklyn Heights<br>Magnolia · Peony<br>White Musk</span></aside>
+      </section>
+      <p class="editorial-footer">An interactive campaign study</p>
+      <p class="disclaimer">Fictional student concept. Not affiliated with or endorsed by Instagram, Meta, or Diptyque.</p>
+    </main>
+  </div>
+
+  <script>
+  (() => {
+    'use strict';
+    const video = document.getElementById('reelVideo');
+    const screen = document.getElementById('screen');
+    const tapZone = document.getElementById('mediaTap');
+    const pauseIndicator = document.getElementById('pauseIndicator');
+    const heartBurst = document.getElementById('heartBurst');
+    const likeButton = document.getElementById('likeButton');
+    const likeCount = document.getElementById('likeCount');
+    const saveButton = document.getElementById('saveButton');
+    const saveLabel = document.getElementById('saveLabel');
+    const audioButton = document.getElementById('audioButton');
+    const audioUse = document.getElementById('audioUse');
+    const audioLabel = document.getElementById('audioLabel');
+    const followButton = document.getElementById('followButton');
+    const commentButton = document.getElementById('commentButton');
+    const commentCount = document.getElementById('commentCount');
+    const commentsSheet = document.getElementById('commentsSheet');
+    const commentsList = document.getElementById('commentsList');
+    const commentForm = document.getElementById('commentForm');
+    const commentInput = document.getElementById('commentInput');
+    const postButton = document.getElementById('postButton');
+    const shareButton = document.getElementById('shareButton');
+    const shareSheet = document.getElementById('shareSheet');
+    const sheetScrim = document.getElementById('sheetScrim');
+    const progressTrack = document.getElementById('progressTrack');
+    const progressFill = document.getElementById('progressFill');
+    const toastNode = document.getElementById('toast');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const CAPTION = 'Brooklyn Bloom — A City of a Thousand Scents.\nLes Essences de New York · Spring 2027\nFictional luxury fragrance campaign concept.';
+    const exampleComments = [
+      { name: 'petals.and.paper', initials: 'P', text: 'The magnolias against those Brooklyn brownstones… this is beautiful 🌸', time: '2h', liked: false },
+      { name: 'thecityinbloom', initials: 'T', text: 'This feels like spring in New York in the most romantic way.', time: '4h', liked: false },
+      { name: 'atelier.noelle', initials: 'A', text: 'That dusty-rose bottle and the botanical details are everything ✨', time: '6h', liked: false },
+      { name: 'gardenwindow', initials: 'G', text: 'I can almost smell the peonies and white musk.', time: '8h', liked: false },
+      { name: 'cityofpetals', initials: 'C', text: 'A little piece of Brooklyn springtime. Love this concept!', time: '11h', liked: false }
+    ];
+    const storageKey = 'brooklynBloomDemoCommentsV1';
+    const comments = [...exampleComments];
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      if (Array.isArray(saved)) saved.filter(x => x && typeof x.text === 'string').slice(0, 80).forEach(x => comments.push({name:'you', initials:'Y', text:x.text.slice(0,350), time:'Now', liked:false}));
+    } catch (_) { /* The local demo also works when storage is unavailable. */ }
+    let liked = false, saved = false, sheetOpen = null, lastFocus = null;
+    let singleTapTimer = null, lastTapAt = 0, toastTimer = null, heartTimer = null;
+
+    function iconMarkup(name) { return '<svg class="icon" aria-hidden="true"><use href="#i-' + name + '"></use></svg>'; }
+    function showToast(message) {
+      toastNode.textContent = message;
+      toastNode.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastNode.classList.remove('visible'), 2300);
+    }
+    function updateLike() {
+      likeButton.classList.toggle('is-liked', liked);
+      likeButton.setAttribute('aria-pressed', String(liked));
+      likeButton.setAttribute('aria-label', liked ? 'Unlike this Reel' : 'Like this Reel');
+      likeCount.textContent = (2418 + (liked ? 1 : 0)).toLocaleString('en-US');
+    }
+    function playHeart() {
+      clearTimeout(heartTimer);
+      heartBurst.classList.remove('animate');
+      void heartBurst.offsetWidth;
+      heartBurst.classList.add('animate');
+      heartTimer = setTimeout(() => heartBurst.classList.remove('animate'), 850);
+    }
+    likeButton.addEventListener('click', () => { liked = !liked; updateLike(); if (liked) playHeart(); });
+    saveButton.addEventListener('click', () => {
+      saved = !saved;
+      saveButton.classList.toggle('is-saved', saved);
+      saveButton.setAttribute('aria-pressed', String(saved));
+      saveButton.setAttribute('aria-label', saved ? 'Remove Reel from saved' : 'Save this Reel');
+      saveLabel.textContent = saved ? 'Saved' : 'Save';
+      showToast(saved ? 'Saved to your demo collection' : 'Removed from saved');
+    });
+    followButton.addEventListener('click', () => {
+      const following = followButton.classList.toggle('following');
+      followButton.textContent = following ? 'Following' : 'Follow';
+      followButton.setAttribute('aria-pressed', String(following));
+      showToast(following ? 'Following in this fictional demo' : 'Unfollowed in this fictional demo');
+    });
+    function syncAudio() {
+      const muted = video.muted;
+      audioUse.setAttribute('href', muted ? '#i-muted' : '#i-volume');
+      audioButton.setAttribute('aria-label', muted ? 'Unmute Reel' : 'Mute Reel');
+      audioButton.setAttribute('aria-pressed', String(!muted));
+      audioLabel.textContent = muted ? 'Muted' : 'Audio on';
+    }
+    audioButton.addEventListener('click', () => { video.muted = !video.muted; syncAudio(); });
+    video.addEventListener('volumechange', syncAudio);
+    function syncPaused() {
+      pauseIndicator.classList.toggle('show', video.paused && video.currentTime > 0);
+      tapZone.setAttribute('aria-label', video.paused ? 'Play Reel; double-tap to like' : 'Pause Reel; double-tap to like');
+    }
+    async function togglePlayback() {
+      if (!video.paused) video.pause();
+      else {
+        try { await video.play(); }
+        catch (_) { showToast('Playback is blocked in this browser.'); }
+      }
+      syncPaused();
+    }
+    function handleTap() {
+      const now = performance.now();
+      if (now - lastTapAt < 320) {
+        clearTimeout(singleTapTimer);
+        lastTapAt = 0;
+        if (!liked) { liked = true; updateLike(); }
+        playHeart();
+      } else {
+        lastTapAt = now;
+        clearTimeout(singleTapTimer);
+        singleTapTimer = setTimeout(() => { lastTapAt = 0; togglePlayback(); }, 335);
+      }
+    }
+    tapZone.addEventListener('pointerup', event => { if (event.button && event.button !== 0) return; handleTap(); });
+    tapZone.addEventListener('keydown', event => {
+      if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); togglePlayback(); }
+    });
+    tapZone.addEventListener('dblclick', event => event.preventDefault());
+    video.addEventListener('play', syncPaused);
+    video.addEventListener('pause', syncPaused);
+    video.addEventListener('timeupdate', () => {
+      progressFill.style.width = (video.duration ? (video.currentTime / video.duration * 100) : 0) + '%';
+    });
+    progressTrack.addEventListener('click', event => {
+      if (Number.isFinite(video.duration) && video.duration > 0) {
+        const r = progressTrack.getBoundingClientRect();
+        const fraction = Math.max(0, Math.min(1, (event.clientX - r.left) / r.width));
+        video.currentTime = fraction * video.duration;
+      }
+    });
+
+    function renderComments() {
+      commentsList.replaceChildren();
+      comments.forEach((c, index) => {
+        const row = document.createElement('div'); row.className = 'comment';
+        const avatar = document.createElement('span'); avatar.className = 'comment-avatar'; avatar.setAttribute('aria-hidden','true'); avatar.textContent = c.initials;
+        const content = document.createElement('div'); content.className = 'comment-content';
+        const name = document.createElement('strong'); name.className = 'comment-name'; name.textContent = c.name;
+        const message = document.createElement('span'); message.textContent = c.text;
+        const meta = document.createElement('span'); meta.className = 'comment-meta'; meta.textContent = c.time + '  ·  Reply';
+        content.append(name, message, meta);
+        const heart = document.createElement('button'); heart.type = 'button'; heart.className = 'comment-heart' + (c.liked ? ' liked' : ''); heart.setAttribute('aria-label', c.liked ? 'Unlike comment' : 'Like comment'); heart.setAttribute('aria-pressed', String(c.liked)); heart.innerHTML = iconMarkup('heart');
+        heart.addEventListener('click', () => { comments[index].liked = !comments[index].liked; heart.classList.toggle('liked', comments[index].liked); heart.setAttribute('aria-pressed', String(comments[index].liked)); heart.setAttribute('aria-label', comments[index].liked ? 'Unlike comment' : 'Like comment'); });
+        row.append(avatar, content, heart); commentsList.appendChild(row);
+      });
+      const count = 134 + comments.length - exampleComments.length;
+      commentCount.textContent = count.toLocaleString('en-US');
+      document.getElementById('commentsHeading').textContent = 'Comments (' + count.toLocaleString('en-US') + ')';
+    }
+    renderComments();
+    commentInput.addEventListener('input', () => { postButton.disabled = !commentInput.value.trim(); });
+    commentForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const message = commentInput.value.trim();
+      if (!message) return;
+      comments.push({ name:'you', initials:'Y', text:message, time:'Now', liked:false });
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(comments.slice(exampleComments.length).map(x => ({text:x.text}))));
+      } catch (_) { /* Comments remain available for this session. */ }
+      commentInput.value = ''; postButton.disabled = true;
+      renderComments();
+      commentsList.scrollTop = commentsList.scrollHeight;
+    });
+
+    function openSheet(sheet, trigger) {
+      if (sheetOpen) closeSheet(false);
+      lastFocus = trigger || document.activeElement;
+      sheetOpen = sheet;
+      sheetScrim.classList.add('open');
+      sheet.classList.add('open');
+      sheet.setAttribute('aria-hidden','false');
+      screen.classList.add('showing-sheet');
+      const close = sheet.querySelector('[data-close-sheet]');
+      if (close) close.focus({preventScroll: true});
+    }
+    function closeSheet(returnFocus = true) {
+      if (!sheetOpen) return;
+      sheetOpen.classList.remove('open');
+      sheetOpen.setAttribute('aria-hidden','true');
+      sheetOpen = null;
+      sheetScrim.classList.remove('open');
+      screen.classList.remove('showing-sheet');
+      if (returnFocus && lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus({preventScroll:true});
+    }
+    commentButton.addEventListener('click', () => openSheet(commentsSheet, commentButton));
+    shareButton.addEventListener('click', () => openSheet(shareSheet, shareButton));
+    sheetScrim.addEventListener('click', () => closeSheet());
+    document.querySelectorAll('[data-close-sheet]').forEach(b => b.addEventListener('click', () => closeSheet()));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && sheetOpen) { event.preventDefault(); closeSheet(); }
+      if (event.key === 'Tab' && sheetOpen) {
+        const focusable = [...sheetOpen.querySelectorAll('button:not([disabled]):not([hidden]), input:not([disabled])')].filter(x => x.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    });
+    // Close a sheet with a downward swipe beginning on the drag handle.
+    document.querySelectorAll('[data-drag-handle]').forEach(handle => {
+      let startY = null;
+      handle.addEventListener('pointerdown', e => { startY = e.clientY; handle.setPointerCapture?.(e.pointerId); });
+      handle.addEventListener('pointerup', e => { if (startY !== null && e.clientY - startY > 45) closeSheet(); startY = null; });
+      handle.addEventListener('pointercancel', () => { startY = null; });
+    });
+
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; }
+        const input = document.createElement('textarea'); input.value = text; input.style.position = 'fixed'; input.style.opacity = '0'; document.body.append(input); input.select();
+        const ok = document.execCommand('copy'); input.remove(); return ok;
+      } catch (_) { return false; }
+    }
+    document.getElementById('copyCaption').addEventListener('click', async () => {
+      showToast(await copyText(CAPTION) ? 'Campaign caption copied' : 'Unable to copy; try again');
+    });
+    const previewLink = document.getElementById('copyLink');
+    const onWebsite = ['https:', 'http:'].includes(window.parent.location.protocol);
+    if (!onWebsite) {
+      previewLink.disabled = true;
+      previewLink.setAttribute('title', 'Available after hosting this website online');
+      previewLink.lastChild.textContent = 'Preview link available when hosted';
+    } else previewLink.addEventListener('click', async () => {
+      showToast(await copyText(window.parent.location.href) ? 'Preview link copied' : 'Unable to copy; try again');
+    });
+    const nativeShare = document.getElementById('nativeShare');
+    if (onWebsite && typeof navigator.share === 'function') {
+      nativeShare.hidden = false;
+      nativeShare.addEventListener('click', async () => {
+        try { await navigator.share({title:'Brooklyn Bloom — Reel Experience', text:CAPTION, url:window.parent.location.href}); }
+        catch (e) { if (e.name !== 'AbortError') showToast('Sharing unavailable on this device'); }
+      });
+    }
+    // Muted looping autoplay is attempted on load. Reduced-motion users receive the original still poster until they tap.
+    async function initPlayback() {
+      video.muted = true; video.loop = true; syncAudio();
+      if (reducedMotion.matches) { video.pause(); syncPaused(); return; }
+      try { await video.play(); }
+      catch (_) { /* The video element continues showing its original poster image. No start button is required. */ }
+      syncPaused();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initPlayback, {once: true});
+    else initPlayback();
+    reducedMotion.addEventListener?.('change', e => { if (e.matches) video.pause(); syncPaused(); });
+    window.addEventListener('pagehide', () => clearTimeout(singleTapTimer));
+  })();
+  </script>
+
+<script id="campaign-exhibition-bridge">
+(()=>{
+  if(!document.documentElement.classList.contains('campaign-embed'))return;
+  const kind="reel";
+  const send=(data)=>{try{window.parent.postMessage({source:'les-essences-component',kind,...data},'*')}catch(_){}};
+  let lastHeight=0,pending=false;
+  const measure=()=>{
+    pending=false;
+    const bodyHeight=document.body?.getBoundingClientRect().height||0;
+    const naturalRoot=document.querySelector('.page')?.getBoundingClientRect().height||0;
+    const height=Math.ceil(Math.max(bodyHeight,naturalRoot))+2;
+    if(height&&Math.abs(height-lastHeight)>1){lastHeight=height;send({type:'resize',height})}
+  };
+  const schedule=()=>{if(!pending){pending=true;requestAnimationFrame(measure)}};
+  window.addEventListener('load',()=>{schedule();setTimeout(schedule,120);setTimeout(schedule,800)});
+  window.addEventListener('resize',schedule);
+  if('ResizeObserver' in window){const observer=new ResizeObserver(schedule);observer.observe(document.documentElement);observer.observe(document.body)}
+  if('MutationObserver' in window){new MutationObserver(schedule).observe(document.body,{attributes:true,childList:true,subtree:true,attributeFilter:['hidden','style','class','src']})}
+  for(const im of document.images){if(!im.complete)im.addEventListener('load',schedule,{once:true})}
+  const kindIsQuiz=kind==='quiz';
+  if(kindIsQuiz){
+    const loc=(el)=>{if(!el)return;const y=el.getBoundingClientRect().top+window.scrollY;send({type:'focus',offset:Math.round(y)})};
+    ['resultView','studioView'].forEach(id=>{const el=document.getElementById(id);if(el){new MutationObserver(()=>{if(!el.hidden)setTimeout(()=>{schedule();loc(el)},90)}).observe(el,{attributes:true,attributeFilter:['hidden']})}});
+    document.getElementById('beginQuiz')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('quizView')),90));
+    document.getElementById('retakeQuiz')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('quizView')),90));
+    document.getElementById('backResult')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('resultView')),90));
+  }
+  let pausedByGallery=false;
+  window.addEventListener('message',event=>{
+    if(event.source!==window.parent||!event.data||event.data.source!=='les-essences-parent')return;
+    if(event.data.type==='visibility'&&kind==='reel'){
+      const video=document.getElementById('reelVideo');if(!video)return;
+      if(!event.data.visible){if(!video.paused){pausedByGallery=true;video.pause()}}
+      else if(pausedByGallery&&!document.hidden&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){pausedByGallery=false;video.play().catch(()=>{})}
+    }
+  });
+  schedule();
+})();
+</script>
+<script>/* Swipe vertically between Reels; original app interaction code remains intact. */
+(()=>{const screen=document.getElementById('screen');let x,y;
+screen.addEventListener('touchstart',e=>{if(e.touches.length===1){x=e.touches[0].clientX;y=e.touches[0].clientY;}},{passive:true});
+screen.addEventListener('touchend',e=>{if(y==null)return;let dy=e.changedTouches[0].clientY-y,dx=e.changedTouches[0].clientX-x;y=null;x=null;if(Math.abs(dy)>75&&Math.abs(dy)>Math.abs(dx)*1.4){parent.postMessage({source:'les-essences-deck',type:'reel-swipe',direction:dy<0?1:-1},'*');}},{passive:true});})();</script></body>
+</html>

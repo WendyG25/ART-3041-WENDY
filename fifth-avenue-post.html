@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html class="campaign-embed" lang="en">
+<head>
+<base href="./">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#f6f3eb" name="theme-color"/>
+<meta content="A Fifth Avenue Rain Instagram feed advertisement presentation for Les Essences de New York, Spring 2027." name="description"/>
+<title>Fifth Avenue Rain · Instagram Campaign Preview</title>
+<style>
+    :root {
+      color-scheme: light;
+      --cream: #f6f3ea;
+      --cream-deep: #eae5d7;
+      --olive: #677359;
+      --olive-dark: #394638;
+      --ink: #282d25;
+      --soft-ink: #666a5e;
+      --line: #d9d7c9;
+      --gold: #a99472;
+      --serif: "Bodoni MT", "Didot", "Iowan Old Style", "Baskerville", "Times New Roman", Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 300px; background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--olive-dark); outline-offset: 4px; }
+    ::selection { background: #c9d1bb; color: var(--olive-dark); }
+    .page { position: relative; isolation: isolate; min-height: 100dvh; overflow: hidden; background: radial-gradient(ellipse at 78% 48%, #e3e6d8 0%, rgba(227,230,216,0) 41%), linear-gradient(120deg, #faf8f2 0%, #f5f2e9 57%, #f0eddf 100%); }
+    .page::after { content: ""; position: absolute; inset: 0; z-index:-1; pointer-events:none; opacity:.17; background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 160 160%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%22.12%22/%3E%3C/svg%3E'); }
+    .site-header { max-width: 1420px; margin: 0 auto; padding: 33px clamp(24px, 5vw, 82px) 0; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .wordmark { display:flex; align-items:center; gap: 12px; color: var(--olive-dark); }
+    .wordmark-symbol { width: 41px; height: 41px; flex:none; border:1px solid #89947d; border-radius:50%; display:grid; place-items:center; font: italic 24px var(--serif); }
+    .wordmark-copy { font-family:var(--serif); font-size:13px; letter-spacing:.07em; line-height:1.12; text-transform:uppercase; }
+    .header-right { display:flex; gap:12px; align-items:center; color:#77806d; font-size:10px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; white-space:nowrap; }
+    .header-right::before { content:""; display:block; width:43px; height:1px; background:#b6bda9; }
+    .layout { max-width:1420px; min-height:calc(100dvh - 90px); padding: 30px clamp(24px,5vw,82px) 50px; margin:0 auto; display:grid; grid-template-columns:minmax(0, .94fr) minmax(0,1.06fr); align-items:center; gap: clamp(20px, 4vw, 80px); }
+    .editorial { position:relative; z-index:2; padding:24px 0 66px; max-width:580px; }
+    .eyebrow { display:flex; align-items:center; gap: 13px; color:var(--olive); letter-spacing:.27em; font-weight:600; text-transform:uppercase; font-size:11px; }
+    .eyebrow::before { content:""; display:block; width:36px; height:1px; background:#9aa88b; }
+    h1 { margin:29px 0 0; font-family:var(--serif); font-weight:400; font-size:clamp(60px, 6vw, 101px); letter-spacing:-.073em; line-height:.99; color:#303b30; }
+    h1 em { font-weight:400; color:#697961; }
+    .subline { margin:30px 0 24px; display:flex; align-items:center; gap:14px; color:#7b7c6c; }
+    .subline span { width:49px; height:1px; background:var(--gold); }
+    .subline small { font-family:var(--serif); font-style:italic; font-size:19px; letter-spacing:.03em; }
+    .description { margin: 0; max-width: 410px; color:var(--soft-ink); font: 17px/1.8 var(--serif); }
+    .scent-notes { max-width:410px; display:grid; grid-template-columns:repeat(3, 1fr); margin:36px 0 33px; border-block:1px solid #d9d6c6; }
+    .note { padding:17px 8px 18px 0; }
+    .note + .note { padding-left:19px; border-left:1px solid #d9d6c6; }
+    .note small { display:block; margin-bottom:9px; color:#9a9f90; font-size:9px; letter-spacing:.14em; }
+    .note span { color:#515f4c; font-family:var(--serif); font-size:16px; white-space:nowrap; }
+    .cta-area { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; }
+    .view-original { border: 1px solid var(--olive-dark); border-radius:2px; color:#fff; background:var(--olive-dark); display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:52px; padding:15px 21px 15px 22px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:650; transition:background .2s, transform .2s, border-color .2s; }
+    .view-original svg { width:17px; height:17px; flex:none; }
+    .view-original:hover { background:#64745f; border-color:#64745f; transform:translateY(-2px); }
+    .original-note { color:#8a8b7c; font-size:10px; line-height:1.55; letter-spacing:.02em; }
+    .motto { display:flex; align-items:center; gap:15px; margin-top:57px; color:#7c8577; }
+    .motto svg { width:42px; height:48px; flex:none; }
+    .motto span { font: italic 16px var(--serif); }
+    .stage { min-width:0; min-height: 760px; position:relative; display:grid; place-items:center; padding:29px 15px 35px; }
+    .stage::before { content:""; position:absolute; z-index:-1; width:min(101%, 675px); aspect-ratio: .91; border-radius:50%; background:radial-gradient(circle at 50% 50%, rgba(205,214,191,.62), rgba(218,225,208,.25) 61%, rgba(218,225,208,0) 72%); top: 50%; left:50%; transform:translate(-50%,-50%); }
+    .stage::after { content:""; position:absolute; z-index:-1; width:min(104%, 685px); aspect-ratio: 1; border:1px solid rgba(139,151,127,.2); border-radius:50%; top:50%;left:50%;transform:translate(-50%,-50%); }
+    .placement-label { position:absolute; top:27px; right:-5px; display:flex; align-items:center; gap:11px; font-size:10px; color:#78826e; text-transform:uppercase; letter-spacing:.2em; white-space:nowrap; }
+    .placement-label::before { content:""; width:31px; height:1px; background:#adb59e; }
+    .vertical-caption { position:absolute; bottom:80px; left:6px; color:#979e90; font-size:9px; letter-spacing:.21em; text-transform:uppercase; writing-mode:vertical-rl; transform:rotate(180deg); }
+    .floating-leaves { position:absolute; z-index:-1; width:190px; height:310px; left:0; top:10%; opacity:.42; transform:rotate(-7deg); color:#879b77; pointer-events:none; }
+    .shadow-plate { position:absolute; bottom:8px; width:min(380px, 85%); height:26px; border-radius:50%; background:rgba(58,63,45,.17); filter:blur(21px); }
+    .phone { position:relative; z-index:1; width:clamp(286px, 29vw, 379px); flex:none; padding:7px; border-radius:52px; background:linear-gradient(122deg, #1f2520, #515851 12%, #10130f 26%, #1f2420 79%, #5c645c 100%); box-shadow:0 35px 73px rgba(42,49,37,.22), 0 11px 23px rgba(38,43,34,.12), inset 0 0 0 1px #0e120d, inset 0 0 0 3px #555e55; }
+    .phone::before { content:""; position:absolute; top:22%; left:-3px; width:3px; height:10.5%; border-radius:3px 0 0 3px; background:#525b52; box-shadow:0 76px 0 #525b52; }
+    .phone::after { content:""; position:absolute; top:28%; right:-3px; width:3px; height:12%; border-radius:0 3px 3px 0; background:#525b52; }
+    .screen { position:relative; display:flex; flex-direction:column; width:100%; aspect-ratio:393/852; background:#fff; color:#161916; border-radius:45px; overflow:hidden; container-type:inline-size; }
+    .dynamic-island { position:absolute; z-index:4; left:50%; top:2.35cqw; transform:translateX(-50%); width:32cqw; height:9.3cqw; background:#060707; border-radius:100px; box-shadow:0 0 0 1px rgba(0,0,0,.06); display:flex; align-items:center; justify-content:flex-end; padding-right:4.5cqw; }
+    .dynamic-island::after { content:""; display:block; width:2.8cqw; height:2.8cqw; border-radius:50%; background:#111922; box-shadow:inset 0 0 0 1px #18212a, 0 0 1px 1px #0b1012; }
+    .status { display:flex; align-items:center; justify-content:space-between; width:100%; height:13.9cqw; padding:1.9cqw 8.5cqw 0; flex:none; font-family:var(--sans); font-size:4cqw; font-weight:650; letter-spacing:-.03em; }
+    .status-icons { display:flex; align-items:center; gap:1.35cqw; }
+    .status-icons svg { display:block; height:4.2cqw; width:auto; }
+    .insta-header { height:15cqw; flex:none; padding:0 4.9cqw; display:flex; align-items:center; justify-content:space-between; gap:6px; border-bottom:1px solid #f2f2f0; }
+    .profile { display:flex; align-items:center; min-width:0; gap:2.45cqw; }
+    .avatar { flex:none; width:9.6cqw; height:9.6cqw; display:grid; place-items:center; border-radius:50%; border:1px solid #9ba894; background:#eaeedf; color:#586b4e; font:italic 6cqw var(--serif); }
+    .profile-name { min-width:0; font-size:3.45cqw; font-weight:680; letter-spacing:-.035em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .profile-sub { margin-top:.8cqw; color:#6f736c; font-size:2.85cqw; line-height:1; }
+    .dots { color:#283029; letter-spacing:.11em; font-size:5.5cqw; line-height:1; margin-left:3px; }
+    .post-image { flex:none; display:block; width:100%; height:auto; background:#d1d0b8; }
+    .post-actions { height:12.3cqw; flex:none; padding:0 4.3cqw; display:flex; align-items:center; gap:3.7cqw; }
+    .post-icon { width:6.4cqw; height:6.4cqw; stroke:#171a18; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; display:block; }
+    .post-icon-wrap { display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; padding:0; color:#161a16; width:7.3cqw; height:8cqw; }
+    .post-icon-wrap:hover { opacity:.65; }
+    .post-icon-wrap.is-liked .post-icon { fill:#c05d60; stroke:#c05d60; }
+    .post-icon-wrap.is-saved .post-icon { fill:#343d33; stroke:#343d33; }
+    .post-icon-decor { display:inline-flex; align-items:center; justify-content:center; width:7.3cqw; height:8cqw; }
+    .post-actions .last { margin-left:auto; }
+    .caption-area { padding:0 5cqw; color:#272927; flex:none; font-family:var(--sans); }
+    .caption-copy { font-size:3.35cqw; line-height:1.52; letter-spacing:-.01em; }
+    .caption-copy strong { font-weight:700; margin-right:1.1cqw; }
+    .caption-hashtags { margin-top:1.4cqw; color:#6d806c; font-size:3cqw; }
+    .caption-date { color:#9d9e9a; font-size:2.6cqw; letter-spacing:.07em; margin-top:2cqw; text-transform:uppercase; }
+    .phone-spacer { flex:1; min-height:0; }
+    .insta-footer { height:13.2cqw; display:flex; align-items:center; justify-content:space-around; border-top:1px solid #f2f3f1; flex:none; padding:0 2cqw; }
+    .insta-footer svg { width:6cqw; height:6cqw; stroke:#282c28; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .tiny-avatar { width:6cqw; height:6cqw; border-radius:50%; background:#e8ecdf; border:1.5px solid #86997f; display:grid; place-items:center; font:italic 3.7cqw var(--serif); color:#52694d; }
+    .home-area { height:5.4cqw; flex:none; display:flex; justify-content:center; align-items:flex-start; padding-top:1.8cqw; }
+    .home-indicator { width:31cqw; height:1.25cqw; border-radius:999px; background:#131714; }
+    dialog { border:0; padding:0; margin:auto; max-width:100vw; max-height:100dvh; width:min(96vw, 1190px); background:transparent; color:var(--ink); overflow:visible; }
+    dialog::backdrop { background:rgba(17,25,19,.78); backdrop-filter:blur(7px); }
+    .dialog-content { position:relative; max-height:95dvh; padding:24px 15px 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; }
+    .dialog-image { display:block; max-width:100%; max-height:calc(95dvh - 80px); width:auto; height:auto; object-fit:contain; box-shadow:0 15px 38px rgba(0,0,0,.18); }
+    .dialog-caption { margin-top:12px; padding:4px; color:#f5f1e6; text-align:center; font:13px/1.5 var(--serif); letter-spacing:.02em; }
+    .close-dialog { position:absolute; z-index:2; top:0; right:0; display:grid; place-items:center; width:36px; height:36px; border-radius:50%; border:1px solid #d6decf; background:#fafbf6; color:#283d28; box-shadow:0 4px 20px #0003; }
+    .close-dialog:hover { background:#e1e9db; }
+    .close-dialog svg { width:18px; height:18px; }
+    .site-footer { max-width:1420px; margin:0 auto; padding:0 clamp(24px, 5vw, 82px) 24px; display:flex; justify-content:space-between; gap:10px; color:#909586; font-size:10px; letter-spacing:.17em; text-transform:uppercase; }
+    @media (max-width:1080px) {
+      .layout { gap:20px; }
+      h1 { font-size:clamp(56px, 6.4vw, 80px); }
+      .phone { width:clamp(274px, 31vw, 365px); }
+      .stage { min-height:700px; }
+      .placement-label { right:0; font-size:9px; }
+      .vertical-caption { left:0; }
+    }
+    @media (max-width:780px) {
+      .site-header { padding-top:24px; }
+      .layout { display:flex; flex-direction:column; align-items:stretch; gap:0; padding-top:41px; padding-bottom:58px; min-height:unset; }
+      .editorial { max-width:530px; padding:0; }
+      h1 { max-width:500px; font-size:clamp(57px, 10vw, 84px); }
+      .description { max-width:500px; }
+      .motto { margin-top:32px; }
+      .stage { width:100%; min-height:770px; padding-top:60px; padding-bottom:25px; }
+      .phone { width:clamp(292px, 66vw, 368px); }
+      .placement-label { top:26px; right:8%; }
+      .vertical-caption { bottom:105px; left:9%; }
+      .floating-leaves { left:9%; top:9%; }
+    }
+    @media (max-width:480px) {
+      .site-header { padding-inline:21px; }
+      .header-right { font-size:9px; letter-spacing:.12em; }
+      .header-right::before { width:13px; }
+      .wordmark-symbol { width:35px;height:35px;font-size:21px; }
+      .wordmark-copy { font-size:11px; }
+      .layout { padding:40px 21px 35px; }
+      .eyebrow { font-size:10px; letter-spacing:.19em; gap:9px; }
+      .eyebrow::before { width:23px; }
+      h1 { font-size:clamp(54px, 13.4vw, 67px); letter-spacing:-.072em; margin-top:22px; }
+      .subline { margin:23px 0 17px; }
+      .subline small { font-size:17px; }
+      .description { font-size:16px; line-height:1.72; }
+      .scent-notes { margin:24px 0 24px; }
+      .note + .note { padding-left:12px; }
+      .note span { font-size:14px; }
+      .view-original { min-height:50px; font-size:10px; padding:13px 15px; }
+      .motto { margin-top:26px; }
+      .stage { min-height:unset; padding:70px 0 40px; }
+      .phone { width:min(100%, 357px); }
+      .stage::after { width:118%; }
+      .stage::before { width:118%; }
+      .placement-label { top:25px; right:3%; font-size:9px; }
+      .vertical-caption { display:none; }
+      .floating-leaves { width:120px; top:11%; left:-8%; }
+      .site-footer { padding:0 21px 25px; font-size:9px; letter-spacing:.08em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { transition:none !important; animation:none !important; }
+    }
+
+    /* Campaign presentation — refined motion, tactile controls and mobile storytelling */
+    body.viewer-open { overflow:hidden; }
+    .page { background:radial-gradient(ellipse at 78% 43%, #e5e8d9 0%, rgba(229,232,217,0) 43%),linear-gradient(112deg,#faf8f2,#f4f0e5 61%,#f1eddf); }
+    .editorial-intro { animation: riseIn 850ms 120ms both cubic-bezier(.22,1,.36,1); }
+    .editorial-details { animation: riseIn 1000ms 260ms both cubic-bezier(.22,1,.36,1); }
+    .stage { min-height:845px; padding-bottom:65px; }
+    .phone { width:clamp(320px,31vw,420px); transform:translate3d(0,0,0); animation:phoneArrive 1050ms .16s both cubic-bezier(.19,1,.22,1),phoneBreathe 8s 1.5s ease-in-out infinite; transition:box-shadow .5s ease; }
+    .phone:hover { box-shadow:0 45px 90px #252c244a,0 12px 28px #12181338,inset 0 0 2px #dbdfd5; }
+    .floating-leaves { animation:leafDrift 11s ease-in-out infinite alternate; }
+    .stage::before { animation:haloBreathe 9s ease-in-out infinite alternate; }
+    .stage::after { pointer-events:none; }
+    .post-media { position:relative; width:100%; flex:none; overflow:hidden; cursor:zoom-in; touch-action:manipulation; outline-offset:-3px; line-height:0; }
+    .post-media:focus-visible { outline:2px solid #5a6b51; }
+    .post-image { display:block; width:100%; height:auto; aspect-ratio:1122/1402; object-fit:contain; pointer-events:none; user-select:none; -webkit-user-drag:none; }
+    .post-cta { display:flex; flex:none; justify-content:space-between; align-items:center; height:8cqw; padding:0 4.8cqw; width:100%; border:0; background:#f0f1e9; border-bottom:1px solid #e4e5da; color:#455a41; font-size:3cqw; font-weight:650; letter-spacing:-.015em; }
+    .post-cta svg { width:4.7cqw; height:4.7cqw; transition:transform .2s ease; }
+    .post-cta:hover svg { transform:translateX(3px); }
+    .post-meta { display:flex; align-items:center; justify-content:space-between; gap:6px; margin:0 0 1.5cqw; font-size:2.9cqw; font-weight:650; }
+    .comments-count { color:#7e847c; font-size:2.7cqw; border:0; background:none; padding:0; text-align:right; }
+    .comments-count:hover { color:#3d5940; text-decoration:underline; }
+    .avatar, .tiny-avatar { border-radius:50%; background:#f4f1e9; border:1px solid #97a08a; }
+    .avatar { position:relative; font-style:normal; font-family:var(--serif); font-size:2.75cqw; letter-spacing:-.08em; }
+    .avatar::before { content:""; position:absolute; inset:1.1cqw; border:1px solid #aab5a4; border-radius:50%; }
+    .avatar span { position:relative; z-index:1; }
+    .tiny-avatar { font-size:3cqw; }
+    .like-burst { color:#f9f4e9; position:absolute; inset:0; pointer-events:none; z-index:2; display:grid; place-items:center; opacity:0; filter:drop-shadow(0 5px 6px rgba(42,45,39,.25)); }
+    .like-burst svg { width:26%; max-width:120px; transform:scale(.35); }
+    .like-burst.play { animation:heartFade 1s ease-out forwards; }
+    .like-burst.play svg { animation:heartPop .73s cubic-bezier(.22,1.7,.45,1) forwards; }
+    .interaction-hint { position:absolute; bottom:2px; left:50%; transform:translateX(-50%); white-space:nowrap; margin:0; color:#72806f; font-size:10px; letter-spacing:.06em; line-height:1.6; text-align:center; }
+    .hint-spark { display:inline-block; margin-right:6px; color:#a18f6a; }
+    .comments-sheet[hidden] { display:none !important; }
+    .comments-sheet { position:absolute; z-index:10; top:13.9cqw; right:0; bottom:5.4cqw; left:0; background:#fffefa; display:flex; flex-direction:column; text-align:left; box-shadow:0 -8px 30px #18221b25; animation:commentsIn .3s cubic-bezier(.2,1,.3,1); }
+    .comments-head { flex:none; padding:5.3cqw 5.3cqw 3.7cqw; display:flex; justify-content:space-between; align-items:start; border-bottom:1px solid #e9e9e0; }
+    .comments-kicker { font-size:2.4cqw; letter-spacing:.17em; font-weight:700; color:#84927b; }
+    .comments-head h2 { margin:1.9cqw 0 0; font:italic 8cqw/1.1 var(--serif); letter-spacing:-.05em; color:#384839; }
+    .comments-head h2 span { font:500 3.9cqw var(--sans); font-style:normal; letter-spacing:0; color:#889085; }
+    .comments-close { width:8.7cqw; height:8.7cqw; display:grid; place-items:center; border-radius:50%; border:1px solid #dfe4d7; background:#f4f6ef; color:#4c614a; }
+    .comments-close svg { width:4.5cqw; height:4.5cqw; }
+    .comments-list { min-height:0; overflow:auto; overscroll-behavior:contain; flex:1; padding:6cqw 5.5cqw; scrollbar-width:thin; }
+    .no-comments { padding:15cqw 1cqw; text-align:center; color:#586954; font:italic 6cqw/1.4 var(--serif); }
+    .no-comments small { font:400 3.1cqw/1.8 var(--sans); color:#8c9689; }
+    .comment { display:flex; align-items:flex-start; gap:3cqw; margin-bottom:5.3cqw; }
+    .comment-avatar { width:8cqw; height:8cqw; flex:none; border-radius:50%; display:grid; place-items:center; background:#e5e9dc; color:#5b6c53; border:1px solid #c2cbba; font:italic 4.5cqw var(--serif); }
+    .comment-body { min-width:0; flex:1; }
+    .comment-author { display:block; margin:0 0 .8cqw; font-size:3.25cqw; font-weight:700; color:#394739; }
+    .comment-text { white-space:pre-wrap; overflow-wrap:anywhere; font-size:3.25cqw; line-height:1.5; color:#555b52; }
+    .comment-time { display:block; margin-top:1cqw; font-size:2.6cqw; color:#9b9f95; }
+    .comment-form { flex:none; border-top:1px solid #e9e9e0; padding:4.4cqw 4.8cqw 5cqw; background:#fcfcf8; }
+    .comment-form label { display:block; margin-bottom:2.2cqw; color:#778671; letter-spacing:.09em; font-size:2.7cqw; text-transform:uppercase; font-weight:700; }
+    .comment-entry { display:flex; width:100%; border:1px solid #d6dfd1; background:#fff; border-radius:5px; overflow:hidden; }
+    .comment-entry input { min-width:0; flex:1; padding:3.3cqw 2.4cqw; border:0; outline:0; font:3.4cqw var(--sans); background:transparent; color:#374137; }
+    .comment-entry input:focus { box-shadow:inset 0 0 0 1px #8e9d83; }
+    .comment-entry button { border:0; padding:0 3.2cqw; color:#415b3e; background:#edf1e8; font-weight:700; font-size:3.1cqw; }
+    .comment-entry button:disabled { color:#abb2a8; opacity:.7; cursor:not-allowed; }
+    .comment-form small { display:block; margin-top:2cqw; color:#9fa49a; font-size:2.5cqw; }
+
+    /* Instagram-inspired comment sheet and account identity */
+    .diptyque-avatar { background:#fff!important; border:0!important; overflow:hidden; padding:0; }
+    .diptyque-avatar::before { display:none; }
+    .diptyque-avatar img { display:block; width:100%; height:100%; object-fit:cover; border-radius:50%; }
+    .verified-check {display:inline-grid;place-items:center;background:#3897f0;color:white;font:700 2.4cqw/1 Arial,sans-serif;width:3.4cqw;height:3.4cqw;border-radius:50%;vertical-align:middle;margin-left:.4cqw;}
+    .comments-sheet {background:#fff;top:13.9cqw;bottom:5.4cqw;border-radius:3.5cqw 3.5cqw 0 0;}
+    .comments-grab {width:9cqw;height:1cqw;border-radius:20px;background:#d5d5d5;margin:2.3cqw auto 0;flex:none;}
+    .comments-head {position:relative;align-items:center;justify-content:center;padding:3.3cqw 4.4cqw 3.6cqw;border-bottom:1px solid #eee;}
+    .comments-head h2 {margin:0;font:700 4cqw/1.2 Arial,sans-serif;color:#181818;letter-spacing:0;}
+    .comments-close {position:absolute;right:3cqw;top:1.6cqw;width:7cqw;height:7cqw;border:0;background:transparent;color:#202020;}
+    .comments-close svg {width:4cqw;height:4cqw;}
+    .comments-list {padding:5cqw 4cqw 1cqw;}
+    .comment {gap:2.5cqw;margin-bottom:5.2cqw;align-items:flex-start;}
+    .comment-avatar {width:8.6cqw;height:8.6cqw;background:#e9e8e6;border:0;font:600 3.6cqw Arial,sans-serif;color:#5b6357;}
+    .comment:nth-child(3n+2) .comment-avatar {background:#e9e1d8;color:#806d5d;}
+    .comment:nth-child(3n+3) .comment-avatar {background:#e2e7e2;color:#526d5c;}
+    .comment-body {padding-top:.5cqw;}
+    .comment-line {font:3.25cqw/1.5 Arial,sans-serif;color:#202020;overflow-wrap:anywhere;}
+    .comment-author {display:inline;font:700 3.25cqw/1.5 Arial,sans-serif;color:#181818;margin:0;}
+    .comment-text {display:inline;font:3.25cqw/1.5 Arial,sans-serif;color:#222;}
+    .comment-meta {display:flex;gap:3.6cqw;margin-top:2.1cqw;color:#858585;font:2.7cqw Arial,sans-serif;}
+    .comment-meta button {border:0;background:none;padding:0;color:#858585;font:700 2.7cqw Arial,sans-serif;}
+    .comment-heart {border:0;background:transparent;color:#858585;font:6cqw/1 Arial,sans-serif;padding:1cqw;flex:none;}
+    .comment-heart.active {color:#ed4956;}
+    .comment-form {display:flex;align-items:center;gap:2.4cqw;background:white;border-top:1px solid #efefef;padding:3cqw 3.6cqw 1.4cqw;}
+    .composer-avatar {display:grid;place-items:center;flex:none;width:8cqw;height:8cqw;border-radius:50%;background:#e7e9e4;color:#61705c;font:600 3.4cqw Arial,sans-serif;}
+    .comment-form input {min-width:0;flex:1;border:0;outline:0;background:transparent;font:3.25cqw Arial,sans-serif;color:#222;}
+    .comment-form button {border:0;background:none;color:#0095f6;font:700 3.2cqw Arial,sans-serif;padding:1cqw;}
+    .comment-form button:disabled {opacity:.4;cursor:default;}
+    .comments-demo-label {padding:0 3cqw 2cqw;text-align:center;color:#999;font:2.25cqw/1.4 Arial,sans-serif;background:#fff;}
+    dialog#original-dialog { width:min(94vw,1060px); max-height:96dvh; background:#f9f7f0; border:1px solid #b5bdab; border-radius:10px; box-shadow:0 20px 80px #0004; overflow:hidden; }
+    .viewer-shell { display:flex; flex-direction:column; width:100%; height:min(92dvh,980px); min-height:300px; overflow:hidden; }
+    .viewer-topline { flex:none; height:54px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 16px 0 22px; background:#f5f3e9; border-bottom:1px solid #dce1d4; color:#667762; font-size:10px; font-weight:700; letter-spacing:.12em; }
+    .viewer-topline span span { padding:0 5px; color:#a7af9c; }
+    .viewer-topline .close-dialog { position:static; flex:none; width:34px; height:34px; box-shadow:none; }
+    .zoom-viewport { position:relative; flex:1; min-height:0; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; cursor:zoom-in; touch-action:none; background:radial-gradient(circle,#e8eadf,#dfe3d5); outline-offset:-4px; }
+    .zoom-viewport.zoomed { cursor:grab; }
+    .zoom-viewport.dragging { cursor:grabbing; }
+    .dialog-image { max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; transform-origin:center center; will-change:transform; pointer-events:none; user-select:none; -webkit-user-drag:none; box-shadow:0 8px 32px #25322428; }
+    .viewer-bottomline { flex:none; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding:9px 19px; min-height:54px; border-top:1px solid #dce1d4; color:#475841; font:italic 15px var(--serif); }
+    .viewer-secondary { color:#919b87; font:10px var(--sans); }
+    .zoom-actions { display:flex; align-items:center; gap:7px; font:12px var(--sans); }
+    .zoom-actions button { display:grid; place-items:center; border:1px solid #bdc9b7; width:30px; height:30px; background:#fff; color:#3b553b; border-radius:4px; font-size:19px; font-weight:400; }
+    .zoom-actions .zoom-reset { width:auto; min-width:48px; padding:0 8px; font-size:11px; }
+    .zoom-actions #zoom-level { width:45px; text-align:center; font-size:11px; }
+    .viewer-help { flex:none; margin:0; padding:0 12px 13px; text-align:center; color:#8a9584; background:#f9f7f0; font-size:11px; }
+    @keyframes riseIn { from {opacity:0;transform:translateY(23px)} to {opacity:1;transform:translateY(0)} }
+    @keyframes phoneArrive { from {opacity:0;transform:translateY(34px) scale(.965)} to {opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes phoneBreathe { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    @keyframes leafDrift { from {transform:translate(-5px,5px) rotate(-10deg)} to {transform:translate(5px,-8px) rotate(-3deg)} }
+    @keyframes haloBreathe {from{opacity:.78;transform:scale(.98)}to{opacity:1;transform:scale(1.02)}}
+    @keyframes heartPop { 0%{transform:scale(.25)} 50%{transform:scale(1.3)} 77%{transform:scale(.93)} 100%{transform:scale(1)} }
+    @keyframes heartFade {0%{opacity:0} 15%,60%{opacity:1} 100%{opacity:0}}
+    @keyframes commentsIn {from{opacity:0;transform:translateY(8%)}to{opacity:1;transform:translateY(0)}}
+    @media (max-width:1080px) { .phone {width:clamp(315px,33vw,394px);} .stage {min-height:800px;} }
+    @media (max-width:780px) {
+      .layout {display:flex;flex-direction:column;align-items:stretch;gap:0;padding-top:32px;}
+      .editorial {display:contents;}
+      .editorial-intro {order:1;max-width:570px;}
+      .stage {order:2;width:100%;min-height:auto;padding:38px 0 56px;}
+      .editorial-details {order:3;max-width:570px;padding:14px 0 0;}
+      .phone {width:min(79vw,398px);}
+      .placement-label {top:17px;right:5%;}
+      .interaction-hint {bottom:10px;font-size:10px;}
+      .stage::before {width:min(110%,625px);}
+      .stage::after {width:min(105%,630px);}
+      .floating-leaves {left:4%;top:10%;}
+      .editorial-details .motto {margin-top:31px;}
+      .description {max-width:520px;}
+    }
+    @media (max-width:480px) {
+      .layout {padding:30px 18px 28px;}
+      .site-header {padding-inline:18px;}
+      h1 {margin-top:19px;max-width:365px;font-size:clamp(50px,13.1vw,64px);}
+      .subline {margin:16px 0 0;}
+      .phone {width:min(100%,365px);}
+      .stage {padding:41px 0 55px;}
+      .placement-label {top:11px;right:1%;font-size:8px;}
+      .interaction-hint {max-width:100%;width:100%;white-space:normal;font-size:9.5px;padding:0 4px;line-height:1.8;}
+      .floating-leaves {left:-4%;}
+      .editorial-details {padding-top:5px;}
+      .motto {margin-bottom:7px;}
+      dialog#original-dialog {width:100vw;max-height:100dvh;border-radius:0;}
+      .viewer-shell {height:100dvh;}
+      .viewer-topline {height:50px;padding:0 10px 0 13px;font-size:8.5px;letter-spacing:.06em;}
+      .viewer-bottomline {padding:10px 10px;}
+      .viewer-secondary {font-size:9px;}
+      .viewer-help {font-size:10px;}
+    }
+    @media (prefers-reduced-motion:reduce) { .phone,.stage::before,.floating-leaves,.editorial-intro,.editorial-details {animation:none!important;} }
+
+  </style>
+<!-- Exhibition presentation mode: original application untouched unless ?embed=1 is requested. -->
+<script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('campaign-embed');</script>
+<style id="campaign-embed-styles">html.campaign-embed,html.campaign-embed body{min-width:0!important;min-height:0!important;background:transparent!important;overflow:visible!important}html.campaign-embed .page{min-height:0!important;overflow:visible!important;background:transparent!important}html.campaign-embed .page::after,html.campaign-embed .site-header,html.campaign-embed .editorial,html.campaign-embed .site-footer,html.campaign-embed .placement-label,html.campaign-embed .vertical-caption,html.campaign-embed .interaction-hint{display:none!important}html.campaign-embed .layout{width:100%;max-width:none;min-height:0!important;display:block!important;padding:10px 8px 25px!important;margin:0!important}html.campaign-embed .stage{min-height:0!important;display:grid;place-items:center;padding:6px 2px 15px!important}html.campaign-embed .phone{width:min(100%,379px)!important}html.campaign-embed .shadow-plate{bottom:0}</style>
+<style>
+    /* Added carousel stays strictly inside the original Instagram screen. */
+    .post-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:#ede9e2;}
+    .post-media .post-image{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center;}
+    .ig-slide-controls{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:space-between;pointer-events:none;padding:0 8px;}
+    .ig-slide-arrow{pointer-events:auto;width:28px;height:28px;border:1px solid #ffffffb8;background:#fffdf4dd;color:#3f3b37;border-radius:50%;font:24px/1 Georgia,serif;box-shadow:0 3px 8px #0002;display:grid;place-items:center;padding:0 0 4px;}
+    .ig-slide-arrow:focus-visible{outline:2px solid #6d806c;}
+    .ig-slide-counter{position:absolute;top:9px;right:12px;background:#2229;color:white;border-radius:50px;padding:5px 8px;font:10px/1.1 Arial,sans-serif;}
+    .caption-area{padding-bottom:3cqw;}
+    </style>
+<style id="single-image-feed-refinement">
+/* Match the Greenwich Morning feed: one edge-to-edge 4:5 image per phone.
+   Full-resolution original artwork remains unchanged and available in the image viewer. */
+.post-media{position:relative!important;width:100%!important;aspect-ratio:4 / 5!important;height:auto!important;overflow:hidden!important;background:transparent!important;}
+.post-media .post-image{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center center!important;}
+.ig-slide-controls{display:none!important;}
+.post-media::before,.post-media::after{box-shadow:none!important;}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="site-header">
+<div aria-label="Les Essences de New York" class="wordmark">
+<span aria-hidden="true" class="wordmark-symbol">L</span>
+<span class="wordmark-copy">Les Essences<br/>de New York</span>
+</div>
+<div class="header-right">Spring 2027 Collection</div>
+</header>
+<main class="layout">
+<section aria-labelledby="page-title" class="editorial">
+<div class="editorial-intro">
+<div class="eyebrow">Fifth Avenue Rain · No. 02</div>
+<h1 id="page-title">The Beauty After the Rain</h1>
+<div class="subline"><span aria-hidden="true"></span><small>A City of a Thousand Scents</small></div>
+</div>
+<div class="editorial-details">
+<p class="description">A rainy New York afternoon, translated into quiet botanical beauty.</p>
+<div aria-label="Fifth Avenue Rain fragrance notes" class="scent-notes" id="fragrance-notes">
+<div class="note"><small>01 / NOTE</small><span>Iris</span></div>
+<div class="note"><small>02 / NOTE</small><span>Violet Leaf</span></div>
+<div class="note"><small>03 / NOTE</small><span>Rain Accord</span></div>
+</div>
+<div class="cta-area">
+<button aria-haspopup="dialog" class="view-original" id="view-original" type="button">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"></path><circle cx="12" cy="12" r="3.1"></circle></svg>
+            View Original Advertisement
+          </button>
+<span class="original-note">Full image · No cropping or alterations</span>
+</div>
+<div aria-label="Collection artwork motif" class="motto">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25" viewbox="0 0 50 60"><path d="M12 58c20-15 21-37 23-56M28 39C6 43 7 23 5 22c19-1 25 10 23 17ZM32 26c-13-8-8-25-6-25 13 5 17 15 6 25ZM22 49C3 54 2 38 1 37c14-2 24 2 21 12Z"></path><path d="M28 39 6 24M32 26 27 3M22 49 4 39"></path></svg>
+<span>Inspired by the beauty of everyday New York.</span>
+</div>
+</div>
+</section>
+<section aria-label="Instagram feed advertisement in an iPhone mockup" class="stage">
+<div class="placement-label">Instagram / Feed / 4:5</div>
+<div class="vertical-caption">Digital campaign · Les Essences de New York</div>
+<svg aria-hidden="true" class="floating-leaves" fill="none" stroke="currentColor" stroke-width="1.1" viewbox="0 0 210 360">
+<path d="M46 359C78 264 117 195 140 35"></path><path d="M91 252C18 243-1 208 12 172c54 2 81 38 79 80ZM119 174C173 156 201 123 193 77c-57 6-78 46-74 97ZM132 86C86 64 91 25 103 3c44 21 43 57 29 83ZM69 306C32 318 7 298 1 274c34-14 65-4 68 32Z"></path><path d="M12 172c41 28 60 54 79 80M193 77c-34 35-54 67-74 97M103 3c19 29 29 55 29 83M1 274c27 15 53 26 68 32"></path>
+</svg>
+<div aria-hidden="true" class="shadow-plate"></div>
+<div aria-label="iPhone-style Instagram post preview" class="phone" id="phone" role="group">
+<div class="screen">
+<div aria-hidden="true" class="dynamic-island"></div>
+<div aria-hidden="true" class="status">
+<span>9:41</span>
+<div class="status-icons">
+<svg fill="currentColor" viewbox="0 0 18 15"><rect height="4" rx=".7" width="3" x="1" y="10"></rect><rect height="7" rx=".7" width="3" x="5" y="7"></rect><rect height="10" rx=".7" width="3" x="9" y="4"></rect><rect height="13" rx=".7" width="3" x="13" y="1"></rect></svg>
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 17 15"><path d="M1.5 5C5.3 1.6 11.5 1.6 15.5 5M4 8c2.8-2.4 6.2-2.4 9 0M6.9 11.2c1-.9 2.2-.9 3.2 0"></path></svg>
+<svg fill="none" stroke="currentColor" viewbox="0 0 27 14"><rect height="10" rx="3" width="22" x="1" y="2"></rect><rect fill="currentColor" height="6" rx="1.6" stroke="none" width="17" x="3" y="4"></rect><path d="M25 5v4" stroke-linecap="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<div class="insta-header">
+<div class="profile">
+<span class="avatar diptyque-avatar"><img alt="Diptyque Instagram profile picture" decoding="async" height="330" src="post-01.png" width="330"/></span>
+<div>
+<div class="profile-name">diptyque <span aria-label="Verified Instagram account" class="verified-check">✓</span></div>
+<div class="profile-sub">Sponsored</div>
+</div>
+</div>
+<span aria-hidden="true" class="dots">···</span>
+</div>
+<!-- The original uploaded image remains byte-for-byte identical to the supplied PNG. -->
+<div aria-label="Open campaign image. Use arrow buttons or swipe to view carousel; double tap to like." class="post-media" id="post-media" role="button" tabindex="0" title="Tap to enlarge · Double tap to like">
+<img alt="Fifth Avenue Rain candle surrounded by dewy iris flowers and botanical engraving" class="post-image" decoding="sync" height="1672" id="campaign-image" src="editorial-01.png" width="941"/>
+<div aria-hidden="true" class="like-burst" id="like-burst"><svg fill="currentColor" viewbox="0 0 120 120"><path d="M60 105S12 72 12 39c0-16 11-27 26-27 10 0 18 5 22 14 5-9 13-14 23-14 15 0 25 11 25 27 0 33-48 66-48 66Z"></path></svg></div>
+<div aria-label="Carousel slide controls" class="ig-slide-controls"><button aria-label="Previous image" class="ig-slide-arrow prev" data-slide="prev" type="button">‹</button><button aria-label="Next image" class="ig-slide-arrow next" data-slide="next" type="button">›</button><span class="ig-slide-counter" id="ig-slide-counter">1 / 3</span></div></div>
+<button class="post-cta" id="explore-fragrance" type="button"><span>Discover Fifth Avenue Rain</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 20 20"><path d="M3 10h13m-5-5 5 5-5 5"></path></svg></button>
+<div class="post-actions">
+<button aria-label="Like preview post" aria-pressed="false" class="post-icon-wrap" id="like-post" title="Like preview post" type="button">
+<svg aria-hidden="true" class="post-icon" viewbox="0 0 24 24"><path d="M20.8 8.4c0 4.8-8.8 11.1-8.8 11.1S3.2 13.2 3.2 8.4c0-3 2.1-4.8 4.6-4.8 1.8 0 3.1 1 4.2 2.4 1.1-1.4 2.4-2.4 4.2-2.4 2.5 0 4.6 1.8 4.6 4.8Z"></path></svg>
+</button>
+<button aria-label="Open comments" class="post-icon-wrap" id="open-comments" title="Read and add comments" type="button">
+<svg aria-hidden="true" class="post-icon" viewbox="0 0 24 24"><path d="M20.5 11.3c0 5-3.6 8.3-8.6 8.3-1.3 0-2.4-.2-3.4-.7l-4.6 1.3 1.2-4c-.8-1.3-1.3-2.9-1.3-4.9 0-5 3.5-8.3 8.7-8.3 4.7 0 8 3.3 8 8.3Z"></path></svg>
+</button>
+<span aria-label="Share icon" class="post-icon-decor" role="img">
+<svg aria-hidden="true" class="post-icon" viewbox="0 0 24 24"><path d="m21.5 3.5-8 17-3.6-7-7-3.4 18.6-6.6ZM9.9 13.5l11.6-10"></path></svg>
+</span>
+<button aria-label="Save preview post" aria-pressed="false" class="post-icon-wrap last" id="save-post" title="Save preview post" type="button">
+<svg aria-hidden="true" class="post-icon" viewbox="0 0 24 24"><path d="M5.5 3.2h13v17.5L12 16.5l-6.5 4.2V3.2Z"></path></svg>
+</button>
+</div>
+<div class="caption-area">
+<div aria-live="polite" class="post-meta"><span id="likes-label">Be the first to like</span><button class="comments-count" id="caption-comments" type="button">Add a comment</button></div>
+<div class="caption-copy"><strong>diptyque</strong> A city softened by rain. Iris, violet leaf and white musk.</div>
+<div class="caption-hashtags">#FifthAvenueRain #LesEssencesdeNewYork</div>
+<div class="caption-date">Spring 2027 · Campaign Preview</div>
+</div>
+<div class="phone-spacer"></div>
+<div aria-label="Decorative social feed navigation" class="insta-footer">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3V10ZM9 20v-7h6v7"></path></svg>
+<svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.6"></circle><path d="m15.5 15.5 5 5"></path></svg>
+<svg aria-hidden="true" viewbox="0 0 24 24"><rect height="18" rx="4" width="18" x="3" y="3"></rect><path d="m4 8 16-2M10 4l3 4m1-4 3 3m-6 5 5 3-5 3v-6Z"></path></svg>
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M20.8 8.4c0 4.8-8.8 11.1-8.8 11.1S3.2 13.2 3.2 8.4c0-3 2.1-4.8 4.6-4.8 1.8 0 3.1 1 4.2 2.4 1.1-1.4 2.4-2.4 4.2-2.4 2.5 0 4.6 1.8 4.6 4.8Z"></path></svg>
+<span aria-hidden="true" class="tiny-avatar">d</span>
+</div>
+<div aria-hidden="true" class="home-area"><span class="home-indicator"></span></div>
+<section aria-label="Instagram-style comments for Fifth Avenue Rain" class="comments-sheet" hidden="" id="comments-sheet">
+<div aria-hidden="true" class="comments-grab"></div>
+<div class="comments-head"><h2>Comments <span id="comment-heading-count"></span></h2><button aria-label="Close comments" class="comments-close" id="close-comments" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"></path></svg></button></div>
+<div aria-live="polite" class="comments-list" id="comments-list"></div>
+<form class="comment-form" id="comment-form">
+<span aria-hidden="true" class="composer-avatar">Y</span>
+<input aria-label="Write a comment" autocomplete="off" id="comment-input" maxlength="280" placeholder="Add a comment…" required="" type="text"/>
+<button aria-label="Post your comment" disabled="" id="submit-comment" type="submit">Post</button>
+</form>
+<div class="comments-demo-label">Illustrative comments · Fictional campaign preview · Your comments stay on this device</div>
+</section>
+</div>
+</div>
+<p class="interaction-hint"><span aria-hidden="true" class="hint-spark">✦</span> Tap to enlarge <span aria-hidden="true">·</span> Pinch to zoom <span aria-hidden="true">·</span> Double tap to like <span aria-hidden="true">·</span> Leave a comment</p>
+</section>
+</main>
+<footer class="site-footer"><span>Fifth Village · New York</span><span>Digital Campaign / 01</span></footer>
+</div>
+<dialog aria-label="Full-size interactive Fifth Avenue Rain advertisement viewer" id="original-dialog">
+<div class="viewer-shell">
+<div class="viewer-topline"><span>LES ESSENCES DE NEW YORK <span aria-hidden="true">/</span> FIFTH AVENUE RAIN</span><button aria-label="Close advertisement viewer" class="close-dialog" id="close-dialog" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m5 5 14 14M19 5 5 19"></path></svg></button></div>
+<div aria-label="Pinch with two fingers to zoom. Drag to move the image after zooming." class="zoom-viewport" id="zoom-viewport" tabindex="0">
+<img alt="Original full-resolution Fifth Avenue Rain candle advertisement, preserved without alteration" class="dialog-image" draggable="false" id="original-dialog-image"/>
+</div>
+<div class="viewer-bottomline"><span>Original advertisement <span class="viewer-secondary">· 1122 × 1402 px · Untouched PNG</span></span><div class="zoom-actions"><button aria-label="Zoom out" id="zoom-out" type="button">−</button><span aria-live="polite" id="zoom-level">100%</span><button aria-label="Zoom in" id="zoom-in" type="button">+</button><button class="zoom-reset" id="zoom-reset" type="button">Reset</button></div></div>
+<p class="viewer-help">Pinch with two fingers or use + / − to zoom. Drag to explore. Double-click to zoom in.</p>
+</div>
+</dialog>
+<script>
+  (() => {
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const source = $('campaign-image');
+    const dialog = $('original-dialog');
+    const modalImage = $('original-dialog-image');
+    const viewport = $('zoom-viewport');
+    const phone = $('phone');
+    const media = $('post-media');
+    const sheet = $('comments-sheet');
+    const input = $('comment-input');
+    const commentList = $('comments-list');
+    const STORAGE_KEY = 'les-essences-fifth-avenue-post-v1';
+    let state = { liked:false, saved:false, comments:[] };
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      if (saved && typeof saved === 'object') {
+        state.liked = saved.liked === true;
+        state.saved = saved.saved === true;
+        state.comments = Array.isArray(saved.comments) ? saved.comments.filter(c => c && typeof c.text === 'string').slice(-100) : [];
+      }
+    } catch(_) { /* file:// and private windows can disallow storage */ }
+    const persist = () => { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(_){} };
+    function renderReactions() {
+      const like = $('like-post'), save = $('save-post');
+      like.classList.toggle('is-liked',state.liked);
+      like.setAttribute('aria-pressed', String(state.liked));
+      like.setAttribute('aria-label',state.liked ? 'Unlike post' : 'Like post');
+      like.title = state.liked ? 'Unlike post' : 'Like post';
+      save.classList.toggle('is-saved',state.saved);
+      save.setAttribute('aria-pressed',String(state.saved));
+      save.setAttribute('aria-label',state.saved ? 'Unsave post' : 'Save post');
+      save.title = state.saved ? 'Unsave post' : 'Save post';
+      $('likes-label').textContent = state.liked ? 'Liked by you' : 'Be the first to like';
+    }
+    let burstTimer;
+    function burst() {
+      const el = $('like-burst');
+      el.classList.remove('play');
+      void el.offsetWidth;
+      el.classList.add('play');
+      clearTimeout(burstTimer);
+      burstTimer = setTimeout(() => el.classList.remove('play'),1100);
+    }
+    function setLiked(value, animate=false) {
+      state.liked=value;
+      if (animate) burst();
+      persist();renderReactions();
+    }
+    $('like-post').addEventListener('click', () => setLiked(!state.liked, !state.liked));
+    $('save-post').addEventListener('click', () => {state.saved=!state.saved;persist();renderReactions();});
+    renderReactions();
+
+    // Image viewer: no regeneration or new data; reuse the exact embedded PNG.
+    modalImage.src = source.src;
+    let scale=1, panX=0, panY=0;
+    const pointers = new Map();
+    let gesture=null;
+    const clamp=(n,low,high)=>Math.min(high,Math.max(low,n));
+    function updateTransform() {
+      const maxX=Math.max(0,(modalImage.offsetWidth*scale-viewport.clientWidth)/2);
+      const maxY=Math.max(0,(modalImage.offsetHeight*scale-viewport.clientHeight)/2);
+      panX=clamp(panX,-maxX,maxX);
+      panY=clamp(panY,-maxY,maxY);
+      modalImage.style.transform=`translate3d(${panX}px,${panY}px,0) scale(${scale})`;
+      $('zoom-level').textContent=Math.round(scale*100)+'%';
+      viewport.classList.toggle('zoomed',scale>1.001);
+    }
+    function setZoom(next) {
+      scale=clamp(next,1,5);
+      if(scale===1){panX=0;panY=0;}
+      updateTransform();
+    }
+    function openViewer(startZoom=1) {
+      if(!dialog.open){ dialog.showModal(); document.body.classList.add('viewer-open'); }
+      pointers.clear();gesture=null;panX=0;panY=0;
+      setZoom(startZoom);
+      viewport.focus({preventScroll:true});
+    }
+    function closeViewer(){ if(dialog.open)dialog.close(); }
+    $('view-original').addEventListener('click',()=>openViewer());
+    $('close-dialog').addEventListener('click',closeViewer);
+    dialog.addEventListener('click', e => {if(e.target===dialog)closeViewer();});
+    dialog.addEventListener('close',()=>{document.body.classList.remove('viewer-open');pointers.clear();});
+    $('zoom-in').addEventListener('click',()=>setZoom(scale*1.35));
+    $('zoom-out').addEventListener('click',()=>setZoom(scale/1.35));
+    $('zoom-reset').addEventListener('click',()=>{panX=0;panY=0;setZoom(1);});
+    viewport.addEventListener('wheel', e => {e.preventDefault();setZoom(scale*(e.deltaY<0 ? 1.12 : 1/1.12));},{passive:false});
+    viewport.addEventListener('dblclick', e => {e.preventDefault();setZoom(scale>1.05 ? 1 : 2);});
+    window.addEventListener('keydown', e => { if(!dialog.open)return; if(e.key==='+' || e.key==='='){e.preventDefault();setZoom(scale*1.2);} else if(e.key==='-'){e.preventDefault();setZoom(scale/1.2);} else if(e.key==='0'){e.preventDefault();panX=panY=0;setZoom(1);} });
+    function pointerStats(){
+      const p=[...pointers.values()];
+      if(p.length<2)return null;
+      return {x:(p[0].x+p[1].x)/2,y:(p[0].y+p[1].y)/2,d:Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y)};
+    }
+    function freshGesture(){ const first=[...pointers.values()][0];const st=pointerStats();gesture={x:first?.x||0,y:first?.y||0,stats:st,scale,panX,panY}; }
+    viewport.addEventListener('pointerdown', e => {
+      if(e.pointerType==='mouse' && e.button!==0)return;
+      e.preventDefault();
+      try{viewport.setPointerCapture(e.pointerId);}catch(_){}
+      pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});freshGesture();
+      viewport.classList.add('dragging');
+    });
+    viewport.addEventListener('pointermove', e => {
+      if(!pointers.has(e.pointerId))return;
+      e.preventDefault();pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(!gesture)return;
+      if(pointers.size>=2 && gesture.stats){
+        const st=pointerStats();
+        scale=clamp(gesture.scale*st.d/Math.max(1,gesture.stats.d),1,5);
+        panX=gesture.panX+(st.x-gesture.stats.x);
+        panY=gesture.panY+(st.y-gesture.stats.y);
+      } else if(pointers.size===1 && scale>1){
+        panX=gesture.panX+e.clientX-gesture.x;
+        panY=gesture.panY+e.clientY-gesture.y;
+      }
+      updateTransform();
+    });
+    function finishPointer(e){if(pointers.has(e.pointerId)){pointers.delete(e.pointerId);freshGesture();}if(!pointers.size)viewport.classList.remove('dragging');}
+    viewport.addEventListener('pointerup',finishPointer);
+    viewport.addEventListener('pointercancel',finishPointer);
+    window.addEventListener('resize',()=>{if(dialog.open)updateTransform();});
+
+    // One click opens; a double click/double tap anywhere on the phone's post likes.
+    // Defer single-click just long enough to distinguish the double-tap gesture.
+    let pendingClick=null, lastTap=null, suppressClicksUntil=0;
+    function cancelOpen(){clearTimeout(pendingClick);pendingClick=null;}
+    phone.addEventListener('click', e => {
+      if(performance.now()<suppressClicksUntil)return;
+      if(e.target.closest('button,a,input,form,.comments-sheet'))return;
+      const isMedia=!!e.target.closest('.post-media');
+      const now=performance.now();
+      const isDouble=lastTap && now-lastTap.time<350 && Math.hypot(e.clientX-lastTap.x,e.clientY-lastTap.y)<70;
+      if(isDouble){cancelOpen();lastTap=null;setLiked(true,true);e.preventDefault();return;}
+      lastTap={time:now,x:e.clientX,y:e.clientY};
+      cancelOpen();
+      if(isMedia)pendingClick=setTimeout(()=>{pendingClick=null;openViewer();},355);
+    });
+    // Native dblclick provides keyboard/mouse reliability.
+    phone.addEventListener('dblclick',e=>{
+      if(e.target.closest('button,a,input,form,.comments-sheet'))return;
+      e.preventDefault();cancelOpen();lastTap=null;setLiked(true,true);
+    });
+    media.addEventListener('keydown',e=>{
+      if(e.key==='Enter' || e.key===' '){e.preventDefault();openViewer();}
+    });
+    media.addEventListener('touchstart',e=>{
+      if(e.touches.length>=2){e.preventDefault();cancelOpen();lastTap=null;suppressClicksUntil=performance.now()+800;openViewer(1.6);}
+    },{passive:false});
+
+    // All sample usernames/comments are fictional, illustrative demo content.
+    const demoComments = [
+      {id:'demo1',user:'the.sunday.edit',initial:'S',text:'The sage glass and vintage botanical details are beautiful 🌿',time:'2h',likes:24},
+      {id:'demo2',user:'citymorningnotes',initial:'C',text:'Fifth Village in the spring, captured perfectly.',time:'4h',likes:16},
+      {id:'demo3',user:'atelier.muse',initial:'A',text:'Bergamot, basil and green tea? Such a lovely combination ✨',time:'6h',likes:11},
+      {id:'demo4',user:'softlight.studio',initial:'L',text:'That candle glow feels like a slow Sunday morning.',time:'1d',likes:8},
+      {id:'demo5',user:'paperandpetals',initial:'P',text:'The illustrated street and handwritten ingredient cards are everything.',time:'1d',likes:5}
+    ];
+    const demoLikes = new Set();
+    function renderComments(){
+      commentList.replaceChildren();
+      const count=demoComments.length+state.comments.length;
+      $('comment-heading-count').textContent='';
+      $('caption-comments').textContent=`View all ${count} comments`;
+      const all=[...state.comments.slice().reverse().map((c,i)=>({id:'local'+i,user:'you',initial:'Y',text:c.text,time:'now',likes:0,local:true})),...demoComments];
+      for(const c of all){
+        const row=document.createElement('article');row.className='comment';
+        const avatar=document.createElement('span');avatar.className='comment-avatar';avatar.textContent=c.initial;avatar.setAttribute('aria-hidden','true');
+        const body=document.createElement('div');body.className='comment-body';
+        const line=document.createElement('div');line.className='comment-line';
+        const author=document.createElement('strong');author.className='comment-author';author.textContent=c.user;
+        const content=document.createElement('span');content.className='comment-text';content.textContent=' '+c.text;
+        line.append(author,content);
+        const meta=document.createElement('div');meta.className='comment-meta';
+        const time=document.createElement('span');time.textContent=c.time;
+        const likes=document.createElement('span');likes.textContent=(c.likes+(demoLikes.has(c.id)?1:0))?`${c.likes+(demoLikes.has(c.id)?1:0)} likes`:'';
+        const reply=document.createElement('button');reply.type='button';reply.textContent='Reply';reply.addEventListener('click',()=>{input.value='@'+c.user+' ';$('submit-comment').disabled=false;input.focus();});
+        meta.append(time,likes,reply);body.append(line,meta);
+        const heart=document.createElement('button');heart.className='comment-heart';heart.type='button';heart.setAttribute('aria-label','Like comment by '+c.user);heart.setAttribute('aria-pressed',String(demoLikes.has(c.id)));
+        heart.textContent=demoLikes.has(c.id)?'♥':'♡';heart.classList.toggle('active',demoLikes.has(c.id));
+        heart.addEventListener('click',()=>{demoLikes.has(c.id)?demoLikes.delete(c.id):demoLikes.add(c.id);renderComments();});
+        row.append(avatar,body,heart);commentList.append(row);
+      }
+    }
+    function openComments(){cancelOpen();sheet.hidden=false;renderComments();input.focus({preventScroll:true});}
+    function closeComments(){sheet.hidden=true;$('open-comments').focus({preventScroll:true});}
+    $('open-comments').addEventListener('click',openComments);
+    $('caption-comments').addEventListener('click',openComments);
+    $('close-comments').addEventListener('click',closeComments);
+    input.addEventListener('input',()=>{$('submit-comment').disabled=!input.value.trim();});
+    $('comment-form').addEventListener('submit',e=>{
+      e.preventDefault();const text=input.value.trim();if(!text)return;
+      state.comments.push({text:text.slice(0,280),at:new Date().toISOString()});
+      state.comments=state.comments.slice(-100);persist();input.value='';$('submit-comment').disabled=true;
+      renderComments();commentList.scrollTop=0;input.focus({preventScroll:true});
+    });
+    window.addEventListener('keydown',e=>{if(e.key==='Escape' && !dialog.open && !sheet.hidden){closeComments();}});
+    $('explore-fragrance').addEventListener('click',()=>{
+      $('fragrance-notes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});
+    });
+    renderComments();
+  })();
+  </script>
+<script id="campaign-exhibition-bridge">
+(()=>{
+  if(!document.documentElement.classList.contains('campaign-embed'))return;
+  const kind="post-2";
+  const send=(data)=>{try{window.parent.postMessage({source:'les-essences-component',kind,...data},'*')}catch(_){}};
+  let lastHeight=0,pending=false;
+  const measure=()=>{
+    pending=false;
+    const bodyHeight=document.body?.getBoundingClientRect().height||0;
+    const naturalRoot=document.querySelector('.page')?.getBoundingClientRect().height||0;
+    const height=Math.ceil(Math.max(bodyHeight,naturalRoot))+2;
+    if(height&&Math.abs(height-lastHeight)>1){lastHeight=height;send({type:'resize',height})}
+  };
+  const schedule=()=>{if(!pending){pending=true;requestAnimationFrame(measure)}};
+  window.addEventListener('load',()=>{schedule();setTimeout(schedule,120);setTimeout(schedule,800)});
+  window.addEventListener('resize',schedule);
+  if('ResizeObserver' in window){const observer=new ResizeObserver(schedule);observer.observe(document.documentElement);observer.observe(document.body)}
+  if('MutationObserver' in window){new MutationObserver(schedule).observe(document.body,{attributes:true,childList:true,subtree:true,attributeFilter:['hidden','style','class','src']})}
+  for(const im of document.images){if(!im.complete)im.addEventListener('load',schedule,{once:true})}
+  const kindIsQuiz=kind==='quiz';
+  if(kindIsQuiz){
+    const loc=(el)=>{if(!el)return;const y=el.getBoundingClientRect().top+window.scrollY;send({type:'focus',offset:Math.round(y)})};
+    ['resultView','studioView'].forEach(id=>{const el=document.getElementById(id);if(el){new MutationObserver(()=>{if(!el.hidden)setTimeout(()=>{schedule();loc(el)},90)}).observe(el,{attributes:true,attributeFilter:['hidden']})}});
+    document.getElementById('beginQuiz')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('quizView')),90));
+    document.getElementById('retakeQuiz')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('quizView')),90));
+    document.getElementById('backResult')?.addEventListener('click',()=>setTimeout(()=>loc(document.getElementById('resultView')),90));
+  }
+  let pausedByGallery=false;
+  window.addEventListener('message',event=>{
+    if(event.source!==window.parent||!event.data||event.data.source!=='les-essences-parent')return;
+    if(event.data.type==='visibility'&&kind==='reel'){
+      const video=document.getElementById('reelVideo');if(!video)return;
+      if(!event.data.visible){if(!video.paused){pausedByGallery=true;video.pause()}}
+      else if(pausedByGallery&&!document.hidden&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){pausedByGallery=false;video.play().catch(()=>{})}
+    }
+  });
+  schedule();
+})();
+</script>
+<script>(() => {
+      'use strict';
+      const slides=[{"file": "editorial-01.png", "alt": "Fifth Avenue Rain candle surrounded by dewy iris flowers and botanical engraving"}];
+      const img=document.getElementById('campaign-image');
+      const dialogImg=document.getElementById('original-dialog-image');
+      const media=document.getElementById('post-media');
+      const counter=document.getElementById('ig-slide-counter');
+      let current=0;
+      const change=(delta)=>{
+        current=(current+delta+slides.length)%slides.length;
+        img.src=slides[current].file;
+        img.alt=slides[current].alt;
+        dialogImg.src=img.src;
+        dialogImg.alt=slides[current].alt;
+        counter.textContent=(current+1)+' / '+slides.length;
+        try{window.parent.postMessage({source:'les-essences-slide',image:slides[current].file,alt:slides[current].alt},'*')}catch(_){}
+      };
+      document.querySelectorAll('.ig-slide-arrow').forEach(btn=>btn.addEventListener('click',event=>{
+        event.preventDefault();event.stopPropagation();change(btn.dataset.slide==='next'?1:-1);
+      }));
+      let sx=null,sy=null;
+      media.addEventListener('touchstart',e=>{if(e.touches.length===1){sx=e.touches[0].clientX;sy=e.touches[0].clientY;}},{passive:true});
+      media.addEventListener('touchend',e=>{if(sx===null)return;
+        const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+        sx=null;sy=null;if(Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.3)return;
+        change(dx<0?1:-1);
+      },{passive:true});
+      window.addEventListener('message',e=>{
+        if(e.source!==window.parent||!e.data||e.data.source!=='les-essences-parent'||e.data.type!=='request-slide')return;
+        try{window.parent.postMessage({source:'les-essences-slide',image:slides[current].file,alt:slides[current].alt},'*')}catch(_){}
+      });
+      window.addEventListener('keydown',e=>{if(document.activeElement!==media)return;
+        if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();change(e.key==='ArrowRight'?1:-1);}
+      });
+    })();</script></body>
+</html>

@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html class="campaign-embed" lang="en">
 <head>
+<base href="./">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f6f0e8">
@@ -230,7 +231,7 @@
       <section class="phone-area" aria-label="Interactive Instagram-style Reel mockup">
         <div class="phone-outline">
           <div class="screen" id="screen">
-            <video class="reel-video" id="reelVideo" src="../assets/videos/reel-01.mp4" poster="../assets/images/reel-02.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" aria-label="Original Brooklyn Bloom campaign animation; tap to pause or resume playback">
+            <video class="reel-video" id="reelVideo" src="reel-01.mp4" poster="reel-02.jpg" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate" aria-label="Original Brooklyn Bloom campaign animation; tap to pause or resume playback">
               Your browser does not support HTML5 video. View the included MP4 file instead.
             </video>
             <button class="tap-target" id="mediaTap" type="button" aria-label="Pause or resume Reel; double-tap to like" title="Tap to pause · Double-tap to like"></button>
@@ -251,7 +252,7 @@
             </div>
 
             <div class="reel-bottom">
-              <div class="profile-row"><span class="avatar diptyque-avatar" role="img" aria-label="Diptyque Instagram profile picture"><img src="../assets/images/reel-03.png" alt="" width="330" height="330" draggable="false"></span><strong class="username">@diptyque</strong><button class="follow-button" id="followButton" type="button" aria-pressed="false">Follow</button></div>
+              <div class="profile-row"><span class="avatar diptyque-avatar" role="img" aria-label="Diptyque Instagram profile picture"><img src="reel-03.png" alt="" width="330" height="330" draggable="false"></span><strong class="username">@diptyque</strong><button class="follow-button" id="followButton" type="button" aria-pressed="false">Follow</button></div>
               <p class="caption-main">Brooklyn Bloom — A City of a Thousand Scents.</p>
               <p class="caption-sub">Les Essences de New York · Spring 2027</p>
               <span class="original-audio"><svg class="icon" aria-hidden="true"><use href="#i-music"/></svg> Original audio · Brooklyn Bloom</span>
@@ -505,19 +506,19 @@
       showToast(await copyText(CAPTION) ? 'Campaign caption copied' : 'Unable to copy; try again');
     });
     const previewLink = document.getElementById('copyLink');
-    const onWebsite = location.protocol === 'https:' || location.protocol === 'http:';
+    const onWebsite = ['https:', 'http:'].includes(window.parent.location.protocol);
     if (!onWebsite) {
       previewLink.disabled = true;
       previewLink.setAttribute('title', 'Available after hosting this website online');
       previewLink.lastChild.textContent = 'Preview link available when hosted';
     } else previewLink.addEventListener('click', async () => {
-      showToast(await copyText(location.href) ? 'Preview link copied' : 'Unable to copy; try again');
+      showToast(await copyText(window.parent.location.href) ? 'Preview link copied' : 'Unable to copy; try again');
     });
     const nativeShare = document.getElementById('nativeShare');
     if (onWebsite && typeof navigator.share === 'function') {
       nativeShare.hidden = false;
       nativeShare.addEventListener('click', async () => {
-        try { await navigator.share({title:'Brooklyn Bloom — Reel Experience', text:CAPTION, url:location.href}); }
+        try { await navigator.share({title:'Brooklyn Bloom — Reel Experience', text:CAPTION, url:window.parent.location.href}); }
         catch (e) { if (e.name !== 'AbortError') showToast('Sharing unavailable on this device'); }
       });
     }
@@ -575,5 +576,8 @@
   schedule();
 })();
 </script>
-</body>
+<script>/* Swipe vertically between Reels; original app interaction code remains intact. */
+(()=>{const screen=document.getElementById('screen');let x,y;
+screen.addEventListener('touchstart',e=>{if(e.touches.length===1){x=e.touches[0].clientX;y=e.touches[0].clientY;}},{passive:true});
+screen.addEventListener('touchend',e=>{if(y==null)return;let dy=e.changedTouches[0].clientY-y,dx=e.changedTouches[0].clientX-x;y=null;x=null;if(Math.abs(dy)>75&&Math.abs(dy)>Math.abs(dx)*1.4){parent.postMessage({source:'les-essences-deck',type:'reel-swipe',direction:dy<0?1:-1},'*');}},{passive:true});})();</script></body>
 </html>

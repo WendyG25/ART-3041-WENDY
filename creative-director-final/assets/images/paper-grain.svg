@@ -1,0 +1,1 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='grain'><feTurbulence type='fractalNoise' baseFrequency='.64' numOctaves='2' stitchTiles='stitch'/></filter><rect width='120' height='120' opacity='.08' filter='url(#grain)'/></svg>

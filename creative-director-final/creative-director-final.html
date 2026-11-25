@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#f4eee5"/>
+<meta name="description" content="Les Essences de New York: a fictional Diptyque Spring 2027 campaign concept featuring four New York-inspired fragrances. Not affiliated with Diptyque."/>
+<title>Les Essences de New York — Spring 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=GFS+Didot&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#f4eee5;--paper:#fbf8f2;--ink:#352d2c;--muted:#70665f;--wine:#682f3a;--rose:#cda5a7;--sage:#a6ae98;--river:#a66d59;--rain:#839aaa;--line:rgba(83,68,62,.19);--serif:'GFS Didot',Georgia,serif;--bodoni:'GFS Didot',Georgia,serif;--sans:'Cabin',Arial,sans-serif;--label:'Cabin',Arial,sans-serif}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}body{margin:0;color:var(--ink);background:var(--cream);font:400 14px/1.72 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.64' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' opacity='.08' filter='url(%23grain)'/%3E%3C/svg%3E");opacity:.15;pointer-events:none;z-index:100}img{max-width:100%;display:block}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid #a4746e;outline-offset:4px}h1,h2,h3,p,figure{margin:0}em{font-weight:400}.container{width:min(1460px,calc(100% - clamp(36px,7vw,120px)));margin:auto}.eyebrow{font:500 10px/1.5 var(--label);letter-spacing:.22em;text-transform:uppercase}.season-line{display:flex;align-items:center;justify-content:center;gap:22px;background:var(--wine);color:#fff7ef;padding:11px 16px;font:500 9px/1.4 var(--label);text-align:center;letter-spacing:.23em;text-transform:uppercase}.season-line span{opacity:.65;font-size:13px}
+/* Navigation is an entry into the existing campaign pages. */
+.masthead{height:83px;background:rgba(250,246,239,.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;backdrop-filter:blur(16px)}.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:28px}.identity{display:flex;align-items:center;gap:12px;min-width:0}.identity-mark{height:52px;width:43px;overflow:hidden;border:1px solid #c0ac99;border-radius:50%;flex:none;background:#faf6ee}.identity-mark img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}.identity-name{font:400 24px/1 var(--serif);letter-spacing:-.025em;white-space:nowrap}.identity-name em{font-style:italic}.identity-name small{font:500 8px var(--label);letter-spacing:.18em;text-transform:uppercase;display:block;margin-top:6px;color:#8d7770}.nav-links{display:flex;align-items:center;gap:clamp(17px,2vw,33px)}.nav-links a{position:relative;font:500 10px/1.4 var(--label);letter-spacing:.125em;text-transform:uppercase;white-space:nowrap;padding:14px 0;transition:color .2s}.nav-links a:hover{color:#a07376}.nav-links .current{color:#8b6168}.nav-links .external::after{content:'↗';font:17px var(--serif);margin-left:6px;line-height:0;vertical-align:-1px}.nav-links .postcard-link{border:1px solid #a98876;padding:13px 16px}.nav-links .postcard-link:hover{background:var(--ink);color:#fff}.mobile-toggle{display:none;background:transparent;border:0;color:var(--ink);padding:12px;letter-spacing:.1em;text-transform:uppercase;font:600 10px var(--label)}
+/* The visual is the first section. The film arrives later, but the real campaign artwork is visible now. */
+.hero{background:#d8c9ba}.hero-screen{height:min(820px,calc(100svh - 118px));min-height:460px;position:relative;overflow:hidden;isolation:isolate}.hero-stills{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#ddd3c8}.hero-stills::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(32,27,23,.12) 0%,transparent 18%,transparent 78%,rgba(32,27,23,.2) 100%)}.hero-still{height:100%;width:100%;min-width:0;overflow:hidden;position:relative;border-right:3px solid #f3eee7}.hero-still:last-child{border:0}.hero-still img{height:100%;width:100%;object-fit:cover;object-position:center;animation:slow-focus 20s ease-in-out infinite alternate}.hero-still:nth-child(2) img{animation-delay:-5s}.hero-still:nth-child(3) img{animation-delay:-9s;object-position:47% 50%}.hero-still:nth-child(4) img{animation-delay:-13s}.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;opacity:0;transition:opacity .7s ease;background:#e2d7cc}.hero-screen.is-playing .hero-video,.hero-screen.has-frame .hero-video{opacity:1}.hero-outer-rule{position:absolute;z-index:3;inset:22px;pointer-events:none;border:1px solid rgba(255,251,244,.56)}.film-caption{position:absolute;inset:auto clamp(30px,5vw,78px) 36px;z-index:3;display:flex;align-items:end;justify-content:space-between;gap:24px;color:#fff9f4;text-shadow:0 2px 12px #2920198c}.film-caption .note{font:500 10px/1.7 var(--label);letter-spacing:.22em;text-transform:uppercase}.film-caption .note small{display:block;opacity:.8;letter-spacing:.12em}.film-toggle{display:none;border:1px solid #fff8f0a8;background:rgba(36,26,22,.32);color:#fff8f0;padding:10px 17px;font:500 10px var(--label);letter-spacing:.11em;text-transform:uppercase;backdrop-filter:blur(5px)}.film-toggle:hover{background:rgba(36,26,22,.64)}@keyframes slow-focus{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+/* Short, evocative product introduction. */
+.intro{padding:clamp(78px,10vw,150px) 0 clamp(64px,8vw,118px);background:var(--paper)}.intro-inner{max-width:900px;margin:auto;text-align:center}.intro .eyebrow{color:#976e73}.flourish{display:flex;align-items:center;justify-content:center;gap:16px;margin:18px 0 27px;color:#9d8a74}.flourish::before,.flourish::after{content:'';width:52px;height:1px;background:#c9b5a1}.flourish span{font:italic 24px var(--serif)}.intro h1{font:400 clamp(58px,8.3vw,118px)/.88 var(--serif);letter-spacing:-.065em;margin:0 auto 36px;max-width:1000px}.intro h1 em{font-style:italic;color:#94777a}.intro p{max-width:660px;margin:0 auto;font:400 clamp(17px,2vw,24px)/1.5 var(--serif);color:#6a5c56}.intro-inner > p:not(.micro){text-align:justify;text-align-last:justify;text-justify:inter-word;hyphens:none;-webkit-hyphens:none;word-break:normal;overflow-wrap:normal}.intro .micro{margin-top:28px;font:500 10px/1.8 var(--label);letter-spacing:.18em;text-transform:uppercase;color:#8b7772}.intro .discover{display:inline-block;border-bottom:1px solid #86645f;padding-bottom:7px;margin-top:35px;font:500 10px var(--label);letter-spacing:.15em;text-transform:uppercase}.intro .discover:hover{color:#a8797a}
+.collection{padding:clamp(65px,8vw,110px) 0 clamp(90px,10vw,155px);background:linear-gradient(180deg,#f1e8de,#f8f3ec)}.collection-head{display:grid;grid-template-columns:1.15fr .85fr;align-items:end;gap:60px;margin-bottom:42px;padding-top:25px;border-top:1px solid var(--line)}.collection-head .eyebrow{color:#966e6c}.collection-head h2{font:400 clamp(48px,6.4vw,93px)/.94 var(--serif);letter-spacing:-.045em;margin-top:21px}.collection-head h2 em{color:#987773;font-style:italic}.collection-head p{max-width:430px;color:#776960;font-size:13px;line-height:1.95;padding-bottom:8px}.collection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.scent{min-width:0;border:1px solid #d7c9bc;background:#f4f2f0;transition:transform .25s,box-shadow .25s;position:relative;display:flex;flex-direction:column}.scent:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(75,52,41,.12)}.scent-media{position:relative;min-height:340px;background:#efeeec;display:flex;align-items:center;justify-content:center;padding:28px 24px 20px;overflow:hidden}.edition-tag{position:absolute;top:18px;left:18px;background:#fff;color:#231d1b;padding:8px 12px;font:500 12px/1 var(--sans);letter-spacing:.01em;box-shadow:0 1px 0 rgba(0,0,0,.04)}.cart-float{position:absolute;right:18px;bottom:18px;width:52px;height:52px;border-radius:50%;border:1px solid #e0d5ca;background:#f8f5f0;color:#2b2421;display:grid;place-items:center;font-size:20px;box-shadow:0 8px 20px rgba(65,44,32,.08);transition:.2s}.cart-float:hover{background:#342c2b;color:#fff}.product-visuals{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 44%;align-items:end;gap:12px;max-width:360px}.product-shot,.pack-shot{display:flex;align-items:flex-end;justify-content:center}.product-shot img,.pack-shot img{display:block;filter:drop-shadow(0 15px 28px rgba(44,35,30,.14));transition:transform .45s}.product-shot img{max-height:232px;width:auto;max-width:100%;object-fit:contain}.pack-shot img{max-height:205px;width:auto;max-width:100%;object-fit:contain}.scent:hover .product-shot img{transform:translateY(-3px) scale(1.02)}.scent:hover .pack-shot img{transform:translateY(-2px) scale(1.015)}.scent-body{padding:18px 26px 26px;display:flex;flex-direction:column;flex:1}.scent-region{font:500 10px/1.4 var(--label);letter-spacing:.16em;text-transform:uppercase;color:#a08f84;margin-bottom:12px}.scent h3{font:400 clamp(28px,2.6vw,40px)/1.02 var(--serif);margin:0 0 12px;letter-spacing:-.018em;color:#2d2522}.scent-note{font:400 14px/1.72 var(--sans);color:#695f59;margin:0 0 16px;min-height:96px}.scent-meta{margin-top:auto;border-top:1px solid #ddd1c5;padding-top:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px}.scent-size{font:500 11px/1.5 var(--label);letter-spacing:.14em;text-transform:uppercase;color:#85766d}.scent-ingredients{font:500 10px/1.6 var(--label);letter-spacing:.12em;text-transform:uppercase;color:#9a8b82;margin-top:6px}.add-cart{border:1px solid #a88d7e;background:#fff8f2;color:#332926;padding:12px 16px;font:600 10px/1 var(--label);letter-spacing:.12em;text-transform:uppercase;transition:.2s;white-space:nowrap}.add-cart:hover{background:#342c2b;color:#fff;border-color:#342c2b}.collection-footer{text-align:center;color:#776d66;font:italic 24px var(--serif);padding-top:48px}.cart-banner{display:inline-flex;align-items:center;gap:10px;margin-top:18px;border:1px solid #d8cabf;background:#fdf8f2;padding:10px 14px;font:500 10px/1.4 var(--label);letter-spacing:.12em;text-transform:uppercase;color:#725f57}.cart-banner strong{font:600 11px var(--sans);letter-spacing:0;text-transform:none;color:#3b302b}
+.journey{background:#e8ded3;border-top:1px solid #d7c6b6;padding:80px 0;text-align:center}.journey h2{font:400 clamp(42px,5vw,72px)/1 var(--serif);letter-spacing:-.035em;margin:17px auto}.journey h2 em{font-style:italic;color:#9c7773}.journey p{font:400 18px/1.45 var(--serif);color:#74675e;margin-bottom:28px}.journey-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px}.journey-links a{border:1px solid #ac9886;padding:15px 20px;font:500 10px var(--label);letter-spacing:.12em;text-transform:uppercase;transition:.2s}.journey-links a:hover{background:var(--wine);color:#fff8f0;border-color:var(--wine)}.journey-links a span{font-size:17px;margin-left:11px;font-family:var(--serif)}
+.footer{background:#342c2b;color:#f5ede5;padding:25px 0 16px}.footer-top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:17px}.footer-top p{font:italic 27px/1.15 var(--serif);margin-top:5px}.footer-top .eyebrow{color:#c2ad9e;font-size:9px}.footer-bottom{border-top:1px solid #ffffff40;padding-top:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:500 8px/1.5 var(--label);letter-spacing:.075em;text-transform:uppercase;color:#dacdc1}.footer-bottom a{border-bottom:1px solid currentColor;padding-bottom:3px}
+@media(min-width:1500px){.hero-screen{height:min(870px,calc(100svh - 118px))}}@media(max-width:1100px){.identity-name{font-size:22px}.nav-links{gap:15px}.nav-links a{font-size:9px}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.scent-media{min-height:360px}.scent-body{padding:20px 20px 24px}.scent h3{font-size:34px}}
+@media(max-width:780px){.container{width:calc(100% - 44px)}.masthead{height:71px}.identity-name{font-size:21px}.identity-mark{height:45px;width:38px}.mobile-toggle{display:block}.nav-links{display:none;position:absolute;left:0;right:0;top:100%;padding:18px 24px 23px;background:#fbf6ee;border-bottom:1px solid var(--line);box-shadow:0 16px 22px #2c221525;flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:17px 7px;font-size:11px;border-bottom:1px solid #e8dcd0}.nav-links .postcard-link{margin-top:14px;text-align:center;border:1px solid #a98876}.hero-screen{height:66vw;min-height:360px;max-height:620px}.hero-outer-rule{inset:13px}.film-caption{bottom:24px;left:26px;right:26px}.hero-stills{grid-template-columns:repeat(4,minmax(0,1fr))}.collection-head{grid-template-columns:1fr;gap:15px}.collection-grid{grid-template-columns:1fr;gap:20px}.scent h3{font-size:clamp(30px,4.8vw,39px)}.scent-media{min-height:330px}.product-visuals{max-width:320px}.footer-top{flex-direction:column;align-items:flex-start;gap:10px}}
+@media(max-width:520px){.season-line{font-size:8px;gap:12px;letter-spacing:.13em}.container{width:calc(100% - 32px)}.identity-name{font-size:19px}.identity-name small{font-size:7px}.hero-screen{height:79svh;min-height:410px;max-height:730px}.hero-stills{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.hero-still{border-right:2px solid #f5efe6;border-bottom:2px solid #f5efe6}.hero-still:nth-child(2){border-right:0}.hero-still:nth-child(3){border-bottom:0}.hero-still:last-child{border:0}.hero-video{object-fit:contain;background:#342c2b}.film-caption{left:25px;right:25px;bottom:21px}.film-caption .note{font-size:8px;letter-spacing:.1em}.intro{padding:73px 0 63px}.intro h1{font-size:clamp(55px,13vw,80px);margin:0 auto 25px}.intro p{font-size:21px}.intro .micro{font-size:9px;line-height:2}.collection{padding:60px 0 90px}.collection-head h2{font-size:63px}.collection-grid{gap:14px}.scent-body{padding:16px 16px 20px}.scent-media{min-height:290px;padding:24px 18px 18px}.product-visuals{grid-template-columns:minmax(0,1fr) 42%;gap:8px}.product-shot img{max-height:190px}.pack-shot img{max-height:165px}.edition-tag{top:14px;left:14px;font-size:11px;padding:7px 10px}.cart-float{right:14px;bottom:14px;width:46px;height:46px}.scent h3{font-size:clamp(25px,6vw,34px);margin:0 0 10px}.scent-note{font-size:11px;min-height:0}.scent-size{font-size:9px}.scent-ingredients{font-size:8px}.scent-meta{flex-direction:column;align-items:flex-start}.add-cart{width:100%;text-align:center}.collection-footer{font-size:20px}.journey{padding:70px 0}.journey h2{font-size:51px}.journey-links{flex-direction:column}.journey-links a{width:100%}.footer-top p{font-size:25px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-still img,.scent-media img{animation:none!important;transition:none}.hero-video{transition:none}}
+@media(max-width:650px){.intro-inner > p:not(.micro){text-align-last:left}}
+</style>
+<style>
+/* FINAL LAUNCH REVISION: original supplied logo, film and matching fragrance imagery. */
+.season-line{display:flex;min-height:43px;align-items:center;justify-content:space-between;gap:12px;padding:9px clamp(20px,4vw,66px);font-size:9px;line-height:1.5;letter-spacing:.16em;text-align:left}
+.season-house{font-size:10px;font-weight:600;letter-spacing:.16em;color:#fffaf5;opacity:1}.season-mark{padding:0 13px;font-size:12px;opacity:.7}
+.season-note{font:500 9px/1.4 var(--label);letter-spacing:.075em;color:#fff5ed;opacity:.86;text-transform:none;text-align:right}
+.masthead{height:91px}.identity{gap:17px}.identity-mark{width:59px;height:70px;border:0;background:#faf6ef;border-radius:0;display:grid;place-items:center;overflow:hidden;flex:none}.identity-mark img{display:block;width:auto;height:67px;max-width:100%;object-fit:contain;mix-blend-mode:multiply}
+.identity-name{display:flex;flex-direction:column;gap:0;font-size:25px;line-height:1.06;white-space:normal}.identity-name em{display:inline}
+.identity-name .house-name{font:500 12px/1 var(--bodoni);text-transform:uppercase;letter-spacing:.2em;color:#66514a;margin:0 0 7px}.identity-name .house-name span{font-size:6px;letter-spacing:.11em;margin-left:4px}
+.identity-name small{margin-top:7px;font-size:8px;letter-spacing:.17em}
+.nav-links{gap:clamp(12px,1.6vw,25px)}.nav-links a{font-size:9px;letter-spacing:.12em}
+.hero{background:#e9dbce}.hero-stills{display:block!important;background:#f7eee5}.hero-stills>img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-video{object-fit:cover;background:transparent}.film-caption .note{background:rgba(251,246,239,.82);color:#493b35;text-shadow:none;border:1px solid rgba(89,64,52,.17);padding:11px 18px;backdrop-filter:blur(7px);font-size:10px;letter-spacing:.12em}
+.film-caption .note small{opacity:.84}.film-toggle{display:none;border-color:rgba(73,59,53,.55);color:#493b35;background:rgba(251,246,239,.78);text-shadow:none}.film-toggle:hover{background:rgba(251,246,239,.95)}
+.product-shot img,.pack-shot img{object-position:center}
+@media(max-width:1070px){.season-line{justify-content:center;flex-wrap:wrap;gap:4px 18px;text-align:center}.season-note{text-align:center}.masthead{height:85px}.identity{gap:9px}.identity-mark{width:46px;height:61px}.identity-mark img{height:59px}.identity-name{font-size:19px}.nav-links{gap:11px}.nav-links a{font-size:8px;letter-spacing:.065em;padding:10px 0}.nav-links .postcard-link{padding:11px}}
+@media(max-width:760px){.season-line{padding:8px 12px;gap:0 6px}.season-house{font-size:8px}.season-note{font-size:8px}.masthead{height:75px}.identity-mark{width:42px;height:55px}.identity-mark img{height:53px}.identity-name{font-size:21px}.identity-name .house-name{font-size:10px;margin-bottom:5px}.identity-name small{font-size:7px}.hero-screen{height:calc(100svh - 141px);min-height:390px;max-height:670px}.hero-video,.hero-stills>img{object-fit:contain;background:#efe6db}.hero-outer-rule{inset:11px}.film-caption{inset:auto 19px 20px;gap:9px}.film-caption .note{font-size:8px;letter-spacing:.06em;padding:7px 10px}.film-toggle{font-size:9px;padding:8px 10px}}
+@media(max-width:760px){.hero-screen{aspect-ratio:16/9;height:auto;min-height:0;max-height:none}.film-caption{bottom:12px}.film-caption .note{font-size:7px;padding:5px 8px}.film-caption .note small{font-size:6px}.film-toggle{padding:6px 8px;font-size:8px}}
+@media(max-width:440px){.season-line{min-height:57px}.season-house{font-size:8px}.season-note{font-size:7px;max-width:100%}.hero-screen{height:auto;min-height:0;max-height:none;aspect-ratio:16/9}.film-caption{inset:auto 12px 10px}.film-caption .note{font-size:7px}.film-caption .note small{font-size:6px}}
+</style>
+
+<style id="editorial-launch-header-2026">
+/* A restrained fragrance-house masthead: compact campaign ribbon, oval logo and balanced nav. */
+.season-line{
+  position:relative;min-height:35px;padding:8px clamp(20px,4.1vw,66px);
+  background:#5e3940;color:#f9f0e6;display:flex;align-items:center;
+  justify-content:space-between;gap:12px 24px;text-align:left;
+  border-bottom:1px solid rgba(255,255,255,.13);
+}
+.season-house{font:500 9px/1.6 var(--label);letter-spacing:.17em;color:#f9f0e6;opacity:1;white-space:nowrap}
+.season-mark{padding:0 13px;color:#d5bbac;font-size:12px;opacity:1}
+.season-note{font:400 10px/1.5 var(--sans);letter-spacing:.035em;color:#f3e4d8;opacity:.9;text-align:right;text-transform:none}
+.season-note span{padding:0 4px}
+.masthead{
+  height:102px;position:sticky;top:0;z-index:30;
+  background:rgba(250,247,241,.975);border-bottom:1px solid #ded1c6;
+  box-shadow:0 5px 28px rgba(50,35,32,.035);backdrop-filter:blur(20px);
+}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:clamp(16px,3vw,48px)}
+.identity{display:flex;align-items:center;gap:17px;flex:0 1 auto;min-width:0;text-decoration:none;}
+.identity-mark{width:65px;height:77px;flex:0 0 65px;background:transparent;border:0;border-radius:0;overflow:visible;display:grid;place-items:center}
+.identity-mark img{width:100%;height:100%;max-width:100%;object-fit:contain;mix-blend-mode:multiply;filter:contrast(1.03)}
+.identity-name{display:flex;flex-direction:column;min-width:0;gap:0;font:400 30px/1 var(--serif);color:#392e2a;white-space:normal}
+.identity-name .house-name{font:600 10px/1.2 var(--bodoni);letter-spacing:.22em;text-transform:uppercase;color:#956c62;margin:0 0 6px}
+.identity-name .house-name span{margin-left:5px;font:400 8px/1 var(--bodoni);letter-spacing:.15em}
+.identity-name .campaign-name{display:block;font:400 clamp(27px,2.5vw,38px)/.92 var(--serif);letter-spacing:-.029em;white-space:nowrap}
+.identity-name .campaign-name em{font-weight:400;font-style:italic;color:#8e6868}
+.identity-name small{display:block;margin-top:8px;font:500 8px/1.5 var(--label);letter-spacing:.17em;color:#84776c;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,2.2vw,34px);flex-wrap:nowrap}
+.nav-links a{position:relative;display:inline-flex;align-items:center;padding:11px 0;font:500 10px/1.2 var(--label);letter-spacing:.11em;text-transform:uppercase;color:#5b504a;white-space:nowrap;border:0;background:none;transition:color .2s}
+.nav-links a::before{content:'';position:absolute;bottom:4px;left:0;right:100%;height:1px;background:#956b70;transition:right .23s ease}
+.nav-links a:hover,.nav-links a:focus-visible,.nav-links a.current{color:#8e5b65}
+.nav-links a.current::before,.nav-links a:hover::before,.nav-links a:focus-visible::before{right:0}
+.nav-links .external::after{content:'↗';font:16px/1 var(--serif);margin-left:5px;color:#9d8579;vertical-align:0}
+.nav-links .postcard-link{border:none;padding:11px 0;background:transparent;color:#5b504a}
+.nav-links .postcard-link:hover{background:transparent;color:#8e5b65}
+.mobile-toggle{display:none;border:1px solid #c8b3a5;background:transparent;color:#5b4343;border-radius:2px;padding:12px 14px;font:500 10px var(--label);letter-spacing:.16em;text-transform:uppercase}
+@media(max-width:1120px){
+ .masthead{height:92px}.identity{gap:12px}.identity-mark{width:55px;flex-basis:55px;height:66px}
+ .identity-name .campaign-name{font-size:28px}.identity-name .house-name{font-size:9px}
+ .nav-inner{gap:18px}.nav-links{gap:15px}.nav-links a{font-size:9px;letter-spacing:.06em}
+}
+@media(max-width:910px){
+ .masthead{height:79px}.identity-mark{width:48px;flex-basis:48px;height:60px}
+ .identity-name .campaign-name{font-size:26px}.identity-name .house-name{font-size:9px}
+ .identity-name small{font-size:7px;margin-top:6px}
+ .mobile-toggle{display:inline-flex;align-items:center;gap:9px;margin-left:auto}
+ .nav-links{display:none;position:absolute;top:100%;left:0;right:0;padding:15px 5% 24px;
+   background:#fbf7ef;border-bottom:1px solid #d7c7b9;box-shadow:0 14px 30px #342c2b1b;
+   flex-direction:column;align-items:stretch;gap:0}
+ .nav-links.open{display:flex}
+ .nav-links a,.nav-links .postcard-link{padding:16px 3px;border-bottom:1px solid #e5d8cb;background:transparent;font-size:11px;letter-spacing:.12em}
+ .nav-links a::before{display:none}
+ .nav-links .external::after{margin-left:auto;font-size:19px}
+ .nav-links a:last-child{border-bottom:0}
+ .season-line{padding:9px 4%;min-height:37px}
+ .season-house{font-size:8px;letter-spacing:.11em}
+ .season-note{font-size:9px}
+}
+@media(max-width:630px){
+ .season-line{min-height:44px;flex-direction:column;gap:2px;justify-content:center;text-align:center;padding:6px 9px}
+ .season-house{font-size:8px;line-height:1.3;letter-spacing:.14em}
+ .season-mark{padding:0 8px}
+ .season-note{font-size:8px;line-height:1.2;text-align:center;letter-spacing:.015em}
+ .masthead{height:75px}
+ .nav-inner{width:calc(100% - 30px)}
+ .identity{gap:9px}.identity-mark{width:46px;flex-basis:46px;height:55px}
+ .identity-name .campaign-name{font-size:clamp(20px,5vw,27px);white-space:normal}
+ .identity-name .house-name{font-size:8px;margin-bottom:4px}
+ .identity-name small{font-size:6px;letter-spacing:.10em;margin-top:4px}
+ .mobile-toggle{padding:10px;font-size:9px;flex-shrink:0}
+}
+@media(max-width:390px){.identity-name .campaign-name{font-size:20px}.identity-name small{font-size:6px}.mobile-toggle{padding:8px}}
+@media(prefers-reduced-motion:reduce){.nav-links a::before{transition:none}}
+</style>
+<style id="shop-grid-redesign">
+/* Four fragrance rows x four product formats. Deliberately borderless Diptyque-inspired editorial storefront. */
+.commerce-collection{background:linear-gradient(#f9f7f3,#f7f3ed);padding:clamp(72px,8vw,120px) 0 clamp(80px,9vw,125px)}
+.commerce-head{display:flex;justify-content:space-between;align-items:end;gap:70px;padding:27px 0 40px;border-top:1px solid #d5c7bc}
+.commerce-head .eyebrow{color:#966f73}.commerce-head h2{font:400 clamp(52px,6vw,92px)/.98 var(--serif);letter-spacing:-.045em;margin:15px 0 0}.commerce-head h2 em{color:#907077;font-style:italic}
+.commerce-head-aside{max-width:420px}.commerce-head-aside>p:first-child{font:400 14px/1.85 var(--sans);color:#625953;margin:0 0 13px}
+.commerce-head-aside .concept-disclaimer{font:500 10px/1.7 var(--label);text-transform:uppercase;letter-spacing:.07em;color:#927b6c;margin:0}
+.fragrance-row{padding-top:31px;margin-top:40px;border-top:1px solid #d9cdc0}
+.fragrance-heading{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:27px}
+.fragrance-count{display:block;font:500 10px/1.7 var(--label);letter-spacing:.19em;color:#9b8478}
+.fragrance-heading h3{font:400 clamp(42px,4.9vw,72px)/1 var(--serif);letter-spacing:-.026em;margin:10px 0 7px;color:#403533}
+.fragrance-heading h3::after{content:'';display:inline-block;width:25px;height:4px;margin-left:20px;vertical-align:middle;background:var(--row-accent);opacity:.65}
+.fragrance-heading p{font:italic 23px/1.3 var(--serif);color:#8b766e;margin:0}
+.fragrance-location{font:500 10px/1.6 var(--label);letter-spacing:.18em;text-transform:uppercase;text-align:right;color:#907d72;margin-bottom:10px}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,1.95vw,30px)}
+.product-tile{min-width:0;background:#f2f1ee;display:flex;flex-direction:column;position:relative;border:0;box-shadow:none;transition:transform .28s ease,box-shadow .28s ease}
+.product-tile:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(74,56,47,.06)}
+.tile-media{position:relative;background:#f2f1ee;aspect-ratio:1/1.06;overflow:hidden;display:grid;place-items:center;border:0;padding:24px 22px 18px}
+.tile-image{display:block;width:100%;height:100%;object-fit:contain;object-position:center;transition:transform .36s ease;border:0}
+.product-tile:hover .tile-image{transform:scale(1.012)}
+.tile-sticker{position:absolute;top:18px;left:18px;font:500 8px/1.35 var(--label);letter-spacing:.08em;color:#2f2826;text-transform:none;background:rgba(255,255,255,.96);padding:7px 10px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.tile-add{position:absolute;right:18px;bottom:18px;width:54px;height:54px;border:0;border-radius:50%;background:#ece9e5;display:grid;place-items:center;color:#221d1c;box-shadow:none;transition:background .2s,color .2s,transform .2s;cursor:pointer}
+.tile-add:hover,.tile-add:focus-visible{background:#332927;color:#fff;transform:translateY(-2px)}
+.tile-add svg{width:25px;height:25px}
+.tile-add.just-added{background:#5b6b58;color:#fff}
+.tile-add.just-added:after{content:'✓';position:absolute;top:-5px;right:-4px;background:#5b6b58;color:white;border-radius:50%;width:19px;height:19px;font:700 13px/19px var(--sans);text-align:center}
+.tile-info{text-align:center;padding:18px 24px 34px;display:flex;flex-direction:column;align-items:stretch;flex:1;min-width:0;background:#f2f1ee}
+.tile-info h4{font:400 clamp(22px,1.96vw,28px)/1.16 var(--serif);letter-spacing:-.022em;margin:0 0 14px;color:#241f1f;text-wrap:balance}.tile-category{font:inherit;white-space:normal}
+.tile-type{font:400 15px/1.18 var(--serif);color:#3e3532;margin:10px 0 14px}
+.tile-description{font:400 12px/1.6 var(--sans);color:#6c635d;margin:0 auto 26px;max-width:275px;min-height:3.2em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;text-wrap:pretty}
+.tile-spec{display:flex;flex-direction:column;align-items:center;justify-content:end;margin-top:auto;gap:4px;padding-top:0}
+.tile-spec span{font:500 10px/1.45 var(--label);letter-spacing:.03em;color:#262120;text-transform:none}
+.tile-spec strong{font:500 15px/1.3 var(--sans);color:#241f1f;white-space:nowrap}
+
+.product-tile .tile-media+.tile-info{border-top:0!important}
+.commerce-collection .collection-footer{font:italic 29px/1.2 var(--serif);text-align:center;color:#7b6d65;padding:57px 0 0}
+/* Shopping bag: local concept interaction, not a real transaction. */
+.bag-launch{display:inline-flex;align-items:center;gap:9px;border:1px solid #bda99b;background:transparent;color:#342b2a;padding:11px 14px;cursor:pointer;font:500 9px var(--label);letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+.bag-launch:hover{background:#342b2a;color:#fff}.bag-launch svg{height:21px;width:21px}.bag-count{min-width:19px;height:19px;display:grid;place-items:center;background:#793e4b;color:#fff;border-radius:50%;font:600 10px var(--sans)}
+.bag-shade[hidden],.bag-drawer[hidden]{display:none!important}
+.bag-shade{position:fixed;inset:0;background:#211c1bd0;z-index:199;cursor:pointer}
+.bag-drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100vw);z-index:200;background:#f9f5ef;box-shadow:-15px 0 70px #0003;display:flex;flex-direction:column;overflow:hidden}
+.bag-top{display:flex;align-items:start;justify-content:space-between;gap:18px;padding:27px 29px 20px;border-bottom:1px solid #d6c8bc}
+.bag-top small{display:block;font:500 10px var(--label);letter-spacing:.2em;color:#946d76}.bag-top h2{font:400 39px var(--serif);margin:7px 0 0}.bag-close{border:0;background:transparent;padding:5px;color:#4d403d;cursor:pointer;font-size:27px}
+.bag-content{padding:24px 28px;flex:1;overflow-y:auto}.bag-empty{font:italic 24px/1.4 var(--serif);color:#8b786d;padding:30px 10px;text-align:center}
+.bag-item{display:grid;grid-template-columns:1fr auto;gap:8px 15px;padding:14px 0;border-bottom:1px solid #d7ccc0}
+.bag-item-title{font:400 24px/1.1 var(--serif)}.bag-item-sub{font:400 11px/1.6 var(--sans);color:#8d7c73;margin:4px 0 0}.bag-item-amount{font:600 13px var(--sans)}.bag-remove{border:0;background:none;cursor:pointer;padding:6px 0;text-decoration:underline;font:400 10px var(--sans);color:#80665a;text-align:left}
+.bag-bottom{border-top:1px solid #d6c8bc;padding:21px 28px 24px;background:#f6f0e9}
+.bag-total{display:flex;justify-content:space-between;font:600 15px var(--sans);margin-bottom:10px}.bag-explain{font:400 11px/1.6 var(--sans);color:#776961;margin:0}
+.bag-feedback{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#3a3030;color:white;z-index:202;padding:13px 20px;min-width:220px;text-align:center;box-shadow:0 14px 35px #0003;font:500 11px var(--sans)}.bag-feedback[hidden]{display:none!important}
+@media(max-width:1180px){.product-grid{gap:16px}.tile-info{padding:20px 16px 28px}.tile-info h4{font-size:25px}.tile-description{font-size:11px;min-height:3.2em}}
+@media(max-width:980px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.tile-info{padding:24px 22px 32px}.tile-description{min-height:3.2em;font-size:12px}.tile-info h4{font-size:27px}.tile-media{aspect-ratio:1/.98}.commerce-head{gap:25px}}
+@media(max-width:700px){.commerce-head{flex-direction:column;align-items:start}.fragrance-heading{align-items:start;flex-direction:column;gap:9px}.fragrance-location{text-align:left;margin:0}.tile-media{aspect-ratio:1/1.03}}
+@media(max-width:530px){.product-grid{grid-template-columns:1fr;gap:17px}.tile-media{aspect-ratio:1/1.03;padding:22px 18px 16px}.tile-info{padding:22px 20px 28px}.tile-info h4{font-size:28px}.tile-description{min-height:3.2em;max-width:330px;font-size:12px}.fragrance-heading h3{font-size:54px}.fragrance-row{margin-top:30px}.bag-launch span.bag-launch-label{display:none}.bag-launch{padding:8px 10px;gap:5px}.bag-count{min-width:17px;height:17px}.tile-add{right:16px;bottom:16px;width:50px;height:50px}}
+@media(prefers-reduced-motion:reduce){.product-tile,.tile-image,.tile-add{transition:none!important}}
+</style>
+<style id="shop-mobile-banner-fix">
+@media(max-width:780px){
+.season-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 12px;max-width:100%;min-width:0;box-sizing:border-box;text-align:center}
+.season-house,.season-note{display:block;max-width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere;text-align:center}
+.season-house{font-size:8px;letter-spacing:.105em}
+.nav-inner{gap:8px}
+.identity{flex:1 1 auto;min-width:0}
+.mobile-toggle{flex:0 0 auto}
+.bag-launch{flex:0 0 auto}
+}
+@media(max-width:390px){.identity-name{font-size:17px}.identity-mark{width:32px;height:49px}.nav-inner{gap:5px}.mobile-toggle{padding:8px}.bag-launch{padding:8px}}
+</style>
+
+<style id="intro-editorial-refinement">
+/* A deliberate luxury editorial composition avoids forced full justification. */
+.intro{padding:clamp(82px,9.5vw,132px) 0 clamp(76px,8.5vw,116px);background:#fbf8f2}
+.intro-inner{max-width:1100px}
+.intro h1{margin-bottom:clamp(38px,4.3vw,62px)}
+.intro-editorial{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(42px,6.2vw,88px);align-items:start;text-align:left;border-top:1px solid #d6c9bf;border-bottom:1px solid #d6c9bf;padding:clamp(30px,3.8vw,52px) 0}
+.intro-small-label{display:block;margin-bottom:22px;font:500 10px/1.55 var(--label);letter-spacing:.18em;text-transform:uppercase;color:#9b7878}
+.intro .intro-lead{max-width:none;margin:0;color:#594944;font:400 clamp(31px,3.6vw,47px)/1.16 var(--serif);letter-spacing:-.022em;text-align:left;text-align-last:auto;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal;word-break:normal}
+.intro .intro-lead em{font-style:italic;color:#9b7779}
+.intro .intro-story-column p{max-width:none;margin:0 0 17px;font:400 clamp(16px,1.6vw,19px)/1.73 var(--serif);letter-spacing:.003em;color:#6e625e;text-align:left;text-align-last:auto;hyphens:none;-webkit-hyphens:none;overflow-wrap:normal;word-break:normal;text-wrap:pretty}
+.intro .intro-story-column p:last-child{margin-bottom:0;color:#8c7270}
+.intro .micro{margin-top:36px!important}
+.intro .discover{margin-top:25px}
+@media(max-width:760px){.intro{padding:66px 0 76px}.intro-inner{max-width:570px}.intro h1{margin-bottom:34px}.intro-editorial{grid-template-columns:1fr;gap:27px;padding:30px 0}.intro-small-label{margin-bottom:14px;font-size:9px}.intro .intro-lead{font-size:clamp(31px,7vw,42px);max-width:470px}.intro .intro-story-column p{font-size:19px;line-height:1.62}.intro .micro{margin-top:27px!important}}
+@media(max-width:480px){.intro .intro-story-column p{font-size:17px}.intro h1{font-size:clamp(55px,12vw,72px)}}
+</style>
+
+<style id="nav-hide-arrows">.nav-links .external::after{content:none!important;display:none!important}</style>
+
+<style id="floating-cart-header-refinement">
+/* Luxurious minimal masthead, with the cart completely separate from navigation. */
+.masthead{height:91px;background:rgba(251,249,245,.98);border-bottom:1px solid rgba(103,76,66,.19);box-shadow:0 4px 22px rgba(71,50,43,.035)}
+.nav-inner{gap:30px;justify-content:space-between}
+.identity{gap:15px;flex:0 1 auto;min-width:0}
+.identity-mark{width:55px;height:69px;flex-basis:55px}
+.identity-mark img{max-height:69px;width:100%;height:100%;object-fit:contain}
+.identity-name .house-name{font-size:10px;letter-spacing:.22em;margin-bottom:6px;color:#855d5e}
+.identity-name .campaign-name{font-size:clamp(25px,2.45vw,35px);line-height:.94;letter-spacing:-.034em}
+.identity-name small{font-size:7px;letter-spacing:.19em;margin-top:7px}
+.nav-links{gap:clamp(24px,2.5vw,44px)}
+.nav-links a{font-size:10px;letter-spacing:.115em;padding:15px 0;transition:color .2s}
+.nav-links a::before{height:1px;bottom:6px}
+.nav-links .postcard-link{padding:15px 0}
+.nav-links .external::after{content:none!important;display:none!important}
+/* Always available without occupying the top bar; clicking it opens the existing cart drawer. */
+#bagOpen.bag-launch{
+ position:fixed!important;right:calc(26px + env(safe-area-inset-right,0px));bottom:calc(25px + env(safe-area-inset-bottom,0px));
+ z-index:170;width:66px;height:66px;min-width:66px;min-height:66px;display:grid;place-items:center;
+ margin:0;padding:0;border:1px solid rgba(105,73,68,.28);border-radius:50%;
+ color:#3d2f2e;background:rgba(250,246,240,.98);
+ box-shadow:0 8px 30px rgba(49,31,25,.21),inset 0 0 0 4px rgba(255,255,255,.58);
+ backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+ transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease;
+}
+#bagOpen.bag-launch:hover{transform:translateY(-3px);color:#fff;background:#683c47;box-shadow:0 12px 32px rgba(65,40,39,.28)}
+#bagOpen.bag-launch:focus-visible{outline:2px solid #6d4650;outline-offset:5px}
+#bagOpen.bag-launch svg{width:29px;height:29px;display:block}
+#bagOpen .bag-launch-label{display:none!important}
+#bagOpen .bag-count{
+ position:absolute;top:-3px;right:-4px;min-width:24px;width:auto;height:24px;padding:0 5px;
+ display:grid;place-items:center;border-radius:999px;color:#fff;background:#783e4b;
+ border:2px solid #f9f5ef;font:600 10px/1 var(--sans);letter-spacing:0;
+}
+@media(max-width:1120px){.masthead{height:84px}.nav-inner{gap:16px}.identity-mark{width:49px;height:60px;flex-basis:49px}.identity-mark img{max-height:60px}.identity-name .campaign-name{font-size:27px}.nav-links{gap:clamp(16px,1.8vw,24px)}.nav-links a{font-size:9px;letter-spacing:.065em}}
+@media(max-width:910px){.masthead{height:77px}.identity-name .campaign-name{font-size:27px}.mobile-toggle{margin-left:auto}.nav-links{gap:0}.nav-links a,.nav-links .postcard-link{padding:16px 3px}}
+@media(max-width:630px){.masthead{height:74px}.nav-inner{gap:8px}.identity{gap:9px}.identity-mark{height:53px;width:43px;flex-basis:43px}.identity-mark img{max-height:53px}.identity-name .campaign-name{font-size:clamp(20px,5.1vw,27px)}.identity-name small{font-size:6px;margin-top:4px}.mobile-toggle{font-size:9px;padding:9px 10px}#bagOpen.bag-launch{right:calc(17px + env(safe-area-inset-right,0px));bottom:calc(17px + env(safe-area-inset-bottom,0px));width:58px;height:58px;min-width:58px;min-height:58px}#bagOpen.bag-launch svg{width:26px;height:26px}#bagOpen .bag-count{width:auto;min-width:22px;height:22px}}
+@media(prefers-reduced-motion:reduce){#bagOpen.bag-launch{transition:none!important}}
+</style>
+<style id="compact-footer-adjustment">
+@media(max-width:780px){.footer{padding:24px 0 18px}.footer-top{padding-bottom:15px;gap:7px}.footer-bottom{padding-top:13px;gap:9px}}
+@media(max-width:520px){.footer-top p{font-size:25px}.footer-top .eyebrow,.footer-bottom{font-size:8px}.footer-bottom{padding-right:62px}}
+</style>
+<style id="option2-parisian-editorial-type">
+/* Option 2: GFS Didot editorial type + Cabin interface type. Typography only. */
+.identity-name .campaign-name{letter-spacing:-.035em}
+.intro .intro-lead{letter-spacing:-.025em}
+.tile-info h4{letter-spacing:-.025em}
+@media(max-width:1060px){.identity-name .campaign-name{font-size:clamp(24px,2.55vw,33px)}}
+@media(max-width:650px){.identity-name .campaign-name{font-size:clamp(21px,5.4vw,29px)}}
+</style>
+<style id="packshot-image-refinement">
+/* Native-resolution campaign packshots; Riverside perfume has an alternate hover view. */
+.tile-image-alt{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;transition:opacity .32s ease;}
+.product-tile:hover .tile-image-alt,.product-tile:focus-within .tile-image-alt{opacity:1;}
+@media(hover:none){.tile-image-alt{display:none;}}
+@media(prefers-reduced-motion:reduce){.tile-image-alt{transition:none;}}
+</style>
+<style id="restore-original-campaign-backgrounds">
+/* Preserve the original Les Essences de New York warm cream palette. */
+html, body { background-color: #f4eee5; }
+.intro { background: #fbf8f2; }
+.commerce-collection { background: linear-gradient(180deg, #f1e8de 0%, #f8f3ec 100%); }
+.product-tile, .tile-media, .tile-info { background-color: #fdfaf4; }
+</style>
+
+<style id="scent-editorial-dividers">
+/* Four editorial scent introductions, integrated with the campaign typography and palette. */
+.fragrance-row{border-top:0;padding-top:0;margin-top:clamp(72px,7vw,105px);scroll-margin-top:104px}
+.fragrance-row:first-of-type{margin-top:18px}
+.scent-feature{
+  width:100vw;
+  margin:0 0 34px calc(50% - 50vw);
+  padding:0;
+  background:transparent;
+}
+.scent-feature-inner{
+  display:grid;
+  grid-template-columns:minmax(0,52%) minmax(0,48%);
+  width:100%;
+  min-height:0;
+  gap:0;
+  align-items:stretch;
+  padding:0;
+}
+.scent-feature-visual{
+  position:relative;
+  min-width:0;
+  min-height:0;
+  margin:0;
+  padding:0;
+  background:#e9ddd2;
+  overflow:hidden;
+}
+.scent-feature-visual img{
+  display:block;
+  width:100%;
+  max-width:100%;
+  height:auto;
+  position:static;
+  object-fit:contain;
+  object-position:center;
+  transition:none;
+}
+
+.scent-feature-copy{
+  min-width:0;
+  padding:clamp(24px,4vw,68px) clamp(28px,5.5vw,104px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+  background:transparent;
+}
+.scent-feature-eyebrow{
+  font:500 10px/1.6 var(--label);
+  letter-spacing:.13em;text-transform:uppercase;
+  color:#8f776e;margin:0 0 20px;
+}
+.scent-feature-copy h3{
+  font:400 clamp(33px,3.15vw,49px)/1.14 var(--serif);
+  font-style:normal;letter-spacing:-.025em;
+  color:#352d2c;text-wrap:balance;margin:0 0 16px;
+}
+.scent-feature-description{
+  max-width:410px;
+  margin:0 auto;
+  font:400 clamp(14px,1.12vw,16px)/1.76 var(--sans);
+  color:#6e625e;
+  text-align:center;text-wrap:pretty;
+}
+.scent-feature-notes{
+  font:500 9px/1.65 var(--label);
+  letter-spacing:.12em;text-transform:uppercase;
+  color:#958078;margin:16px 0 24px;
+}
+.scent-feature-action{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:42px;min-width:185px;max-width:100%;
+  padding:11px 21px;background:transparent;
+  border:1px solid #bba99b;
+  color:#403633;
+  font:500 11px/1.4 var(--sans);
+  letter-spacing:.085em;text-transform:uppercase;
+  text-align:center;
+  transition:background .2s,color .2s,border-color .2s;
+}
+.scent-feature-action:hover,.scent-feature-action:focus-visible{
+  background:#473734;border-color:#473734;color:#fdf7ed;
+}
+.product-grid[id]{scroll-margin-top:120px}
+@media(max-width:980px){
+  .scent-feature-inner{grid-template-columns:51% 49%;min-height:0}
+  .scent-feature-copy{padding:24px 30px}
+  .scent-feature-copy h3{font-size:clamp(31px,3.8vw,39px)}
+  .scent-feature-description{font-size:14px;line-height:1.66}
+  .scent-feature-eyebrow{font-size:9px;letter-spacing:.09em;margin-bottom:15px}
+  .scent-feature-notes{margin:12px 0 18px}
+}
+@media(max-width:700px){
+  .fragrance-row{margin-top:64px}
+  .scent-feature{margin-bottom:26px}
+  .scent-feature-inner{grid-template-columns:1fr;min-height:unset}
+  .scent-feature-visual{aspect-ratio:auto;min-height:0}
+  .scent-feature-visual img{position:static}
+  .scent-feature-copy{padding:28px 24px 32px}
+  .scent-feature-copy h3{font-size:clamp(32px,7vw,42px);margin-bottom:13px}
+  .scent-feature-description{max-width:410px;font-size:14px;line-height:1.7}
+  .scent-feature-eyebrow{margin-bottom:13px}
+  .scent-feature-notes{margin:13px 0 20px}
+  .scent-feature-action{min-height:42px}
+}
+@media(max-width:390px){
+  .scent-feature-visual{aspect-ratio:auto}
+  .scent-feature-copy h3{font-size:31px}
+  .scent-feature-copy{padding:24px 18px 30px}
+}
+@media(prefers-reduced-motion:reduce){.scent-feature-visual img{transition:none}}
+
+/* Quiet editorial rule separating the collection introduction from the fragrance photographs. */
+.collection-image-separator {
+  width: 100vw;
+  height: 1px;
+  background: rgba(125, 102, 90, .28);
+  margin: 0 0 clamp(25px, 2.6vw, 38px) calc(50% - 50vw);
+  pointer-events: none;
+}
+.commerce-collection .fragrance-row:first-of-type { margin-top: 0; }
+@media(max-width:700px) {
+  .collection-image-separator { margin-bottom: 23px; }
+  .commerce-collection .fragrance-row:first-of-type { margin-top: 0; }
+}
+
+/* Preserve each full 3:2 campaign composition rather than zooming into a crop. */
+.scent-feature-visual {aspect-ratio:auto;overflow:visible;background:transparent;}
+.scent-feature-visual img {width:100%;height:auto;max-width:100%;object-fit:contain;object-position:center;}
+@media(max-width:700px){.scent-feature-visual{aspect-ratio:auto}.scent-feature-visual img{width:100%;height:auto}}
+/* Alternate the editorial split on desktop without changing the product order. */
+#scent-greenwich .scent-feature-visual,
+#scent-fifth .scent-feature-visual { order: 2; }
+#scent-greenwich .scent-feature-copy,
+#scent-fifth .scent-feature-copy { order: 1; }
+/* On smaller screens, preserve the natural image-first reading order. */
+@media(max-width:700px) {
+  #scent-greenwich .scent-feature-visual,
+  #scent-fifth .scent-feature-visual { order: 0; }
+  #scent-greenwich .scent-feature-copy,
+  #scent-fifth .scent-feature-copy { order: 0; }
+}
+</style>
+
+<style id="final-editorial-spacing">
+/* Spring 2027 editorial rhythm: quiet divider, smaller title, measured spacing. */
+.intro{
+  padding:clamp(58px,6.2vw,91px) 0 clamp(58px,6.5vw,93px);
+  background:#fbf8f2;
+}
+.intro-inner{max-width:1080px}
+.intro .eyebrow{display:block;letter-spacing:.16em;font-size:10px;line-height:1.6}
+.intro-rule{height:1px;width:108px;background:#bea99a;margin:23px auto 27px;opacity:.82}
+.intro h1{
+  font:400 clamp(55px,5.75vw,82px)/1.04 var(--serif);
+  letter-spacing:-.046em;
+  max-width:100%;margin:0 auto clamp(30px,3.6vw,47px);
+  text-wrap:balance;
+}
+.intro-editorial{
+  gap:clamp(32px,4.7vw,64px);
+  padding:clamp(25px,2.7vw,38px) 0;
+  border-top:1px solid rgba(130,108,97,.24);
+  border-bottom:1px solid rgba(130,108,97,.24);
+}
+.intro-small-label{margin-bottom:15px;font-size:9px;letter-spacing:.145em}
+.intro .intro-lead{font-size:clamp(29px,3.0vw,42px);line-height:1.23;letter-spacing:-.026em}
+.intro .intro-story-column p{font-size:clamp(16px,1.4vw,18px);line-height:1.64;margin-bottom:12px}
+.commerce-collection{
+  padding-top:clamp(56px,6.4vw,92px);
+  padding-bottom:clamp(69px,7.6vw,112px);
+}
+.commerce-head{padding-top:24px;padding-bottom:clamp(27px,3.2vw,42px);gap:clamp(24px,4.2vw,62px)}
+.commerce-head h2{font-size:clamp(48px,5.3vw,80px);line-height:1.02;margin-top:12px}
+.commerce-head-aside>p:first-child{line-height:1.7}
+.collection-image-separator{margin-bottom:clamp(20px,2vw,28px)}
+.commerce-collection .fragrance-row:first-of-type{margin-top:0}
+.commerce-collection .fragrance-row:not(:first-of-type){margin-top:clamp(52px,6vw,84px)}
+.scent-feature{margin-bottom:clamp(20px,2.4vw,30px)}
+.fragrance-heading{margin-bottom:22px}
+@media(max-width:760px){
+  .intro{padding:55px 0 61px}
+  .intro-rule{width:72px;margin:20px auto 24px}
+  .intro h1{font-size:clamp(48px,8.5vw,65px);line-height:1.08;margin-bottom:28px}
+  .intro-editorial{gap:23px;padding:27px 0}
+  .intro-small-label{margin-bottom:12px}
+  .intro .intro-lead{font-size:clamp(28px,6.5vw,38px);line-height:1.2}
+  .intro .intro-story-column p{font-size:16px;line-height:1.64}
+  .commerce-collection{padding-top:50px;padding-bottom:74px}
+  .commerce-head{gap:19px;padding:18px 0 29px}
+  .commerce-head h2{font-size:clamp(42px,8vw,60px)}
+  .collection-image-separator{margin-bottom:20px}
+  .commerce-collection .fragrance-row:not(:first-of-type){margin-top:55px}
+  .scent-feature{margin-bottom:22px}
+}
+@media(max-width:430px){
+  .intro{padding:48px 0 56px}
+  .intro h1{font-size:clamp(44px,10.8vw,51px);letter-spacing:-.038em}
+  .intro-editorial{padding:22px 0}
+  .commerce-head h2{font-size:clamp(40px,10.4vw,46px)}
+}
+</style>
+
+<style id="collection-spacing-2026">
+/* Tighter, balanced editorial rhythm at the transition from intro to product stories. */
+.intro{padding-bottom:clamp(37px,3.8vw,55px)}
+.commerce-collection{padding-top:clamp(26px,3.3vw,46px)}
+.commerce-head{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(320px,.75fr);
+  align-items:center;
+  column-gap:clamp(32px,4.5vw,72px);
+  padding:clamp(22px,2.3vw,32px) 0 clamp(22px,2.4vw,35px);
+  border-top:1px solid rgba(130,108,97,.25);
+}
+.commerce-head > div:first-child{min-width:0}
+.commerce-head .eyebrow{display:block;margin-bottom:12px;font-size:10px;line-height:1.5}
+.commerce-head h2{
+  font-size:clamp(49px,4.95vw,74px);
+  line-height:1.06;
+  margin:0;
+  letter-spacing:-.045em;
+  text-wrap:balance;
+}
+.commerce-head-aside{max-width:405px;align-self:center}
+.commerce-head-aside > p:first-child{
+  font-size:clamp(13px,1.0vw,15px);
+  line-height:1.62;
+  margin:0 0 11px;
+}
+.commerce-head-aside .concept-disclaimer{font-size:9px;line-height:1.55;letter-spacing:.05em}
+.collection-image-separator{margin-bottom:clamp(17px,1.65vw,25px)}
+@media(max-width:980px){
+  .commerce-head{grid-template-columns:minmax(0,1.25fr) minmax(260px,.85fr);gap:24px}
+  .commerce-head h2{font-size:clamp(45px,5.2vw,62px)}
+  .commerce-head-aside > p:first-child{font-size:13px}
+}
+@media(max-width:700px){
+  .intro{padding-bottom:39px}
+  .commerce-collection{padding-top:26px}
+  .commerce-head{display:grid;grid-template-columns:1fr;gap:15px;padding:20px 0 22px}
+  .commerce-head .eyebrow{font-size:9px;margin-bottom:9px}
+  .commerce-head h2{font-size:clamp(42px,8.2vw,58px)}
+  .commerce-head-aside{max-width:100%;width:100%}
+  .commerce-head-aside>p:first-child{font-size:13px;line-height:1.55;margin-bottom:8px}
+  .commerce-head-aside .concept-disclaimer{font-size:9px}
+  .collection-image-separator{margin-bottom:17px}
+}
+@media(max-width:430px){
+  .commerce-head h2{font-size:clamp(40px,10vw,46px)}
+  .commerce-head{gap:14px}
+}
+</style>
+<style id="fragrance-product-introductions">
+/* Fragrance descriptions that introduce each four-item shop row. */
+.scent-feature { margin-bottom: 0; }
+.product-story {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: clamp(36px,4.5vw,66px) 18px clamp(30px,3.5vw,48px);
+  text-align: center;
+  color: var(--ink);
+}
+.product-story-title {
+  margin: 0 0 17px;
+  font: 400 clamp(30px,3.25vw,44px)/1.12 var(--serif);
+  letter-spacing: -.018em;
+  color: #352d2c;
+}
+.product-story-description {
+  max-width: 690px;
+  margin: 0 auto;
+  font: 400 clamp(13px,1.12vw,16px)/1.75 var(--sans);
+  color: #665c56;
+  text-wrap: pretty;
+}
+@media(max-width:700px) {
+  .product-story { padding: 31px 13px 30px; }
+  .product-story-title { font-size: clamp(29px,7vw,36px); margin-bottom: 11px; }
+  .product-story-description { font-size: 13px; line-height: 1.65; }
+}
+</style>
+<style id="collection-intro-image-spacing">
+/* More breathing room after the collection introduction, before the first editorial photograph. */
+.commerce-collection .collection-image-separator { margin-bottom: clamp(60px, 5.9vw, 94px); }
+@media (max-width: 760px) {
+  .commerce-collection .collection-image-separator { margin-bottom: 46px; }
+}
+@media (max-width: 480px) {
+  .commerce-collection .collection-image-separator { margin-bottom: 34px; }
+}
+</style>
+<style id="scent-story-subtitles-and-prompts">
+/* Refined editorial introductions between each fragrance image divider and the four product cards. */
+.product-story{
+  max-width:780px;
+  padding:clamp(36px,4.3vw,54px) 20px clamp(32px,3.65vw,48px);
+}
+.product-story-eyebrow{
+  display:block;
+  font:500 10px/1.5 var(--label);
+  letter-spacing:.16em;
+  color:#9c7f79;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.product-story-title{
+  margin:0 0 15px;
+  font:400 clamp(32px,3.1vw,43px)/1.1 var(--serif);
+  letter-spacing:-.024em;
+}
+.product-story-description{
+  max-width:650px;
+  margin:0 auto;
+  font:400 clamp(13px,1.05vw,15px)/1.75 var(--sans);
+  color:#665c56;
+}
+@media(max-width:700px){
+  .product-story{padding:32px 18px 33px;}
+  .product-story-eyebrow{font-size:9px;letter-spacing:.12em;margin-bottom:9px;}
+  .product-story-title{font-size:clamp(30px,7vw,36px);margin-bottom:6px;}
+  .product-story-description{font-size:13px;line-height:1.67;}
+  }
+</style>
+
+<style id="compact-product-card-titles-and-buttons">
+/* Compact retail product-card styling; applies to all 16 cards only. */
+.commerce-collection .product-tile .tile-info h4 {
+  font-size: clamp(18px, 1.4vw, 21px);
+  line-height: 1.23;
+  letter-spacing: -.018em;
+  margin-bottom: 12px;
+}
+.commerce-collection .product-tile .tile-add {
+  width: 42px;
+  height: 42px;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 0;
+  box-sizing: border-box;
+}
+.commerce-collection .product-tile .tile-add svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  flex: 0 0 auto;
+  margin: 0;
+}
+@media (max-width: 780px) {
+  .commerce-collection .product-tile .tile-info h4 {font-size: 20px;}
+  .commerce-collection .product-tile .tile-add {width: 40px; height: 40px; right: 12px; bottom: 12px;}
+  .commerce-collection .product-tile .tile-add svg {width: 18px; height: 18px;}
+}
+</style>
+
+<style id="direct-fragrance-transition">
+/* Collection introduction removed. Keep navigation anchor and show the first fragrance immediately. */
+.commerce-collection { padding-top: clamp(0px, 1.4vw, 22px); }
+.commerce-collection > .container > .fragrance-row:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+@media (max-width: 700px) {
+  .commerce-collection { padding-top: 0; }
+}
+</style>
+<style id="campaign-footer-directory-styles">
+/* Footer navigation: editorial four-column directory inspired by the campaign's retail references. */
+.footer{padding:0;background:var(--paper);color:var(--ink)}
+.footer-directory{background:#fbf8f3;border-top:1px solid var(--line);padding:clamp(52px,5.3vw,86px) 0 clamp(56px,5.3vw,86px)}
+.footer-directory-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1.13fr;gap:clamp(25px,4.1vw,75px)}
+.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:15px;min-width:0}
+.footer-column h2{font:400 clamp(21px,1.65vw,27px)/1.25 var(--serif);margin:0 0 17px;color:#352d2c;letter-spacing:-.015em}
+.footer-column a{display:inline-block;font:400 14px/1.65 var(--sans);color:#665d56;transition:color .2s ease, transform .2s ease;text-decoration:none}
+.footer-column a:hover,.footer-column a:focus-visible{color:#8d626a;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.footer-about p{font:400 14px/1.85 var(--sans);color:#665d56;max-width:320px;margin:0}
+.footer-column a.footer-return{font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:13px;color:#7e5e64}
+.footer-return span{margin-left:6px;font-size:16px}
+.footer-signature{background:#342c2b;color:#f5ede5;padding:23px 0 19px}
+.footer-signature .footer-top{padding-bottom:17px}
+.footer-signature .footer-top p{font:italic 25px/1.17 var(--serif);margin-top:6px}
+.footer-signature .footer-top .eyebrow{color:#c2ad9e}
+.footer-signature .footer-bottom{border-top:1px solid rgba(255,255,255,.24);padding-top:13px;color:#dacdc1;gap:12px;padding-right:68px}
+@media(max-width:950px){
+  .footer-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:42px;row-gap:40px}
+}
+@media(max-width:540px){
+  .footer-directory{padding:48px 0 45px}
+  .footer-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 22px}
+  .footer-column{gap:11px}
+  .footer-column h2{font-size:21px;margin-bottom:10px}
+  .footer-column a,.footer-about p{font-size:12px;line-height:1.65}
+  .footer-signature{padding:22px 0 18px}
+  .footer-signature .footer-top p{font-size:23px}
+  .footer-signature .footer-bottom{padding-right:65px}
+}
+@media(max-width:370px){
+  .footer-directory-grid{grid-template-columns:1fr;gap:30px}
+  .footer-column h2{margin-bottom:4px}
+}
+</style>
+</head><body>
+<a href="#collection" style="position:absolute;top:-200px;left:10px;background:#fff;padding:8px;z-index:1000" onfocus="this.style.top='10px'" onblur="this.style.top='-200px'">Skip to collection</a>
+<div class="season-line" role="note"><span class="season-house">SPRING 2027 <span class="season-mark" aria-hidden="true">✧</span> A CITY OF A THOUSAND SCENTS</span><span class="season-note">An independent, fictional campaign concept for Diptyque <span aria-hidden="true">·</span> Not official or affiliated</span></div>
+<header class="masthead"><div class="container nav-inner"><a class="identity" href="#home" aria-label="Les Essences de New York, home"><span class="identity-mark"><img data-asset="logo" alt="" aria-hidden="true"/></span><span class="identity-name"><span class="house-name">DIPTYQUE <span>PARIS</span></span><span class="campaign-name">Les Essences <em>de New York</em></span><small>FOUR FRAGRANCES · ONE CITY</small></span></a><button type="button" class="mobile-toggle" id="menuToggle" aria-controls="mainNav" aria-expanded="false">Menu <span aria-hidden="true">☰</span></button><nav class="nav-links" id="mainNav" aria-label="Campaign navigation"><a href="#collection" class="current">The Collection</a><a href="creative-director-part4.html" class="external">Print Ads</a><a href="creative-director-part5.html" class="external">Digital Ads</a><a href="creative-director-part6.html" class="external postcard-link">Scent Atelier</a></nav></div></header>
+<button class="bag-launch" id="bagOpen" aria-controls="bagDrawer" aria-expanded="false" type="button" aria-label="Open shopping bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg><span class="bag-launch-label">Bag</span><span class="bag-count" id="bagCount" aria-live="polite">0</span></button>
+<main id="home">
+<section class="hero" aria-label="Campaign animation and collection imagery"><div class="hero-screen" id="heroScreen"><div class="hero-stills" aria-hidden="true"><img data-asset="hero_poster" alt=""/></div><video id="campaignFilm" class="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="Les Essences de New York animated campaign hero"><source src="assets/video/hero-animation.mp4" type="video/mp4"/></video><div class="hero-outer-rule"></div><div class="film-caption"><span class="note">LES ESSENCES DE NEW YORK<small>A fragrance portrait of the city · Spring 2027</small></span></div></div></section>
+<section class="intro" aria-labelledby="introTitle">
+  <div class="container intro-inner">
+    <span class="eyebrow">Introducing / Les Essences de New York</span>
+    <div class="intro-rule" aria-hidden="true"></div>
+    <h1 id="introTitle">The city, <em>distilled.</em></h1>
+    <div class="intro-editorial">
+      <div class="intro-lead-column">
+        <span class="intro-small-label">A city of a thousand scents</span>
+        <p class="intro-lead">New York is made of moments <em>you wish you could keep.</em></p>
+      </div>
+      <div class="intro-story-column">
+        <span class="intro-small-label">Four neighborhoods / Four fragrant portraits</span>
+        <p>Magnolia blossoms soften Brooklyn brownstones. In Greenwich Village, café doors open to the first green light of morning. Along the Hudson River, cedar and leaves drift on the breeze. On Fifth Avenue, rain turns the pavement into a shimmering reflection of the city.</p>
+        <p>Four fragrances, each capturing a place, a feeling, and a fleeting New York moment to make your own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="commerce-collection" id="collection" aria-label="The four New York fragrances">
+<div class="container"><section class="fragrance-row" id="scent-brooklyn" aria-labelledby="title-brooklyn">
+<div class="scent-feature" style="--feature-accent:#bc8d98">
+<div class="scent-feature-inner">
+<figure class="scent-feature-visual"><img src="assets/images/editorial-brooklyn.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Les Essences de New York Brooklyn Bloom campaign photograph inspired by Brooklyn Heights · Brownstone Brooklyn"/></figure>
+<div class="scent-feature-copy">
+<p class="scent-feature-eyebrow">01 / 04 <span aria-hidden="true">·</span> Brooklyn Heights · Brownstone Brooklyn</p>
+<h3 id="title-brooklyn">Brooklyn Bloom</h3>
+<p class="scent-feature-description">Magnolia and peony drift past Brooklyn brownstone stoops, leaving the soft warmth of white musk in the spring air.</p>
+<p class="scent-feature-notes">MAGNOLIA · PEONY · WHITE MUSK</p>
+<a class="scent-feature-action" href="#products-brooklyn">Discover Brooklyn Bloom</a>
+</div>
+</div>
+</div>
+<div class="product-story" aria-label="About Brooklyn Bloom">
+ <span class="product-story-eyebrow">01 / THE SCENT IN FOUR FORMS</span>
+ <h3 class="product-story-title">Brooklyn Bloom</h3>
+ <p class="product-story-description">In Brooklyn Heights, spring reveals itself in the smallest details: magnolia blossoms over iron railings, peonies brightening brownstone stoops, and warm sunlight reaching the quiet, tree lined streets. Their soft floral notes mingle with white musk, recalling a leisurely walk past garden gates and familiar doorways. Brooklyn Bloom captures the gentle romance of a neighborhood coming into flower.</p>
+</div>
+<div class="product-grid" id="products-brooklyn"><article class="product-tile" data-product="brooklyn-perfume" style="--item-accent:#D7A5AE">
+ <div class="tile-media"><img class="tile-image" src="assets/images/brooklyn-perfume.webp" alt="Brooklyn Bloom eau de parfum and matching product packaging" loading="lazy" decoding="async" data-image-key="brooklyn-perfume"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="brooklyn-perfume" aria-label="Add Brooklyn Bloom Eau de Parfum to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Brooklyn Bloom <span class="tile-category">– Eau de Parfum</span></h4><p class="tile-description">Magnolia and peony bloom beside Brooklyn Heights brownstones.</p><div class="tile-spec"><span>2.5 fl oz</span><strong>US $260</strong></div></div>
+ </article><article class="product-tile" data-product="brooklyn-candle" style="--item-accent:#D7A5AE">
+ <div class="tile-media"><img class="tile-image" src="assets/images/brooklyn-candle.webp" alt="Brooklyn Bloom scented candle and matching product packaging" loading="lazy" decoding="async" data-image-key="brooklyn-candle"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="brooklyn-candle" aria-label="Add Brooklyn Bloom Scented Candle to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Brooklyn Bloom <span class="tile-category">– Scented Candle</span></h4><p class="tile-description">A warm floral glow inspired by spring on Brooklyn stoops.</p><div class="tile-spec"><span>190 g</span><strong>US $82</strong></div></div>
+ </article><article class="product-tile" data-product="brooklyn-cream" style="--item-accent:#D7A5AE">
+ <div class="tile-media"><img class="tile-image" src="assets/images/brooklyn-cream.webp" alt="Brooklyn Bloom perfumed hand cream and matching product packaging" loading="lazy" decoding="async" data-image-key="brooklyn-cream"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="brooklyn-cream" aria-label="Add Brooklyn Bloom Perfumed Hand Cream to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Brooklyn Bloom <span class="tile-category">– Perfumed Hand Cream</span></h4><p class="tile-description">Soft peony and musk, like Brooklyn’s flowering gardens.</p><div class="tile-spec"><span>45 g</span><strong>US $58</strong></div></div>
+ </article><article class="product-tile" data-product="brooklyn-diffuser" style="--item-accent:#D7A5AE">
+ <div class="tile-media"><img class="tile-image" src="assets/images/brooklyn-diffuser.webp" alt="Brooklyn Bloom reed diffuser and matching product packaging" loading="lazy" decoding="async" data-image-key="brooklyn-diffuser"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="brooklyn-diffuser" aria-label="Add Brooklyn Bloom Reed Diffuser to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Brooklyn Bloom <span class="tile-category">– Reed Diffuser</span></h4><p class="tile-description">Magnolia drifts through quiet brownstone Brooklyn streets.</p><div class="tile-spec"><span>6.8 fl oz</span><strong>US $225</strong></div></div>
+ </article></div></section><section class="fragrance-row" id="scent-greenwich" aria-labelledby="title-greenwich">
+<div class="scent-feature" style="--feature-accent:#83967b">
+<div class="scent-feature-inner">
+<figure class="scent-feature-visual"><img src="assets/images/editorial-greenwich.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Les Essences de New York Greenwich Morning campaign photograph inspired by Greenwich Village · Manhattan"/></figure>
+<div class="scent-feature-copy">
+<p class="scent-feature-eyebrow">02 / 04 <span aria-hidden="true">·</span> Greenwich Village · Manhattan</p>
+<h3 id="title-greenwich">Greenwich Morning</h3>
+<p class="scent-feature-description">The city opens its café doors. Bergamot, green tea, and basil capture the sunlit ease of a Greenwich Village morning.</p>
+<p class="scent-feature-notes">BERGAMOT · GREEN TEA · BASIL</p>
+<a class="scent-feature-action" href="#products-greenwich">Discover Greenwich Morning</a>
+</div>
+</div>
+</div>
+<div class="product-story" aria-label="About Greenwich Morning">
+ <span class="product-story-eyebrow">02 / THE SCENT IN FOUR FORMS</span>
+ <h3 class="product-story-title">Greenwich Morning</h3>
+ <p class="product-story-description">Greenwich Village stirs to life with the clink of café cups, open windows, and golden light spilling across its winding streets. Bright bergamot brings a spark of energy, green tea lends a delicate calm, and fresh basil evokes leafy courtyards tucked between historic brick buildings. Greenwich Morning holds the feeling of those early hours when the city feels entirely your own.</p>
+</div>
+<div class="product-grid" id="products-greenwich"><article class="product-tile" data-product="greenwich-perfume" style="--item-accent:#A4B49E">
+ <div class="tile-media"><img class="tile-image" src="assets/images/greenwich-perfume.webp" alt="Greenwich Morning eau de parfum and matching product packaging" loading="lazy" decoding="async" data-image-key="greenwich-perfume"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="greenwich-perfume" aria-label="Add Greenwich Morning Eau de Parfum to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Greenwich Morning <span class="tile-category">– Eau de Parfum</span></h4><p class="tile-description">Bergamot and basil awaken Greenwich Village cafés.</p><div class="tile-spec"><span>2.5 fl oz</span><strong>US $260</strong></div></div>
+ </article><article class="product-tile" data-product="greenwich-candle" style="--item-accent:#A4B49E">
+ <div class="tile-media"><img class="tile-image" src="assets/images/greenwich-candle.webp" alt="Greenwich Morning scented candle and matching product packaging" loading="lazy" decoding="async" data-image-key="greenwich-candle"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="greenwich-candle" aria-label="Add Greenwich Morning Scented Candle to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Greenwich Morning <span class="tile-category">– Scented Candle</span></h4><p class="tile-description">Green tea and basil evoke a slow Village morning.</p><div class="tile-spec"><span>190 g</span><strong>US $82</strong></div></div>
+ </article><article class="product-tile" data-product="greenwich-cream" style="--item-accent:#A4B49E">
+ <div class="tile-media"><img class="tile-image" src="assets/images/greenwich-cream.webp" alt="Greenwich Morning perfumed hand cream and matching product packaging" loading="lazy" decoding="async" data-image-key="greenwich-cream"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="greenwich-cream" aria-label="Add Greenwich Morning Perfumed Hand Cream to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Greenwich Morning <span class="tile-category">– Perfumed Hand Cream</span></h4><p class="tile-description">Bright citrus and greenery from Greenwich Village mornings.</p><div class="tile-spec"><span>45 g</span><strong>US $58</strong></div></div>
+ </article><article class="product-tile" data-product="greenwich-diffuser" style="--item-accent:#A4B49E">
+ <div class="tile-media"><img class="tile-image" src="assets/images/greenwich-diffuser-packshot.webp" alt="Greenwich Morning reed diffuser and matching botanical packaging on a transparent background" loading="lazy" decoding="async" data-image-key="greenwich-diffuser"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="greenwich-diffuser" aria-label="Add Greenwich Morning Reed Diffuser to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Greenwich Morning <span class="tile-category">– Reed Diffuser</span></h4><p class="tile-description">Fresh botanicals recall the Village’s leafy courtyards.</p><div class="tile-spec"><span>6.8 fl oz</span><strong>US $225</strong></div></div>
+ </article></div></section><section class="fragrance-row" id="scent-riverside" aria-labelledby="title-riverside">
+<div class="scent-feature" style="--feature-accent:#af8b72">
+<div class="scent-feature-inner">
+<figure class="scent-feature-visual"><img src="assets/images/editorial-riverside.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Les Essences de New York Riverside campaign photograph inspired by Hudson River · Manhattan Waterfront"/></figure>
+<div class="scent-feature-copy">
+<p class="scent-feature-eyebrow">03 / 04 <span aria-hidden="true">·</span> Hudson River · Manhattan Waterfront</p>
+<h3 id="title-riverside">Riverside</h3>
+<p class="scent-feature-description">Along the Hudson, cedarwood and vetiver meet green leaves in an open breeze, far from the rush of the avenues.</p>
+<p class="scent-feature-notes">CEDARWOOD · VETIVER · GREEN LEAVES</p>
+<a class="scent-feature-action" href="#products-riverside">Discover Riverside</a>
+</div>
+</div>
+</div>
+<div class="product-story" aria-label="About Riverside">
+ <span class="product-story-eyebrow">03 / THE SCENT IN FOUR FORMS</span>
+ <h3 class="product-story-title">Riverside</h3>
+ <p class="product-story-description">Beside the Hudson River, the rhythm of New York begins to soften. A breeze travels through the trees along the waterfront, past weathered piers and benches facing the distant Manhattan skyline. Cedarwood and vetiver echo the warmth of wood and earth, while green leaves lend the freshness of open air. Riverside preserves that rare, grounding moment when the city seems to exhale.</p>
+</div>
+<div class="product-grid" id="products-riverside"><article class="product-tile" data-product="riverside-perfume" style="--item-accent:#B98E72">
+ <div class="tile-media"><img class="tile-image" src="assets/images/riverside-perfume.webp" alt="Riverside eau de parfum and matching product packaging" loading="lazy" decoding="async" data-image-key="riverside-perfume"/><img class="tile-image tile-image-alt" src="assets/images/riverside-perfume-alternate.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="riverside-perfume" aria-label="Add Riverside Eau de Parfum to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Riverside <span class="tile-category">– Eau de Parfum</span></h4><p class="tile-description">Cedar and vetiver trace breezy paths beside the Hudson.</p><div class="tile-spec"><span>2.5 fl oz</span><strong>US $260</strong></div></div>
+ </article><article class="product-tile" data-product="riverside-candle" style="--item-accent:#B98E72">
+ <div class="tile-media"><img class="tile-image" src="assets/images/riverside-candle.webp" alt="Riverside scented candle and matching product packaging" loading="lazy" decoding="async" data-image-key="riverside-candle"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="riverside-candle" aria-label="Add Riverside Scented Candle to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Riverside <span class="tile-category">– Scented Candle</span></h4><p class="tile-description">Warm woods and green leaves bring the Hudson waterfront home.</p><div class="tile-spec"><span>190 g</span><strong>US $82</strong></div></div>
+ </article><article class="product-tile" data-product="riverside-cream" style="--item-accent:#B98E72">
+ <div class="tile-media"><img class="tile-image" src="assets/images/riverside-cream.webp" alt="Riverside perfumed hand cream and matching packaging" loading="lazy" decoding="async" data-image-key="riverside-cream"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="riverside-cream" aria-label="Add Riverside Perfumed Hand Cream to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Riverside <span class="tile-category">– Perfumed Hand Cream</span></h4><p class="tile-description">An earthy ritual inspired by Manhattan’s river promenades.</p><div class="tile-spec"><span>45 g</span><strong>US $58</strong></div></div>
+ </article><article class="product-tile" data-product="riverside-diffuser" style="--item-accent:#B98E72">
+ <div class="tile-media"><img class="tile-image" src="assets/images/riverside-diffuser-packshot.png" alt="Riverside reed diffuser with transparent background and matching packaging" loading="lazy" decoding="async" data-image-key="riverside-diffuser"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="riverside-diffuser" aria-label="Add Riverside Reed Diffuser to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Riverside <span class="tile-category">– Reed Diffuser</span></h4><p class="tile-description">Cedar and green leaves drift above the Hudson River.</p><div class="tile-spec"><span>6.8 fl oz</span><strong>US $225</strong></div></div>
+ </article></div></section><section class="fragrance-row" id="scent-fifth" aria-labelledby="title-fifth">
+<div class="scent-feature" style="--feature-accent:#839bab">
+<div class="scent-feature-inner">
+<figure class="scent-feature-visual"><img src="assets/images/editorial-fifth.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Les Essences de New York Fifth Avenue Rain campaign photograph inspired by Fifth Avenue · Flatiron District"/></figure>
+<div class="scent-feature-copy">
+<p class="scent-feature-eyebrow">04 / 04 <span aria-hidden="true">·</span> Fifth Avenue · Flatiron District</p>
+<h3 id="title-fifth">Fifth Avenue Rain</h3>
+<p class="scent-feature-description">Fifth Avenue gleams after a spring shower. Iris, violet leaf, and white musk bring the city’s luminous quiet to life.</p>
+<p class="scent-feature-notes">IRIS · VIOLET LEAF · WHITE MUSK · RAIN</p>
+<a class="scent-feature-action" href="#products-fifth">Discover Fifth Avenue Rain</a>
+</div>
+</div>
+</div>
+<div class="product-story" aria-label="About Fifth Avenue Rain">
+ <span class="product-story-eyebrow">04 / THE SCENT IN FOUR FORMS</span>
+ <h3 class="product-story-title">Fifth Avenue Rain</h3>
+ <p class="product-story-description">After a spring shower, Fifth Avenue becomes a tapestry of reflections, with the Flatiron Building and surrounding stone façades shimmering above the wet pavement. The elegant softness of iris meets crisp violet leaf and airy white musk, while a delicate rain accord recalls freshly washed streets. Fifth Avenue Rain captures the quiet clarity that follows a storm, when familiar corners of Manhattan feel unexpectedly new.</p>
+</div>
+<div class="product-grid" id="products-fifth"><article class="product-tile" data-product="fifth-perfume" style="--item-accent:#8AA6BA">
+ <div class="tile-media"><img class="tile-image" src="assets/images/fifth-perfume.webp" alt="Fifth Avenue Rain eau de parfum and matching product packaging" loading="lazy" decoding="async" data-image-key="fifth-perfume"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="fifth-perfume" aria-label="Add Fifth Avenue Rain Eau de Parfum to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Fifth Avenue Rain <span class="tile-category">– Eau de Parfum</span></h4><p class="tile-description">Iris and rain evoke Fifth Avenue’s shimmering sidewalks.</p><div class="tile-spec"><span>2.5 fl oz</span><strong>US $260</strong></div></div>
+ </article><article class="product-tile" data-product="fifth-candle" style="--item-accent:#8AA6BA">
+ <div class="tile-media"><img class="tile-image" src="assets/images/fifth-candle.webp" alt="Fifth Avenue Rain scented candle and matching product packaging" loading="lazy" decoding="async" data-image-key="fifth-candle"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="fifth-candle" aria-label="Add Fifth Avenue Rain Scented Candle to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Fifth Avenue Rain <span class="tile-category">– Scented Candle</span></h4><p class="tile-description">Violet leaf and soft light after a Flatiron spring shower.</p><div class="tile-spec"><span>190 g</span><strong>US $82</strong></div></div>
+ </article><article class="product-tile" data-product="fifth-cream" style="--item-accent:#8AA6BA">
+ <div class="tile-media"><img class="tile-image" src="assets/images/fifth-cream.webp" alt="Fifth Avenue Rain perfumed hand cream and matching product packaging" loading="lazy" decoding="async" data-image-key="fifth-cream"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="fifth-cream" aria-label="Add Fifth Avenue Rain Perfumed Hand Cream to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Fifth Avenue Rain <span class="tile-category">– Perfumed Hand Cream</span></h4><p class="tile-description">A cool floral touch, like rain on Manhattan’s stone façades.</p><div class="tile-spec"><span>45 g</span><strong>US $58</strong></div></div>
+ </article><article class="product-tile" data-product="fifth-diffuser" style="--item-accent:#8AA6BA">
+ <div class="tile-media"><img class="tile-image" src="assets/images/fifth-diffuser.webp" alt="Fifth Avenue Rain reed diffuser and matching product packaging" loading="lazy" decoding="async" data-image-key="fifth-diffuser"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="fifth-diffuser" aria-label="Add Fifth Avenue Rain Reed Diffuser to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
+ <div class="tile-info"><h4>Fifth Avenue Rain <span class="tile-category">– Reed Diffuser</span></h4><p class="tile-description">Rain and violet leaf bring Fifth Avenue’s hush indoors.</p><div class="tile-spec"><span>6.8 fl oz</span><strong>US $225</strong></div></div>
+ </article></div></section><div class="collection-footer">Four neighborhoods. A thousand moments to remember.</div></div></section>
+
+</main><footer class="footer" aria-label="Les Essences de New York footer">
+  <div class="footer-directory">
+    <div class="container footer-directory-grid">
+      <div class="footer-column">
+        <h2>Explore the collection</h2>
+        <a href="#scent-brooklyn">Brooklyn Bloom</a>
+        <a href="#scent-greenwich">Greenwich Morning</a>
+        <a href="#scent-riverside">Riverside</a>
+        <a href="#scent-fifth">Fifth Avenue Rain</a>
+      </div>
+      <div class="footer-column">
+        <h2>Campaign experiences</h2>
+        <a href="creative-director-part4.html">Print Ads</a>
+        <a href="creative-director-part5.html">Digital Ads</a>
+        <a href="creative-director-part6.html">Scent Atelier</a>
+      </div>
+      <div class="footer-column">
+        <h2>Discover more</h2>
+        <a href="#home">Campaign Home</a>
+        <a href="#collection">Shop the Collection</a>
+        <a href="index.html">Creative Portfolio</a>
+      </div>
+      <div class="footer-column footer-about">
+        <h2>About the campaign</h2>
+        <p>Four fragrances. One city. A Spring 2027 student campaign concept inspired by Diptyque and the distinctive neighborhoods of New York.</p>
+        <a href="#home" class="footer-return">Back to the top <span aria-hidden="true">↑</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-signature">
+    <div class="container">
+      <div class="footer-top">
+        <div><span class="eyebrow">Les Essences de New York · Spring 2027</span><p>A city of a thousand scents.</p></div>
+      </div>
+      <div class="footer-bottom">
+        <span>An independent, fictional student campaign created for Diptyque as a design concept. Not affiliated with or endorsed by Diptyque.</span>
+        <span>Spring 2027 · New York</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script type="application/json" id="collectionAssets">{"logo":"assets/images/logo.webp","collection_brooklyn":"assets/images/collection-brooklyn.webp","collection_greenwich":"assets/images/collection-greenwich.webp","collection_riverside":"assets/images/collection-riverside.webp","collection_fifth":"assets/images/collection-fifth.webp","hero_poster":"assets/images/hero-poster.webp"}</script>
+<script>
+(()=>{'use strict';
+ const assets=JSON.parse(document.getElementById('collectionAssets').textContent);
+ document.querySelectorAll('img[data-asset]').forEach(img=>{let key=img.dataset.asset;if(assets[key])img.src=assets[key]});
+ const nav=document.getElementById('mainNav'),toggle=document.getElementById('menuToggle');
+ toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.innerHTML=open?'Close <span aria-hidden="true">✕</span>':'Menu <span aria-hidden="true">☰</span>'});
+ document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.innerHTML='Menu <span aria-hidden="true">☰</span>'}));
+ const film=document.getElementById('campaignFilm'),screen=document.getElementById('heroScreen');
+ film.addEventListener('loadeddata',()=>{screen.classList.add('has-frame')});
+ film.addEventListener('playing',()=>{screen.classList.add('is-playing')});
+ film.addEventListener('error',()=>{screen.classList.remove('has-frame','is-playing')});
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){film.autoplay=false;film.pause();}
+ else{film.play().catch(()=>{})}
+})();
+</script>
+<div class="bag-shade" id="bagShade" hidden></div>
+<aside class="bag-drawer" id="bagDrawer" role="dialog" aria-modal="true" aria-label="Demo shopping bag" hidden><div class="bag-top"><div><small>LES ESSENCES DE NEW YORK</small><h2>Your bag</h2></div><button class="bag-close" type="button" id="bagClose" aria-label="Close shopping bag">×</button></div><div class="bag-content" id="bagContent"><p class="bag-empty">Your bag is waiting for a New York memory.</p></div><div class="bag-bottom"><div class="bag-total"><span>Concept total</span><span id="bagTotal">US $0</span></div><p class="bag-explain">This is an interactive student campaign concept. Items, proposed retail channels and prices are fictional. No checkout or payment is available.</p></div></aside>
+<div class="bag-feedback" id="bagFeedback" role="status" aria-live="polite" hidden></div>
+<script id="concept-bag-script">
+(()=>{
+const products={
+"brooklyn-perfume": {name: "Brooklyn Bloom", category:"Eau de Parfum",size:"2.5 fl oz", price:260},
+"brooklyn-candle": {name: "Brooklyn Bloom", category:"Scented Candle",size:"190 g", price:82},
+"brooklyn-cream": {name: "Brooklyn Bloom", category:"Perfumed Hand Cream",size:"45 g", price:58},
+"brooklyn-diffuser": {name: "Brooklyn Bloom", category:"Reed Diffuser",size:"6.8 fl oz", price:225},
+"greenwich-perfume": {name: "Greenwich Morning", category:"Eau de Parfum",size:"2.5 fl oz", price:260},
+"greenwich-candle": {name: "Greenwich Morning", category:"Scented Candle",size:"190 g", price:82},
+"greenwich-cream": {name: "Greenwich Morning", category:"Perfumed Hand Cream",size:"45 g", price:58},
+"greenwich-diffuser": {name: "Greenwich Morning", category:"Reed Diffuser",size:"6.8 fl oz", price:225},
+"riverside-perfume": {name: "Riverside", category:"Eau de Parfum",size:"2.5 fl oz", price:260},
+"riverside-candle": {name: "Riverside", category:"Scented Candle",size:"190 g", price:82},
+"riverside-cream": {name: "Riverside", category:"Perfumed Hand Cream",size:"45 g", price:58},
+"riverside-diffuser": {name: "Riverside", category:"Reed Diffuser",size:"6.8 fl oz", price:225},
+"fifth-perfume": {name: "Fifth Avenue Rain", category:"Eau de Parfum",size:"2.5 fl oz", price:260},
+"fifth-candle": {name: "Fifth Avenue Rain", category:"Scented Candle",size:"190 g", price:82},
+"fifth-cream": {name: "Fifth Avenue Rain", category:"Perfumed Hand Cream",size:"45 g", price:58},
+"fifth-diffuser": {name: "Fifth Avenue Rain", category:"Reed Diffuser",size:"6.8 fl oz", price:225}
+};
+const state={}; const $=id=>document.getElementById(id);
+const drawer=$('bagDrawer'), shade=$('bagShade'), openBtn=$('bagOpen'), closeBtn=$('bagClose'), bagCount=$('bagCount'), total=$('bagTotal'), content=$('bagContent'), feedback=$('bagFeedback');
+const format=n=>'US $'+n.toLocaleString('en-US');
+function render(){
+ const keys=Object.keys(state).filter(k=>state[k]>0); const n=keys.reduce((sum,k)=>sum+state[k],0); bagCount.textContent=n;
+ total.textContent=format(keys.reduce((sum,k)=>sum+products[k].price*state[k],0));
+ if(!keys.length){content.innerHTML='<p class="bag-empty">Your bag is waiting for a New York memory.</p>';return}
+ content.innerHTML=keys.map(k=>{const p=products[k];return '<div class="bag-item"><div><div class="bag-item-title">'+p.name+'</div><p class="bag-item-sub">'+p.category+' · '+p.size+'</p><button type="button" class="bag-remove" data-remove="'+k+'">Remove one</button></div><span class="bag-item-amount">'+state[k]+' × '+format(p.price)+'</span></div>'}).join('');
+}
+function toggle(open){drawer.hidden=!open;shade.hidden=!open;openBtn.setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':'';if(open)closeBtn.focus();else openBtn.focus()}
+openBtn.addEventListener('click',()=>toggle(true));closeBtn.addEventListener('click',()=>toggle(false));shade.addEventListener('click',()=>toggle(false));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!drawer.hidden)toggle(false)});
+content.addEventListener('click',e=>{const btn=e.target.closest('[data-remove]');if(!btn)return;const k=btn.dataset.remove;state[k]=Math.max(0,(state[k]||0)-1);render()});
+let statusTimer;document.querySelectorAll('[data-add]').forEach(btn=>btn.addEventListener('click',()=>{
+ const key=btn.dataset.add;state[key]=(state[key]||0)+1;render();btn.classList.add('just-added');setTimeout(()=>btn.classList.remove('just-added'),850);
+ feedback.textContent=products[key].name+' · '+products[key].category+' added to your demo bag';feedback.hidden=false;clearTimeout(statusTimer);statusTimer=setTimeout(()=>feedback.hidden=true,2300);
+}));render();
+})();
+</script></body></html>

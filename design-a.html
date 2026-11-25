@@ -1,49 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-  .dream-home {
-    margin: 65px auto 0;
-    text-align: center;
-  }
-
-  .dream-home a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    box-sizing: border-box;
-    min-height: 56px;
-    padding: 16px 28px;
-
-    background: #fdf6e8;
-    color: #544a59;
-    border: 1.5px dashed #867989;
-    border-radius: 14px;
-    box-shadow: 4px 4px 0 #f9dbe7;
-
-    font: 300 16px/1.5 "DM Sans", sans-serif;
-    text-decoration: none;
-    transition: background-color 300ms, border-color 300ms;
-  }
-
-  .dream-home .ornament {
-    color: #867989;
-    font-size: 22px;
-    text-shadow: 2px 2px #f2b8cf;
-  }
-
-  .dream-home a:hover {
-    background: #f9dbe7;
-    border-color: #544a59;
-    text-decoration: underline;
-  }
-
-  .dream-home a:focus-visible {
-    outline: 2px solid #867989;
-    outline-offset: 6px;
-  }
-</style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Dream Dispensary</title>
@@ -1338,6 +1295,44 @@
       .css-painting.card .painting-emoji { font-size:2.05rem !important; }
     }
 
+  
+    /* Dream stationery: coordinated pastel paper and individually themed artwork. */
+    .memory-card, .dream-ticket, .rotating-display, .polaroid {
+      --card-light:#fff9ed; --card-tint:#eee0f2;
+      background-image: radial-gradient(ellipse at 10% 0%,#ffffffa0,transparent 65%), repeating-linear-gradient(95deg,#79627d08 0 1px,transparent 1px 5px), linear-gradient(135deg,var(--card-light),var(--card-tint)) !important;
+      border-color:#b6a1b8 !important;
+    }
+    [data-dream="plushie"] {--card-tint:#f2d5dd!important}
+    [data-dream="summer"] {--card-tint:#e5edcf!important}
+    [data-dream="rain"] {--card-tint:#dbe7f3!important}
+    [data-dream="melody"] {--card-tint:#e5d9f2!important}
+    [data-dream="painting"] {--card-tint:#f4dfcd!important}
+    [data-dream="flower"] {--card-tint:#f3dce7!important}
+    [data-dream="sleep"] {--card-tint:#dddaf2!important}
+    [data-dream="cloudjar"] {--card-tint:#d9edf2!important}
+    [data-dream="star"] {--card-tint:#f6e8bb!important}
+    [data-dream="aurora"] {--card-tint:#d7e8e4!important}
+    [data-dream="sunset"] {--card-tint:#f6d8ca!important}
+    [data-dream="butterfly"] {--card-tint:#e2d9f0!important}
+    .css-painting { --sky:#e7d8ef; --base:#f5d4df; }
+    .css-painting.art-plushie {--sky:#f8e7da;--base:#e5b9ca}
+    .css-painting.art-summer {--sky:#d9eef8;--base:#b9d6a8}
+    .css-painting.art-rain {--sky:#dce9f3;--base:#a6b9d6}
+    .css-painting.art-melody {--sky:#eee5fa;--base:#beb5e3}
+    .css-painting.art-painting {--sky:#fff0d6;--base:#dbb7cb}
+    .css-painting.art-flower {--sky:#fff1e6;--base:#c7dfc0}
+    .css-painting.art-sleep {--sky:#c9c5e9;--base:#9995c8}
+    .css-painting.art-cloudjar {--sky:#e6f7fb;--base:#b6d3e7}
+    .css-painting.art-star {--sky:#fff4cf;--base:#e3c7e4}
+    .css-painting.art-aurora {--sky:#b0d8d3;--base:#9990c9}
+    .css-painting.art-sunset {--sky:#e2cde9;--base:#f3b99f}
+    .css-painting.art-butterfly {--sky:#e4f1d9;--base:#cbb8e9}
+    .css-painting[class*="art-"] {background:radial-gradient(circle at 22% 20%,#ffffffc0 0 1.5%,transparent 2%),radial-gradient(circle at 80% 28%,#ffffffb0 0 1%,transparent 1.8%),radial-gradient(circle at 72% 76%,#ffffffa0 0 1.5%,transparent 2.2%),radial-gradient(ellipse at 50% 45%,#ffffff80,transparent 65%),linear-gradient(155deg,var(--sky),var(--base)) !important;}
+    .css-painting[class*="art-"]::before {content:"" !important; inset:0 !important; max-width:none !important; background:repeating-linear-gradient(105deg,#75617a0a 0 1px,transparent 1px 4px) !important;}
+    .css-painting[class*="art-"]::after {border:1px solid #ffffffa0 !important; box-shadow:none !important;}
+    .memory-card::after {background:var(--card-tint); opacity:.9;}
+    .memory-card small {color:#716477;}
+
   </style>
 </head>
 <body>
@@ -1393,13 +1388,6 @@
     </section>
 
     <p class="footer-note">“Some dreams are not meant to be understood. They are only meant to be kept.”</p>
-    <nav class="dream-home" aria-label="Return navigation">
-  <a href="index.html">
-    <span class="ornament" aria-hidden="true">✿</span>
-    <span>← Return to Homepage</span>
-    <span class="ornament" aria-hidden="true">☾</span>
-  </a>
-</nav>
   </main>
 
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -1466,6 +1454,7 @@
       playSequence();
       setTimeout(() => {
         collectDream(dream);
+        dreamTicket.dataset.dream = dream.art;
         dreamTicket.innerHTML = `
           <div class="dream-ticket-content">
             <div class="dream-ticket-art" aria-hidden="true">${paintingMarkup(dream, "card")}</div>
@@ -1485,6 +1474,7 @@
     function updateRotatingPreview() {
       const dream = dreams[previewIndex];
       const item = document.getElementById("rotatingItem");
+      item.closest(".rotating-display").dataset.dream = dream.art;
       item.classList.remove("changing");
       void item.offsetWidth;
       document.getElementById("rotatingIcon").innerHTML = paintingMarkup(dream);
@@ -1503,6 +1493,7 @@
 
       const card = document.createElement("div");
       card.className = "memory-card";
+      card.dataset.dream = dream.art;
       card.innerHTML = `
         <div class="memory-icon" aria-hidden="true">${paintingMarkup(dream, "card")}</div>
         <div class="memory-copy"><strong>${dream.title}</strong><small>${dream.rarity}</small></div>
@@ -1519,6 +1510,7 @@
 
     // This opens the Polaroid-style reveal for the selected dream.
     function showDream(dream) {
+      modal.querySelector(".polaroid").dataset.dream = dream.art;
       document.getElementById("modalIcon").innerHTML = paintingMarkup(dream, "large");
       document.getElementById("modalTitle").textContent = dream.title;
       document.getElementById("modalDescription").textContent = dream.description;

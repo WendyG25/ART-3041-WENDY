@@ -680,6 +680,45 @@ html, body { background-color: #f4eee5; }
   .footer-column h2{margin-bottom:4px}
 }
 </style>
+<style id="campaign-explore-styles">
+/* Explore the campaign — compact editorial previews using the user's own campaign assets. */
+.campaign-explore{background:#faf6f0;padding:clamp(70px,8vw,124px) 0 clamp(80px,8vw,126px);border-top:1px solid #e7ded5}
+.campaign-explore-intro{text-align:center;max-width:760px;margin:0 auto clamp(32px,4.4vw,62px)}
+.campaign-explore-intro .eyebrow{color:#9c7c7e;letter-spacing:.19em}
+.campaign-explore-intro h2{font:400 clamp(43px,5vw,72px)/1.12 var(--serif);letter-spacing:-.034em;color:#352e2c;margin:13px auto 17px}
+.campaign-explore-intro h2 em{font-weight:400;color:#9a7b83;font-style:italic}
+.campaign-explore-intro p{font:400 clamp(13px,1.22vw,15px)/1.95 var(--sans);color:#6e635d;max-width:600px;margin:0 auto}
+.campaign-explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(15px,2.1vw,34px);align-items:start}
+.campaign-explore-card{min-width:0;display:block;outline-offset:6px;color:inherit;text-decoration:none}
+.campaign-explore-visual{width:100%;aspect-ratio:4/4.65;overflow:hidden;position:relative;background:#e8ddd3;isolation:isolate}
+.campaign-explore-print img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .65s ease}
+.campaign-explore-card:hover .campaign-explore-print img{transform:scale(1.035)}
+.campaign-explore-digital{background:radial-gradient(ellipse at 45% 38%,#e0d5c5 0%,#d8c8b9 50%,#bba9a2 100%);display:flex;align-items:center;justify-content:center;padding:28px}
+.campaign-preview-phone{width:min(68%,260px);height:auto;aspect-ratio:9/16;min-width:0;display:flex;flex-direction:column;overflow:hidden;border:5px solid #292624;border-radius:26px;background:#fbf8f3;box-shadow:8px 15px 25px rgba(46,33,29,.26);transform:rotate(-3deg);transition:transform .5s ease;position:relative}
+.campaign-explore-card:hover .campaign-preview-phone{transform:rotate(0deg) translateY(-5px)}
+.campaign-preview-phone-header{display:flex;align-items:center;gap:7px;flex:0 0 13%;min-height:31px;padding:5px 9px;white-space:nowrap;overflow:hidden;font:600 clamp(8px,.7vw,10px)/1.1 var(--sans);color:#332c2a}
+.campaign-preview-avatar{width:22px;height:22px;flex-shrink:0;border-radius:50%;border:1px solid #c1a7ab;background:#ebdde0;display:grid;place-items:center;font:italic 15px var(--serif)}
+.campaign-preview-handle{overflow:hidden;text-overflow:ellipsis;min-width:0}.campaign-preview-handle small{display:block;font:400 7px/1.3 var(--sans);color:#8c7773;margin-top:2px}
+.campaign-preview-more{margin-left:auto;font-size:13px;letter-spacing:1px}
+.campaign-preview-phone-photo{flex:1;min-height:0;background:#f6f1e6}.campaign-preview-phone-photo img{width:100%;height:100%;object-fit:contain;object-position:center}
+.campaign-preview-phone-controls{display:flex;align-items:center;gap:9px;flex:0 0 10%;min-height:27px;padding:4px 10px;font:18px/1 var(--sans)}
+.campaign-preview-save{margin-left:auto}
+.campaign-explore-postcards{background:linear-gradient(144deg,#eaded0,#e8d4cb 63%,#d2bcb3);display:flex;align-items:center;justify-content:center}
+.campaign-postcard-primary,.campaign-postcard-secondary{position:absolute;width:87%;height:auto;max-height:none;object-fit:contain;filter:drop-shadow(1px 12px 11px rgba(76,58,46,.21));transition:transform .5s ease}
+.campaign-postcard-primary{transform:rotate(-7deg) translate(-2%,6%);z-index:1}
+.campaign-postcard-secondary{transform:rotate(8deg) translate(12%,-28%);opacity:.9;z-index:0}
+.campaign-explore-card:hover .campaign-postcard-primary{transform:rotate(-3deg) translate(-3%,3%)}
+.campaign-explore-details{padding:24px 2px 0}
+.campaign-explore-details .eyebrow{font-size:9px;letter-spacing:.18em;color:#9e7d7b}
+.campaign-explore-details h3{font:400 clamp(29px,2.6vw,39px)/1.25 var(--serif);letter-spacing:-.025em;margin:7px 0 8px;color:#352e2c}
+.campaign-explore-details p{color:#746961;font:400 13px/1.85 var(--sans);min-height:50px;max-width:365px}
+.campaign-explore-action{display:inline-flex;gap:17px;align-items:center;margin-top:18px;padding-bottom:5px;border-bottom:1px solid #b29a92;color:#544542;font:500 10px/1.6 var(--label);text-transform:uppercase;letter-spacing:.12em;transition:color .2s,border-color .2s}
+.campaign-explore-action span{font:17px/1 var(--sans)}
+.campaign-explore-card:hover .campaign-explore-action{color:#956975;border-color:#956975}
+@media(max-width:1050px){.campaign-preview-phone{width:76%}.campaign-explore-details p{min-height:72px}}
+@media(max-width:720px){.campaign-explore{padding:65px 0 75px}.campaign-explore-grid{grid-template-columns:1fr;gap:39px}.campaign-explore-visual{aspect-ratio:5/4;max-height:440px}.campaign-explore-print img{object-position:50% 48%}.campaign-preview-phone{width:min(48%,210px);border-radius:23px}.campaign-explore-details{padding-top:19px}.campaign-explore-details h3{font-size:32px}.campaign-explore-details p{min-height:0;max-width:560px}.campaign-postcard-primary,.campaign-postcard-secondary{width:min(72%,360px)}}
+@media(prefers-reduced-motion:reduce){.campaign-explore-card img,.campaign-preview-phone{transition:none!important}}
+</style>
 </head><body>
 <a href="#collection" style="position:absolute;top:-200px;left:10px;background:#fff;padding:8px;z-index:1000" onfocus="this.style.top='10px'" onblur="this.style.top='-200px'">Skip to collection</a>
 <div class="season-line" role="note"><span class="season-house">SPRING 2027 <span class="season-mark" aria-hidden="true">✧</span> A CITY OF A THOUSAND SCENTS</span><span class="season-note">An independent, fictional campaign concept for Diptyque <span aria-hidden="true">·</span> Not official or affiliated</span></div>
@@ -827,6 +866,57 @@ html, body { background-color: #f4eee5; }
  <div class="tile-media"><img class="tile-image" src="assets/images/fifth-diffuser.webp" alt="Fifth Avenue Rain reed diffuser and matching product packaging" loading="lazy" decoding="async" data-image-key="fifth-diffuser"/><span class="tile-sticker">Limited edition</span><button type="button" class="tile-add" data-add="fifth-diffuser" aria-label="Add Fifth Avenue Rain Reed Diffuser to the demo shopping bag" title="Add to bag"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11h18l1.2 17H5.8L7 11Z"/><path d="M12 12V9a4 4 0 0 1 8 0v3"/><path d="M16 17v8M12 21h8"/></svg></button></div>
  <div class="tile-info"><h4>Fifth Avenue Rain <span class="tile-category">– Reed Diffuser</span></h4><p class="tile-description">Rain and violet leaf bring Fifth Avenue’s hush indoors.</p><div class="tile-spec"><span>6.8 fl oz</span><strong>US $225</strong></div></div>
  </article></div></section><div class="collection-footer">Four neighborhoods. A thousand moments to remember.</div></div></section>
+
+
+<section class="campaign-explore" id="explore-campaign" aria-labelledby="explore-campaign-heading">
+  <div class="container">
+    <div class="campaign-explore-intro">
+      <span class="eyebrow">The world of Les Essences de New York</span>
+      <h2 id="explore-campaign-heading">Beyond the <em>bottle</em></h2>
+      <p>From posters across the city to stories on your screen and postcards to keep, discover the campaign in its many forms.</p>
+    </div>
+    <div class="campaign-explore-grid">
+      <a class="campaign-explore-card" href="creative-director-part4.html" aria-label="Explore the Print Ads campaign">
+        <div class="campaign-explore-visual campaign-explore-print">
+          <img src="assets/images/campaign-preview-print.webp" alt="Brooklyn Bloom campaign print advertisement on a vintage flower cart in New York" loading="lazy" decoding="async" />
+        </div>
+        <div class="campaign-explore-details">
+          <span class="eyebrow">01 / Out in the city</span>
+          <h3>Print Ads</h3>
+          <p>Discover the collection in the streets, storefronts, and familiar corners of New York.</p>
+          <span class="campaign-explore-action">Explore Print Ads</span>
+        </div>
+      </a>
+      <a class="campaign-explore-card" href="creative-director-part5.html" aria-label="Explore the Digital Ads campaign">
+        <div class="campaign-explore-visual campaign-explore-digital">
+          <div class="campaign-preview-phone" aria-hidden="true">
+            <div class="campaign-preview-phone-header"><span class="campaign-preview-avatar">N</span><span class="campaign-preview-handle">Les Essences <small>Sponsored concept</small></span><span class="campaign-preview-more">···</span></div>
+            <div class="campaign-preview-phone-photo"><img src="assets/images/campaign-preview-greenwich-instagram.webp" alt="Original Greenwich Morning Instagram post: sage-green candle with Greenwich Village illustration, basil, bergamot, and green tea botanical details" loading="lazy" decoding="async" /></div>
+            <div class="campaign-preview-phone-controls"><span>♡</span><span>▢</span><span>➤</span><span class="campaign-preview-save">▯</span></div>
+          </div>
+        </div>
+        <div class="campaign-explore-details">
+          <span class="eyebrow">02 / In your feed</span>
+          <h3>Digital Ads</h3>
+          <p>Step into the reels, social stories, and interactive details of the collection.</p>
+          <span class="campaign-explore-action">Explore Digital Ads</span>
+        </div>
+      </a>
+      <a class="campaign-explore-card" href="creative-director-part6.html" aria-label="Explore the Scent Atelier postcard experience">
+        <div class="campaign-explore-visual campaign-explore-postcards">
+          <img class="campaign-postcard-secondary" src="assets/images/campaign-preview-postcard-greenwich.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <img class="campaign-postcard-primary" src="assets/images/campaign-preview-postcard-brooklyn.webp" alt="Brooklyn Bloom illustrated postcard with magnolia artwork and a New York postage mark" loading="lazy" decoding="async" />
+        </div>
+        <div class="campaign-explore-details">
+          <span class="eyebrow">03 / A keepsake to carry</span>
+          <h3>Scent Atelier</h3>
+          <p>Choose your fragrance, decorate a postcard, and make a New York memory your own.</p>
+          <span class="campaign-explore-action">Explore Scent Atelier</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 </main><footer class="footer" aria-label="Les Essences de New York footer">
   <div class="footer-directory">
